@@ -2,6 +2,14 @@
 #define INTERFACE_HPP
 #include "defines.hpp"
 #include "defaults.hpp"
+struct Application
+{
+	/// <summary>
+	/// Starts the application loop
+	/// </summary>
+	static int Run();
+	static InstanceHandle Instance();
+};
 namespace WinCape
 {
 	class Base
@@ -9,18 +17,22 @@ namespace WinCape
 	public:
 		Base();
 		~Base();
-		Handle getHandle();
+		Base(const Base&);
+		Handle getHandle() const;
 	protected:
 		void setHandle(const Handle& handle);
-	private:
 		class BaseImpl;
+	private:
 		std::unique_ptr<BaseImpl> baseImpl;
 		//Handle handle; inside cpp
 	};
 	class Window : Base
 	{
-		Window(LPCTSTR windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+	public:
+		Window();
 		~Window();
+		Window(const Window&);
+		static Window Create(const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		void show();
 		void hide();
 		//try to define this in cpp
