@@ -24,7 +24,6 @@ namespace WinCape
 		class BaseImpl;
 	private:
 		std::unique_ptr<BaseImpl> baseImpl;
-		//Handle handle; inside cpp
 	};
 	class Window : Base
 	{

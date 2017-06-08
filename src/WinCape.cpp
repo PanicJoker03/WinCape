@@ -1,18 +1,42 @@
 #include <WinCape.hpp>
 #include <Helper.hpp>
+#include <vector>
 using namespace std;
 //Manage procedure messages here
 namespace
 {
+	using namespace WinCape;
+	vector<void*> ptrPool;
+	//Forward declarations
+	LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	void* poolPtr(void* ptr);
+	void freeMemory();
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
+		//TODO: abstract message processing
 		switch (message)
 		{
+		case WindowMessages::General::Destroy:
+			PostQuitMessage(0);
+			freeMemory();
+			break;
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 			break;
 		}
 		return 0;
+	}
+	void* poolPtr(void* ptr)
+	{
+		ptrPool.push_back(ptr);
+		return ptr;
+	}
+	void freeMemory()
+	{
+		for (auto& ptr : ptrPool)
+		{
+			delete ptr;
+		}
 	}
 }
 //-------------------------------------------------------------------------
@@ -37,18 +61,6 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Impl classes definitions
 	//-------------------------------------------------------------------------
-	struct CommonData
-	{
-		void setHandle(const Handle& handle)
-		{
-			this->handle = handle;
-		}
-		Handle getHandle() const
-		{
-			return handle;
-		}
-		Handle handle = 0;
-	};
 	class Base::BaseImpl
 	{
 	public:
@@ -63,20 +75,18 @@ namespace WinCape
 		Handle handle = 0;
 	};
 	//TODO: Check if I can prevent handle variable duplication through interfaces
-	class Window::WindowImpl : Base::BaseImpl
+	class Window::WindowImpl
 	{
 	public:
 		static Window Create(const char* windowName, Rect rect, WindowStyle style)
 		{
 			Window window;
 			Handle windowHandle;
-			if (!RegisterClassEx(&WindowClass()))
-			{
-				int i = 0;
-			}
+			RegisterClassEx(&WindowClass());
+			auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
 			windowHandle = CreateWindow(
-				Utility::toWchar_t(Defaults::WindowName),
-				Utility::toWchar_t(Defaults::WindowName),
+				(LPWSTR)wideWindowName,
+				(LPWSTR)wideWindowName,
 				Defaults::DefWindowStyle,
 				rect.position.x, rect.position.y,
 				rect.size.x, rect.size.y,
@@ -85,17 +95,17 @@ namespace WinCape
 				Application::Instance(),
 				NULL
 			);
-			auto var = GetLastError();
 			window.setHandle(windowHandle);
 			return window;
 		}
-		void show()
+		void show(const Handle& handle)
 		{
-			ShowWindow(BaseImpl::getHandle(), Defaults::DefShowCommand);
+			ShowWindow(handle, Defaults::DefShowCommand);
 		}
 	private:
 		static WNDCLASSEX WindowClass()
 		{
+			auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
 			//TODO wrap IDI macros in default header...
 			WNDCLASSEX windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEX);
@@ -105,7 +115,7 @@ namespace WinCape
 			windowClass.hIcon = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 			windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 			windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			windowClass.lpszClassName = Utility::toWchar_t(Defaults::WindowName);
+			windowClass.lpszClassName = (LPWSTR)wideWindowName;
 			windowClass.hIconSm = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 			return windowClass;
 		}
@@ -140,7 +150,7 @@ namespace WinCape
 	}
 	void Window::show()
 	{
-		windowImpl->show();
+		windowImpl->show(getHandle());
 	}
 	//-------------------------------------------------------------------------
 	//Button

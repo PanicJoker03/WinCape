@@ -10,6 +10,7 @@ using InstanceHandle = HINSTANCE;
 using WindowStyle = DWORD;
 using ClassStyle = UINT;
 using ShowCommand  = int;
+using WindowMessage = UINT;
 namespace WinCape
 {
 	struct WindowStyles
@@ -72,6 +73,47 @@ namespace WinCape
 		static constexpr ShowCommand ShowNA = SW_SHOWNA;
 		static constexpr ShowCommand ShowNoActivate = SW_SHOWNOACTIVATE;
 		static constexpr ShowCommand ShowNormal = SW_SHOWNORMAL;
+	};
+	struct WindowMessages
+	{
+		struct General
+		{
+			//Notifications
+			static constexpr WindowMessage ActivateApp = WM_ACTIVATEAPP;
+			static constexpr WindowMessage CancelMode = WM_CANCELMODE;
+			static constexpr WindowMessage ChildActive = WM_CHILDACTIVATE;
+			static constexpr WindowMessage Close = WM_CLOSE;
+			static constexpr WindowMessage Compacting = WM_COMPACTING;
+			static constexpr WindowMessage Create = WM_CREATE;
+			static constexpr WindowMessage Destroy = WM_DESTROY;
+			static constexpr WindowMessage DotPerInchChanged = WM_DPICHANGED;
+			static constexpr WindowMessage Enable = WM_ENABLE;
+			static constexpr WindowMessage EnterSizeMove = WM_ENTERSIZEMOVE;
+			static constexpr WindowMessage ExitSizeMove = WM_EXITSIZEMOVE;
+			static constexpr WindowMessage GetIcon = WM_GETICON;
+			static constexpr WindowMessage GetMinMaxInfo = WM_GETMINMAXINFO;
+			static constexpr WindowMessage InputLangChange = WM_INPUTLANGCHANGE;
+			static constexpr WindowMessage InputLangChangeRequest = WM_INPUTLANGCHANGEREQUEST;
+			static constexpr WindowMessage Move = WM_MOVE;
+			static constexpr WindowMessage Moving = WM_MOVING;
+			static constexpr WindowMessage NCActivate = WM_NCACTIVATE;
+			static constexpr WindowMessage NCCalSize = WM_NCCALCSIZE;
+			static constexpr WindowMessage NCCreate = WM_NCCREATE;
+			static constexpr WindowMessage NCDestroy = WM_NCDESTROY;
+			static constexpr WindowMessage Null = WM_NULL;
+			static constexpr WindowMessage QueryDragIcon = WM_QUERYDRAGICON;
+			static constexpr WindowMessage QueryOpen = WM_QUERYOPEN;
+			static constexpr WindowMessage Quit = WM_QUIT;
+			static constexpr WindowMessage ShowWindow = WM_SHOWWINDOW;
+			static constexpr WindowMessage Size = WM_SIZE;
+			static constexpr WindowMessage Sizing = WM_SIZING;
+			static constexpr WindowMessage StyleChanged = WM_STYLECHANGED;
+			static constexpr WindowMessage StyleChanging = WM_STYLECHANGING;
+			static constexpr WindowMessage ThemeChanged = WM_THEMECHANGED;
+			static constexpr WindowMessage UserChanged = WM_USERCHANGED;
+			static constexpr WindowMessage WindowPositionChanged = WM_WINDOWPOSCHANGED;
+			static constexpr WindowMessage WindowPositionChanging = WM_WINDOWPOSCHANGING;
+		};
 	};
 	struct Int2
 	{
