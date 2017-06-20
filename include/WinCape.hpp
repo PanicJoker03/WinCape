@@ -10,8 +10,12 @@ struct Application
 	static int Run();
 	static InstanceHandle Instance();
 };
+//TODO: If private functions aren't needed, then redesign the whole class structure without pimpl
 namespace WinCape
 {
+	//forward declarations
+	class Button;
+	class Window;
 	class Base
 	{
 	public:
@@ -32,26 +36,35 @@ namespace WinCape
 		~Window();
 		Window(const Window&);
 		static Window Create(const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
-		void show();
+		Window& show();
 		void hide();
+		Window& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		//try to define this in cpp
-		//template<typename TControl> TControl addControl(); //store controls in vector or map
+		//template<typename TControl> TControl addControl();
 	private:
-		//check if I can remove all this pimpl repeat using templates
 		class WindowImpl;
 		std::unique_ptr<WindowImpl> windowImpl;
 	};
 	//enforce to this classes have to know nothing about Window class
 	class Control : Base
 	{
-
+	public:
+		friend Window;
+		Control();
+		~Control();
+		Control(const Control&);
+	protected:
+		class ControlImpl;
+	private:
+		std::unique_ptr<ControlImpl> controlImpl;
 	};
-	class Button : Control
+	class Button : public Control
 	{
 	public:
 		Button();
 		~Button();
-		//TODO: rename "std::function<void()>" to a more readable type
+		Button(const Button&);
+		//TODO: rename "std::function<void()>" to a more readable type (MessageCallback)
 		void onClick(std::function<void()> callback);
 	private:
 		class ButtonImpl;

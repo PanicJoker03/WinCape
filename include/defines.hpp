@@ -13,6 +13,7 @@ using ShowCommand  = int;
 using WindowMessage = UINT;
 namespace WinCape
 {
+	//TODO: use namespaces
 	struct WindowStyles
 	{
 		static constexpr WindowStyle Border = WS_BORDER;
@@ -42,6 +43,10 @@ namespace WinCape
 		static constexpr WindowStyle TiledWindow = WS_TILEDWINDOW;
 		static constexpr WindowStyle Visible = WS_VISIBLE;
 		static constexpr WindowStyle VerticalScroll = WS_VSCROLL;
+	};
+	struct ButtonStyles
+	{
+
 	};
 	struct ClassStyles
 	{

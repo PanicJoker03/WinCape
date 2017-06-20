@@ -40,7 +40,7 @@ namespace
 	}
 }
 //-------------------------------------------------------------------------
-//Entry point
+//Application
 //-------------------------------------------------------------------------
 int Application::Run()
 {
@@ -74,7 +74,6 @@ namespace WinCape
 		}
 		Handle handle = 0;
 	};
-	//TODO: Check if I can prevent handle variable duplication through interfaces
 	class Window::WindowImpl
 	{
 	public:
@@ -83,11 +82,11 @@ namespace WinCape
 			Window window;
 			Handle windowHandle;
 			RegisterClassEx(&WindowClass());
-			auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
+			auto wideWindowName = poolPtr(Utility::toWchar_t(windowName));
 			windowHandle = CreateWindow(
-				(LPWSTR)wideWindowName,
-				(LPWSTR)wideWindowName,
-				Defaults::DefWindowStyle,
+				static_cast<LPWSTR>(wideWindowName),
+				static_cast<LPWSTR>(wideWindowName),
+				style,
 				rect.position.x, rect.position.y,
 				rect.size.x, rect.size.y,
 				NULL,
@@ -97,6 +96,25 @@ namespace WinCape
 			);
 			window.setHandle(windowHandle);
 			return window;
+		}
+		void addButton(Button& button, const char* text, const Rect& rect, const Handle& parent)
+		{
+			Handle buttonHandle;
+			auto buttonText = static_cast<LPWSTR>(poolPtr(Utility::toWchar_t(text)));
+			buttonHandle = CreateWindow(
+				Defaults::ButtonClassName,
+				buttonText,
+				//TODO: Add button style missing here...
+				WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child,
+				rect.position.x,
+				rect.position.y,
+				rect.size.x,
+				rect.size.y,
+				parent,
+				NULL,
+				Application::Instance(),
+				NULL);
+			button.setHandle(buttonHandle);
 		}
 		void show(const Handle& handle)
 		{
@@ -120,6 +138,17 @@ namespace WinCape
 			return windowClass;
 		}
 	};
+	class Control::ControlImpl
+	{
+	public:
+	};
+	class Button::ButtonImpl
+	{
+	public:
+	};
+	//-------------------------------------------------------------------------
+	//Making classes copyable
+	//-------------------------------------------------------------------------
 	Base::Base() : baseImpl{ std::make_unique<BaseImpl>() } {}
 	Base::~Base() {}
 	Base::Base(const Base& base) : baseImpl{ make_unique<BaseImpl>() }
@@ -129,6 +158,12 @@ namespace WinCape
 	Window::Window() : windowImpl{ make_unique<WindowImpl>() } {}
 	Window::~Window() {}
 	Window::Window(const Window& window) : Base(window), windowImpl{ make_unique<WindowImpl>() } {}
+	Control::Control() : controlImpl{ make_unique<ControlImpl>() } {}
+	Control::~Control() {}
+	Control::Control(const Control& control) : Base(control), controlImpl{ make_unique<ControlImpl>() } {}
+	Button::Button() : buttonImpl{ make_unique<ButtonImpl>() } {}
+	Button::~Button() {}
+	Button::Button(const Button& button) : Control(button), buttonImpl{ make_unique<ButtonImpl>() } {}
 	//forwarding functions
 	//-------------------------------------------------------------------------
 	//Base
@@ -148,9 +183,15 @@ namespace WinCape
 	{
 		return WindowImpl::Create(windowName, rect, style);
 	}
-	void Window::show()
+	Window& Window::show()
 	{
 		windowImpl->show(getHandle());
+		return *this;
+	}
+	Window& Window::addButton(Button& button, const char* text, const Int2& position, const Int2& size)
+	{
+		windowImpl->addButton(button, text, Rect{position, size}, getHandle());
+		return *this;
 	}
 	//-------------------------------------------------------------------------
 	//Button

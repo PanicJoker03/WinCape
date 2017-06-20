@@ -5,6 +5,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	using namespace WinCape;
 	//Window window = Window::Create();
 	//window.show();
-	Window::Create().show();
+	Button buttonA;
+	Button buttonB;
+	Window::Create()
+		.show()
+		.addButton(buttonA, "Botón", Int2{ 100,100 })
+		.addButton(buttonB, "Test", Int2{ 140, 140 });
 	Application::Run();
 }
