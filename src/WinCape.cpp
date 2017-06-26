@@ -108,114 +108,52 @@ InstanceHandle Application::Instance()
 namespace WinCape
 {
 	//-------------------------------------------------------------------------
-	//Impl classes definitions
-	//-------------------------------------------------------------------------
-	class Base::BaseImpl
-	{
-	public:
-		void setHandle(const Handle& handle)
-		{
-			this->handle = handle;
-		}
-		Handle getHandle() const
-		{
-			return handle;
-		}
-		Handle handle = 0;
-	};
-	class Window::WindowImpl
-	{
-	public:
-		static Window Create(const char* windowName, Rect rect, WindowStyle style)
-		{
-			Window window;
-			Handle windowHandle;
-			RegisterClassEx(&WindowClass());
-			windowHandle = CreateHandle(windowName, windowName, style, rect);
-			window.setHandle(windowHandle);
-			return window;
-		}
-		void addButton(Button& button, const char* text, const Rect& rect, const Handle& parent)
-		{
-			Handle buttonHandle;
-			buttonHandle = CreateHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, rect, parent);
-			button.setHandle(buttonHandle);
-		}
-		void show(const Handle& handle)
-		{
-			ShowWindow(handle, ShowCommands::Show);
-		}
-		void minimize(const Handle& handle)
-		{
-			ShowWindow(handle, ShowCommands::Minimize);
-		}
-	private:
-		//TODO: Put this function in unnamed namespace
-		//static 
-	};
-	class Control::ControlImpl
-	{
-	public:
-	};
-	class Button::ButtonImpl
-	{
-	public:
-		void onClick(const EventCallback& callback, const Handle& handle)
-		{
-			//TODO: declare button notifications in defines
-			eventMap[EventKey{ handle, BN_CLICKED }] = callback;
-		}
-	};
-	//-------------------------------------------------------------------------
-	//Making classes copyable
-	//-------------------------------------------------------------------------
-	Base::Base() : baseImpl{ std::make_unique<BaseImpl>() } {}
-	Base::~Base() {}
-	Base::Base(const Base& base) : baseImpl{ make_unique<BaseImpl>() }
-	{
-		setHandle(base.getHandle());
-	}
-	Window::Window() : windowImpl{ make_unique<WindowImpl>() } {}
-	Window::~Window() {}
-	Window::Window(const Window& window) : Base(window), windowImpl{ make_unique<WindowImpl>() } {}
-	Control::Control() : controlImpl{ make_unique<ControlImpl>() } {}
-	Control::~Control() {}
-	Control::Control(const Control& control) : Base(control), controlImpl{ make_unique<ControlImpl>() } {}
-	Button::Button() : buttonImpl{ make_unique<ButtonImpl>() } {}
-	Button::~Button() {}
-	Button::Button(const Button& button) : Control(button), buttonImpl{ make_unique<ButtonImpl>() } {}
-	//forwarding functions
-	//-------------------------------------------------------------------------
 	//Base
 	//-------------------------------------------------------------------------
-	void Base::setHandle(const Handle& handle)
+	template<typename Derived> Base<Derived>::Base() {}
+	template<typename Derived> void Base<Derived>::setHandle(const Handle& handle)
 	{
-		baseImpl->setHandle(handle);
+		this->handle = handle;
 	}
-	Handle Base::getHandle() const
+	template<typename Derived> Handle Base<Derived>::getHandle() const
 	{
-		return baseImpl->getHandle();
+		return handle;
+	}
+	template<typename Derived> Derived& Base<Derived>::setText(const char* text) 
+	{ 
+		return static_cast<Derived&>(*this); 
 	}
 	//-------------------------------------------------------------------------
 	//Window
 	//-------------------------------------------------------------------------
 	Window Window::Create(const char* windowName, Rect rect, WindowStyle style)
 	{
-		return WindowImpl::Create(windowName, rect, style);
+		Window window;
+		Handle windowHandle;
+		RegisterClassEx(&WindowClass());
+		windowHandle = CreateHandle(windowName, windowName, style, rect);
+		window.setHandle(windowHandle);
+		return window;
+		//return WindowImpl::Create(windowName, rect, style);
 	}
 	Window& Window::show()
 	{
-		windowImpl->show(getHandle());
+		ShowWindow(getHandle(), ShowCommands::Show);
+		//windowImpl->show(getHandle());
 		return *this;
 	}
 	Window& Window::minimize()
 	{
-		windowImpl->show(getHandle());
+		ShowWindow(getHandle(), ShowCommands::Minimize);
+		//windowImpl->show(getHandle());
 		return *this;
 	}
 	Window& Window::addButton(Button& button, const char* text, const Int2& position, const Int2& size)
 	{
-		windowImpl->addButton(button, text, Rect{position, size}, getHandle());
+		Handle buttonHandle;
+		buttonHandle = CreateHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, getHandle());
+		button.setHandle(buttonHandle);
+		//windowImpl->addButton(button, text, Rect{position, size}, getHandle());
 		return *this;
 	}
 	//-------------------------------------------------------------------------
@@ -223,7 +161,12 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	Button& Button::onClick(const EventCallback& callback)
 	{
-		buttonImpl->onClick(callback, getHandle());
+		//TODO: declare button notifications in defines
+		eventMap[EventKey{ getHandle(), BN_CLICKED }] = callback;
+		//buttonImpl->onClick(callback, getHandle());
 		return *this;
 	}
+	//Avoiding linkage errors
+	template class Base<Window>;
+	template class Base<Button>;
 }

@@ -15,61 +15,42 @@ namespace WinCape
 {
 	//forward declarations
 	class Button;
-	class Base
+	template<typename Derived> class Base
 	{
 	public:
 		//Try to implement CRTP chaining
 		//Ty& setText(const char* text);
-		~Base();
 		Handle getHandle() const;
+		Derived& setText(const char* text);
 	protected:
 		Base();
-		Base(const Base&);
 		void setHandle(const Handle& handle);
-		class BaseImpl;
 	private:
-		std::unique_ptr<BaseImpl> baseImpl;
+		Handle handle;
 	};
-	class Window : public Base
+	class Window : public Base<Window>
 	{
 	public:
-		Window();
-		~Window();
-		Window(const Window&);
 		static Window Create(const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		Window& show();
 		Window& minimize();
 		Window& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		//try to define this in cpp
 		//template<typename TControl> TControl addControl();
-	private:
-		class WindowImpl;
-		std::unique_ptr<WindowImpl> windowImpl;
 	};
+	//TODO: Find a way to multilevel inheritance chaining
 	//enforce to this classes have to know nothing about Window class
-	class Control : public Base
+	//class Control
+	//{
+	//public:
+	//	friend Window;
+	//};
+	class Button : public Base<Button>
 	{
 	public:
 		friend Window;
-		Control();
-		~Control();
-		Control(const Control&);
-	protected:
-		class ControlImpl;
-	private:
-		std::unique_ptr<ControlImpl> controlImpl;
-	};
-	class Button : public Control
-	{
-	public:
-		Button();
-		~Button();
-		Button(const Button&);
 		//TODO: rename "std::function<void()>" to a more readable type (MessageCallback)
 		Button& onClick(const EventCallback& callback);
-	private:
-		class ButtonImpl;
-		std::unique_ptr<ButtonImpl> buttonImpl;
 	};
 }
 #endif // !INTERFACE_HPP
