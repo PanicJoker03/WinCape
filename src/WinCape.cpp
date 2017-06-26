@@ -1,16 +1,22 @@
 #include <WinCape.hpp>
 #include <Helper.hpp>
 #include <vector>
+#include <map>
 using namespace std;
 //Manage procedure messages here
 namespace
 {
 	using namespace WinCape;
+	using EventKey = pair<Handle, WindowMessage>;
+	//Wrap in a class?
+	using EventMap = map<EventKey, EventCallback>;
+	EventMap eventMap;
 	vector<void*> ptrPool;
 	//Forward declarations
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void* poolPtr(void* ptr);
 	void freeMemory();
+	Handle CreateHandle(const char* className, const char* text, const WindowStyle& style, const Rect& rect, const Handle& parent = NULL);
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		//TODO: abstract message processing
@@ -20,6 +26,17 @@ namespace
 			PostQuitMessage(0);
 			freeMemory();
 			break;
+		case WM_COMMAND:
+		{
+			Handle handle = (Handle)lParam;
+			WindowMessage controlMessage = HIWORD(wParam);
+			EventKey key{ handle, controlMessage};
+			if (eventMap.find(key) != eventMap.end())
+			{
+				eventMap.at(key)(hWnd, wParam, lParam);
+			}
+			break;
+		}
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 			break;
@@ -37,6 +54,22 @@ namespace
 		{
 			delete ptr;
 		}
+	}
+	Handle CreateHandle(const char* className, const char* text, const WindowStyle& style, const Rect& rect, const Handle& parent)
+	{
+		auto wideClassName = static_cast<LPWSTR>(poolPtr(Utility::toWchar_t(className)));
+		auto wideText = static_cast<LPWSTR>(poolPtr(Utility::toWchar_t(text)));
+		return CreateWindow(
+			wideClassName,
+			wideText,
+			style,
+			rect.position.x, rect.position.y,
+			rect.size.x, rect.size.y,
+			parent,
+			NULL,
+			Application::Instance(),
+			NULL
+		);
 	}
 }
 //-------------------------------------------------------------------------
@@ -82,38 +115,14 @@ namespace WinCape
 			Window window;
 			Handle windowHandle;
 			RegisterClassEx(&WindowClass());
-			auto wideWindowName = poolPtr(Utility::toWchar_t(windowName));
-			windowHandle = CreateWindow(
-				static_cast<LPWSTR>(wideWindowName),
-				static_cast<LPWSTR>(wideWindowName),
-				style,
-				rect.position.x, rect.position.y,
-				rect.size.x, rect.size.y,
-				NULL,
-				NULL,
-				Application::Instance(),
-				NULL
-			);
+			windowHandle = CreateHandle(windowName, windowName, style, rect);
 			window.setHandle(windowHandle);
 			return window;
 		}
 		void addButton(Button& button, const char* text, const Rect& rect, const Handle& parent)
 		{
 			Handle buttonHandle;
-			auto buttonText = static_cast<LPWSTR>(poolPtr(Utility::toWchar_t(text)));
-			buttonHandle = CreateWindow(
-				Defaults::ButtonClassName,
-				buttonText,
-				//TODO: Add button style missing here...
-				WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child,
-				rect.position.x,
-				rect.position.y,
-				rect.size.x,
-				rect.size.y,
-				parent,
-				NULL,
-				Application::Instance(),
-				NULL);
+			buttonHandle = CreateHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, rect, parent);
 			button.setHandle(buttonHandle);
 		}
 		void show(const Handle& handle)
@@ -121,6 +130,7 @@ namespace WinCape
 			ShowWindow(handle, Defaults::DefShowCommand);
 		}
 	private:
+		//TODO: Put this function in unnamed namespace
 		static WNDCLASSEX WindowClass()
 		{
 			auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
@@ -145,6 +155,11 @@ namespace WinCape
 	class Button::ButtonImpl
 	{
 	public:
+		void onClick(const EventCallback& callback, const Handle& handle)
+		{
+			//TODO: declare button notifications in defines
+			eventMap[EventKey{ handle, BN_CLICKED }] = callback;
+		}
 	};
 	//-------------------------------------------------------------------------
 	//Making classes copyable
@@ -196,4 +211,9 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
+	Button& Button::onClick(const EventCallback& callback)
+	{
+		buttonImpl->onClick(callback, getHandle());
+		return *this;
+	}
 }

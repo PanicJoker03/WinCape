@@ -15,21 +15,22 @@ namespace WinCape
 {
 	//forward declarations
 	class Button;
-	class Window;
 	class Base
 	{
 	public:
-		Base();
+		//Try to implement CRTP chaining
+		//Ty& setText(const char* text);
 		~Base();
-		Base(const Base&);
 		Handle getHandle() const;
 	protected:
+		Base();
+		Base(const Base&);
 		void setHandle(const Handle& handle);
 		class BaseImpl;
 	private:
 		std::unique_ptr<BaseImpl> baseImpl;
 	};
-	class Window : Base
+	class Window : public Base
 	{
 	public:
 		Window();
@@ -46,7 +47,7 @@ namespace WinCape
 		std::unique_ptr<WindowImpl> windowImpl;
 	};
 	//enforce to this classes have to know nothing about Window class
-	class Control : Base
+	class Control : public Base
 	{
 	public:
 		friend Window;
@@ -65,7 +66,7 @@ namespace WinCape
 		~Button();
 		Button(const Button&);
 		//TODO: rename "std::function<void()>" to a more readable type (MessageCallback)
-		void onClick(std::function<void()> callback);
+		Button& onClick(const EventCallback& callback);
 	private:
 		class ButtonImpl;
 		std::unique_ptr<ButtonImpl> buttonImpl;

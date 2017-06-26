@@ -8,9 +8,11 @@
 using Handle = HWND;
 using InstanceHandle = HINSTANCE;
 using WindowStyle = DWORD;
+using ButtonStyle = DWORD;
 using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
+using EventCallback = std::function<void(Handle, WPARAM, LPARAM)>;
 namespace WinCape
 {
 	//TODO: use namespaces
@@ -46,7 +48,37 @@ namespace WinCape
 	};
 	struct ButtonStyles
 	{
-
+		static constexpr ButtonStyle State = BS_3STATE;
+		static constexpr ButtonStyle AutoState = BS_AUTO3STATE;
+		static constexpr ButtonStyle AutoCheckBox = BS_AUTOCHECKBOX;
+		static constexpr ButtonStyle AutoRadioButton = BS_AUTORADIOBUTTON;
+		static constexpr ButtonStyle BitMap = BS_BITMAP;
+		static constexpr ButtonStyle Bottom = BS_BOTTOM;
+		static constexpr ButtonStyle Center = BS_CENTER;
+		static constexpr ButtonStyle CheckBox = BS_CHECKBOX;
+		//static constexpr ButtonStyle CommandLink = BS_COMMANDLINK;
+		//static constexpr ButtonStyle DefCommandLink = BS_DEFCOMMANDLINK;
+		static constexpr ButtonStyle DefPushButton = BS_DEFPUSHBUTTON;
+		//static constexpr ButtonStyle DefSplitButton = BS_DEFSPLITBUTTON;
+		static constexpr ButtonStyle GroupBox = BS_GROUPBOX;
+		static constexpr ButtonStyle Icon = BS_ICON;
+		static constexpr ButtonStyle Flat = BS_FLAT;
+		static constexpr ButtonStyle Left = BS_LEFT;
+		static constexpr ButtonStyle LeftText = BS_LEFTTEXT;
+		static constexpr ButtonStyle MultiLine = BS_MULTILINE;
+		static constexpr ButtonStyle Notify = BS_NOTIFY;
+		static constexpr ButtonStyle OwnerDraw = BS_OWNERDRAW;
+		static constexpr ButtonStyle PushButton = BS_PUSHBUTTON;
+		static constexpr ButtonStyle PushLike = BS_PUSHLIKE;
+		static constexpr ButtonStyle RadioButton = BS_RADIOBUTTON;
+		static constexpr ButtonStyle Right = BS_RIGHT;
+		static constexpr ButtonStyle RightButton = BS_RIGHTBUTTON;
+		//static constexpr ButtonStyle SplitButton = BS_SPLITBUTTON;
+		static constexpr ButtonStyle Text = BS_TEXT;
+		static constexpr ButtonStyle Top = BS_TOP;
+		static constexpr ButtonStyle TypeMask = BS_TYPEMASK;
+		static constexpr ButtonStyle UserButton = BS_USERBUTTON;
+		static constexpr ButtonStyle VCenter = BS_VCENTER;
 	};
 	struct ClassStyles
 	{
