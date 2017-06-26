@@ -1,15 +1,13 @@
 #include <WinCape.hpp>
-
+using namespace WinCape;
+Window window;
+Button buttonA;
+Button buttonB;
 void callbackTest(Handle, WPARAM, LPARAM);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	using namespace WinCape;
-	//Window window = Window::Create();
-	//window.show();
-	Button buttonA;
-	Button buttonB;
-	Window::Create()
-		.show()
+	window = Window::Create();
+	window.show()
 		.addButton(buttonA, "Botón", Int2{ 100,100 })
 		.addButton(buttonB, "Test", Int2{ 140, 140 });
 	buttonA.onClick(callbackTest);
@@ -18,5 +16,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 void callbackTest(Handle handle, WPARAM wParam, LPARAM lParam)
 {
-	int i = 0;
+	window.minimize();
 }

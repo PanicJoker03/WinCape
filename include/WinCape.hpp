@@ -38,7 +38,7 @@ namespace WinCape
 		Window(const Window&);
 		static Window Create(const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		Window& show();
-		void hide();
+		Window& minimize();
 		Window& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		//try to define this in cpp
 		//template<typename TControl> TControl addControl();

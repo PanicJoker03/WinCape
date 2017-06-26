@@ -30,10 +30,10 @@ namespace
 		{
 			Handle handle = (Handle)lParam;
 			WindowMessage controlMessage = HIWORD(wParam);
-			EventKey key{ handle, controlMessage};
-			if (eventMap.find(key) != eventMap.end())
+			auto key = eventMap.find(EventKey{ handle, controlMessage });
+			if (key != eventMap.end())
 			{
-				eventMap.at(key)(hWnd, wParam, lParam);
+				key->second(handle, wParam, lParam);
 			}
 			break;
 		}
@@ -70,6 +70,22 @@ namespace
 			Application::Instance(),
 			NULL
 		);
+	}
+	WNDCLASSEX WindowClass()
+	{
+		auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
+		//TODO wrap IDI macros in default header...
+		WNDCLASSEX windowClass = {};
+		windowClass.cbSize = sizeof(WNDCLASSEX);
+		windowClass.style = Defaults::DefClassStyle;
+		windowClass.lpfnWndProc = WndProc;
+		windowClass.hInstance = Application::Instance();
+		windowClass.hIcon = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+		windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+		windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+		windowClass.lpszClassName = (LPWSTR)wideWindowName;
+		windowClass.hIconSm = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+		return windowClass;
 	}
 }
 //-------------------------------------------------------------------------
@@ -127,26 +143,15 @@ namespace WinCape
 		}
 		void show(const Handle& handle)
 		{
-			ShowWindow(handle, Defaults::DefShowCommand);
+			ShowWindow(handle, ShowCommands::Show);
+		}
+		void minimize(const Handle& handle)
+		{
+			ShowWindow(handle, ShowCommands::Minimize);
 		}
 	private:
 		//TODO: Put this function in unnamed namespace
-		static WNDCLASSEX WindowClass()
-		{
-			auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
-			//TODO wrap IDI macros in default header...
-			WNDCLASSEX windowClass = {};
-			windowClass.cbSize = sizeof(WNDCLASSEX);
-			windowClass.style = Defaults::DefClassStyle;
-			windowClass.lpfnWndProc = WndProc;
-			windowClass.hInstance = Application::Instance();
-			windowClass.hIcon = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-			windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-			windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			windowClass.lpszClassName = (LPWSTR)wideWindowName;
-			windowClass.hIconSm = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-			return windowClass;
-		}
+		//static 
 	};
 	class Control::ControlImpl
 	{
@@ -199,6 +204,11 @@ namespace WinCape
 		return WindowImpl::Create(windowName, rect, style);
 	}
 	Window& Window::show()
+	{
+		windowImpl->show(getHandle());
+		return *this;
+	}
+	Window& Window::minimize()
 	{
 		windowImpl->show(getHandle());
 		return *this;
