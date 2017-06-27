@@ -3,7 +3,7 @@ using namespace WinCape;
 Window window;
 Button buttonA;
 Button buttonB;
-void callbackTest(Handle, WPARAM, LPARAM);
+void callbackTest(Event);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	window = Window::Create();
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Application::Run();
 }
 
-void callbackTest(Handle handle, WPARAM wParam, LPARAM lParam)
+void callbackTest(Event e)
 {
 	window.minimize();
 }

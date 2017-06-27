@@ -11,6 +11,7 @@ namespace
 	//Wrap in a class?
 	using EventMap = map<EventKey, EventCallback>;
 	EventMap eventMap;
+	//use vector of unique_ptr?
 	vector<void*> ptrPool;
 	//Forward declarations
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -33,7 +34,7 @@ namespace
 			auto key = eventMap.find(EventKey{ handle, controlMessage });
 			if (key != eventMap.end())
 			{
-				key->second(handle, wParam, lParam);
+				key->second(Event{ handle, wParam, lParam });
 			}
 			break;
 		}
@@ -55,6 +56,7 @@ namespace
 			delete ptr;
 		}
 	}
+	//This functions could be defined in another .hpp
 	Handle CreateHandle(const char* className, const char* text, const WindowStyle& style, const Rect& rect, const Handle& parent)
 	{
 		auto wideClassName = static_cast<LPWSTR>(poolPtr(Utility::toWchar_t(className)));
@@ -111,13 +113,13 @@ namespace WinCape
 	//Base
 	//-------------------------------------------------------------------------
 	template<typename Derived> Base<Derived>::Base() {}
-	template<typename Derived> void Base<Derived>::setHandle(const Handle& handle)
+	template<typename Derived> void Base<Derived>::handle(const Handle& handle)
 	{
-		this->handle = handle;
+		this->_handle = handle;
 	}
-	template<typename Derived> Handle Base<Derived>::getHandle() const
+	template<typename Derived> Handle Base<Derived>::handle() const
 	{
-		return handle;
+		return _handle;
 	}
 	template<typename Derived> Derived& Base<Derived>::setText(const char* text) 
 	{ 
@@ -132,28 +134,24 @@ namespace WinCape
 		Handle windowHandle;
 		RegisterClassEx(&WindowClass());
 		windowHandle = CreateHandle(windowName, windowName, style, rect);
-		window.setHandle(windowHandle);
+		window.handle(windowHandle);
 		return window;
-		//return WindowImpl::Create(windowName, rect, style);
 	}
 	Window& Window::show()
 	{
-		ShowWindow(getHandle(), ShowCommands::Show);
-		//windowImpl->show(getHandle());
+		ShowWindow(handle(), ShowCommands::Show);
 		return *this;
 	}
 	Window& Window::minimize()
 	{
-		ShowWindow(getHandle(), ShowCommands::Minimize);
-		//windowImpl->show(getHandle());
+		ShowWindow(handle(), ShowCommands::Minimize);
 		return *this;
 	}
 	Window& Window::addButton(Button& button, const char* text, const Int2& position, const Int2& size)
 	{
 		Handle buttonHandle;
-		buttonHandle = CreateHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, getHandle());
-		button.setHandle(buttonHandle);
-		//windowImpl->addButton(button, text, Rect{position, size}, getHandle());
+		buttonHandle = CreateHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
+		button.handle(buttonHandle);
 		return *this;
 	}
 	//-------------------------------------------------------------------------
@@ -162,11 +160,12 @@ namespace WinCape
 	Button& Button::onClick(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
-		eventMap[EventKey{ getHandle(), BN_CLICKED }] = callback;
-		//buttonImpl->onClick(callback, getHandle());
+		eventMap[EventKey{ handle(), BN_CLICKED }] = callback;
 		return *this;
 	}
-	//Avoiding linkage errors
+	//-------------------------------------------------------------------------
+	//Avoiding template linkage errors (this could be in a separate cpp)
+	//-------------------------------------------------------------------------
 	template class Base<Window>;
-	template class Base<Button>;
+	template class Base<Control<Button>>;
 }

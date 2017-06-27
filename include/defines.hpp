@@ -4,6 +4,8 @@
 #include <type_traits>
 #include <memory>
 #include <functional>
+//forward declarations
+struct Event;
 //type definitions
 using Handle = HWND;
 using InstanceHandle = HINSTANCE;
@@ -12,7 +14,14 @@ using ButtonStyle = DWORD;
 using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
-using EventCallback = std::function<void(Handle, WPARAM, LPARAM)>;
+using EventCallback = std::function<void(Event)>;
+struct Event
+{
+	//TODO add get<T> function to retrieve object from handle
+	Handle handle;
+	WPARAM wparam;
+	LPARAM lparam;
+};
 namespace WinCape
 {
 	//TODO: use namespaces

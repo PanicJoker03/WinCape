@@ -10,7 +10,6 @@ struct Application
 	static int Run();
 	static InstanceHandle Instance();
 };
-//TODO: If private functions aren't needed, then redesign the whole class structure without pimpl
 namespace WinCape
 {
 	//forward declarations
@@ -18,15 +17,13 @@ namespace WinCape
 	template<typename Derived> class Base
 	{
 	public:
-		//Try to implement CRTP chaining
-		//Ty& setText(const char* text);
-		Handle getHandle() const;
+		Handle handle() const;
 		Derived& setText(const char* text);
 	protected:
 		Base();
-		void setHandle(const Handle& handle);
+		void handle(const Handle& handle);
 	private:
-		Handle handle;
+		Handle _handle;
 	};
 	class Window : public Base<Window>
 	{
@@ -38,18 +35,15 @@ namespace WinCape
 		//try to define this in cpp
 		//template<typename TControl> TControl addControl();
 	};
-	//TODO: Find a way to multilevel inheritance chaining
 	//enforce to this classes have to know nothing about Window class
-	//class Control
-	//{
-	//public:
-	//	friend Window;
-	//};
-	class Button : public Base<Button>
+	template<typename Derived> class Control : public Base<Control<Derived>>
 	{
 	public:
 		friend Window;
-		//TODO: rename "std::function<void()>" to a more readable type (MessageCallback)
+	};
+	class Button : public Control<Button>
+	{
+	public:
 		Button& onClick(const EventCallback& callback);
 	};
 }
