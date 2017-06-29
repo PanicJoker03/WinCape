@@ -13,38 +13,42 @@ struct Application
 namespace WinCape
 {
 	//forward declarations
+	template<typename> class TBase;
+	template<typename> class TControl;
+	using Control = TControl<void>;
 	class Button;
-	template<typename Derived> class Base
+	template<typename Derived> class TBase
 	{
 	public:
+		using Self = Derived;
 		Handle handle() const;
-		Derived& setText(const char* text);
+		Self& setText(const char* text);
 	protected:
-		Base();
+		TBase();
 		void handle(const Handle& handle);
 	private:
 		Handle _handle;
 	};
-	class Window : public Base<Window>
+	class Window : public TBase<Window>
 	{
 	public:
 		static Window Create(const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
-		Window& show();
-		Window& minimize();
-		Window& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
+		Self& show();
+		Self& minimize();
+		Self& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		//try to define this in cpp
 		//template<typename TControl> TControl addControl();
 	};
 	//enforce to this classes have to know nothing about Window class
-	template<typename Derived> class Control : public Base<Control<Derived>>
+	template<typename Derived> class TControl : public TBase<TControl<Derived>>
 	{
 	public:
 		friend Window;
 	};
-	class Button : public Control<Button>
+	class Button : public TControl<Button>
 	{
 	public:
-		Button& onClick(const EventCallback& callback);
+		Self& onClick(const EventCallback& callback);
 	};
 }
 #endif // !INTERFACE_HPP

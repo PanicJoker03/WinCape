@@ -112,16 +112,16 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Base
 	//-------------------------------------------------------------------------
-	template<typename Derived> Base<Derived>::Base() {}
-	template<typename Derived> void Base<Derived>::handle(const Handle& handle)
+	template<typename Derived> TBase<Derived>::TBase() {}
+	template<typename Derived> void TBase<Derived>::handle(const Handle& handle)
 	{
 		this->_handle = handle;
 	}
-	template<typename Derived> Handle Base<Derived>::handle() const
+	template<typename Derived> Handle TBase<Derived>::handle() const
 	{
 		return _handle;
 	}
-	template<typename Derived> Derived& Base<Derived>::setText(const char* text) 
+	template<typename Derived> Derived& TBase<Derived>::setText(const char* text) 
 	{ 
 		return static_cast<Derived&>(*this); 
 	}
@@ -137,17 +137,17 @@ namespace WinCape
 		window.handle(windowHandle);
 		return window;
 	}
-	Window& Window::show()
+	Window::Self& Window::show()
 	{
 		ShowWindow(handle(), ShowCommands::Show);
 		return *this;
 	}
-	Window& Window::minimize()
+	Window::Self& Window::minimize()
 	{
 		ShowWindow(handle(), ShowCommands::Minimize);
 		return *this;
 	}
-	Window& Window::addButton(Button& button, const char* text, const Int2& position, const Int2& size)
+	Window::Self& Window::addButton(Button& button, const char* text, const Int2& position, const Int2& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = CreateHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
@@ -157,7 +157,7 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
-	Button& Button::onClick(const EventCallback& callback)
+	Button::Self& Button::onClick(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
 		eventMap[EventKey{ handle(), BN_CLICKED }] = callback;
@@ -166,6 +166,6 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors (this could be in a separate cpp)
 	//-------------------------------------------------------------------------
-	template class Base<Window>;
-	template class Base<Control<Button>>;
+	template class TBase<Window>;
+	template class TBase<TControl<Button>>;
 }
