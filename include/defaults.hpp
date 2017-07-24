@@ -11,8 +11,10 @@ namespace WinCape
 		static constexpr ClassStyle DefClassStyle  = ClassStyles::HorizontalRedraw | ClassStyles::VerticalRedraw;
 		static constexpr ShowCommand DefShowCommand = ShowCommands::ShowDefault;
 		static constexpr const char* ButtonClassName = "BUTTON";
-		static constexpr Int2 ButtonSize = Int2{ 60, 18 };
+		static constexpr Int2 ButtonSize = Int2{ 80, 24 };
+		static constexpr Int2 RadioButtonPadding = Int2{ 0, 32 };
 		static constexpr ButtonStyle DefButtonStyle = WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child | ButtonStyles::DefPushButton;
+		static constexpr ButtonStyle RadioButtonStyle = WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child | ButtonStyles::AutoRadioButton;
 	};
 }
 #endif // !DEFAULTS_HPP

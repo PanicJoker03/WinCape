@@ -17,6 +17,7 @@ namespace WinCape
 	template<typename> class TControl;
 	using Control = TControl<void>;
 	class Button;
+	class RadioButton;
 	template<typename Derived> class TBase
 	{
 	public:
@@ -32,10 +33,11 @@ namespace WinCape
 	class Window : public TBase<Window>
 	{
 	public:
-		static Window Create(const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		static Window& Create(Window& window, const char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		Self& show();
 		Self& minimize();
 		Self& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
+		Self& addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const char*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
 		//try to define this in cpp
 		//template<typename TControl> TControl addControl();
 	};
@@ -49,6 +51,11 @@ namespace WinCape
 	{
 	public:
 		Self& onClick(const EventCallback& callback);
+	};
+	class RadioButton : public Button
+	{
+	public:
+		using Pair = std::pair<Reference<RadioButton>, const char*>;
 	};
 }
 #endif // !INTERFACE_HPP

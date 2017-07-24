@@ -15,9 +15,17 @@ using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
 using EventCallback = std::function<void(Event)>;
+template<typename T> using Reference = std::reference_wrapper<T>;
+struct Int2
+{
+	int x = 0, y = 0;
+};
+struct Rect
+{
+	Int2 position, size;
+};
 struct Event
 {
-	//TODO add get<T> function to retrieve object from handle
 	Handle handle;
 	WPARAM wparam;
 	LPARAM lparam;
@@ -122,13 +130,12 @@ namespace WinCape
 	};
 	struct WindowMessages
 	{
-		struct General
-		{
 			//Notifications
 			static constexpr WindowMessage ActivateApp = WM_ACTIVATEAPP;
 			static constexpr WindowMessage CancelMode = WM_CANCELMODE;
 			static constexpr WindowMessage ChildActive = WM_CHILDACTIVATE;
 			static constexpr WindowMessage Close = WM_CLOSE;
+			static constexpr WindowMessage Command = WM_COMMAND;
 			static constexpr WindowMessage Compacting = WM_COMPACTING;
 			static constexpr WindowMessage Create = WM_CREATE;
 			static constexpr WindowMessage Destroy = WM_DESTROY;
@@ -159,26 +166,6 @@ namespace WinCape
 			static constexpr WindowMessage UserChanged = WM_USERCHANGED;
 			static constexpr WindowMessage WindowPositionChanged = WM_WINDOWPOSCHANGED;
 			static constexpr WindowMessage WindowPositionChanging = WM_WINDOWPOSCHANGING;
-		};
 	};
-	struct Int2
-	{
-		int x = 0, y = 0;
-	};
-	struct Rect
-	{
-		Int2 position;
-		Int2 size;
-	};
-	//struct WindowClass
-	//{
-
-	//};
-	//struct WindowData
-	//{
-	//	//LPCTSTR className = NULL; nearly sure its not necesary
-	//	//HINSTANCE instance; instance can be get with other function
-	//	//LPVOID param;
-	//};
 }
 #endif // !STRUCT_HPP
