@@ -1,3 +1,4 @@
+#define _ENABLE_THEME
 #include <WinCape.hpp>
 using namespace WinCape;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

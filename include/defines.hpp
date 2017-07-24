@@ -1,5 +1,9 @@
 #ifndef STRUCT_HPP
 #define STRUCT_HPP
+//Completely experimental, it may be proper to fail in other machines
+#ifdef _ENABLE_THEME
+#pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
+#endif
 #include <windows.h>
 #include <type_traits>
 #include <memory>
