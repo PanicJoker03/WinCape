@@ -2,6 +2,10 @@
 #define INTERFACE_HPP
 #include "defines.hpp"
 #include "defaults.hpp"
+//TODO:
+//Use std::wstring/const w_char* for strings i/o. Remove own crappy pointer collector...
+//Alias POINT and RECT with Point and Rect. Remove Int2 and Rect structures
+
 struct Application
 {
 	/// <summary>
@@ -37,7 +41,7 @@ namespace WinCape
 		Self& show();
 		Self& minimize();
 		Self& addButton(Button& button, const char* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
-		Self& addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const char*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
+		Self& addRadioButton(std::initializer_list<RadioButton::Pair> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
 		//try to define this in cpp
 		//template<typename TControl> TControl addControl();
 	};
