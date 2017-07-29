@@ -20,6 +20,10 @@ InstanceHandle Application::Instance()
 {
 	return GetModuleHandle(NULL);
 }
+void Application::defaultFont(const wchar_t* fontName)
+{
+	WinCape::Manager::Instance().defaultFont(fontName);
+}
 namespace WinCape
 {
 	//-------------------------------------------------------------------------
@@ -34,14 +38,15 @@ namespace WinCape
 	{
 		return _handle;
 	}
-	template<typename Derived> Derived& TBase<Derived>::setText(const char* text) 
-	{ 
+	template<typename Derived> Derived& TBase<Derived>::setText(const wchar_t* text)
+	{
+		SetWindowText(handle(), text);
 		return static_cast<Derived&>(*this); 
 	}
 	//-------------------------------------------------------------------------
 	//Window
 	//-------------------------------------------------------------------------
-	Window& Window::Create(Window& window, const char* windowName, Rect rect, WindowStyle style)
+	Window& Window::Create(Window& window, const wchar_t* windowName, Rect rect, WindowStyle style)
 	{
 		//Window window;
 		Handle windowHandle;
@@ -61,21 +66,24 @@ namespace WinCape
 		ShowWindow(handle(), ShowCommands::Minimize);
 		return *this;
 	}
-	Window::Self& Window::addButton(Button& button, const char* text, const Int2& position, const Int2& size)
+	Window::Self& Window::addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = Manager::Instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
 		button.handle(buttonHandle);
+		//could be wrapped in setFont function(menctioned in header file)...
+		//auto a = Manager::Instance().defaultFont();
+		SendMessage(button.handle(), WM_SETFONT, (WPARAM)Manager::Instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 		return *this;
 	}
-	Window::Self& Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const char*>> radioButtonList, const Int2& position, const Int2& padding)
+	Window::Self& Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding)
 	{
 		const auto listSize = radioButtonList.size();
 		for (auto i = 0; i < listSize; i++)
 		{
 			Handle radioButtonHandle;
 			RadioButton& radioButton = radioButtonList.begin()[i].first;
-			const char* caption = radioButtonList.begin()[i].second;
+			const wchar_t* caption = radioButtonList.begin()[i].second;
 			Int2 position_ = position;
 			position_.x += padding.x * i;
 			position_.y += padding.y * i;
@@ -83,6 +91,8 @@ namespace WinCape
 			const ButtonStyle style = isLast ? Defaults::RadioButtonStyle | WindowStyles::Group : Defaults::RadioButtonStyle;
 			radioButtonHandle = Manager::Instance().createHandle(Defaults::ButtonClassName, caption, style, Rect{ position_, Defaults::ButtonSize }, handle());
 			radioButton.handle(radioButtonHandle);
+			//could be wrapped in setFont function(menctioned in header file)...
+			SendMessage(radioButton.handle(), WM_SETFONT, (WPARAM)Manager::Instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 		}
 		return *this;
 	}

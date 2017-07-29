@@ -12,6 +12,7 @@
 struct Event;
 //type definitions
 using Handle = HWND;
+using FontHandle = HFONT;
 using InstanceHandle = HINSTANCE;
 using WindowStyle = DWORD;
 using ButtonStyle = DWORD;

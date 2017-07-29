@@ -8,9 +8,10 @@ namespace WinCape
 	public:
 		int startListening();
 		void listenEvent(const Handle& handle, const WindowMessage& message, const EventCallback& callback);
-		void* poolMemory(void* ptr);
+		void defaultFont(const wchar_t* fontName);
+		FontHandle defaultFont();
 		void registerClass();
-		Handle createHandle(const char* className, const char* text, const WindowStyle& style, const Rect& rect, const Handle& parent = NULL);
+		Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Handle& parent = NULL);
 		static Manager& Instance();
 	};
 }
