@@ -20,10 +20,10 @@ namespace WinCape
 		using EventKey = pair<Handle, WindowMessage>;
 		//Wrap in a class?
 		using EventMap = map<EventKey, EventCallback>;
-		static ManagerImpl& Instance()
+		static ManagerImpl& instance()
 		{
-			static ManagerImpl instance;
-			return instance;
+			static ManagerImpl instance_;
+			return instance_;
 		}
 		int startListening()
 		{
@@ -45,15 +45,15 @@ namespace WinCape
 			switch (message)
 			{
 			case WindowMessages::Destroy:
-				DeleteObject(ManagerImpl::Instance().applicationFont);
+				DeleteObject(ManagerImpl::instance().applicationFont);
 				PostQuitMessage(0);
 				break;
 			case WindowMessages::Command:
 			{
 				Handle handle = (Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
-				auto key = ManagerImpl::Instance().eventMap.find(EventKey{ handle, controlMessage });
-				if (key != ManagerImpl::Instance().eventMap.end())
+				auto key = ManagerImpl::instance().eventMap.find(EventKey{ handle, controlMessage });
+				if (key != ManagerImpl::instance().eventMap.end())
 				{
 					key->second(Event{ handle, wParam, lParam });
 				}
@@ -73,7 +73,7 @@ namespace WinCape
 			windowClass.cbSize = sizeof(WNDCLASSEX);
 			windowClass.style = Defaults::DefClassStyle;
 			windowClass.lpfnWndProc = WndProc;
-			windowClass.hInstance = Application::Instance();
+			windowClass.hInstance = Application::instance();
 			windowClass.hIcon = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 			windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 			windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
@@ -92,7 +92,7 @@ namespace WinCape
 				rect.size.x, rect.size.y,
 				parent,
 				NULL,
-				Application::Instance(),
+				Application::instance(),
 				NULL
 			);
 		}
@@ -115,33 +115,33 @@ namespace WinCape
 	//Forwarding
 	//-------------------------------------------------------------------------
 	Manager::Manager() {}
-	Manager& Manager::Instance()
+	Manager& Manager::instance()
 	{
-		static Manager instance;
-		return instance;
+		static Manager instance_;
+		return instance_;
 	}
 	int Manager::startListening()
 	{
-		return ManagerImpl::Instance().startListening();
+		return ManagerImpl::instance().startListening();
 	}
 	void Manager::listenEvent(const Handle& handle, const WindowMessage& message, const EventCallback& callback)
 	{
-		ManagerImpl::Instance().listenEvent(handle, message, callback);
+		ManagerImpl::instance().listenEvent(handle, message, callback);
 	}
 	void Manager::registerClass()
 	{
-		ManagerImpl::Instance().registerClass();
+		ManagerImpl::instance().registerClass();
 	}
 	Handle Manager::createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Handle& parent)
 	{
-		return ManagerImpl::Instance().createHandle(className, text, style, rect, parent);
+		return ManagerImpl::instance().createHandle(className, text, style, rect, parent);
 	}
 	void Manager::defaultFont(const wchar_t* fontName)
 	{
-		ManagerImpl::Instance().defaultFont(fontName);
+		ManagerImpl::instance().defaultFont(fontName);
 	}
 	FontHandle Manager::defaultFont()
 	{
-		return ManagerImpl::Instance().defaultFont();
+		return ManagerImpl::instance().defaultFont();
 	}
 }

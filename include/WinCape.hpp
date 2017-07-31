@@ -4,16 +4,7 @@
 #include "defaults.hpp"
 //TODO...
 //Use lower case on static methods
-struct Application
-{
-	/// <summary>
-	/// Starts the application loop
-	/// </summary>
-	static int Run();
-	static InstanceHandle Instance();
-	//Really poor function, must be called at the application beginning in order to work...
-	static void defaultFont(const wchar_t* fontName);
-};
+struct Application;
 namespace WinCape
 {
 	//forward declarations
@@ -37,7 +28,7 @@ namespace WinCape
 	class Window : public TBase<Window>
 	{
 	public:
-		static Window& Create(Window& window, const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		static Window& create(Window& window, const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		Self& show();
 		Self& minimize();
 		Self& addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
@@ -62,5 +53,31 @@ namespace WinCape
 	public:
 		using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
 	};
+	//////////////////////////
+	//High level abstraction//
+	//////////////////////////
+	class WindowFrame : public Window
+	{
+	private:
+		const wchar_t* windowName;
+		const Rect rect;
+		const WindowStyle style;
+	protected:
+		WindowFrame(const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		virtual void onCreate() = 0;
+		virtual ~WindowFrame() = 0;
+		friend Application;
+	};
 }
+struct Application
+{
+	/// <summary>
+	/// Starts the application loop
+	/// </summary>
+	static int Run();
+	static int Run(WinCape::WindowFrame& window);
+	static InstanceHandle instance();
+	//Really poor function, must be called at the application beginning in order to work...
+	static void defaultFont(const wchar_t* fontName);
+};
 #endif // !INTERFACE_HPP

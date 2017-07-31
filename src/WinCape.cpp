@@ -14,15 +14,21 @@ using namespace std;
 //-------------------------------------------------------------------------
 int Application::Run()
 {
-	return WinCape::Manager::Instance().startListening();
+	return WinCape::Manager::instance().startListening();
 }
-InstanceHandle Application::Instance()
+int Application::Run(WinCape::WindowFrame& window)
+{
+	WinCape::Window::create(window, window.windowName, window.rect, window.style);
+	window.onCreate();
+	return WinCape::Manager::instance().startListening();
+}
+InstanceHandle Application::instance()
 {
 	return GetModuleHandle(NULL);
 }
 void Application::defaultFont(const wchar_t* fontName)
 {
-	WinCape::Manager::Instance().defaultFont(fontName);
+	WinCape::Manager::instance().defaultFont(fontName);
 }
 namespace WinCape
 {
@@ -46,13 +52,13 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Window
 	//-------------------------------------------------------------------------
-	Window& Window::Create(Window& window, const wchar_t* windowName, Rect rect, WindowStyle style)
+	Window& Window::create(Window& window, const wchar_t* windowName, Rect rect, WindowStyle style)
 	{
 		//Window window;
 		Handle windowHandle;
 		//RegisterClassEx(&WindowClass());
-		Manager::Instance().registerClass();
-		windowHandle = Manager::Instance().createHandle(windowName, windowName, style, rect);
+		Manager::instance().registerClass();
+		windowHandle = Manager::instance().createHandle(Defaults::WindowName, windowName, style, rect);
 		window.handle(windowHandle);
 		return window;
 	}
@@ -69,11 +75,11 @@ namespace WinCape
 	Window::Self& Window::addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size)
 	{
 		Handle buttonHandle;
-		buttonHandle = Manager::Instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
+		buttonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
 		button.handle(buttonHandle);
 		//could be wrapped in setFont function(menctioned in header file)...
 		//auto a = Manager::Instance().defaultFont();
-		SendMessage(button.handle(), WM_SETFONT, (WPARAM)Manager::Instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
+		SendMessage(button.handle(), WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 		return *this;
 	}
 	Window::Self& Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding)
@@ -89,10 +95,10 @@ namespace WinCape
 			position_.y += padding.y * i;
 			const bool isLast = (i == (listSize - 1));
 			const ButtonStyle style = isLast ? Defaults::RadioButtonStyle | WindowStyles::Group : Defaults::RadioButtonStyle;
-			radioButtonHandle = Manager::Instance().createHandle(Defaults::ButtonClassName, caption, style, Rect{ position_, Defaults::ButtonSize }, handle());
+			radioButtonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, caption, style, Rect{ position_, Defaults::ButtonSize }, handle());
 			radioButton.handle(radioButtonHandle);
 			//could be wrapped in setFont function(menctioned in header file)...
-			SendMessage(radioButton.handle(), WM_SETFONT, (WPARAM)Manager::Instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(radioButton.handle(), WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 		}
 		return *this;
 	}
@@ -102,9 +108,15 @@ namespace WinCape
 	Button::Self& Button::onClick(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
-		Manager::Instance().listenEvent(handle(), BN_CLICKED, callback);
+		Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
 		return *this;
 	}
+	//-------------------------------------------------------------------------
+	//WindowFrame
+	//-------------------------------------------------------------------------
+	WindowFrame::WindowFrame(const wchar_t* windowName, Rect rect, WindowStyle style)
+		:windowName(windowName), rect(rect), style(style) {}
+	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors (this could be in a separate cpp)
 	//-------------------------------------------------------------------------

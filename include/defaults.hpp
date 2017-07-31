@@ -13,7 +13,7 @@ namespace WinCape
 		static constexpr const wchar_t* ButtonClassName = L"BUTTON";
 		static constexpr Int2 ButtonSize = Int2{ 80, 24 };
 		static constexpr Int2 RadioButtonPadding = Int2{ 0, 32 };
-		static constexpr ButtonStyle DefButtonStyle = WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child | ButtonStyles::DefPushButton;
+		static constexpr ButtonStyle DefButtonStyle = WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child | ButtonStyles::PushButton;
 		static constexpr ButtonStyle RadioButtonStyle = WindowStyles::TabStop | WindowStyles::Visible | WindowStyles::Child | ButtonStyles::AutoRadioButton;
 	};
 }
