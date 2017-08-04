@@ -14,7 +14,6 @@ public:
 private:
 	void onCreate() override
 	{
-		using namespace std::placeholders;
 		show();
 		//Setup window
 		addButton(buttonA, L"Botón", Int2{ 100, 100 });
@@ -28,14 +27,13 @@ private:
 			Int2{ 200,200 }
 		);
 		//Event listening
-		onPaint([&](Event e) {this->doSomethingOnPaint(e); });
 		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
 		buttonB.onClick([&](Event e) {this->onButtonBClick(e);});
 		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
 	}
-	void doSomethingOnPaint(Event e)
+	void onDraw() override
 	{
-		//
+		//Do something on draw event...
 	}
 	void onButtonAClick(Event e)
 	{

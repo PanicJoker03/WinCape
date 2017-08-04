@@ -9,7 +9,8 @@
 #include <memory>
 #include <functional>
 //forward declarations
-//struct Event;
+struct Event;
+using EventCallback = std::function<void(Event)>;
 //type definitions
 using BaseHandle = HWND;
 using DeviceContextHandle = HDC;
@@ -21,6 +22,12 @@ using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
 template<typename T> using Reference = std::reference_wrapper<T>;
+struct Event
+{
+	BaseHandle handle;
+	WPARAM wparam;
+	LPARAM lparam;
+};
 struct Int2
 {
 	int x = 0, y = 0;

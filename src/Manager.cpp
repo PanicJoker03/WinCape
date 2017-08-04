@@ -73,7 +73,6 @@ namespace WinCape
 		}
 		void registerClass()
 		{
-			//auto wideWindowName = poolPtr(Utility::toWchar_t(Defaults::WindowName));
 			//TODO wrap IDI macros in default header...
 			WNDCLASSEX windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEX);
@@ -90,7 +89,7 @@ namespace WinCape
 		}
 		Base::Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
 		{
-			return CreateWindow(
+			auto handle = CreateWindow(
 				className,
 				text,
 				style,
@@ -101,6 +100,8 @@ namespace WinCape
 				Application::instance(),
 				NULL
 			);
+			SendMessage(handle, WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
+			return handle;
 		}
 		//Use font wrapper class...
 		void defaultFont(const wchar_t* fontName)

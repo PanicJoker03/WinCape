@@ -14,6 +14,7 @@ int Application::run()
 int Application::run(WinCape::WindowFrame& window)
 {
 	WinCape::Window::create(window, window.windowName, window.rect, window.style);
+	window.onPaint([&](Event e) { window.onDraw(); });
 	window.onCreate();
 	return WinCape::Manager::instance().startListening();
 }
@@ -72,9 +73,6 @@ namespace WinCape
 		Handle buttonHandle;
 		buttonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
 		button.handle(buttonHandle);
-		//could be wrapped in setFont function(menctioned in header file)...
-		//auto a = Manager::Instance().defaultFont();
-		SendMessage(button.handle(), WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 	}
 	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding)
 	{
@@ -91,8 +89,6 @@ namespace WinCape
 			const ButtonStyle style = isLast ? Defaults::RadioButtonStyle | WindowStyles::Group : Defaults::RadioButtonStyle;
 			radioButtonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, caption, style, Rect{ position_, Defaults::ButtonSize }, handle());
 			radioButton.handle(radioButtonHandle);
-			//could be wrapped in setFont function(menctioned in header file)...
-			SendMessage(radioButton.handle(), WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 		}
 	}
 	void Window::onPaint(const EventCallback& callback)
@@ -113,6 +109,7 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	WindowFrame::WindowFrame(const wchar_t* windowName, Rect rect, WindowStyle style)
 		:windowName(windowName), rect(rect), style(style) {}
+	void WindowFrame::onDraw() {}
 	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
 	//DeviceContext

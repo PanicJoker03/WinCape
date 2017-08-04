@@ -7,8 +7,6 @@
 struct Application;
 namespace WinCape
 {
-	struct Event;
-	using EventCallback = std::function<void(Event)>;
 	//forward declarations
 	class Button;
 	class RadioButton;
@@ -40,8 +38,6 @@ namespace WinCape
 		void addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
 		void onPaint(const EventCallback& callback);
-		//try to define this in cpp
-		//template<typename TControl> TControl addControl();
 	};
 	//enforce to this classes have to know nothing about Window class
 	//add setFont function? (it may need a Font wrapper class, that can only be instantiated through ::new and returns a shared_ptr...)
@@ -55,24 +51,22 @@ namespace WinCape
 	public:
 		void onClick(const EventCallback& callback);
 	};
-	class RadioButton : public Button
+	class RadioButton final : public Button
 	{
 	public:
 		using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
 	};
 	//Experimental...
-	class DeviceContext : public HasHandle<DeviceContextHandle>
+	class DeviceContext final : public HasHandle<DeviceContextHandle>
 	{
 	private:
 		DeviceContext(const DeviceContext&) = delete;
 		DeviceContext& operator=(const DeviceContext&) = delete;
 	public:
-		//using Self = DeviceContext;
-		//friend std::_Ref_count<Self>;
-		//using Unique = std::unique_ptr<Self>;
+		void drawBitmap();
 		~DeviceContext();
 	};
-	class Font : public HasHandle<FontHandle>
+	class Font final : public HasHandle<FontHandle>
 	{
 		//Do something...
 	};
@@ -88,15 +82,9 @@ namespace WinCape
 	protected:
 		WindowFrame(const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		virtual void onCreate() = 0;
+		virtual void onDraw();
 		virtual ~WindowFrame() = 0;
 		friend Application;
-	};
-	//
-	struct Event
-	{
-		Base::Handle handle;
-		WPARAM wparam;
-		LPARAM lparam;
 	};
 }
 struct Application
