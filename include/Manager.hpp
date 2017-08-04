@@ -1,4 +1,5 @@
-#include <defines.hpp>
+//#include <defines.hpp>
+#include <WinCape.hpp>
 namespace WinCape
 {
 	class Manager
@@ -7,11 +8,11 @@ namespace WinCape
 		Manager();
 	public:
 		int startListening();
-		void listenEvent(const Handle& handle, const WindowMessage& message, const EventCallback& callback);
+		void listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback);
 		void defaultFont(const wchar_t* fontName);
 		FontHandle defaultFont();
 		void registerClass();
-		Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Handle& parent = NULL);
+		Base::Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent = NULL);
 		static Manager& instance();
 	};
 }

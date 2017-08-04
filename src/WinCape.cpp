@@ -4,19 +4,14 @@
 #include <vector>
 #include <map>
 using namespace std;
-//Manage procedure messages here
-//namespace
-//{
-//	WinCape::Manager manager;
-//}
 //-------------------------------------------------------------------------
 //Application
 //-------------------------------------------------------------------------
-int Application::Run()
+int Application::run()
 {
 	return WinCape::Manager::instance().startListening();
 }
-int Application::Run(WinCape::WindowFrame& window)
+int Application::run(WinCape::WindowFrame& window)
 {
 	WinCape::Window::create(window, window.windowName, window.rect, window.style);
 	window.onCreate();
@@ -33,28 +28,30 @@ void Application::defaultFont(const wchar_t* fontName)
 namespace WinCape
 {
 	//-------------------------------------------------------------------------
-	//Base
+	//HasHandle
 	//-------------------------------------------------------------------------
-	template<typename Derived> TBase<Derived>::TBase() {}
-	template<typename Derived> void TBase<Derived>::handle(const Handle& handle)
+	template<typename T> HasHandle<T>::HasHandle() {}
+	template<typename T> void HasHandle<T>::handle(const T& handle)
 	{
 		this->_handle = handle;
 	}
-	template<typename Derived> Handle TBase<Derived>::handle() const
+	template<typename T> T HasHandle<T>::handle() const
 	{
 		return _handle;
 	}
-	template<typename Derived> Derived& TBase<Derived>::setText(const wchar_t* text)
+	//-------------------------------------------------------------------------
+	//Base
+	//-------------------------------------------------------------------------
+	Base::Base() {}
+	void Base::setText(const wchar_t* text)
 	{
 		SetWindowText(handle(), text);
-		return static_cast<Derived&>(*this); 
 	}
 	//-------------------------------------------------------------------------
 	//Window
 	//-------------------------------------------------------------------------
 	Window& Window::create(Window& window, const wchar_t* windowName, Rect rect, WindowStyle style)
 	{
-		//Window window;
 		Handle windowHandle;
 		//RegisterClassEx(&WindowClass());
 		Manager::instance().registerClass();
@@ -62,17 +59,15 @@ namespace WinCape
 		window.handle(windowHandle);
 		return window;
 	}
-	Window::Self& Window::show()
+	void Window::show()
 	{
 		ShowWindow(handle(), ShowCommands::Show);
-		return *this;
 	}
-	Window::Self& Window::minimize()
+	void Window::minimize()
 	{
 		ShowWindow(handle(), ShowCommands::Minimize);
-		return *this;
 	}
-	Window::Self& Window::addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size)
+	void Window::addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
@@ -80,9 +75,8 @@ namespace WinCape
 		//could be wrapped in setFont function(menctioned in header file)...
 		//auto a = Manager::Instance().defaultFont();
 		SendMessage(button.handle(), WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
-		return *this;
 	}
-	Window::Self& Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding)
+	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding)
 	{
 		const auto listSize = radioButtonList.size();
 		for (auto i = 0; i < listSize; i++)
@@ -100,16 +94,19 @@ namespace WinCape
 			//could be wrapped in setFont function(menctioned in header file)...
 			SendMessage(radioButton.handle(), WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 		}
-		return *this;
+	}
+	void Window::onPaint(const EventCallback& callback)
+	{
+		//TODO: declare button notifications in defines
+		Manager::instance().listenEvent(handle(), WindowMessages::Paint, callback);
 	}
 	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
-	Button::Self& Button::onClick(const EventCallback& callback)
+	void Button::onClick(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
 		Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
-		return *this;
 	}
 	//-------------------------------------------------------------------------
 	//WindowFrame
@@ -118,8 +115,16 @@ namespace WinCape
 		:windowName(windowName), rect(rect), style(style) {}
 	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
-	//Avoiding template linkage errors (this could be in a separate cpp)
+	//DeviceContext
 	//-------------------------------------------------------------------------
-	template class TBase<Window>;
-	template class TBase<TControl<Button>>;
+	DeviceContext::~DeviceContext() 
+	{
+		if (handle())
+			DeleteDC(handle());
+	}
+	//-------------------------------------------------------------------------
+	//Avoiding template linkage errors
+	//-------------------------------------------------------------------------
+	template class HasHandle<BaseHandle>;
+	template class HasHandle<DeviceContextHandle>;
 }

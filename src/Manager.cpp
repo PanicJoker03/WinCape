@@ -1,5 +1,4 @@
 #include <Manager.hpp>
-#include <WinCape.hpp>
 #include <tchar.h>
 #include <map>
 using namespace std;
@@ -10,14 +9,14 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	class ManagerImpl
 	{
-		using EventKey = pair<Handle, WindowMessage>;
+		using EventKey = pair<Base::Handle, WindowMessage>;
 		//Wrap in a class?
 		using EventMap = map<EventKey, EventCallback>;
 		EventMap eventMap;
 		//Wrap in font class?
 		FontHandle applicationFont = 0;
 	public:
-		using EventKey = pair<Handle, WindowMessage>;
+		using EventKey = pair<Base::Handle, WindowMessage>;
 		//Wrap in a class?
 		using EventMap = map<EventKey, EventCallback>;
 		static ManagerImpl& instance()
@@ -35,13 +34,13 @@ namespace WinCape
 			}
 			return static_cast<int>(msg.wParam);
 		}
-		void listenEvent(const Handle& handle, const WindowMessage& message, const EventCallback& callback)
+		void listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback)
 		{
 			eventMap[EventKey{ handle, message }] = callback;
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
-			//TODO: abstract message processing
+			auto handle = (Base::Handle)hWnd;
 			switch (message)
 			{
 			case WindowMessages::Destroy:
@@ -50,16 +49,23 @@ namespace WinCape
 				break;
 			case WindowMessages::Command:
 			{
-				Handle handle = (Handle)lParam;
+				Base::Handle commandHandle = (Base::Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
-				auto key = ManagerImpl::instance().eventMap.find(EventKey{ handle, controlMessage });
+				auto key = ManagerImpl::instance().eventMap.find(EventKey{ commandHandle, controlMessage });
+				if (key != ManagerImpl::instance().eventMap.end())
+				{
+					key->second(Event{ commandHandle, wParam, lParam });
+				}
+			}
+			break;
+			default:
+			{
+				auto key = ManagerImpl::instance().eventMap.find(EventKey{ handle, message });
 				if (key != ManagerImpl::instance().eventMap.end())
 				{
 					key->second(Event{ handle, wParam, lParam });
 				}
-				break;
 			}
-			default:
 				return DefWindowProc(hWnd, message, wParam, lParam);
 				break;
 			}
@@ -82,7 +88,7 @@ namespace WinCape
 			RegisterClassEx(&windowClass);
 			//return windowClass;
 		}
-		Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Handle& parent)
+		Base::Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
 		{
 			return CreateWindow(
 				className,
@@ -124,7 +130,7 @@ namespace WinCape
 	{
 		return ManagerImpl::instance().startListening();
 	}
-	void Manager::listenEvent(const Handle& handle, const WindowMessage& message, const EventCallback& callback)
+	void Manager::listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback)
 	{
 		ManagerImpl::instance().listenEvent(handle, message, callback);
 	}
@@ -132,7 +138,7 @@ namespace WinCape
 	{
 		ManagerImpl::instance().registerClass();
 	}
-	Handle Manager::createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Handle& parent)
+	Base::Handle Manager::createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style, rect, parent);
 	}

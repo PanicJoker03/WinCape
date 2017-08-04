@@ -14,6 +14,7 @@ public:
 private:
 	void onCreate() override
 	{
+		using namespace std::placeholders;
 		show();
 		//Setup window
 		addButton(buttonA, L"Botón", Int2{ 100, 100 });
@@ -27,9 +28,14 @@ private:
 			Int2{ 200,200 }
 		);
 		//Event listening
+		onPaint([&](Event e) {this->doSomethingOnPaint(e); });
 		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
 		buttonB.onClick([&](Event e) {this->onButtonBClick(e);});
 		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
+	}
+	void doSomethingOnPaint(Event e)
+	{
+		//
 	}
 	void onButtonAClick(Event e)
 	{
@@ -52,5 +58,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//Beginning to run the application...
 	//Also add a 'font' param to default controls font style?
 	MyWindow myWindow;
-	Application::Run(myWindow);
+	Application::run(myWindow);
 }

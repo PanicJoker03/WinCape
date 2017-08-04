@@ -9,9 +9,10 @@
 #include <memory>
 #include <functional>
 //forward declarations
-struct Event;
+//struct Event;
 //type definitions
-using Handle = HWND;
+using BaseHandle = HWND;
+using DeviceContextHandle = HDC;
 using FontHandle = HFONT;
 using InstanceHandle = HINSTANCE;
 using WindowStyle = DWORD;
@@ -19,7 +20,6 @@ using ButtonStyle = DWORD;
 using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
-using EventCallback = std::function<void(Event)>;
 template<typename T> using Reference = std::reference_wrapper<T>;
 struct Int2
 {
@@ -28,12 +28,6 @@ struct Int2
 struct Rect
 {
 	Int2 position, size;
-};
-struct Event
-{
-	Handle handle;
-	WPARAM wparam;
-	LPARAM lparam;
 };
 namespace WinCape
 {
@@ -159,6 +153,7 @@ namespace WinCape
 			static constexpr WindowMessage NCCreate = WM_NCCREATE;
 			static constexpr WindowMessage NCDestroy = WM_NCDESTROY;
 			static constexpr WindowMessage Null = WM_NULL;
+			static constexpr WindowMessage Paint = WM_PAINT;
 			static constexpr WindowMessage QueryDragIcon = WM_QUERYDRAGICON;
 			static constexpr WindowMessage QueryOpen = WM_QUERYOPEN;
 			static constexpr WindowMessage Quit = WM_QUIT;
