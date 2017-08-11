@@ -38,6 +38,14 @@ namespace WinCape
 		{
 			eventMap[EventKey{ handle, message }] = callback;
 		}
+		void doCallback(const EventKey& key, WPARAM wParam, LPARAM lParam)
+		{
+			auto keyIterator = eventMap.find(key);
+			if (keyIterator != eventMap.end())
+			{
+				keyIterator->second(Event{ key.first , wParam, lParam });
+			}
+		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			auto handle = (Base::Handle)hWnd;
@@ -51,20 +59,27 @@ namespace WinCape
 			{
 				Base::Handle commandHandle = (Base::Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
-				auto key = ManagerImpl::instance().eventMap.find(EventKey{ commandHandle, controlMessage });
-				if (key != ManagerImpl::instance().eventMap.end())
-				{
-					key->second(Event{ commandHandle, wParam, lParam });
-				}
+				ManagerImpl::instance().doCallback(EventKey{ commandHandle, controlMessage }, wParam, lParam);
+				//auto key = ManagerImpl::instance().eventMap.find(EventKey{ commandHandle, controlMessage });
+				//if (key != ManagerImpl::instance().eventMap.end())
+				//{
+				//	key->second(Event{ commandHandle, wParam, lParam });
+				//}
 			}
 			break;
+			case WindowMessages::Paint:
+			{
+				ManagerImpl::instance().doCallback(EventKey{ handle, message }, wParam, lParam);
+			}
+				break;
 			default:
 			{
-				auto key = ManagerImpl::instance().eventMap.find(EventKey{ handle, message });
-				if (key != ManagerImpl::instance().eventMap.end())
-				{
-					key->second(Event{ handle, wParam, lParam });
-				}
+				ManagerImpl::instance().doCallback(EventKey{ handle, message }, wParam, lParam);
+				//auto key = ManagerImpl::instance().eventMap.find(EventKey{ handle, message });
+				//if (key != ManagerImpl::instance().eventMap.end())
+				//{
+				//	key->second(Event{ handle, wParam, lParam });
+				//}
 			}
 				return DefWindowProc(hWnd, message, wParam, lParam);
 				break;

@@ -14,6 +14,7 @@ using EventCallback = std::function<void(Event)>;
 //type definitions
 using BaseHandle = HWND;
 using DeviceContextHandle = HDC;
+using BitmapHandle = HBITMAP;
 using FontHandle = HFONT;
 using InstanceHandle = HINSTANCE;
 using WindowStyle = DWORD;

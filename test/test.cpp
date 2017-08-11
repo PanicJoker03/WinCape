@@ -9,6 +9,7 @@ private:
 	RadioButton radioButtonA;
 	RadioButton radioButtonB;
 	RadioButton radioButtonC;
+	Bitmap image;
 public:
 	MyWindow() : WindowFrame(L"Ventana", Rect{ 120,120, 640, 480 }) {}
 private:
@@ -26,14 +27,16 @@ private:
 			},
 			Int2{ 200,200 }
 		);
+		//Loading the image...
+		image.load(L"c:\\Users\\w7\\Pictures\\chrono.bmp");
 		//Event listening
 		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
 		buttonB.onClick([&](Event e) {this->onButtonBClick(e);});
 		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
 	}
-	void onDraw() override
+	void onDraw(DeviceContext deviceContext) override
 	{
-		//Do something on draw event...
+		deviceContext.drawBitmap(image);
 	}
 	void onButtonAClick(Event e)
 	{

@@ -13,8 +13,14 @@ int Application::run()
 }
 int Application::run(WinCape::WindowFrame& window)
 {
-	WinCape::Window::create(window, window.windowName, window.rect, window.style);
-	window.onPaint([&](Event e) { window.onDraw(); });
+	using namespace WinCape;
+	Window::create(window, window.windowName, window.rect, window.style);
+	window.onPaint([&](Event e) {
+		PAINTSTRUCT paintStruct;
+		DeviceContext deviceContext{ (BeginPaint(window.handle(), &paintStruct)) };
+		window.onDraw(window.deviceContext());
+		EndPaint(window.handle(), &paintStruct);
+	});
 	window.onCreate();
 	return WinCape::Manager::instance().startListening();
 }
@@ -96,6 +102,12 @@ namespace WinCape
 		//TODO: declare button notifications in defines
 		Manager::instance().listenEvent(handle(), WindowMessages::Paint, callback);
 	}
+	DeviceContext Window::deviceContext()
+	{
+		DeviceContext deviceContext;
+		deviceContext.handle(GetDC(handle()));
+		return deviceContext;
+	}
 	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
@@ -109,19 +121,56 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	WindowFrame::WindowFrame(const wchar_t* windowName, Rect rect, WindowStyle style)
 		:windowName(windowName), rect(rect), style(style) {}
-	void WindowFrame::onDraw() {}
+	void WindowFrame::onDraw(DeviceContext deviceContext) {}
 	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
 	//DeviceContext
 	//-------------------------------------------------------------------------
-	DeviceContext::~DeviceContext() 
+	DeviceContext::DeviceContext() {}
+	DeviceContext::DeviceContext(const DeviceContextHandle& value)
+	{
+		handle(value);
+	}
+	void DeviceContext::bitBlt(const BitmapHandle& bitmapHandle, const DeviceContextHandle& destiny, const Rect& rect)
+	{
+		BitmapHandle hbmOld = (BitmapHandle)SelectObject(destiny, bitmapHandle);
+		BitBlt(handle(), rect.position.x, rect.position.y, rect.size.x, rect.size.y, destiny, 0, 0, SRCCOPY);
+		SelectObject(destiny, hbmOld);
+	}
+	void DeviceContext::drawBitmap(const Bitmap& bitmap)
+	{
+		DeviceContextHandle deviceContextMemory = CreateCompatibleDC(handle());
+		Int2 bitmapSize = bitmap.dimension();
+		bitBlt(bitmap.handle(), deviceContextMemory, Rect{ 0, 0, bitmapSize });
+		DeleteDC(deviceContextMemory);
+	}
+	//-------------------------------------------------------------------------
+	//Bitmap
+	//-------------------------------------------------------------------------
+	Bitmap::Bitmap() {}
+	void Bitmap::load(const wchar_t* sourcePath)
+	{
+		DeleteObject(handle());
+		handle((BitmapHandle)LoadImage(NULL, sourcePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
+	}
+	Int2 Bitmap::dimension() const
+	{
+		//Wonderfull code source from:
+		//http://forums.codeguru.com/showthread.php?348350-Bitmap-Dimensions-after-using-LoadImage-How
+		//check for handle nullity?
+		BITMAP bitmap = {};
+		GetObject(handle(), sizeof(bitmap), &bitmap);
+		return Int2{ bitmap.bmWidth, bitmap.bmHeight };
+	}
+	Bitmap::~Bitmap()
 	{
 		if (handle())
-			DeleteDC(handle());
+			DeleteObject(handle());
 	}
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//-------------------------------------------------------------------------
 	template class HasHandle<BaseHandle>;
-	template class HasHandle<DeviceContextHandle>;
+	//template class HasHandle<DeviceContextHandle>;
+	template class HasHandle<BitmapHandle>;
 }

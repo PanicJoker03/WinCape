@@ -11,6 +11,7 @@ namespace WinCape
 	class Button;
 	class RadioButton;
 	class DeviceContext;
+	class Bitmap;
 	template<typename T> class HasHandle
 	{
 	public:
@@ -38,6 +39,7 @@ namespace WinCape
 		void addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
 		void onPaint(const EventCallback& callback);
+		DeviceContext deviceContext();
 	};
 	//enforce to this classes have to know nothing about Window class
 	//add setFont function? (it may need a Font wrapper class, that can only be instantiated through ::new and returns a shared_ptr...)
@@ -57,14 +59,26 @@ namespace WinCape
 		using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
 	};
 	//Experimental...
+	class Bitmap final : public HasHandle<BitmapHandle>
+	{
+	private:
+		Bitmap(const Bitmap&) = delete;
+		Bitmap& operator=(const Bitmap&) = delete;
+	public:
+		Bitmap();
+		void load(const wchar_t* sourcePath);
+		Int2 dimension() const;
+		~Bitmap();
+	};
 	class DeviceContext final : public HasHandle<DeviceContextHandle>
 	{
 	private:
-		DeviceContext(const DeviceContext&) = delete;
-		DeviceContext& operator=(const DeviceContext&) = delete;
+		void bitBlt(const BitmapHandle& bitmapHandle, const DeviceContextHandle& destiny, const Rect& rect);
 	public:
-		void drawBitmap();
-		~DeviceContext();
+		DeviceContext();
+		DeviceContext(const DeviceContextHandle& value);
+		void drawBitmap(const Bitmap& bitmap);
+		friend Window;
 	};
 	class Font final : public HasHandle<FontHandle>
 	{
@@ -82,7 +96,7 @@ namespace WinCape
 	protected:
 		WindowFrame(const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		virtual void onCreate() = 0;
-		virtual void onDraw();
+		virtual void onDraw(DeviceContext deviceContext);
 		virtual ~WindowFrame() = 0;
 		friend Application;
 	};
