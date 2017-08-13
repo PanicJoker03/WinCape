@@ -4,11 +4,14 @@
 #ifdef _ENABLE_THEME
 #pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
 #endif
+#define NOMINMAX
 #include <windows.h>
 #include <type_traits>
 #include <memory>
 #include <functional>
+#include <vector>
 //forward declarations
+struct Pixel32;
 struct Event;
 using EventCallback = std::function<void(Event)>;
 //type definitions
@@ -22,12 +25,18 @@ using ButtonStyle = DWORD;
 using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
+using Byte = BYTE;
+using Pixel32Buffer = std::vector<Pixel32>;
 template<typename T> using Reference = std::reference_wrapper<T>;
 struct Event
 {
 	BaseHandle handle;
 	WPARAM wparam;
 	LPARAM lparam;
+};
+struct Pixel32
+{
+	Byte b, g, r, reserved = 0;
 };
 struct Int2
 {

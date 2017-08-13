@@ -39,6 +39,7 @@ namespace WinCape
 		void addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
 		void onPaint(const EventCallback& callback);
+		void redraw();
 		DeviceContext deviceContext();
 	};
 	//enforce to this classes have to know nothing about Window class
@@ -64,10 +65,13 @@ namespace WinCape
 	private:
 		Bitmap(const Bitmap&) = delete;
 		Bitmap& operator=(const Bitmap&) = delete;
+		void getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const;
 	public:
 		Bitmap();
 		void load(const wchar_t* sourcePath);
 		Int2 dimension() const;
+		void pixels(Pixel32Buffer& buffer) const;
+		void paintBuffer(const Pixel32Buffer& buffer);
 		~Bitmap();
 	};
 	class DeviceContext final : public HasHandle<DeviceContextHandle>

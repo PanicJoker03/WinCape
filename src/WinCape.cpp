@@ -102,6 +102,10 @@ namespace WinCape
 		//TODO: declare button notifications in defines
 		Manager::instance().listenEvent(handle(), WindowMessages::Paint, callback);
 	}
+	void Window::redraw()
+	{
+		RedrawWindow(handle(), 0, 0, RDW_INVALIDATE | RDW_UPDATENOW);
+	}
 	DeviceContext Window::deviceContext()
 	{
 		DeviceContext deviceContext;
@@ -148,6 +152,12 @@ namespace WinCape
 	//Bitmap
 	//-------------------------------------------------------------------------
 	Bitmap::Bitmap() {}
+	void Bitmap::getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const
+	{
+		bmpInfo.bmiHeader.biSize = sizeof(bmpInfo.bmiHeader);
+		GetDIBits(deviceContext, handle(), 0, 0, NULL, &bmpInfo, DIB_RGB_COLORS);
+		bmpInfo.bmiHeader.biCompression = BI_RGB;
+	}
 	void Bitmap::load(const wchar_t* sourcePath)
 	{
 		DeleteObject(handle());
@@ -162,10 +172,27 @@ namespace WinCape
 		GetObject(handle(), sizeof(bitmap), &bitmap);
 		return Int2{ bitmap.bmWidth, bitmap.bmHeight };
 	}
+	void Bitmap::pixels(Pixel32Buffer& buffer) const
+	{
+		//Must call GetDIBits twice...
+		//https://stackoverflow.com/questions/26233848/c-read-pixels-with-getdibits
+		DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
+		BITMAPINFO bitmapInfo = {};
+		getBitmapInfo(deviceContext, bitmapInfo);
+		buffer.resize(bitmapInfo.bmiHeader.biSizeImage / 4); //replace 4 with variable?
+		GetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, &buffer[0], &bitmapInfo, DIB_RGB_COLORS);
+	}
+	void Bitmap::paintBuffer(const Pixel32Buffer& buffer)
+	{
+		DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
+		BITMAPINFO bitmapInfo = {};
+		getBitmapInfo(deviceContext, bitmapInfo);
+		//buffer = Pixel32Buffer(bitmapInfo.bmiHeader.biSizeImage / 4); //replace 4 with variable?
+		SetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, &buffer[0], &bitmapInfo, DIB_RGB_COLORS);
+	}
 	Bitmap::~Bitmap()
 	{
-		if (handle())
-			DeleteObject(handle());
+		DeleteObject(handle());
 	}
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors
