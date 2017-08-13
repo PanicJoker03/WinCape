@@ -190,6 +190,15 @@ namespace WinCape
 		//buffer = Pixel32Buffer(bitmapInfo.bmiHeader.biSizeImage / 4); //replace 4 with variable?
 		SetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, &buffer[0], &bitmapInfo, DIB_RGB_COLORS);
 	}
+	void Bitmap::foreachPixel(Pixel32Buffer& buffer, std::function<void(Pixel32&)> callback)
+	{
+		pixels(buffer);
+		for (auto& pixel : buffer)
+		{
+			callback(pixel);
+		}
+		paintBuffer(buffer);
+	}
 	Bitmap::~Bitmap()
 	{
 		DeleteObject(handle());

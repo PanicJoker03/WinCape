@@ -72,6 +72,7 @@ namespace WinCape
 		Int2 dimension() const;
 		void pixels(Pixel32Buffer& buffer) const;
 		void paintBuffer(const Pixel32Buffer& buffer);
+		void foreachPixel(Pixel32Buffer& buffer, std::function<void(Pixel32&)> callback);
 		~Bitmap();
 	};
 	class DeviceContext final : public HasHandle<DeviceContextHandle>

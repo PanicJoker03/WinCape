@@ -37,12 +37,9 @@ private:
 	}
 	void onDraw(DeviceContext deviceContext) override
 	{
-		image.pixels(buffer);
-		for (auto& pixel : buffer)
-		{
+		image.foreachPixel(buffer, [](Pixel32& pixel) {
 			pixel.b += 4;
-		}
-		image.paintBuffer(buffer);
+		});
 		deviceContext.drawBitmap(image);
 	}
 	void onButtonAClick(Event e)
