@@ -32,6 +32,10 @@ void Application::defaultFont(const wchar_t* fontName)
 {
 	WinCape::Manager::instance().defaultFont(fontName);
 }
+namespace
+{
+	int idCounter = 0;
+}
 namespace WinCape
 {
 	//-------------------------------------------------------------------------
@@ -97,6 +101,11 @@ namespace WinCape
 			radioButton.handle(radioButtonHandle);
 		}
 	}
+	void Window::addMenu(Menu& menu)
+	{
+		SetMenu(handle(), menu.handle());
+		DrawMenuBar(handle());
+	}
 	void Window::onPaint(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
@@ -112,6 +121,10 @@ namespace WinCape
 		deviceContext.handle(GetDC(handle()));
 		return deviceContext;
 	}
+	void Window::close()
+	{
+		SendMessage(handle(), WindowMessages::Close, 0, 0);
+	}
 	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
@@ -119,6 +132,42 @@ namespace WinCape
 	{
 		//TODO: declare button notifications in defines
 		Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
+	}
+	//-------------------------------------------------------------------------
+	//Menu
+	//-------------------------------------------------------------------------
+	void Menu::addSubMenu(Menu& menu, const wchar_t* text)
+	{
+		AppendMenu(handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text);
+	}
+	void Menu::addItem(const wchar_t* item)
+	{
+		//Create MenuFlags in defines
+		AppendMenu(handle(), MF_STRING, ++idCounter, item);
+	}
+	void Menu::addItems(std::initializer_list<const wchar_t*> itemList)
+	{
+		for (const wchar_t* item : itemList)
+		{
+			addItem(item);
+		}
+	}
+	void Menu::onItemSelect(const EventCallback& callback)
+	{
+		Manager::instance().listenEvent((Base::Handle)handle(), WindowMessages::MenuCommand, callback);
+	}
+	void Menu::create(Menu& menu)
+	{
+		MenuHandle menuHandle = CreateMenu();
+		menu.handle(menuHandle);
+		//Enabling WM_MENUCOMMAND
+		//https://stackoverflow.com/questions/14916356/how-to-enable-popup-menu-to-communicate-with-wm-menucommand-instead-of-wm-comman
+		MENUINFO menuInfo = {};
+		menuInfo.cbSize = sizeof(MENUINFO);
+		GetMenuInfo(menu.handle(), &menuInfo);
+		menuInfo.fMask = MIM_STYLE;
+		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
+		SetMenuInfo(menu.handle(), &menuInfo);
 	}
 	//-------------------------------------------------------------------------
 	//WindowFrame
@@ -208,5 +257,6 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	template class HasHandle<BaseHandle>;
 	//template class HasHandle<DeviceContextHandle>;
+	template class HasHandle<MenuHandle>;
 	template class HasHandle<BitmapHandle>;
 }

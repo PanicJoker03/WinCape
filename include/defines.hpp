@@ -17,6 +17,7 @@ using EventCallback = std::function<void(Event)>;
 //type definitions
 using BaseHandle = HWND;
 using DeviceContextHandle = HDC;
+using MenuHandle = HMENU;
 using BitmapHandle = HBITMAP;
 using FontHandle = HFONT;
 using InstanceHandle = HINSTANCE;
@@ -163,6 +164,8 @@ namespace WinCape
 			static constexpr WindowMessage GetMinMaxInfo = WM_GETMINMAXINFO;
 			static constexpr WindowMessage InputLangChange = WM_INPUTLANGCHANGE;
 			static constexpr WindowMessage InputLangChangeRequest = WM_INPUTLANGCHANGEREQUEST;
+			static constexpr WindowMessage MenuCommand = WM_MENUCOMMAND;
+			static constexpr WindowMessage MenuSelect = WM_MENUSELECT;
 			static constexpr WindowMessage Move = WM_MOVE;
 			static constexpr WindowMessage Moving = WM_MOVING;
 			static constexpr WindowMessage NCActivate = WM_NCACTIVATE;

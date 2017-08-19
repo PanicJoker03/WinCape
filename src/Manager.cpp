@@ -60,26 +60,17 @@ namespace WinCape
 				Base::Handle commandHandle = (Base::Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
 				ManagerImpl::instance().doCallback(EventKey{ commandHandle, controlMessage }, wParam, lParam);
-				//auto key = ManagerImpl::instance().eventMap.find(EventKey{ commandHandle, controlMessage });
-				//if (key != ManagerImpl::instance().eventMap.end())
-				//{
-				//	key->second(Event{ commandHandle, wParam, lParam });
-				//}
 			}
 			break;
-			case WindowMessages::Paint:
+			case WindowMessages::MenuCommand:
 			{
-				ManagerImpl::instance().doCallback(EventKey{ handle, message }, wParam, lParam);
+				Base::Handle commandHandle = (Base::Handle)lParam;
+				ManagerImpl::instance().doCallback(EventKey{ commandHandle, message }, wParam, lParam);
 			}
-				break;
+			break;
 			default:
 			{
 				ManagerImpl::instance().doCallback(EventKey{ handle, message }, wParam, lParam);
-				//auto key = ManagerImpl::instance().eventMap.find(EventKey{ handle, message });
-				//if (key != ManagerImpl::instance().eventMap.end())
-				//{
-				//	key->second(Event{ handle, wParam, lParam });
-				//}
 			}
 				return DefWindowProc(hWnd, message, wParam, lParam);
 				break;

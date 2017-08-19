@@ -4,6 +4,8 @@ using namespace WinCape;
 class MyWindow : public WindowFrame
 {
 private:
+	Menu menu;
+	Menu fileMenu;
 	Button buttonA;
 	Button buttonB;
 	RadioButton radioButtonA;
@@ -18,6 +20,11 @@ private:
 	{
 		show();
 		//Setup window
+		Menu::create(menu);
+		Menu::create(fileMenu);
+		fileMenu.addItems({L"Abrir imagen", L"Guardar imagen", L"Salir"});
+		menu.addSubMenu(fileMenu, L"Archivo");
+		addMenu(menu);
 		addButton(buttonA, L"Botón", Int2{ 100, 100 });
 		addButton(buttonB, L"Test", Int2{ 140, 140 }); 
 		addRadioButton(
@@ -34,6 +41,7 @@ private:
 		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
 		buttonB.onClick([&](Event e) {this->onButtonBClick(e);});
 		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
+		fileMenu.onItemSelect([&](Event e) {this->onFileMenuSelect(e); });
 	}
 	void onDraw(DeviceContext deviceContext) override
 	{
@@ -54,6 +62,14 @@ private:
 	{
 		radioButtonA.setText(L"Me haz clickeado tío!");
 		redraw();
+	}
+	void onFileMenuSelect(Event e)
+	{
+		int index = e.wparam;
+		if (index == 2)
+		{
+			close();
+		}
 	}
 };
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

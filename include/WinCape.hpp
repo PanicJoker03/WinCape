@@ -10,6 +10,7 @@ namespace WinCape
 	//forward declarations
 	class Button;
 	class RadioButton;
+	class Menu;
 	class DeviceContext;
 	class Bitmap;
 	template<typename T> class HasHandle
@@ -38,8 +39,10 @@ namespace WinCape
 		void minimize();
 		void addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
 		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
+		void addMenu(Menu& menu);
 		void onPaint(const EventCallback& callback);
 		void redraw();
+		void close();
 		DeviceContext deviceContext();
 	};
 	//enforce to this classes have to know nothing about Window class
@@ -58,6 +61,16 @@ namespace WinCape
 	{
 	public:
 		using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
+	};
+	class Menu final : public HasHandle<MenuHandle>
+	{
+	public:
+		void addSubMenu(Menu& menu, const wchar_t* text);
+		void addItem(const wchar_t* item);
+		void addItems(std::initializer_list<const wchar_t*> itemList);
+		void onItemSelect(const EventCallback& callback);
+		static void create(Menu& menu);
+		friend Window;
 	};
 	//Experimental...
 	class Bitmap final : public HasHandle<BitmapHandle>
