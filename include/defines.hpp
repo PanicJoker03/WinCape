@@ -11,7 +11,6 @@
 #include <functional>
 #include <vector>
 //forward declarations
-struct Pixel32;
 struct Event;
 using EventCallback = std::function<void(Event)>;
 //type definitions
@@ -27,17 +26,12 @@ using ClassStyle = UINT;
 using ShowCommand  = int;
 using WindowMessage = UINT;
 using Byte = BYTE;
-using Pixel32Buffer = std::vector<Pixel32>;
 template<typename T> using Reference = std::reference_wrapper<T>;
 struct Event
 {
 	BaseHandle handle;
 	WPARAM wparam;
 	LPARAM lparam;
-};
-struct Pixel32
-{
-	Byte b, g, r, reserved = 0;
 };
 struct Int2
 {

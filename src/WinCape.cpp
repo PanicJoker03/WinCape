@@ -32,10 +32,6 @@ void Application::defaultFont(const wchar_t* fontName)
 {
 	WinCape::Manager::instance().defaultFont(fontName);
 }
-namespace
-{
-	int idCounter = 0;
-}
 namespace WinCape
 {
 	//-------------------------------------------------------------------------
@@ -101,7 +97,7 @@ namespace WinCape
 			radioButton.handle(radioButtonHandle);
 		}
 	}
-	void Window::addMenu(Menu& menu)
+	void Window::attachMenu(Menu& menu)
 	{
 		SetMenu(handle(), menu.handle());
 		DrawMenuBar(handle());
@@ -136,6 +132,17 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Menu
 	//-------------------------------------------------------------------------
+	void Menu::enableMenuCommand()
+	{
+		//Enabling WM_MENUCOMMAND
+		//https://stackoverflow.com/questions/14916356/how-to-enable-popup-menu-to-communicate-with-wm-menucommand-instead-of-wm-comman
+		MENUINFO menuInfo = {};
+		menuInfo.cbSize = sizeof(MENUINFO);
+		GetMenuInfo(handle(), &menuInfo);
+		menuInfo.fMask = MIM_STYLE;
+		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
+		SetMenuInfo(handle(), &menuInfo);
+	}
 	void Menu::addSubMenu(Menu& menu, const wchar_t* text)
 	{
 		AppendMenu(handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text);
@@ -143,7 +150,7 @@ namespace WinCape
 	void Menu::addItem(const wchar_t* item)
 	{
 		//Create MenuFlags in defines
-		AppendMenu(handle(), MF_STRING, ++idCounter, item);
+		AppendMenu(handle(), MF_STRING, 0, item);
 	}
 	void Menu::addItems(std::initializer_list<const wchar_t*> itemList)
 	{
@@ -160,22 +167,8 @@ namespace WinCape
 	{
 		MenuHandle menuHandle = CreateMenu();
 		menu.handle(menuHandle);
-		//Enabling WM_MENUCOMMAND
-		//https://stackoverflow.com/questions/14916356/how-to-enable-popup-menu-to-communicate-with-wm-menucommand-instead-of-wm-comman
-		MENUINFO menuInfo = {};
-		menuInfo.cbSize = sizeof(MENUINFO);
-		GetMenuInfo(menu.handle(), &menuInfo);
-		menuInfo.fMask = MIM_STYLE;
-		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
-		SetMenuInfo(menu.handle(), &menuInfo);
+		menu.enableMenuCommand();
 	}
-	//-------------------------------------------------------------------------
-	//WindowFrame
-	//-------------------------------------------------------------------------
-	WindowFrame::WindowFrame(const wchar_t* windowName, Rect rect, WindowStyle style)
-		:windowName(windowName), rect(rect), style(style) {}
-	void WindowFrame::onDraw(DeviceContext deviceContext) {}
-	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
 	//DeviceContext
 	//-------------------------------------------------------------------------
@@ -221,37 +214,33 @@ namespace WinCape
 		GetObject(handle(), sizeof(bitmap), &bitmap);
 		return Int2{ bitmap.bmWidth, bitmap.bmHeight };
 	}
-	void Bitmap::pixels(Pixel32Buffer& buffer) const
+	void Bitmap::clonePixels(void* buffer) const
 	{
 		//Must call GetDIBits twice...
 		//https://stackoverflow.com/questions/26233848/c-read-pixels-with-getdibits
-		DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
+		const DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
 		BITMAPINFO bitmapInfo = {};
 		getBitmapInfo(deviceContext, bitmapInfo);
-		buffer.resize(bitmapInfo.bmiHeader.biSizeImage / 4); //replace 4 with variable?
-		GetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, &buffer[0], &bitmapInfo, DIB_RGB_COLORS);
+		GetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, buffer, &bitmapInfo, DIB_RGB_COLORS);
 	}
-	void Bitmap::paintBuffer(const Pixel32Buffer& buffer)
+	void Bitmap::setPixels(void* buffer)
 	{
-		DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
+		const DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
 		BITMAPINFO bitmapInfo = {};
 		getBitmapInfo(deviceContext, bitmapInfo);
-		//buffer = Pixel32Buffer(bitmapInfo.bmiHeader.biSizeImage / 4); //replace 4 with variable?
-		SetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, &buffer[0], &bitmapInfo, DIB_RGB_COLORS);
-	}
-	void Bitmap::foreachPixel(Pixel32Buffer& buffer, std::function<void(Pixel32&)> callback)
-	{
-		pixels(buffer);
-		for (auto& pixel : buffer)
-		{
-			callback(pixel);
-		}
-		paintBuffer(buffer);
+		SetDIBits(deviceContext, handle(), 0, bitmapInfo.bmiHeader.biHeight, buffer, &bitmapInfo, DIB_RGB_COLORS);
 	}
 	Bitmap::~Bitmap()
 	{
 		DeleteObject(handle());
 	}
+	//-------------------------------------------------------------------------
+	//WindowFrame
+	//-------------------------------------------------------------------------
+	WindowFrame::WindowFrame(const wchar_t* windowName, Rect rect, WindowStyle style)
+		:windowName(windowName), rect(rect), style(style) {}
+	void WindowFrame::onDraw(DeviceContext deviceContext) {}
+	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//-------------------------------------------------------------------------
