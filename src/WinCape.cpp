@@ -121,6 +121,10 @@ namespace WinCape
 	{
 		SendMessage(handle(), WindowMessages::Close, 0, 0);
 	}
+	void Window::setIcon(const Icon& icon)
+	{
+		SendMessage(handle(), WindowMessages::SetIcon, ICON_BIG, (LPARAM)icon.handle());
+	}
 	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
@@ -170,6 +174,15 @@ namespace WinCape
 		menu.enableMenuCommand();
 	}
 	//-------------------------------------------------------------------------
+	//Icon
+	//-------------------------------------------------------------------------
+	Icon::Icon() {}
+	void Icon::load(ResourceInt idi)
+	{
+		IconHandle iconHandle = (IconHandle)LoadImage(Application::instance(), MAKEINTRESOURCE(idi), IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR | LR_DEFAULTSIZE);
+		handle(iconHandle);
+	}
+	//-------------------------------------------------------------------------
 	//DeviceContext
 	//-------------------------------------------------------------------------
 	DeviceContext::DeviceContext() {}
@@ -185,15 +198,32 @@ namespace WinCape
 	}
 	void DeviceContext::drawBitmap(const Bitmap& bitmap)
 	{
+		Int2 bitmapSize = bitmap.dimension();
+		drawBitmap(bitmap, Rect{ 0, 0, bitmapSize });
+	}
+	void DeviceContext::drawBitmap(const Bitmap& bitmap, const Rect& rect)
+	{
 		DeviceContextHandle deviceContextMemory = CreateCompatibleDC(handle());
 		Int2 bitmapSize = bitmap.dimension();
-		bitBlt(bitmap.handle(), deviceContextMemory, Rect{ 0, 0, bitmapSize });
+		bitBlt(bitmap.handle(), deviceContextMemory, rect);
 		DeleteDC(deviceContextMemory);
 	}
 	//-------------------------------------------------------------------------
 	//Bitmap
 	//-------------------------------------------------------------------------
-	Bitmap::Bitmap() {}
+	Bitmap::Bitmap(const Rect& rect) 
+	{
+		BitmapHandle bitmapHandle = CreateBitmap(rect.size.x, rect.size.y, 1, 32, NULL);
+		handle(bitmapHandle);
+	}
+
+	Bitmap& Bitmap::operator = (const Bitmap& bitmap) 
+	{
+		DeleteObject(handle());
+		BitmapHandle bitmapHandle = (BitmapHandle)CopyImage(bitmap.handle(), IMAGE_BITMAP, 0, 0, NULL);
+		handle(bitmapHandle);
+		return *this;
+	}
 	void Bitmap::getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const
 	{
 		bmpInfo.bmiHeader.biSize = sizeof(bmpInfo.bmiHeader);

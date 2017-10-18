@@ -11,6 +11,7 @@ namespace WinCape
 	class Button;
 	class RadioButton;
 	class Menu;
+	class Icon;
 	class DeviceContext;
 	class Bitmap;
 	template<typename T> class HasHandle
@@ -43,6 +44,7 @@ namespace WinCape
 		void onPaint(const EventCallback& callback);
 		void redraw();
 		void close();
+		void setIcon(const Icon& icon);
 		DeviceContext deviceContext();
 	};
 	//enforce to this classes have to know nothing about Window class
@@ -56,6 +58,7 @@ namespace WinCape
 	{
 	public:
 		void onClick(const EventCallback& callback);
+
 	};
 	class RadioButton final : public Button
 	{
@@ -74,14 +77,22 @@ namespace WinCape
 		static void create(Menu& menu);
 		friend Window;
 	};
+	class Icon final : public HasHandle<IconHandle> 
+	{
+	public:
+		Icon();
+		void load(ResourceInt idi);
+		friend Window;
+	};
 	class Bitmap final : public HasHandle<BitmapHandle>
 	{
 	private:
 		Bitmap(const Bitmap&) = delete;
-		Bitmap& operator=(const Bitmap&) = delete;
+		//Bitmap& operator=(const Bitmap&) = delete;
 		void getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const;
 	public:
-		Bitmap();
+		Bitmap(const Rect& rect = Rect{});
+		Bitmap& operator = (const Bitmap& bitmap);
 		void load(const wchar_t* sourcePath);
 		Int2 dimension() const;
 		void clonePixels(void* buffer) const;
@@ -96,6 +107,7 @@ namespace WinCape
 		DeviceContext();
 		DeviceContext(const DeviceContextHandle& value);
 		void drawBitmap(const Bitmap& bitmap);
+		void drawBitmap(const Bitmap& bitmap, const Rect& rect);
 		friend Window;
 	};
 	class Font final : public HasHandle<FontHandle>
