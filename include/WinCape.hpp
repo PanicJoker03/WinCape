@@ -7,6 +7,7 @@
 struct Application;
 namespace WinCape
 {
+	// Utility function...
 	//forward declarations
 	class Button;
 	class RadioButton;
@@ -19,6 +20,11 @@ namespace WinCape
 	public:
 		using Handle = T;
 		T handle() const;
+		template<typename WinCapeClass> static WinCapeClass createFromResource(BaseHandle parent, int resource) {
+			WinCapeClass winCapeClass;
+			winCapeClass.handle(GetDlgItem(parent, resource));
+			return winCapeClass;
+		}
 	protected:
 		HasHandle();
 		void handle(const T& handle);
@@ -29,6 +35,7 @@ namespace WinCape
 	{
 	public:
 		void setText(const wchar_t* text);
+		void getText(wchar_t* text, int lenght) const;
 	protected:
 		Base();
 	};

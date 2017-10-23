@@ -1,6 +1,5 @@
 #include <WinCape.hpp>
 #include <Manager.hpp>
-#include <Helper.hpp>
 #include <vector>
 #include <map>
 using namespace std;
@@ -53,6 +52,11 @@ namespace WinCape
 	void Base::setText(const wchar_t* text)
 	{
 		SetWindowText(handle(), text);
+	}
+	void Base::getText(wchar_t* text, int lenght) const
+	{
+		GetWindowText(handle(), text, lenght);
+		//return text;
 	}
 	//-------------------------------------------------------------------------
 	//Window
