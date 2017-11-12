@@ -130,12 +130,33 @@ namespace WinCape
 		SendMessage(handle(), WindowMessages::SetIcon, ICON_BIG, (LPARAM)icon.handle());
 	}
 	//-------------------------------------------------------------------------
+	//Control
+	//-------------------------------------------------------------------------
+	void Control::createFromResource(BaseHandle parent, int resource) {
+		handle(GetDlgItem(parent, resource));
+	}
+	//-------------------------------------------------------------------------
 	//Button
 	//-------------------------------------------------------------------------
 	void Button::onClick(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
 		Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
+	}
+	//-------------------------------------------------------------------------
+	//ComboBox
+	//-------------------------------------------------------------------------
+	void ComboBox::addString(const wchar_t* string) {
+		SendMessage(handle(), CB_ADDSTRING, 0, (LPARAM)string);
+	}
+	//-------------------------------------------------------------------------
+	//ListBox
+	//-------------------------------------------------------------------------
+	void ListBox::addString(const wchar_t* string) {
+		SendMessage(handle(), LB_ADDSTRING, 0, (LPARAM)string);
+	}
+	int ListBox::count() {
+		return SendMessage(handle(), LB_GETCOUNT, 0, 0);
 	}
 	//-------------------------------------------------------------------------
 	//Menu
@@ -200,24 +221,24 @@ namespace WinCape
 		BitBlt(handle(), rect.position.x, rect.position.y, rect.size.x, rect.size.y, destiny, 0, 0, SRCCOPY);
 		SelectObject(destiny, hbmOld);
 	}
-	void DeviceContext::drawBitmap(const Bitmap& bitmap)
-	{
-		Int2 bitmapSize = bitmap.dimension();
-		drawBitmap(bitmap, Rect{ 0, 0, bitmapSize });
-	}
-	void DeviceContext::drawBitmap(const Bitmap& bitmap, const Rect& rect)
+	//void DeviceContext::drawBitmap(const Bitmap& bitmap)
+	//{
+	//	Int2 bitmapSize = bitmap.dimension();
+	//	drawBitmap(bitmap, Rect{ 0, 0, bitmapSize });
+	//}
+	void DeviceContext::drawBitmap(const Bitmap& bitmap, const Int2& padding)
 	{
 		DeviceContextHandle deviceContextMemory = CreateCompatibleDC(handle());
 		Int2 bitmapSize = bitmap.dimension();
-		bitBlt(bitmap.handle(), deviceContextMemory, rect);
+		bitBlt(bitmap.handle(), deviceContextMemory, Rect{padding, bitmapSize});
 		DeleteDC(deviceContextMemory);
 	}
 	//-------------------------------------------------------------------------
 	//Bitmap
 	//-------------------------------------------------------------------------
-	Bitmap::Bitmap(const Rect& rect) 
+	Bitmap::Bitmap(const Int2& dimensions) 
 	{
-		BitmapHandle bitmapHandle = CreateBitmap(rect.size.x, rect.size.y, 1, 32, NULL);
+		BitmapHandle bitmapHandle = CreateBitmap(dimensions.x, dimensions.y, 1, 32, NULL);
 		handle(bitmapHandle);
 	}
 

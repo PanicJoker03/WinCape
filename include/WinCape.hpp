@@ -20,11 +20,7 @@ namespace WinCape
 	public:
 		using Handle = T;
 		T handle() const;
-		template<typename WinCapeClass> static WinCapeClass createFromResource(BaseHandle parent, int resource) {
-			WinCapeClass winCapeClass;
-			winCapeClass.handle(GetDlgItem(parent, resource));
-			return winCapeClass;
-		}
+		template<typename> friend class CanCreateFromResource;
 	protected:
 		HasHandle();
 		void handle(const T& handle);
@@ -60,6 +56,7 @@ namespace WinCape
 	{
 	public:
 		friend Window;
+		void createFromResource(BaseHandle parent, int resource);
 	};
 	class Button : public Control
 	{
@@ -71,6 +68,17 @@ namespace WinCape
 	{
 	public:
 		using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
+	};
+	class ComboBox final : public Control
+	{
+	public:
+		void addString(const wchar_t* string);
+	};
+	class ListBox final : public Control
+	{
+	public:
+		void addString(const wchar_t* string);
+		int count();
 	};
 	class Menu final : public HasHandle<MenuHandle>
 	{
@@ -98,7 +106,7 @@ namespace WinCape
 		//Bitmap& operator=(const Bitmap&) = delete;
 		void getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const;
 	public:
-		Bitmap(const Rect& rect = Rect{});
+		Bitmap(const Int2& dimensions = Int2{});
 		Bitmap& operator = (const Bitmap& bitmap);
 		void load(const wchar_t* sourcePath);
 		Int2 dimension() const;
@@ -113,8 +121,9 @@ namespace WinCape
 	public:
 		DeviceContext();
 		DeviceContext(const DeviceContextHandle& value);
-		void drawBitmap(const Bitmap& bitmap);
-		void drawBitmap(const Bitmap& bitmap, const Rect& rect);
+		//void drawBitmap(const Bitmap& bitmap);
+		void drawBitmap(const Bitmap& bitmap, const Int2& padding = Int2{});
+		//drawBitmapClipped...
 		friend Window;
 	};
 	class Font final : public HasHandle<FontHandle>
