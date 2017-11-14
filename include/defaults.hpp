@@ -7,7 +7,7 @@ namespace WinCape
 	{
 		static constexpr const wchar_t* WindowName = L"WinCape Window";
 		static constexpr Rect WindowRect = Rect{ 100, 100, 800, 600 };
-		static constexpr WindowStyle DefWindowStyle = WindowStyles::OverlappedWindow;
+		static constexpr WindowStyle DefWindowStyle = WindowStyles::OverlappedWindow ^ WindowStyles::ThickFrame;
 		static constexpr ClassStyle DefClassStyle  = ClassStyles::HorizontalRedraw | ClassStyles::VerticalRedraw;
 		static constexpr ShowCommand DefShowCommand = ShowCommands::ShowDefault;
 		static constexpr const wchar_t* ButtonClassName = L"BUTTON";
