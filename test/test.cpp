@@ -1,7 +1,7 @@
 #define _ENABLE_THEME
 #include <WinCape.hpp>
 using namespace WinCape;
-struct Pixel32 { std::uint8_t b, g, r, derived = 0; };
+struct Pixel32 { std::uint8_t b, g, r, offset = 0; };
 class MyWindow : public WindowFrame
 {
 private:
