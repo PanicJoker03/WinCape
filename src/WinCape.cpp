@@ -3,36 +3,36 @@
 #include <vector>
 #include <map>
 using namespace std;
-//-------------------------------------------------------------------------
-//Application
-//-------------------------------------------------------------------------
-int Application::run()
-{
-	return WinCape::Manager::instance().startListening();
-}
-int Application::run(WinCape::WindowFrame& window)
-{
-	using namespace WinCape;
-	Window::create(window, window.windowName, window.rect, window.style);
-	window.onPaint([&](Event e) {
-		PAINTSTRUCT paintStruct;
-		DeviceContext deviceContext{ (BeginPaint(window.handle(), &paintStruct)) };
-		window.onDraw(window.deviceContext());
-		EndPaint(window.handle(), &paintStruct);
-	});
-	window.onCreate();
-	return WinCape::Manager::instance().startListening();
-}
-InstanceHandle Application::instance()
-{
-	return GetModuleHandle(NULL);
-}
-void Application::defaultFont(const wchar_t* fontName)
-{
-	WinCape::Manager::instance().defaultFont(fontName);
-}
 namespace WinCape
 {
+	//-------------------------------------------------------------------------
+	//Application
+	//-------------------------------------------------------------------------
+	int Application::run()
+	{
+		return WinCape::Manager::instance().startListening();
+	}
+	int Application::run(WinCape::WindowFrame& window)
+	{
+		using namespace WinCape;
+		Window::create(window, window.windowName, window.rect, window.style);
+		window.onPaint([&](Event e) {
+			PAINTSTRUCT paintStruct;
+			DeviceContext deviceContext{ (BeginPaint(window.handle(), &paintStruct)) };
+			window.onDraw(window.deviceContext());
+			EndPaint(window.handle(), &paintStruct);
+		});
+		window.onCreate();
+		return WinCape::Manager::instance().startListening();
+	}
+	InstanceHandle Application::instance()
+	{
+		return GetModuleHandle(NULL);
+	}
+	void Application::defaultFont(const wchar_t* fontName)
+	{
+		WinCape::Manager::instance().defaultFont(fontName);
+	}
 	//-------------------------------------------------------------------------
 	//HasHandle
 	//-------------------------------------------------------------------------

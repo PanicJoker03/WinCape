@@ -4,7 +4,6 @@
 #include "defaults.hpp"
 //TODO...
 //Use lower case on static methods
-struct Application;
 namespace WinCape
 {
 	// Utility function...
@@ -130,6 +129,7 @@ namespace WinCape
 	{
 		//Do something...
 	};
+	struct Application;
 	//////////////////////////
 	//High level abstraction//
 	//////////////////////////
@@ -146,16 +146,16 @@ namespace WinCape
 		virtual ~WindowFrame() = 0;
 		friend Application;
 	};
+	struct Application
+	{
+		/// <summary>
+		/// Starts the application loop
+		/// </summary>
+		static int run();
+		static int run(WinCape::WindowFrame& window);
+		static InstanceHandle instance();
+		//Really poor function, must be called at the application beginning in order to work...
+		static void defaultFont(const wchar_t* fontName);
+	};
 }
-struct Application
-{
-	/// <summary>
-	/// Starts the application loop
-	/// </summary>
-	static int run();
-	static int run(WinCape::WindowFrame& window);
-	static InstanceHandle instance();
-	//Really poor function, must be called at the application beginning in order to work...
-	static void defaultFont(const wchar_t* fontName);
-};
-#endif // !INTERFACE_HPP
+#endif INTERFACE_HPP
