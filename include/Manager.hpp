@@ -1,4 +1,4 @@
-//#include <defines.hpp>
+#include <defines.hpp>
 #include <WinCape.hpp>
 namespace WinCape
 {
