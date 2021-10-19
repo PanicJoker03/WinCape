@@ -2,12 +2,14 @@
 #define INTERFACE_HPP
 #include "defines.hpp"
 #include "defaults.hpp"
+
 //TODO...
 //Use lower case on static methods
 namespace WinCape
 {
 	// Utility function...
 	//forward declarations
+	class Window;
 	class Button;
 	class RadioButton;
 	class Menu;
