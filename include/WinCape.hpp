@@ -27,7 +27,7 @@ namespace WinCape
 	private:
 		T _handle;
 	};
-	class Base : public HasHandle<BaseHandle>
+	class Base : public HasHandle<WindowHandle>
 	{
 	public:
 		void setText(const wchar_t* text);
@@ -56,7 +56,7 @@ namespace WinCape
 	{
 	public:
 		friend Window;
-		void createFromResource(BaseHandle parent, int resource);
+		void createFromResource(WindowHandle parent, int resource);
 	};
 	class Button : public Control
 	{

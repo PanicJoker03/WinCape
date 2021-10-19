@@ -132,7 +132,7 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Control
 	//-------------------------------------------------------------------------
-	void Control::createFromResource(BaseHandle parent, int resource) {
+	void Control::createFromResource(WindowHandle parent, int resource) {
 		handle(GetDlgItem(parent, resource));
 	}
 	//-------------------------------------------------------------------------
@@ -299,7 +299,7 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//-------------------------------------------------------------------------
-	template class HasHandle<BaseHandle>;
+	template class HasHandle<WindowHandle>;
 	//template class HasHandle<DeviceContextHandle>;
 	template class HasHandle<MenuHandle>;
 	template class HasHandle<BitmapHandle>;
