@@ -10,47 +10,36 @@
 #include <memory>
 #include <functional>
 #include <vector>
-//forward declarations
-struct Event;
-using EventCallback = std::function<void(Event)>;
-//type definitions
-using BaseHandle = HWND;
-using DeviceContextHandle = HDC;
-using MenuHandle = HMENU;
-using IconHandle = HICON;
-using BitmapHandle = HBITMAP;
-using FontHandle = HFONT;
-using InstanceHandle = HINSTANCE;
-using WindowStyle = DWORD;
-using ButtonStyle = DWORD;
-using ClassStyle = UINT;
-using ShowCommand  = int;
-using ResourceInt = int;
-using WindowMessage = UINT;
-using Byte = BYTE;
-template<typename T> using Reference = std::reference_wrapper<T>;
-struct Event
-{
-	BaseHandle handle;
-	WPARAM wparam;
-	LPARAM lparam;
-};
-struct Int2
-{
-	int x = 0, y = 0;
-};
-struct Rect
-{
-	Int2 position, size;
-};
 namespace WinCape
 {
-	//TODO: use namespaces
-	struct WindowStyles
+	//type definitions
+	using WindowHandle = HWND;
+	using DeviceContextHandle = HDC;
+	using MenuHandle = HMENU;
+	using IconHandle = HICON;
+	using BitmapHandle = HBITMAP;
+	using FontHandle = HFONT;
+	using InstanceHandle = HINSTANCE;
+	using WindowStyle = DWORD;
+	using ButtonStyle = DWORD;
+	using ClassStyle = UINT;
+	using ShowCommand = int;
+	using ResourceInt = int;
+	using WindowMessage = UINT;
+	using Byte = BYTE;
+	struct Event
 	{
+		WindowHandle handle;
+		WPARAM wparam;
+		LPARAM lparam;
 	};
+	using EventCallback = std::function<void(Event)>;
+	template<typename T> using Reference = std::reference_wrapper<T>;
+	struct Int2
 	{
+		int x = 0, y = 0;
 	};
+	struct Rect
 	{
 		Int2 position, size;
 	};
