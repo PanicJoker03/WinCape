@@ -4,9 +4,6 @@
 #include "defines.hpp"
 namespace WinCape
 {
-	//constexpr const wchar_t* operator "" _char(const char * c);
-
-	
 	struct Defaults
 	{
 		static constexpr const Char* WindowName = Text("WinCape Window");

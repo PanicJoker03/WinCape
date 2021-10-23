@@ -16,8 +16,7 @@ namespace WinCape
 #ifndef Text(str)
 #define Text(str) TEXT(str)
 #endif
-//	//type definitions
-//
+//type definitions
 #ifndef UNICODE || _UNICODE
 	std::ostream& charout = std::cout;
 #else 

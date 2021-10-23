@@ -32,12 +32,6 @@ namespace WinCape
 	}
 	void Application::defaultFont(const Char* fontName)
 	{
-		auto str = StringView("Hola");
-		std::cout << str.length() << '\n';
-		std::cout << str.size() << '\n';
-		std::cout << str.ptr() << '\n';
-		std::cout << sizeof(str) << '\n';
-		charout << str[0] << '\n';
 		WinCape::Manager::instance().defaultFont(fontName);
 	}
 	//-------------------------------------------------------------------------

@@ -20,12 +20,6 @@ public:
 private:
 	void onCreate() override
 	{
-		std::cout << "Tamaño de char: " << sizeof(char) << '\n';
-		std::cout << "Tamaño de wchar: " << sizeof(wchar_t) << '\n';
-		
-		std::cout << "Valor en bytes de 'a': " << 'a' << '\n';
-		charout << L"Valor en bytes de wchar 'a': " << L'a' << '\n';
-
 		show();
 		//Setup window
 		Menu::create(menu);
@@ -82,7 +76,7 @@ private:
 			close();
 	}
 };
-
+//For console main
 int main() {
 
 	//Setup font
@@ -94,7 +88,7 @@ int main() {
 	Application::run(myWindow);
 	return 0;
 }
-
+//For Win32 Api main
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 //{
 //	//Setup font
