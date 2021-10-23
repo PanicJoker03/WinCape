@@ -6,14 +6,62 @@
 #endif
 #define NOMINMAX
 #include <windows.h>
-#include <type_traits>
+#include <limits.h>
 #include <memory>
 #include <functional>
 #include <vector>
+#include <tchar.h>
 namespace WinCape
 {
-	//type definitions
+#ifndef Text(str)
+#define Text(str) TEXT(str)
+#endif
+//	//type definitions
+//
+#ifndef UNICODE || _UNICODE
+	std::ostream& charout = std::cout;
+#else 
+	std::wostream& charout = std::wcout;
+#endif
 	using Char = TCHAR;
+	class BaseStringView {
+	public:
+		constexpr BaseStringView(const Char* str) : str(str) {
+			
+		}
+	private:
+		const Char * str;
+	public :
+		const Char operator[](size_t i) {
+			return str[i];
+		}
+		constexpr const Char * ptr() const {
+			return str;
+		}
+	};
+
+	template<size_t Len>
+	class StringView : public BaseStringView {
+	public:
+		constexpr StringView(const Char* str) : BaseStringView(str) {
+
+		}
+		constexpr size_t count() const {
+			return Len;
+		}
+		constexpr size_t length() const {
+			return Len - 1;//Omits null terminated character
+		}
+		constexpr size_t size() const {
+			return sizeof(Char) * Len;
+		}
+	};
+#ifndef StringLen(str)
+#define StringLen(str) sizeof(Text(str))/sizeof(Char)
+#endif
+#ifndef StringView(str)
+#define StringView(str) StringView<StringLen(str)>{ Text(str) }
+#endif
 	using WindowHandle = HWND;
 	using DeviceContextHandle = HDC;
 	using MenuHandle = HMENU;
@@ -28,6 +76,7 @@ namespace WinCape
 	using ResourceInt = int;
 	using WindowMessage = UINT;
 	using ListBoxMessage = UINT;
+	using ComboBoxMessage = UINT;
 	using Byte = BYTE;
 	struct Event
 	{
@@ -37,13 +86,13 @@ namespace WinCape
 	};
 	using EventCallback = std::function<void(Event)>;
 	template<typename T> using Reference = std::reference_wrapper<T>;
-	struct Int2
+	struct Vector2I
 	{
 		int x = 0, y = 0;
 	};
 	struct Rect
 	{
-		Int2 position, size;
+		Vector2I position, size;
 	};
 	namespace  WindowStyles {
 		enum : WindowStyle
@@ -84,7 +133,7 @@ namespace WinCape
 			AutoState = BS_AUTO3STATE,
 			AutoCheckBox = BS_AUTOCHECKBOX,
 			AutoRadioButton = BS_AUTORADIOBUTTON,
-			BitMap = BS_BITMAP,
+			Bitmap = BS_BITMAP,
 			Bottom = BS_BOTTOM,
 			Center = BS_CENTER,
 			CheckBox = BS_CHECKBOX,

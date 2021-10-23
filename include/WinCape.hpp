@@ -42,8 +42,8 @@ namespace WinCape
 		static Window& create(Window& window, const Char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		void show();
 		void minimize();
-		void addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
-		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Int2& position, const Int2& padding = Defaults::RadioButtonPadding);
+		void addButton(Button& button, const wchar_t* text, const Vector2I& position, const Vector2I& size = Defaults::ButtonSize);
+		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Vector2I& position, const Vector2I& padding = Defaults::RadioButtonPadding);
 		void attachMenu(Menu& menu);
 		void onPaint(const EventCallback& callback);
 		void redraw();
@@ -107,10 +107,10 @@ namespace WinCape
 		//Bitmap& operator=(const Bitmap&) = delete;
 		void getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const;
 	public:
-		Bitmap(const Int2& dimensions = Int2{});
+		Bitmap(const Vector2I& dimensions = Vector2I{});
 		Bitmap& operator = (const Bitmap& bitmap);
 		void load(const Char* sourcePath);
-		Int2 dimension() const;
+		Vector2I dimension() const;
 		void clonePixels(void* buffer) const;
 		void setPixels(void* buffer);
 		~Bitmap();
@@ -123,7 +123,7 @@ namespace WinCape
 		DeviceContext();
 		DeviceContext(const DeviceContextHandle& value);
 		//void drawBitmap(const Bitmap& bitmap);
-		void drawBitmap(const Bitmap& bitmap, const Int2& padding = Int2{});
+		void drawBitmap(const Bitmap& bitmap, const Vector2I& padding = Vector2I{});
 		//drawBitmapClipped...
 		friend Window;
 	};

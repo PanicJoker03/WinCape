@@ -1,5 +1,6 @@
 #define _ENABLE_THEME
-#include <WinCape.hpp>
+#include "WinCape.hpp"
+#include <iostream>
 using namespace WinCape;
 struct Pixel32 { std::uint8_t b, g, r, offset = 0; };
 class MyWindow : public WindowFrame
@@ -15,29 +16,35 @@ private:
 	Bitmap image;
 	std::vector<Pixel32> buffer;
 public:
-	MyWindow() : WindowFrame(L"Ventana", Rect{ 120,120, 640, 480 }) {}
+	MyWindow() : WindowFrame(Text("Ventana"), Rect{ 120,120, 640, 480 }) {}
 private:
 	void onCreate() override
 	{
+		std::cout << "Tamaño de char: " << sizeof(char) << '\n';
+		std::cout << "Tamaño de wchar: " << sizeof(wchar_t) << '\n';
+		
+		std::cout << "Valor en bytes de 'a': " << 'a' << '\n';
+		charout << L"Valor en bytes de wchar 'a': " << L'a' << '\n';
+
 		show();
 		//Setup window
 		Menu::create(menu);
 		Menu::create(fileMenu);
-		fileMenu.addItems({L"Abrir imagen", L"Guardar imagen", L"Salir"});
-		menu.addSubMenu(fileMenu, L"Archivo");
+		fileMenu.addItems({ Text("Abrir imagen"), Text("Guardar imagen"), Text("Salir")});
+		menu.addSubMenu(fileMenu, Text("Archivo"));
 		attachMenu(menu);
-		addButton(buttonA, L"Botón", Int2{ 100, 100 });
-		addButton(buttonB, L"Test", Int2{ 140, 140 }); 
+		addButton(buttonA, Text("Botón"), Vector2I{ 100, 100 });
+		addButton(buttonB, Text("Test"), Vector2I{ 140, 140 }); 
 		addRadioButton(
 			{
-				{ radioButtonA, L"radio 1" },
-				{ radioButtonB, L"radio 2" },
-				{ radioButtonC, L"radio 3" }
+				{ radioButtonA, Text("radio 1") },
+				{ radioButtonB, Text("radio 2") },
+				{ radioButtonC, Text("radio 3") }
 			},
-			Int2{ 200,200 }
+			Vector2I{ 200,200 }
 		);
 		//Loading the image...
-		image.load(L"c:\\Users\\w7\\Pictures\\chrono.bmp");
+		image.load(Text("c:\\Users\\w7\\Pictures\\chrono.bmp"));
 		buffer.resize(image.dimension().x * image.dimension().y);
 		//Event listening
 		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
@@ -65,7 +72,7 @@ private:
 	}
 	void onRadioButtonAClick(Event e)
 	{
-		radioButtonA.setText(L"Me haz clickeado tío!");
+		radioButtonA.setText(Text("Me haz clickeado tío!"));
 		redraw();
 	}
 	void onFileMenuSelect(Event e)
@@ -75,6 +82,19 @@ private:
 			close();
 	}
 };
+
+int main() {
+
+	//Setup font
+	//TODO... font class wrapper...
+	Application::defaultFont(Text("Segoe UI"));
+	//Beginning to run the application...
+	//Also add a 'font' param to default controls font style?
+	MyWindow myWindow;
+	Application::run(myWindow);
+	return 0;
+}
+
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 //{
 //	//Setup font

@@ -1,6 +1,7 @@
-#include <WinCape.hpp>
-#include <Manager.hpp>
+#include "WinCape.hpp"
+#include "Manager.hpp"
 #include <vector>
+#include <iostream>
 #include <map>
 using namespace std;
 namespace WinCape
@@ -31,6 +32,12 @@ namespace WinCape
 	}
 	void Application::defaultFont(const Char* fontName)
 	{
+		auto str = StringView("Hola");
+		std::cout << str.length() << '\n';
+		std::cout << str.size() << '\n';
+		std::cout << str.ptr() << '\n';
+		std::cout << sizeof(str) << '\n';
+		charout << str[0] << '\n';
 		WinCape::Manager::instance().defaultFont(fontName);
 	}
 	//-------------------------------------------------------------------------
@@ -78,13 +85,13 @@ namespace WinCape
 	{
 		ShowWindow(handle(), ShowCommands::Minimize);
 	}
-	void Window::addButton(Button& button, const Char* text, const Int2& position, const Int2& size)
+	void Window::addButton(Button& button, const Char* text, const Vector2I& position, const Vector2I& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
 		button.handle(buttonHandle);
 	}
-	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const Char*>> radioButtonList, const Int2& position, const Int2& padding)
+	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>, const Char*>> radioButtonList, const Vector2I& position, const Vector2I& padding)
 	{
 		const auto listSize = radioButtonList.size();
 		for (auto i = 0; i < listSize; i++)
@@ -92,7 +99,7 @@ namespace WinCape
 			Handle radioButtonHandle;
 			RadioButton& radioButton = radioButtonList.begin()[i].first;
 			const Char* caption = radioButtonList.begin()[i].second;
-			Int2 position_ = position;
+			Vector2I position_ = position;
 			position_.x += padding.x * i;
 			position_.y += padding.y * i;
 			const bool isLast = (i == (listSize - 1));
@@ -226,17 +233,17 @@ namespace WinCape
 	//	Int2 bitmapSize = bitmap.dimension();
 	//	drawBitmap(bitmap, Rect{ 0, 0, bitmapSize });
 	//}
-	void DeviceContext::drawBitmap(const Bitmap& bitmap, const Int2& padding)
+	void DeviceContext::drawBitmap(const Bitmap& bitmap, const Vector2I& padding)
 	{
 		DeviceContextHandle deviceContextMemory = CreateCompatibleDC(handle());
-		Int2 bitmapSize = bitmap.dimension();
+		Vector2I bitmapSize = bitmap.dimension();
 		bitBlt(bitmap.handle(), deviceContextMemory, Rect{padding, bitmapSize});
 		DeleteDC(deviceContextMemory);
 	}
 	//-------------------------------------------------------------------------
 	//Bitmap
 	//-------------------------------------------------------------------------
-	Bitmap::Bitmap(const Int2& dimensions) 
+	Bitmap::Bitmap(const Vector2I& dimensions) 
 	{
 		BitmapHandle bitmapHandle = CreateBitmap(dimensions.x, dimensions.y, 1, 32, NULL);
 		handle(bitmapHandle);
@@ -260,14 +267,14 @@ namespace WinCape
 		DeleteObject(handle());
 		handle((BitmapHandle)LoadImage(NULL, sourcePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
 	}
-	Int2 Bitmap::dimension() const
+	Vector2I Bitmap::dimension() const
 	{
 		//Wonderfull code source from:
 		//http://forums.codeguru.com/showthread.php?348350-Bitmap-Dimensions-after-using-LoadImage-How
 		//check for handle nullity?
 		BITMAP bitmap = {};
 		GetObject(handle(), sizeof(bitmap), &bitmap);
-		return Int2{ bitmap.bmWidth, bitmap.bmHeight };
+		return Vector2I{ bitmap.bmWidth, bitmap.bmHeight };
 	}
 	void Bitmap::clonePixels(void* buffer) const
 	{

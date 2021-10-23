@@ -1,5 +1,5 @@
-#include <defines.hpp>
-#include <WinCape.hpp>
+#include "defines.hpp"
+#include "WinCape.hpp"
 namespace WinCape
 {
 	class Manager
