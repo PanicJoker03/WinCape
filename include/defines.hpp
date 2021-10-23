@@ -191,5 +191,50 @@ namespace WinCape
 			WindowPositionChanging = WM_WINDOWPOSCHANGING
 		};
 	}
+	namespace ListBoxMessages {
+		enum {
+			AddFile = LB_ADDFILE,
+			AddString = LB_ADDSTRING,
+			DeleteString = LB_DELETESTRING,
+			Directory = LB_DIR,
+			FindString = LB_FINDSTRING,
+			FindStringExact = LB_FINDSTRINGEXACT,
+			GetAnchorIndex = LB_GETANCHORINDEX,
+			GetCaretIndex = LB_GETCARETINDEX,
+			GetCount = LB_GETCOUNT,
+			GetCurrentIndex = LB_GETCURSEL,
+			GetHorizontalExtent = LB_GETHORIZONTALEXTENT,
+			GetItemData = LB_GETITEMDATA,
+			GetItemHeight = LB_GETITEMHEIGHT,
+			GetItemRect = LB_GETITEMRECT,
+			GetListBoxInfo = LB_GETLISTBOXINFO,
+			GetLocale = LB_GETLOCALE,
+			GetSelection = LB_GETSEL,
+			GetSelectionCount = LB_GETSELCOUNT,
+			GetSelectionItems = LB_GETSELITEMS,
+			GetText = LB_GETTEXT,
+			GetTextLength = LB_GETTEXTLEN,
+			GetTopIndex = LB_GETTOPINDEX,
+			InitStorage = LB_INITSTORAGE,
+			InsertString = LB_INSERTSTRING,
+			ItemFromPoint = LB_ITEMFROMPOINT,
+			ResetContent = LB_RESETCONTENT,
+			SelectString = LB_SELECTSTRING,
+			SelectItemRange = LB_SELITEMRANGE,
+			SelectItemRangeX = LB_SELITEMRANGEEX,
+			SetAnchorIndex = LB_SETANCHORINDEX,
+			SetCaretIndex = LB_SETCARETINDEX,
+			SetColumnWidth = LB_SETCOLUMNWIDTH,
+			SetCount = LB_SETCOUNT,
+			SetCurrentSelection = LB_SETCURSEL,
+			SetHorizontalExtent = LB_SETHORIZONTALEXTENT,
+			SetItemData = LB_SETITEMDATA,
+			SetItemHeight = LB_SETITEMHEIGHT,
+			SetLocale = LB_SETLOCALE,
+			SetSelectionIndex = LB_SETSEL,
+			SetTabStops = LB_SETTABSTOPS,
+			SetTopIndex = LB_SETTOPINDEX
+		};
+	}
 }
 #endif // !STRUCT_HPP
