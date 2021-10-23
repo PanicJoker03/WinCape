@@ -9,10 +9,10 @@ namespace WinCape
 	public:
 		int startListening();
 		void listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback);
-		void defaultFont(const wchar_t* fontName);
+		void defaultFont(const Char* fontName);
 		FontHandle defaultFont();
 		void registerClass();
-		Base::Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent = NULL);
+		Base::Handle createHandle(const Char* className, const Char* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent = NULL);
 		static Manager& instance();
 	};
 }

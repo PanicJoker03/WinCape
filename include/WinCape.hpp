@@ -31,15 +31,15 @@ namespace WinCape
 	class Base : public HasHandle<WindowHandle>
 	{
 	public:
-		void setText(const wchar_t* text);
-		void getText(wchar_t* text, int lenght) const;
+		void setText(const Char* text);
+		void getText(Char* text, int lenght) const;
 	protected:
 		Base();
 	};
 	class Window : public Base
 	{
 	public:
-		static Window& create(Window& window, const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		static Window& create(Window& window, const Char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		void show();
 		void minimize();
 		void addButton(Button& button, const wchar_t* text, const Int2& position, const Int2& size = Defaults::ButtonSize);
@@ -73,12 +73,12 @@ namespace WinCape
 	class ComboBox final : public Control
 	{
 	public:
-		void addString(const wchar_t* string);
+		void addString(const Char* string);
 	};
 	class ListBox final : public Control
 	{
 	public:
-		void addString(const wchar_t* string);
+		void addString(const Char* string);
 		int count();
 	};
 	class Menu final : public HasHandle<MenuHandle>
@@ -86,9 +86,9 @@ namespace WinCape
 	private:
 		void enableMenuCommand();
 	public:
-		void addSubMenu(Menu& menu, const wchar_t* text);
-		void addItem(const wchar_t* item);
-		void addItems(std::initializer_list<const wchar_t*> itemList);
+		void addSubMenu(Menu& menu, const Char* text);
+		void addItem(const Char* item);
+		void addItems(std::initializer_list<const Char*> itemList);
 		void onItemSelect(const EventCallback& callback);
 		static void create(Menu& menu);
 		friend Window;
@@ -109,7 +109,7 @@ namespace WinCape
 	public:
 		Bitmap(const Int2& dimensions = Int2{});
 		Bitmap& operator = (const Bitmap& bitmap);
-		void load(const wchar_t* sourcePath);
+		void load(const Char* sourcePath);
 		Int2 dimension() const;
 		void clonePixels(void* buffer) const;
 		void setPixels(void* buffer);
@@ -138,11 +138,11 @@ namespace WinCape
 	class WindowFrame : public Window
 	{
 	private:
-		const wchar_t* windowName;
+		const Char* windowName;
 		const Rect rect;
 		const WindowStyle style;
 	protected:
-		WindowFrame(const wchar_t* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		WindowFrame(const Char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		virtual void onCreate() = 0;
 		virtual void onDraw(DeviceContext deviceContext);
 		virtual ~WindowFrame() = 0;
@@ -157,7 +157,7 @@ namespace WinCape
 		static int run(WinCape::WindowFrame& window);
 		static InstanceHandle instance();
 		//Really poor function, must be called at the application beginning in order to work...
-		static void defaultFont(const wchar_t* fontName);
+		static void defaultFont(const Char* fontName);
 	};
 }
 #endif INTERFACE_HPP

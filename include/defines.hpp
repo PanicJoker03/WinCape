@@ -13,6 +13,7 @@
 namespace WinCape
 {
 	//type definitions
+	using Char = TCHAR;
 	using WindowHandle = HWND;
 	using DeviceContextHandle = HDC;
 	using MenuHandle = HMENU;
