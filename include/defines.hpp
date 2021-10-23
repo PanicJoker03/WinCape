@@ -27,6 +27,7 @@ namespace WinCape
 	using ShowCommand = int;
 	using ResourceInt = int;
 	using WindowMessage = UINT;
+	using ListBoxMessage = UINT;
 	using Byte = BYTE;
 	struct Event
 	{

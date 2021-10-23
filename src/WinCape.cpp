@@ -152,8 +152,8 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//ListBox
 	//-------------------------------------------------------------------------
-		SendMessage(handle(), LB_ADDSTRING, 0, (LPARAM)string);
 	void ListBox::addString(const Char* string) {
+		SendMessage(handle(), ListBoxMessages::AddString, 0, (LPARAM)string);
 	}
 	int ListBox::count() {
 		return SendMessage(handle(), LB_GETCOUNT, 0, 0);
