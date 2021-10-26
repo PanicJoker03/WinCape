@@ -93,7 +93,7 @@ namespace WinCape
 			RegisterClassEx(&windowClass);
 			//return windowClass;
 		}
-		Base::Handle createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
+		Base::Handle createHandle(const Char* className, const Char* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
 		{
 			auto handle = CreateWindow(
 				className,
@@ -145,11 +145,11 @@ namespace WinCape
 	{
 		ManagerImpl::instance().registerClass();
 	}
-	Base::Handle Manager::createHandle(const wchar_t* className, const wchar_t* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
+	Base::Handle Manager::createHandle(const Char* className, const Char* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style, rect, parent);
 	}
-	void Manager::defaultFont(const wchar_t* fontName)
+	void Manager::defaultFont(const Char* fontName)
 	{
 		ManagerImpl::instance().defaultFont(fontName);
 	}

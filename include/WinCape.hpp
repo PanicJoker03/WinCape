@@ -42,7 +42,7 @@ namespace WinCape
 		static Window& create(Window& window, const Char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		void show();
 		void minimize();
-		void addButton(Button& button, const wchar_t* text, const Vector2I& position, const Vector2I& size = Defaults::ButtonSize);
+		void addButton(Button& button, const Char* text, const Vector2I& position, const Vector2I& size = Defaults::ButtonSize);
 		void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Vector2I& position, const Vector2I& padding = Defaults::RadioButtonPadding);
 		void attachMenu(Menu& menu);
 		void onPaint(const EventCallback& callback);
