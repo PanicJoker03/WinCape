@@ -34,9 +34,12 @@ namespace WinCape
 			}
 			return static_cast<int>(msg.wParam);
 		}
-		void listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback)
+		void listenEvent(Base::Handle handle, WindowMessage message, const EventCallback& callback)
 		{
 			eventMap[EventKey{ handle, message }] = callback;
+		}
+		void unlistenEvent(Base::Handle handle, WindowMessage message) {
+			eventMap.erase(EventKey(handle, message));
 		}
 		void doCallback(const EventKey& key, WPARAM wParam, LPARAM lParam)
 		{
@@ -52,7 +55,7 @@ namespace WinCape
 			switch (message)
 			{
 			case WindowMessages::Destroy:
-				DeleteObject(ManagerImpl::instance().applicationFont);
+				ManagerImpl::instance().doCallback(EventKey{ handle, message }, wParam, lParam);
 				PostQuitMessage(0);
 				break;
 			case WindowMessages::Command:
@@ -69,11 +72,9 @@ namespace WinCape
 			}
 			break;
 			default:
-			{
 				ManagerImpl::instance().doCallback(EventKey{ handle, message }, wParam, lParam);
-			}
 				return DefWindowProc(hWnd, message, wParam, lParam);
-				break;
+			break;
 			}
 			return 0;
 		}
