@@ -70,11 +70,15 @@ namespace WinCape
 	using InstanceHandle = HINSTANCE;
 	using WindowStyle = DWORD;
 	using ButtonStyle = DWORD;
+	using ListBoxStyle = DWORD;
+	using ListViewStyle = DWORD;
 	using ClassStyle = UINT;
+	using ClassName = UINT;
 	using ShowCommand = int;
 	using ResourceInt = int;
 	using WindowMessage = UINT;
 	using ListBoxMessage = UINT;
+	using ListViewMessage = UINT;
 	using ComboBoxMessage = UINT;
 	using Byte = BYTE;
 	struct Event
@@ -242,7 +246,7 @@ namespace WinCape
 		};
 	}
 	namespace ListBoxMessages {
-		enum {
+		enum : ListBoxMessage {
 			AddFile = LB_ADDFILE,
 			AddString = LB_ADDSTRING,
 			DeleteString = LB_DELETESTRING,
@@ -284,6 +288,96 @@ namespace WinCape
 			SetSelectionIndex = LB_SETSEL,
 			SetTabStops = LB_SETTABSTOPS,
 			SetTopIndex = LB_SETTOPINDEX
+		};
+	}
+	namespace ClassNames {
+		enum : ClassName {
+			ListView = WC_LISTVIEW,
+			Button = WC_BUTTON,
+			ListBox = WC_LISTBOX
+		};
+	}
+	namespace ListViewStyles
+	{
+		enum : ListViewStyle {
+			AlignLeft = LVS_ALIGNLEFT,
+			AlignMask = LVS_ALIGNMASK,
+			AlignTop = LVS_ALIGNTOP,
+			AutoArrange = LVS_AUTOARRANGE,
+			EditLabels = LVS_EDITLABELS,
+			Icon = LVS_ICON,
+			List = LVS_LIST,
+			NoColumnHeader = LVS_NOCOLUMNHEADER,
+			NoLabelWrap = LVS_NOLABELWRAP,
+			NoScroll = LVS_NOSCROLL,
+			NoSortHeader = LVS_NOSORTHEADER,
+			OwnerData = LVS_OWNERDATA,
+			OwnerDrawFixed = LVS_OWNERDRAWFIXED,
+			Report = LVS_REPORT,
+			ShareImageLists = LVS_SHAREIMAGELISTS,
+			ShowSelAlways = LVS_SHOWSELALWAYS,
+			SignleSel = LVS_SINGLESEL,
+			SmallIcon = LVS_SMALLICON,
+			SortAscending = LVS_SORTASCENDING,
+			SortDescending = LVS_SORTDESCENDING,
+			TypeMask = LVS_TYPEMASK,
+			TypeStyleMask = LVS_TYPESTYLEMASK
+		};
+		namespace Extended {
+			enum : ListViewStyle {
+				AutoArrange = LVS_EX_AUTOAUTOARRANGE,
+				AutoCheckSelect = LVS_EX_AUTOCHECKSELECT,
+				AutoSizeColumns = LVS_EX_AUTOSIZECOLUMNS,
+				AutoBorderSelect = LVS_EX_BORDERSELECT,
+				Checkboxes = LVS_EX_CHECKBOXES,
+				ColumnOverflow = LVS_EX_COLUMNOVERFLOW,
+				ColumnSnapPoints = LVS_EX_COLUMNSNAPPOINTS,
+				DoubleBuffer = LVS_EX_DOUBLEBUFFER,
+				FlatSB = LVS_EX_FLATSB,
+				FullRowSelect = LVS_EX_FULLROWSELECT,
+				GridLines = LVS_EX_GRIDLINES,
+				HeaderDragDrop = LVS_EX_HEADERDRAGDROP,
+				HeaderInAllViews = LVS_EX_HEADERINALLVIEWS,
+				HideLabels = LVS_EX_HIDELABELS,
+				InfoTip = LVS_EX_INFOTIP,
+				JustifyColumns = LVS_EX_JUSTIFYCOLUMNS,
+				LabelTip = LVS_EX_LABELTIP,
+				MultiWorkAreas = LVS_EX_MULTIWORKAREAS,
+				OneClickActivate = LVS_EX_ONECLICKACTIVATE,
+				Regional = LVS_EX_REGIONAL,
+				SimpleSelect = LVS_EX_SIMPLESELECT,
+				SingleRow = LVS_EX_SINGLEROW,
+				SnapToGrid = LVS_EX_SNAPTOGRID,
+				SubItemImages = LVS_EX_SUBITEMIMAGES,
+				TrackSelect = LVS_EX_TRACKSELECT,
+				TransparentBackground = LVS_EX_TRANSPARENTBKGND,
+				TransparentShadowText = LVS_EX_TRANSPARENTSHADOWTEXT,
+				TwoClickActivate = LVS_EX_TWOCLICKACTIVATE,
+				UnderLineCold = LVS_EX_UNDERLINECOLD,
+				UnderLineHot = LVS_EX_UNDERLINEHOT
+			};
+		}
+	};
+	namespace ClassStyles
+	{
+		enum : ClassStyle {
+			ByteAlignClient = CS_BYTEALIGNCLIENT,
+			ByteAlignWindow = CS_BYTEALIGNWINDOW,
+			ClassDeviceContext = CS_CLASSDC,
+			DoubleClicks = CS_DBLCLKS,
+			DropShadow = CS_DROPSHADOW,
+			GlobalClass = CS_GLOBALCLASS,
+			HorizontalRedraw = CS_HREDRAW,
+			NoClose = CS_NOCLOSE,
+			OwnDeviceContext = CS_OWNDC,
+			ParentDeviceContext = CS_PARENTDC,
+			SaveBits = CS_SAVEBITS,
+			VerticalRedraw = CS_VREDRAW
+		};
+	}
+	namespace ListViewMessages {
+		enum : ListViewMessage {
+			ItemChanged = LVN_ITEMCHANGED
 		};
 	}
 }
