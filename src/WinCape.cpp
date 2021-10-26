@@ -157,7 +157,7 @@ namespace WinCape
 		SendMessage(handle(), ListBoxMessages::AddString, 0, (LPARAM)string);
 	}
 	int ListBox::count() {
-		return SendMessage(handle(), LB_GETCOUNT, 0, 0);
+		return SendMessage(handle(), ListBoxMessages::GetCount, 0, 0);
 	}
 	//-------------------------------------------------------------------------
 	//Menu
