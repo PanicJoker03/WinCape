@@ -118,10 +118,10 @@ namespace WinCape
 	class DeviceContext final : public HasHandle<DeviceContextHandle>
 	{
 	private:
-		void bitBlt(const BitmapHandle& bitmapHandle, const DeviceContextHandle& destiny, const Rect& rect);
+		void bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny, const Rect& rect);
 	public:
 		DeviceContext();
-		DeviceContext(const DeviceContextHandle& value);
+		DeviceContext(DeviceContextHandle value);
 		//void drawBitmap(const Bitmap& bitmap);
 		void drawBitmap(const Bitmap& bitmap, const Vector2I& padding = Vector2I{});
 		//drawBitmapClipped...
@@ -144,7 +144,7 @@ namespace WinCape
 	protected:
 		WindowFrame(const Char* windowName = Defaults::WindowName, Rect rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 		virtual void onCreate() = 0;
-		virtual void onDraw(DeviceContext deviceContext);
+		virtual void onDraw(DeviceContext& deviceContext);
 		virtual ~WindowFrame() = 0;
 		friend Application;
 	};

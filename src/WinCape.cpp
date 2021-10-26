@@ -212,11 +212,11 @@ namespace WinCape
 	//DeviceContext
 	//-------------------------------------------------------------------------
 	DeviceContext::DeviceContext() {}
-	DeviceContext::DeviceContext(const DeviceContextHandle& value)
+	DeviceContext::DeviceContext(DeviceContextHandle value)
 	{
 		handle(value);
 	}
-	void DeviceContext::bitBlt(const BitmapHandle& bitmapHandle, const DeviceContextHandle& destiny, const Rect& rect)
+	void DeviceContext::bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny, const Rect& rect)
 	{
 		BitmapHandle hbmOld = (BitmapHandle)SelectObject(destiny, bitmapHandle);
 		BitBlt(handle(), rect.position.x, rect.position.y, rect.size.x, rect.size.y, destiny, 0, 0, SRCCOPY);
@@ -295,7 +295,11 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	WindowFrame::WindowFrame(const Char* windowName, Rect rect, WindowStyle style)
 		:windowName(windowName), rect(rect), style(style) {}
-	void WindowFrame::onDraw(DeviceContext deviceContext) {}
+	void WindowFrame::onDraw(DeviceContext& deviceContext) {}
+	void WindowFrame::onDispose() {
+		Manager::instance().unlistenEvent(handle(), WindowMessages::Paint);
+		Manager::instance().unlistenEvent(handle(), WindowMessages::Destroy);
+	}
 	WindowFrame::~WindowFrame() {}
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors

@@ -8,7 +8,7 @@ namespace WinCape
 		Manager();
 	public:
 		int startListening();
-		void listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback);
+		void listenEvent(Base::Handle handle, WindowMessage message, const EventCallback& callback);
 		void defaultFont(const Char* fontName);
 		FontHandle defaultFont();
 		void registerClass();
