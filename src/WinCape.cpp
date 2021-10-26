@@ -184,7 +184,7 @@ namespace WinCape
 	}
 	void Menu::addItems(std::initializer_list<const Char*> itemList)
 	{
-		for (const wchar_t* item : itemList)
+		for (const Char* item : itemList)
 		{
 			addItem(item);
 		}
