@@ -5,12 +5,14 @@
 #pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
 #endif
 #define NOMINMAX
+#include <Windows.h>
 #include <windows.h>
 #include <limits.h>
 #include <memory>
 #include <functional>
 #include <vector>
 #include <tchar.h>
+#include <iostream>
 namespace WinCape
 {
 #ifndef Text(str)
@@ -22,19 +24,19 @@ namespace WinCape
 #else 
 	std::wostream& charout = std::wcout;
 #endif
-	using Char = TCHAR;
+	using TextChar = TCHAR;
 	class BaseStringView {
 	public:
-		constexpr BaseStringView(const Char* str) : str(str) {
+		constexpr BaseStringView(const TextChar* str) : str(str) {
 			
 		}
 	private:
-		const Char * str;
+		const TextChar * str;
 	public :
-		const Char operator[](size_t i) {
+		const TextChar operator[](size_t i) {
 			return str[i];
 		}
-		constexpr const Char * ptr() const {
+		constexpr const TextChar * ptr() const {
 			return str;
 		}
 	};
@@ -42,7 +44,7 @@ namespace WinCape
 	template<size_t Len>
 	class StringView : public BaseStringView {
 	public:
-		constexpr StringView(const Char* str) : BaseStringView(str) {
+		constexpr StringView(const TextChar* str) : BaseStringView(str) {
 
 		}
 		constexpr size_t count() const {
@@ -52,11 +54,11 @@ namespace WinCape
 			return Len - 1;//Omits null terminated character
 		}
 		constexpr size_t size() const {
-			return sizeof(Char) * Len;
+			return sizeof(TextChar) * Len;
 		}
 	};
 #ifndef StringLen(str)
-#define StringLen(str) sizeof(Text(str))/sizeof(Char)
+#define StringLen(str) sizeof(Text(str))/sizeof(TextChar)
 #endif
 #ifndef StringView(str)
 #define StringView(str) StringView<StringLen(str)>{ Text(str) }

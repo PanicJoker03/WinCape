@@ -30,7 +30,7 @@ namespace WinCape
 	{
 		return GetModuleHandle(NULL);
 	}
-	void Application::defaultFont(const Char* fontName)
+	void Application::defaultFont(const TextChar* fontName)
 	{
 		WinCape::Manager::instance().defaultFont(fontName);
 	}
@@ -50,11 +50,11 @@ namespace WinCape
 	//Base
 	//-------------------------------------------------------------------------
 	Base::Base() {}
-	void Base::setText(const Char* text)
+	void Base::setText(const TextChar* text)
 	{
 		SetWindowText(handle(), text);
 	}
-	void Base::getText(Char* text, int lenght) const
+	void Base::getText(TextChar* text, int lenght) const
 	{
 		GetWindowText(handle(), text, lenght);
 		//return text;
@@ -62,7 +62,7 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//Window
 	//-------------------------------------------------------------------------
-	Window& Window::create(Window& window, const Char* windowName, Rect rect, WindowStyle style)
+	Window& Window::create(Window& window, const TextChar* windowName, Rect rect, WindowStyle style)
 	{
 		Handle windowHandle;
 		//RegisterClassEx(&WindowClass());
@@ -79,7 +79,7 @@ namespace WinCape
 	{
 		ShowWindow(handle(), ShowCommands::Minimize);
 	}
-	void Window::addButton(Button& button, const Char* text, const Vector2I& position, const Vector2I& size)
+	void Window::addButton(Button& button, const TextChar* text, const Vector2I& position, const Vector2I& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = Manager::instance().createHandle(Defaults::ButtonClassName, text, Defaults::DefButtonStyle, Rect{ position, size }, handle());
@@ -92,7 +92,7 @@ namespace WinCape
 		{
 			Handle radioButtonHandle;
 			RadioButton& radioButton = radioButtonList.begin()[i].first;
-			const Char* caption = radioButtonList.begin()[i].second;
+			const TextChar* caption = radioButtonList.begin()[i].second;
 			Vector2I position_ = position;
 			position_.x += padding.x * i;
 			position_.y += padding.y * i;
@@ -147,13 +147,13 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//ComboBox
 	//-------------------------------------------------------------------------
-	void ComboBox::addString(const Char* string) {
+	void ComboBox::addString(const TextChar* string) {
 		SendMessage(handle(), CB_ADDSTRING, 0, (LPARAM)string);
 	}
 	//-------------------------------------------------------------------------
 	//ListBox
 	//-------------------------------------------------------------------------
-	void ListBox::addString(const Char* string) {
+	void ListBox::addString(const TextChar* string) {
 		SendMessage(handle(), ListBoxMessages::AddString, 0, (LPARAM)string);
 	}
 	int ListBox::count() {
@@ -173,18 +173,18 @@ namespace WinCape
 		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
 		SetMenuInfo(handle(), &menuInfo);
 	}
-	void Menu::addSubMenu(Menu& menu, const Char* text)
+	void Menu::addSubMenu(Menu& menu, const TextChar* text)
 	{
 		AppendMenu(handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text);
 	}
-	void Menu::addItem(const Char* item)
+	void Menu::addItem(const TextChar* item)
 	{
 		//Create MenuFlags in defines
 		AppendMenu(handle(), MF_STRING, 0, item);
 	}
-	void Menu::addItems(std::initializer_list<const Char*> itemList)
+	void Menu::addItems(std::initializer_list<const TextChar*> itemList)
 	{
-		for (const Char* item : itemList)
+		for (const TextChar* item : itemList)
 		{
 			addItem(item);
 		}
@@ -256,7 +256,7 @@ namespace WinCape
 		GetDIBits(deviceContext, handle(), 0, 0, NULL, &bmpInfo, DIB_RGB_COLORS);
 		bmpInfo.bmiHeader.biCompression = BI_RGB;
 	}
-	void Bitmap::load(const Char* sourcePath)
+	void Bitmap::load(const TextChar* sourcePath)
 	{
 		DeleteObject(handle());
 		handle((BitmapHandle)LoadImage(NULL, sourcePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
@@ -293,7 +293,7 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	//WindowFrame
 	//-------------------------------------------------------------------------
-	WindowFrame::WindowFrame(const Char* windowName, Rect rect, WindowStyle style)
+	WindowFrame::WindowFrame(const TextChar* windowName, Rect rect, WindowStyle style)
 		:windowName(windowName), rect(rect), style(style) {}
 	void WindowFrame::onDraw(DeviceContext& deviceContext) {}
 	void WindowFrame::onDispose() {
