@@ -1,4 +1,5 @@
-#include "defines.hpp"
+#ifndef MANAGER_HPP
+#define MANAGER_HPP
 #include "WinCape.hpp"
 namespace WinCape
 {
@@ -8,12 +9,13 @@ namespace WinCape
 		Manager();
 	public:
 		int startListening();
-		void listenEvent(Base::Handle handle, WindowMessage message, const EventCallback& callback);
-		void unlistenEvent(Base::Handle handle, WindowMessage message);
+		void listenEvent(UserGui::Base::Handle handle, WindowMessage message, const EventCallback& callback);
+		void unlistenEvent(UserGui::Base::Handle handle, WindowMessage message);
 		void defaultFont(const TextChar* fontName);
 		FontHandle defaultFont();
-		void registerClass();
-		Base::Handle createHandle(const TextChar* className, const TextChar* text, const WindowStyle& style, const Rect& rect, Base::Handle parent = NULL);
+		void registerClass(const TextChar* name);
+		UserGui::Base::Handle createHandle(const TextChar* className, const TextChar* text, WindowStyle style, const Rect& rect, UserGui::Base::Handle parent = nullptr);
 		static Manager& instance();
 	};
 }
+#endif

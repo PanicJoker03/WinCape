@@ -9,14 +9,14 @@ namespace WinCape
 	//-------------------------------------------------------------------------
 	class ManagerImpl
 	{
-		using EventKey = pair<Base::Handle, WindowMessage>;
+		using EventKey = pair<UserGui::Base::Handle, WindowMessage>;
 		//Wrap in a class?
 		using EventMap = map<EventKey, EventCallback>;
 		EventMap eventMap;
 		//Wrap in font class?
 		FontHandle applicationFont = 0;
 	public:
-		using EventKey = pair<Base::Handle, WindowMessage>;
+		using EventKey = pair<UserGui::Base::Handle, WindowMessage>;
 		//Wrap in a class?
 		using EventMap = map<EventKey, EventCallback>;
 		static ManagerImpl& instance()
@@ -34,11 +34,11 @@ namespace WinCape
 			}
 			return static_cast<int>(msg.wParam);
 		}
-		void listenEvent(Base::Handle handle, WindowMessage message, const EventCallback& callback)
+		void listenEvent(UserGui::Base::Handle handle, WindowMessage message, const EventCallback& callback)
 		{
 			eventMap[EventKey{ handle, message }] = callback;
 		}
-		void unlistenEvent(Base::Handle handle, WindowMessage message) {
+		void unlistenEvent(UserGui::Base::Handle handle, WindowMessage message) {
 			eventMap.erase(EventKey(handle, message));
 		}
 		void doCallback(const EventKey& key, WPARAM wParam, LPARAM lParam)
@@ -51,7 +51,7 @@ namespace WinCape
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
-			auto handle = (Base::Handle)hWnd;
+			auto handle = (UserGui::Base::Handle)hWnd;
 			switch (message)
 			{
 			case WindowMessages::Destroy:
@@ -60,14 +60,14 @@ namespace WinCape
 				break;
 			case WindowMessages::Command:
 			{
-				Base::Handle commandHandle = (Base::Handle)lParam;
+				UserGui::Base::Handle commandHandle = (UserGui::Base::Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
 				ManagerImpl::instance().doCallback(EventKey{ commandHandle, controlMessage }, wParam, lParam);
 			}
 			break;
 			case WindowMessages::MenuCommand:
 			{
-				Base::Handle commandHandle = (Base::Handle)lParam;
+				UserGui::Base::Handle commandHandle = (UserGui::Base::Handle)lParam;
 				ManagerImpl::instance().doCallback(EventKey{ commandHandle, message }, wParam, lParam);
 			}
 			break;
@@ -78,7 +78,7 @@ namespace WinCape
 			}
 			return 0;
 		}
-		void registerClass()
+		void registerClass(const TextChar* name = Defaults::WindowName)
 		{
 			//TODO wrap IDI macros in default header...
 			WNDCLASSEX windowClass = {};
@@ -89,15 +89,18 @@ namespace WinCape
 			windowClass.hIcon = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 			windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 			windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			windowClass.lpszClassName = Defaults::WindowName;
+			windowClass.lpszClassName = name;
 			windowClass.hIconSm = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 			RegisterClassEx(&windowClass);
-			//return windowClass;
 		}
-		Base::Handle createHandle(const Char* className, const Char* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
+		UserGui::Base::Handle createHandle(const TextChar* name, const TextChar* text, const WindowStyle& style, const Rect& rect, const UserGui::Base::Handle& parent)
 		{
+			WNDCLASS windowClass = {};
+			//Because each window must register it's class
+			if(!GetClassInfo(Application::instance(), name, &windowClass))
+				registerClass(name);
 			auto handle = CreateWindow(
-				className,
+				name,
 				text,
 				style,
 				rect.position.x, rect.position.y,
@@ -107,11 +110,12 @@ namespace WinCape
 				Application::instance(),
 				NULL
 			);
+			int err = GetLastError();
 			SendMessage(handle, WM_SETFONT, (WPARAM)Manager::instance().defaultFont(), (LPARAM)MAKELONG(TRUE, 0));
 			return handle;
 		}
 		//Use font wrapper class...
-		void defaultFont(const wchar_t* fontName)
+		void defaultFont(const TextChar* fontName)
 		{
 			//http://www.cplusplus.com/forum/windows/109795/
 			DeleteObject(applicationFont);
@@ -138,15 +142,19 @@ namespace WinCape
 	{
 		return ManagerImpl::instance().startListening();
 	}
-	void Manager::listenEvent(const Base::Handle& handle, const WindowMessage& message, const EventCallback& callback)
+	void Manager::listenEvent(UserGui::Base::Handle handle, WindowMessage message, const EventCallback& callback)
 	{
 		ManagerImpl::instance().listenEvent(handle, message, callback);
 	}
-	void Manager::registerClass()
+	void Manager::unlistenEvent(UserGui::Base::Handle handle, WindowMessage message)
 	{
-		ManagerImpl::instance().registerClass();
+		ManagerImpl::instance().unlistenEvent(handle, message);
 	}
-	Base::Handle Manager::createHandle(const TextChar* className, const TextChar* text, const WindowStyle& style, const Rect& rect, const Base::Handle& parent)
+	void Manager::registerClass(const TextChar* name)
+	{
+		ManagerImpl::instance().registerClass(name);
+	}
+	UserGui::Base::Handle Manager::createHandle(const TextChar* className, const TextChar* text, WindowStyle style, const Rect& rect, UserGui::Base::Handle parent)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style, rect, parent);
 	}

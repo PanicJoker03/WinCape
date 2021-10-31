@@ -3,27 +3,27 @@
 #include <iostream>
 using namespace WinCape;
 struct Pixel32 { std::uint8_t b, g, r, offset = 0; };
-class MyWindow : public WindowFrame
+class MyWindow : public UserGui::WindowFrame
 {
 private:
-	Menu menu;
-	Menu fileMenu;
-	Button buttonA;
-	Button buttonB;
-	RadioButton radioButtonA;
-	RadioButton radioButtonB;
-	RadioButton radioButtonC;
-	Bitmap image;
+	UserGui::Menu menu;
+	UserGui::Menu fileMenu;
+	UserGui::Button buttonA;
+	UserGui::Button buttonB;
+	UserGui::RadioButton radioButtonA;
+	UserGui::RadioButton radioButtonB;
+	UserGui::RadioButton radioButtonC;
+	UserGui::Bitmap image;
 	std::vector<Pixel32> buffer;
 public:
-	MyWindow() : WindowFrame(Text("Ventana"), Rect{ 120,120, 640, 480 }) {}
+	MyWindow() : UserGui::WindowFrame(Text("Wincape Test"), Text("Ventana"), Rect{120,120, 640, 480}) {}
 private:
-	void onCreate() override
+	void MyWindow::onCreate() override
 	{
 		show();
 		//Setup window
-		Menu::create(menu);
-		Menu::create(fileMenu);
+		UserGui::Menu::create(menu);
+		UserGui::Menu::create(fileMenu);
 		fileMenu.addItems({ Text("Abrir imagen"), Text("Guardar imagen"), Text("Salir")});
 		menu.addSubMenu(fileMenu, Text("Archivo"));
 		attachMenu(menu);
@@ -46,7 +46,7 @@ private:
 		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
 		fileMenu.onItemSelect([&](Event e) {this->onFileMenuSelect(e); });
 	}
-	void onDraw(DeviceContext deviceContext) override
+	void MyWindow::onDraw(UserGui::DeviceContext& deviceContext) override
 	{
 		image.clonePixels(&buffer[0]);
 		for (auto& pixel : buffer) 
@@ -78,7 +78,7 @@ private:
 };
 //For console main
 int main() {
-
+	Application::init();
 	//Setup font
 	//TODO... font class wrapper...
 	Application::defaultFont(Text("Segoe UI"));
