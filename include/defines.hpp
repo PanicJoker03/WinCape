@@ -43,9 +43,9 @@ namespace WinCape
 	};
 
 	template<size_t Len>
-	class StringView : public BaseStringView {
+	class TextView : public BaseStringView {
 	public:
-		constexpr StringView(const TextChar* str) : BaseStringView(str) {
+		constexpr TextView(const TextChar* str) : BaseStringView(str) {
 
 		}
 		constexpr size_t count() const {
