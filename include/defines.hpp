@@ -62,7 +62,7 @@ namespace WinCape
 #define StringLen(str) sizeof(Text(str))/sizeof(TextChar)
 #endif
 #ifndef StringView(str)
-#define StringView(str) StringView<StringLen(str)>{ Text(str) }
+#define StringView(str) TextView<StringLen(str)>{ Text(str) }
 #endif
 	using WindowHandle = HWND;
 	using GlRenderContextHandle = HGLRC;
