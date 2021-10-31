@@ -1,5 +1,5 @@
-#ifndef STRUCT_HPP
-#define STRUCT_HPP
+#ifndef DEFINES_HPP
+#define DEFINES_HPP
 //Completely experimental, it may be proper to fail in other machines
 #ifdef _ENABLE_THEME
 #pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
@@ -13,12 +13,13 @@
 #include <vector>
 #include <tchar.h>
 #include <iostream>
+#include <CommCtrl.h>
 namespace WinCape
 {
 #ifndef Text(str)
 #define Text(str) TEXT(str)
 #endif
-//type definitions
+	//type definitions
 #ifndef UNICODE || _UNICODE
 	std::ostream& charout = std::cout;
 #else 
@@ -28,15 +29,15 @@ namespace WinCape
 	class BaseStringView {
 	public:
 		constexpr BaseStringView(const TextChar* str) : str(str) {
-			
+
 		}
 	private:
-		const TextChar * str;
-	public :
+		const TextChar* str;
+	public:
 		const TextChar operator[](size_t i) {
 			return str[i];
 		}
-		constexpr const TextChar * ptr() const {
+		constexpr const TextChar* ptr() const {
 			return str;
 		}
 	};
@@ -64,6 +65,7 @@ namespace WinCape
 #define StringView(str) StringView<StringLen(str)>{ Text(str) }
 #endif
 	using WindowHandle = HWND;
+	using GlRenderContextHandle = HGLRC;
 	using DeviceContextHandle = HDC;
 	using MenuHandle = HMENU;
 	using IconHandle = HICON;
@@ -75,7 +77,6 @@ namespace WinCape
 	using ListBoxStyle = DWORD;
 	using ListViewStyle = DWORD;
 	using ClassStyle = UINT;
-	using ClassName = UINT;
 	using ShowCommand = int;
 	using ResourceInt = int;
 	using WindowMessage = UINT;
@@ -292,13 +293,11 @@ namespace WinCape
 			SetTopIndex = LB_SETTOPINDEX
 		};
 	}
-	namespace ClassNames {
-		enum : ClassName {
-			ListView = WC_LISTVIEW,
-			Button = WC_BUTTON,
-			ListBox = WC_LISTBOX
-		};
-	}
+	static struct ClassNames final {
+		const TextChar* ListView = WC_LISTVIEW;
+		const TextChar* Button = WC_BUTTON;
+		const TextChar* ListBox = WC_LISTBOX;
+	};
 	namespace ListViewStyles
 	{
 		enum : ListViewStyle {
@@ -360,27 +359,10 @@ namespace WinCape
 			};
 		}
 	};
-	namespace ClassStyles
-	{
-		enum : ClassStyle {
-			ByteAlignClient = CS_BYTEALIGNCLIENT,
-			ByteAlignWindow = CS_BYTEALIGNWINDOW,
-			ClassDeviceContext = CS_CLASSDC,
-			DoubleClicks = CS_DBLCLKS,
-			DropShadow = CS_DROPSHADOW,
-			GlobalClass = CS_GLOBALCLASS,
-			HorizontalRedraw = CS_HREDRAW,
-			NoClose = CS_NOCLOSE,
-			OwnDeviceContext = CS_OWNDC,
-			ParentDeviceContext = CS_PARENTDC,
-			SaveBits = CS_SAVEBITS,
-			VerticalRedraw = CS_VREDRAW
-		};
-	}
 	namespace ListViewMessages {
 		enum : ListViewMessage {
 			ItemChanged = LVN_ITEMCHANGED
 		};
 	}
 }
-#endif // !STRUCT_HPP
+#endif // !DEFINES_HPP
