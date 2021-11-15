@@ -86,11 +86,11 @@ namespace WinCape
 			windowClass.style = Defaults::DefClassStyle;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = Application::instance();
-			windowClass.hIcon = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+			windowClass.hIcon = LoadIcon(windowClass.hInstance, IDI_APPLICATION);
 			windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 			windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 			windowClass.lpszClassName = name;
-			windowClass.hIconSm = LoadIcon(windowClass.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+			windowClass.hIconSm = LoadIcon(windowClass.hInstance, IDI_APPLICATION);
 			RegisterClassEx(&windowClass);
 		}
 		UserGui::Base::Handle createHandle(const TextChar* name, const TextChar* text, const WindowStyle& style, const Rect& rect, const UserGui::Base::Handle& parent)
