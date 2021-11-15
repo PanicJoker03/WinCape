@@ -58,10 +58,10 @@ namespace WinCape
 			return sizeof(TextChar) * Len;
 		}
 	};
-#ifndef StringLen(str)
+#ifndef StringLen
 #define StringLen(str) sizeof(Text(str))/sizeof(TextChar)
 #endif
-#ifndef StringView(str)
+#ifndef StringView
 #define StringView(str) TextView<StringLen(str)>{ Text(str) }
 #endif
 	using WindowHandle = HWND;
