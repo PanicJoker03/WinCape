@@ -72,6 +72,7 @@ namespace WinCape
 	using BitmapHandle = HBITMAP;
 	using FontHandle = HFONT;
 	using InstanceHandle = HINSTANCE;
+	using FileHandle = HANDLE;
 	using WindowStyle = DWORD;
 	using ButtonStyle = DWORD;
 	using ListBoxStyle = DWORD;
