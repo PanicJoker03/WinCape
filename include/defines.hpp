@@ -293,10 +293,10 @@ namespace WinCape
 			SetTopIndex = LB_SETTOPINDEX
 		};
 	}
-	static struct ClassNames final {
-		const TextChar* ListView = WC_LISTVIEW;
-		const TextChar* Button = WC_BUTTON;
-		const TextChar* ListBox = WC_LISTBOX;
+	struct ClassNames final {
+		constexpr static const TextChar* ListView = WC_LISTVIEW;
+		constexpr static const TextChar* Button = WC_BUTTON;
+		constexpr static const TextChar* ListBox = WC_LISTBOX;
 	};
 	namespace ListViewStyles
 	{

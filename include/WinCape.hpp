@@ -177,4 +177,4 @@ namespace WinCape
 		static UserGui::Window createWindow(const TextChar* windowName = Defaults::WindowName, const TextChar* title = Text("Default"), const Rect & rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 	};
 }
-#endif WINCAPE_HPP
+#endif
