@@ -16,9 +16,9 @@ namespace WinCape
 		//Wrap in font class?
 		FontHandle applicationFont = 0;
 	public:
-		using EventKey = pair<UserGui::Base::Handle, WindowMessage>;
+		//using EventKey = pair<UserGui::Base::Handle, WindowMessage>;
 		//Wrap in a class?
-		using EventMap = map<EventKey, EventCallback>;
+		//using EventMap = map<EventKey, EventCallback>;
 		static ManagerImpl& instance()
 		{
 			static ManagerImpl instance_;
