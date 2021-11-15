@@ -282,7 +282,7 @@ namespace WinCape
 			handle(Application::createWindow(windowName, title, rect, style).handle());
 			SendMessage(handle(), WindowMessages::Create, 0, 0);
 		}
-		void UserGui::WindowFrame::onDraw(DeviceContext& deviceContext) {}
+		void UserGui::WindowFrame::onDraw(DeviceContext deviceContext) {}
 		void UserGui::WindowFrame::onDispose() {
 			Manager::instance().unlistenEvent(handle(), WindowMessages::Paint);
 			Manager::instance().unlistenEvent(handle(), WindowMessages::Destroy);

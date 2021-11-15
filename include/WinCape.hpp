@@ -48,7 +48,7 @@ namespace WinCape
 			void show();
 			void minimize();
 			void addButton(Button& button, const TextChar* text, const Vector2I& position, const Vector2I& size = Defaults::ButtonSize);
-			void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const wchar_t*>> radioButtonList, const Vector2I& position, const Vector2I& padding = Defaults::RadioButtonPadding);
+			void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const TextChar*>> radioButtonList, const Vector2I& position, const Vector2I& padding = Defaults::RadioButtonPadding);
 			void attachMenu(Menu& menu);
 			void onDestroy(const EventCallback& callback);
 			void onPaint(const EventCallback& callback);
@@ -156,7 +156,7 @@ namespace WinCape
 		protected:
 			WindowFrame(const TextChar* windowName = Defaults::WindowName, const TextChar* title = Text("Default"), const Rect& rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 			virtual void onCreate() = 0;
-			virtual void onDraw(DeviceContext& deviceContext) = 0;
+			virtual void onDraw(DeviceContext deviceContext) = 0;
 			virtual void onDispose();
 			virtual ~WindowFrame() = 0;
 			friend Application;
