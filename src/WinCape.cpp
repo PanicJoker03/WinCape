@@ -331,7 +331,7 @@ namespace WinCape
 	//Avoiding template linkage errors
 	//-------------------------------------------------------------------------
 	template class HasHandle<WindowHandle>;
-	//template class HasHandle<DeviceContextHandle>;
+	template class HasHandle<DeviceContextHandle>;
 	template class HasHandle<MenuHandle>;
 	template class HasHandle<BitmapHandle>;
 }
