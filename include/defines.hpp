@@ -64,6 +64,7 @@ namespace WinCape
 #ifndef StringView
 #define StringView(str) TextView<StringLen(str)>{ Text(str) }
 #endif
+	constexpr static int Null = NULL;
 	using WindowHandle = HWND;
 	using GlRenderContextHandle = HGLRC;
 	using DeviceContextHandle = HDC;
