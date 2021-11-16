@@ -4,7 +4,7 @@
 #ifdef _ENABLE_THEME
 #pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
 #endif
-#define NOMINMAX
+//#define NOMINMAX
 #include <Windows.h>
 #include <windows.h>
 #include <limits.h>
@@ -20,10 +20,10 @@ namespace WinCape
 #define Text(str) TEXT(str)
 #endif
 	//type definitions
-#ifndef UNICODE || _UNICODE
-	std::ostream& charout = std::cout;
+#ifndef UNICODE
+		std::ostream& outstream = std::cout;
 #else 
-	std::wostream& charout = std::wcout;
+		std::wostream& outstream = std::wcout;
 #endif
 	using TextChar = TCHAR;
 	class BaseStringView {
