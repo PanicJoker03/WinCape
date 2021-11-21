@@ -7,6 +7,8 @@
 //#define NOMINMAX
 #include <Windows.h>
 #include <windows.h>
+#include <WinUser.h>
+#include <stdio.h>
 #include <limits.h>
 #include <memory>
 #include <functional>
@@ -14,17 +16,46 @@
 #include <tchar.h>
 #include <iostream>
 #include <CommCtrl.h>
+#include <cstdint>
 namespace WinCape
 {
-#ifndef Text(str)
+	template<typename T> 
+	class Singleton {
+		static std::unique_ptr<T> ptr;
+	public:
+		static T& instance() {
+			if (ptr.get() == nullptr)
+				ptr = std::make_unique(new T());
+			return *ptr;
+		}
+	};
+#ifndef Text
 #define Text(str) TEXT(str)
 #endif
 	//type definitions
+
+	class Console : public Singleton<Console> {
 #ifndef UNICODE
 		std::ostream& outstream = std::cout;
 #else 
 		std::wostream& outstream = std::wcout;
 #endif
+	public:
+		template<typename ...Args>
+		void Print(Args ... params) {
+			const int call[] = {
+					(outstream << params, 0)...
+			};
+			static_cast<void>(call);
+		}
+
+		template<typename ...Args>
+		void PrintLine(Args ... params) {
+			Print(params...);
+			Print(Text('\n'));
+		}
+	};
+
 	using TextChar = TCHAR;
 	class BaseStringView {
 	public:
@@ -64,7 +95,8 @@ namespace WinCape
 #ifndef StringView
 #define StringView(str) TextView<StringLen(str)>{ Text(str) }
 #endif
-	constexpr static int Null = NULL;
+	constexpr static std::nullptr_t NullPointer = nullptr;
+	constexpr static UINT Null = NULL;
 	using WindowHandle = HWND;
 	using GlRenderContextHandle = HGLRC;
 	using DeviceContextHandle = HDC;
@@ -86,6 +118,18 @@ namespace WinCape
 	using ListViewMessage = UINT;
 	using ComboBoxMessage = UINT;
 	using Byte = BYTE;
+	using PixelFormatFlag = DWORD;
+	using PixelFormatType = BYTE;
+	using PixelFormatLayer = BYTE;
+	struct PixelFormat
+	{
+		PixelFormatFlag flags;
+		PixelFormatType type;
+		std::uint8_t ColorBits;
+		std::uint8_t DepthBits;
+		std::uint8_t StencilBits;
+		PixelFormatLayer LayerType;
+	};
 	struct Event
 	{
 		WindowHandle handle;
@@ -365,6 +409,32 @@ namespace WinCape
 		enum : ListViewMessage {
 			ItemChanged = LVN_ITEMCHANGED
 		};
+	}
+	namespace PixelFormatFlags {
+		enum : PixelFormatFlag{
+			DrawToWindow,
+			DrawToBitmap,
+			SupportGdi,
+			SupportOpengl,
+			GenericAccelerated,
+			GenericFormat,
+			NeedPalette,
+			NeedSystemPalette,
+			DoubleBuffer,
+			Stereo,
+			SwapLayerBuffers
+		}
+	}
+	namespace PixelFormatTypes {
+		enum : PixelType {
+			RGBA,
+			ColorIndex
+		}
+	}
+	namespace PixelFormatLayers {
+		enum : PixelFormatLayer {
+			MainPlane
+		}
 	}
 }
 #endif // !DEFINES_HPP
