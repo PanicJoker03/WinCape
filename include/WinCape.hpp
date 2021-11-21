@@ -7,7 +7,6 @@
 //Use lower case on static methods
 namespace WinCape
 {
-
 	struct Application;
 	template<typename T> class HasHandle
 	{
@@ -17,11 +16,11 @@ namespace WinCape
 		template<typename> friend class CanCreateFromResource;
 	protected:
 		HasHandle();
-		void handle(const T& handle);
+		void handle(T handle);
 	private:
 		T _handle;
 	};
-	namespace UserGui 
+	namespace Gui
 	{
 		//forward declarations
 		class Window;
@@ -56,6 +55,7 @@ namespace WinCape
 			void close();
 			void setIcon(const Icon& icon);
 			DeviceContext deviceContext();
+			~Window();
 		};
 		//enforce to this classes have to know nothing about Window class
 		//add setFont function? (it may need a Font wrapper class, that can only be instantiated through ::new and returns a shared_ptr...)
@@ -86,6 +86,10 @@ namespace WinCape
 		public:
 			void addString(const TextChar* string);
 			int count();
+		};
+		class Tabstrip final : public Control
+		{
+		public:
 		};
 		class Menu final : public HasHandle<MenuHandle>
 		{
@@ -121,24 +125,26 @@ namespace WinCape
 			void setPixels(void* buffer);
 			~Bitmap();
 		};
-		/*class RenderContext final : public HasHandle<GlRenderContextHandle> {
+		class RenderContext final : public HasHandle<GlRenderContextHandle> {
 		public:
 			RenderContext();
 			RenderContext(GlRenderContextHandle renderContext);
 			friend Window;
-		};*/
+		};
 		class DeviceContext final : public HasHandle<DeviceContextHandle>
 		{
-		private:
-			void bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny, const Rect& rect);
 		public:
 			DeviceContext();
 			DeviceContext(DeviceContextHandle value);
+			DeviceContext(WindowHandle handle);
 			//void drawBitmap(const Bitmap& bitmap);
 			void drawBitmap(const Bitmap& bitmap, const Vector2I& padding = Vector2I{});
 			//drawBitmapClipped...
-			//RenderContext createRenderContext();
+			RenderContext createRenderContext() const;
+			~DeviceContext();
 			friend Window;
+		private:
+			void bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny, const Rect& rect);
 		};
 		class Font final : public HasHandle<FontHandle>
 		{
@@ -162,6 +168,11 @@ namespace WinCape
 			friend Application;
 		};
 	}
+	namespace Base
+	{
+		const Gui::Window Console();
+	}
+	//To singleton...
 	struct Application
 	{
 		/// <summary>
@@ -169,12 +180,13 @@ namespace WinCape
 		/// </summary>
 		/// 
 		static void init(const TextChar* name = Defaults::WindowName);
+		static Gui::Window console();
 		static int run();
-		static int run(WinCape::UserGui::WindowFrame& window);
+		static int run(WinCape::Gui::WindowFrame& window);
 		static InstanceHandle instance();
 		//Really poor function, must be called at the application beginning in order to work...
 		static void defaultFont(const TextChar* fontName);
-		static UserGui::Window createWindow(const TextChar* windowName = Defaults::WindowName, const TextChar* title = Text("Default"), const Rect & rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		static Gui::Window createWindow(const TextChar* windowName = Defaults::WindowName, const TextChar* title = Text("Default"), const Rect & rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
 	};
 }
 #endif

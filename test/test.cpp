@@ -3,31 +3,31 @@
 #include <iostream>
 using namespace WinCape;
 struct Pixel32 { std::uint8_t b, g, r, offset = 0; };
-class MyWindow : public UserGui::WindowFrame
+class MyWindow : public Gui::WindowFrame
 {
 private:
-	UserGui::Menu menu;
-	UserGui::Menu fileMenu;
-	UserGui::Button buttonA;
-	UserGui::Button buttonB;
-	UserGui::RadioButton radioButtonA;
-	UserGui::RadioButton radioButtonB;
-	UserGui::RadioButton radioButtonC;
-	UserGui::Bitmap image;
+	Gui::Menu menu;
+	Gui::Menu fileMenu;
+	Gui::Button buttonA;
+	Gui::Button buttonB;
+	Gui::RadioButton radioButtonA;
+	Gui::RadioButton radioButtonB;
+	Gui::RadioButton radioButtonC;
+	Gui::Bitmap image;
 	std::vector<Pixel32> buffer;
 public:
-	MyWindow() : UserGui::WindowFrame(Text("Wincape Test"), Text("Ventana"), Rect{120,120, 640, 480}) {}
+	MyWindow() : Gui::WindowFrame(Text("Wincape Test"), Text("Ventana"), Rect{120,120, 640, 480}) {}
 private:
 	void MyWindow::onCreate() override
 	{
 		show();
 		//Setup window
-		UserGui::Menu::create(menu);
-		UserGui::Menu::create(fileMenu);
+		Gui::Menu::create(menu);
+		Gui::Menu::create(fileMenu);
 		fileMenu.addItems({ Text("Abrir imagen"), Text("Guardar imagen"), Text("Salir")});
 		menu.addSubMenu(fileMenu, Text("Archivo"));
 		attachMenu(menu);
-		addButton(buttonA, Text("Botón"), Vector2I{ 100, 100 });
+		addButton(buttonA, Text("Botï¿½n"), Vector2I{ 100, 100 });
 		addButton(buttonB, Text("Test"), Vector2I{ 140, 140 }); 
 		addRadioButton(
 			{
@@ -46,7 +46,7 @@ private:
 		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
 		fileMenu.onItemSelect([&](Event e) {this->onFileMenuSelect(e); });
 	}
-	void MyWindow::onDraw(UserGui::DeviceContext& deviceContext) override
+	void MyWindow::onDraw(Gui::DeviceContext& deviceContext) override
 	{
 		image.clonePixels(&buffer[0]);
 		for (auto& pixel : buffer) 
@@ -66,7 +66,7 @@ private:
 	}
 	void onRadioButtonAClick(Event e)
 	{
-		radioButtonA.setText(Text("Me haz clickeado tío!"));
+		radioButtonA.setText(Text("Me haz clickeado tï¿½o!"));
 		redraw();
 	}
 	void onFileMenuSelect(Event e)
