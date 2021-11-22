@@ -248,11 +248,11 @@ namespace WinCape
 		////-------------------------------------------------------------------------
 		////RenderContext
 		////-------------------------------------------------------------------------
-		RenderContext::RenderContext() {}
-		RenderContext::RenderContext(GlRenderContextHandle value)
-		{
-			handle(value);
-		}
+		//RenderContext::RenderContext() {}
+		//RenderContext::RenderContext(GlRenderContextHandle value)
+		//{
+		//	handle(value);
+		//}
 		//-------------------------------------------------------------------------
 		//DeviceContext
 		//-------------------------------------------------------------------------
@@ -287,8 +287,6 @@ namespace WinCape
 			bitBlt(bitmap.handle(), deviceContextMemory, Rect{ padding, bitmapSize });
 			DeleteDC(deviceContextMemory);
 		}
-		Gui::RenderContext Gui::DeviceContext::createRenderContext() const {
-			return Gui::RenderContext(wglCreateContext(handle()));
 		void Gui::DeviceContext::drawText(const TextChar* text, DrawTextFormat flags){
 			Rect rect = bounds();
 			SetTextColor(handle(), 0x00000000);
@@ -308,6 +306,9 @@ namespace WinCape
 		Window Gui::DeviceContext::window() const{
 			return Window(WindowFromDC(handle()));
 		}
+		//Gui::RenderContext Gui::DeviceContext::createRenderContext() const {
+		//	return Gui::RenderContext(wglCreateContext(handle()));
+		//}
 		//-------------------------------------------------------------------------
 		//WindowFrame
 		//-------------------------------------------------------------------------

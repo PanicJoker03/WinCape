@@ -2,6 +2,7 @@
 #define WINCAPE_HPP
 #include "defines.hpp"
 #include "defaults.hpp"
+#include "rendering.hpp"
 
 //TODO...
 //Use lower case on static methods
@@ -125,12 +126,6 @@ namespace WinCape
 			void setPixels(void* buffer);
 			~Bitmap();
 		};
-		class RenderContext final : public HasHandle<GlRenderContextHandle> {
-		public:
-			RenderContext();
-			RenderContext(GlRenderContextHandle renderContext);
-			friend Window;
-		};
 		class DeviceContext final : public HasHandle<DeviceContextHandle>
 		{
 		public:
@@ -143,7 +138,9 @@ namespace WinCape
 			Rect bounds() const;
 			Window window() const;
 			//drawBitmapClipped...
+#ifdef WINCAPE_USES_WGL
 			RenderContext createRenderContext() const;
+#endif
 			~DeviceContext();
 			friend Window;
 		private:

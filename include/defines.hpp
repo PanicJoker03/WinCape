@@ -102,7 +102,6 @@ namespace WinCape
 		static constexpr T value = NULL;
 	};
 	using WindowHandle = HWND;
-	using GlRenderContextHandle = HGLRC;
 	using DeviceContextHandle = HDC;
 	using MenuHandle = HMENU;
 	using IconHandle = HICON;
@@ -122,6 +121,8 @@ namespace WinCape
 	using ListViewMessage = UINT;
 	using ComboBoxMessage = UINT;
 	using Byte = BYTE;
+#ifdef WINCAPE_USES_WGL
+	using GlRenderContextHandle = HGLRC;
 	using PixelFormatFlag = DWORD;
 	using PixelFormatType = BYTE;
 	using PixelFormatLayer = BYTE;
