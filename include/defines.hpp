@@ -296,6 +296,7 @@ namespace WinCape
 			StyleChanged = WM_STYLECHANGED,
 			StyleChanging = WM_STYLECHANGING,
 			ThemeChanged = WM_THEMECHANGED,
+			Timer = WM_TIMER,
 			UserChanged = WM_USERCHANGED,
 			WindowPositionChanged = WM_WINDOWPOSCHANGED,
 			WindowPositionChanging = WM_WINDOWPOSCHANGING
@@ -417,6 +418,7 @@ namespace WinCape
 			ItemChanged = LVN_ITEMCHANGED
 		};
 	}
+#ifdef WINCAPE_USES_WGL
 	namespace PixelFormatFlags {
 		enum : PixelFormatFlag{
 			DrawToWindow,
@@ -430,18 +432,20 @@ namespace WinCape
 			DoubleBuffer,
 			Stereo,
 			SwapLayerBuffers
-		}
+		};
 	}
 	namespace PixelFormatTypes {
-		enum : PixelType {
+		enum : PixelFormatType {
 			RGBA,
 			ColorIndex
-		}
+		};
 	}
 	namespace PixelFormatLayers {
 		enum : PixelFormatLayer {
 			MainPlane
-		}
+		};
+	}
+#endif
 	namespace DrawTextFormats{
 		enum : DrawTextFormat {
 			Bottom,

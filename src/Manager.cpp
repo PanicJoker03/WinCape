@@ -49,6 +49,9 @@ namespace WinCape
 				keyIterator->second(Event{ key.first , wParam, lParam });
 			}
 		}
+		static void TimerProc(HWND hWnd, UINT param1, UINT param2, UINT_PTR param3, DWORD param4){
+			ManagerImpl::instance().doCallback(EventKey{0, WindowMessages::Timer}, 0, 0);
+		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			auto handle = (Gui::Base::Handle)hWnd;

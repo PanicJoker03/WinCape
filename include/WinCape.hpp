@@ -46,6 +46,7 @@ namespace WinCape
 			Window();
 			Window(WindowHandle value);
 			void show();
+			void hide();
 			void minimize();
 			void addButton(Button& button, const TextChar* text, const Vector2I& position, const Vector2I& size = Defaults::ButtonSize);
 			void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const TextChar*>> radioButtonList, const Vector2I& position, const Vector2I& padding = Defaults::RadioButtonPadding);
@@ -55,6 +56,7 @@ namespace WinCape
 			void redraw();
 			void close();
 			void setIcon(const Icon& icon);
+			void timer(const EventCallback& callback, unsigned int time);
 			DeviceContext deviceContext();
 			~Window();
 		};
@@ -187,6 +189,7 @@ namespace WinCape
 		//Really poor function, must be called at the application beginning in order to work...
 		static void defaultFont(const TextChar* fontName);
 		static Gui::Window createWindow(const TextChar* windowName = Defaults::WindowName, const TextChar* title = Text("Default"), const Rect & rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+		static void quit();
 	};
 }
 #endif

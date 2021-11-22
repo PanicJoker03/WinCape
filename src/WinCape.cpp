@@ -46,6 +46,10 @@ namespace WinCape
 		{
 			ShowWindow(handle(), ShowCommands::Show);
 		}
+		void Gui::Window::hide()
+		{
+			ShowWindow(handle(), ShowCommands::Hide);
+		}
 		void Gui::Window::minimize()
 		{
 			ShowWindow(handle(), ShowCommands::Minimize);
@@ -105,6 +109,11 @@ namespace WinCape
 		void Gui::Window::setIcon(const Icon& icon)
 		{
 			SendMessage(handle(), WindowMessages::SetIcon, ICON_BIG, (LPARAM)icon.handle());
+		}
+		void Gui::Window::timer(const EventCallback& callback, unsigned int time){
+			WindowMessage timerMsg = WindowMessages::Timer;
+			Manager::instance().listenEvent(handle(), timerMsg, callback);
+			SetTimer(handle(), reinterpret_cast<UINT_PTR>(handle()), time, AsNull<TIMERPROC>::value);
 		}
 		Gui::Window::~Window()
 		{
@@ -367,6 +376,10 @@ namespace WinCape
 	void Application::defaultFont(const TextChar* fontName)
 	{
 		WinCape::Manager::instance().defaultFont(fontName);
+	}
+
+	void Application::quit() {
+		SendMessage(0, WM_QUIT, Null, Null);
 	}
 	//-------------------------------------------------------------------------
 	//Avoiding template linkage errors
