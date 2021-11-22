@@ -97,6 +97,10 @@ namespace WinCape
 #endif
 	constexpr static std::nullptr_t NullPointer = nullptr;
 	constexpr static UINT Null = NULL;
+	template<typename T>
+	struct AsNull{
+		static constexpr T value = NULL;
+	};
 	using WindowHandle = HWND;
 	using GlRenderContextHandle = HGLRC;
 	using DeviceContextHandle = HDC;
