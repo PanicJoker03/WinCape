@@ -134,6 +134,8 @@ namespace WinCape
 		std::uint8_t StencilBits;
 		PixelFormatLayer LayerType;
 	};
+#endif
+	using DrawTextFormat = UINT;
 	struct Event
 	{
 		WindowHandle handle;
@@ -439,6 +441,33 @@ namespace WinCape
 		enum : PixelFormatLayer {
 			MainPlane
 		}
+	namespace DrawTextFormats{
+		enum : DrawTextFormat {
+			Bottom,
+			CalculateRectangle,
+			HorizontalCenter,
+			EditControl,
+			EndEllipsis,
+			ExpandTabs,
+			ExternalLeading,
+			HidePrefix,
+			Internal,
+			Left,
+			ModifyString,
+			NoClip,
+			NoFullWidthCharBreak,
+			NoPrefix,
+			PathEllipsis,
+			PrefixOnly,
+			Right,
+			RightToLeftReading,
+			SingleLine,
+			TabStop,
+			Top,
+			VerticalCenter,
+			WordBreak,
+			WordEllipsis
+		};
 	}
 }
 #endif // !DEFINES_HPP

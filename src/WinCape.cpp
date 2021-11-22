@@ -289,6 +289,24 @@ namespace WinCape
 		}
 		Gui::RenderContext Gui::DeviceContext::createRenderContext() const {
 			return Gui::RenderContext(wglCreateContext(handle()));
+		void Gui::DeviceContext::drawText(const TextChar* text, DrawTextFormat flags){
+			Rect rect = bounds();
+			SetTextColor(handle(), 0x00000000);
+			SetBkMode(handle(), TRANSPARENT);
+#ifndef UNICODE
+			DrawTextA(handle(), text, -1, reinterpret_cast<RECT*>(&rect), flags);
+#else
+			DrawTextW(handle(), text, -1, reinterpret_cast<RECT*>(&rect), flags);
+#endif
+		}
+		Rect Gui::DeviceContext::bounds() const {
+			Rect rect;
+			GetClientRect(window().handle(), reinterpret_cast<RECT*>(&rect));
+			return rect;
+		}
+
+		Window Gui::DeviceContext::window() const{
+			return Window(WindowFromDC(handle()));
 		}
 		//-------------------------------------------------------------------------
 		//WindowFrame
