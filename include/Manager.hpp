@@ -1,6 +1,7 @@
 #ifndef MANAGER_HPP
 #define MANAGER_HPP
-#include "WinCape.hpp"
+#include "defines.hpp"
+#include "Gui/Base.hpp"
 namespace WinCape
 {
 	class Manager

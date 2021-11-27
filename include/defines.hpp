@@ -17,6 +17,10 @@
 #include <iostream>
 #include <CommCtrl.h>
 #include <cstdint>
+//#ifdef WINCAPE_USES_WGL
+#include <GL/gl.h>
+#include <GL/glu.h>
+//#endif
 namespace WinCape
 {
 	template<typename T> 
@@ -95,6 +99,31 @@ namespace WinCape
 #ifndef StringView
 #define StringView(str) TextView<StringLen(str)>{ Text(str) }
 #endif
+	template<typename T> class HasHandle
+	{
+	public:
+		using Handle = T;
+		T handle() const{
+			return _handle;
+		}
+		template<typename> friend class CanCreateFromResource;
+	protected:
+		HasHandle(){};
+		void handle(T handle){
+			_handle = handle;
+		};
+/*
+		template<typename T> HasHandle<T>::HasHandle() {}
+		template<typename T> void HasHandle<T>::handle(T handle)
+
+		template<typename T> T HasHandle<T>::handle() const
+		{
+			return _handle;
+		}
+		*/
+	private:
+		T _handle;
+	};
 	constexpr static std::nullptr_t NullPointer = nullptr;
 	constexpr static UINT Null = NULL;
 	template<typename T>
@@ -121,7 +150,7 @@ namespace WinCape
 	using ListViewMessage = UINT;
 	using ComboBoxMessage = UINT;
 	using Byte = BYTE;
-#ifdef WINCAPE_USES_WGL
+	//#ifdef WINCAPE_USES_WGL
 	using GlRenderContextHandle = HGLRC;
 	using PixelFormatFlag = DWORD;
 	using PixelFormatType = BYTE;
@@ -135,7 +164,7 @@ namespace WinCape
 		std::uint8_t StencilBits;
 		PixelFormatLayer LayerType;
 	};
-#endif
+	//#endif
 	using DrawTextFormat = UINT;
 	struct Event
 	{

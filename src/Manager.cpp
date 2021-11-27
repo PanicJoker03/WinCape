@@ -1,6 +1,8 @@
+#include <defaults.hpp>
 #include <Manager.hpp>
 #include <tchar.h>
 #include <map>
+#include <Application.hpp>
 using namespace std;
 namespace WinCape
 {
