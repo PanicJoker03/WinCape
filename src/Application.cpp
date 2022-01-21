@@ -14,10 +14,10 @@ namespace WinCape{
 	{
 		Manager::instance().registerClass(name);
 	}
-	Gui::Window Application::createWindow(const TextChar* windowName, const TextChar* title, const Rect& rect, WindowStyle style)
+	Gui::Window Application::createWindow(const TextChar* windowName, const TextChar* title, const Rect& rect, WindowStyle style, WindowExtendedStyle exStyle)
 	{
 		Gui::Window window;
-		window = Gui::Window(Manager::instance().createHandle(windowName, title, style, rect));
+		window = Gui::Window(Manager::instance().createHandle(windowName, title, style, rect, nullptr, exStyle));
 		return window;
 	}
 	int Application::run()

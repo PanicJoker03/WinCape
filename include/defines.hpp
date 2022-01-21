@@ -139,6 +139,7 @@ namespace WinCape
 	using InstanceHandle = HINSTANCE;
 	using FileHandle = HANDLE;
 	using WindowStyle = DWORD;
+	using WindowExtendedStyle = DWORD;
 	using ButtonStyle = DWORD;
 	using ListBoxStyle = DWORD;
 	using ListViewStyle = DWORD;
@@ -155,6 +156,7 @@ namespace WinCape
 	using PixelFormatFlag = DWORD;
 	using PixelFormatType = BYTE;
 	using PixelFormatLayer = BYTE;
+	using LayeredWindowAttribute = DWORD;
 	struct PixelFormat
 	{
 		PixelFormatFlag flags;
@@ -213,6 +215,37 @@ namespace WinCape
 			Visible = WS_VISIBLE,
 			VerticalScroll = WS_VSCROLL
 		};
+		namespace Extended {
+			enum : WindowExtendedStyle {
+				AcceptFiles = WS_EX_ACCEPTFILES,
+				AppWindow = WS_EX_APPWINDOW,
+				ClientEdge = WS_EX_CLIENTEDGE,
+				Composited = WS_EX_COMPOSITED,
+				ContextHelp = WS_EX_CONTEXTHELP,
+				ControlParent = WS_EX_CONTROLPARENT,
+				DialogModalFrame = WS_EX_DLGMODALFRAME,
+				Layered = WS_EX_LAYERED,
+				LayoutRightToLeft = WS_EX_LAYOUTRTL,
+				Left = WS_EX_LEFT,
+				LeftScrollBar = WS_EX_LEFTSCROLLBAR,
+				LeftToRighReading = WS_EX_LTRREADING,
+				MdiChild = WS_EX_MDICHILD,
+				NoActive = WS_EX_NOACTIVATE,
+				NoInheritLayout = WS_EX_NOINHERITLAYOUT,
+				NoParentNotify = WS_EX_NOPARENTNOTIFY,
+				//NoRedirectionBitmap = WS_EX_NOREDIRECTIONBITMAP,
+				OverlappedWindows = WS_EX_OVERLAPPEDWINDOW,
+				PaletteWindow = WS_EX_PALETTEWINDOW,
+				Right = WS_EX_RIGHT,
+				RightScrollBar = WS_EX_RIGHTSCROLLBAR,
+				RightToLeftReading = WS_EX_RTLREADING,
+				StaticEdge = WS_EX_STATICEDGE,
+				ToolWindow = WS_EX_TOOLWINDOW,
+				TopMost = WS_EX_TOPMOST,
+				Transparent = WS_EX_TRANSPARENT,
+				WindowEdge = WS_EX_WINDOWEDGE
+			};
+		}
 	}
 	namespace ButtonStyles {
 		enum : ButtonStyle
@@ -501,6 +534,12 @@ namespace WinCape
 			VerticalCenter,
 			WordBreak,
 			WordEllipsis
+		};
+	}
+	namespace LayeredWindowAttributes{
+		enum : LayeredWindowAttribute {
+			Alpha = LWA_ALPHA,
+			ColorKey = LWA_COLORKEY
 		};
 	}
 }

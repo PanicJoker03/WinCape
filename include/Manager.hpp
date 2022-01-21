@@ -15,7 +15,7 @@ namespace WinCape
 		void defaultFont(const TextChar* fontName);
 		FontHandle defaultFont();
 		void registerClass(const TextChar* name);
-		Gui::Base::Handle createHandle(const TextChar* className, const TextChar* text, WindowStyle style, const Rect& rect, Gui::Base::Handle parent = nullptr);
+		Gui::Base::Handle createHandle(const TextChar* className, const TextChar* text, WindowStyle style, const Rect& rect, Gui::Base::Handle parent = nullptr, WindowStyle exStyle = 0);
 		static Manager& instance();
 	};
 }
