@@ -28,6 +28,7 @@ namespace WinCape
 			void close();
 			void setIcon(const Icon& icon);
 			void timer(const EventCallback& callback, unsigned int time);
+			void alpha(const Byte value);
 			DeviceContext deviceContext();
 			~Window();
 		};
