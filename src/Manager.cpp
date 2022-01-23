@@ -98,13 +98,14 @@ namespace WinCape
 			windowClass.hIconSm = LoadIcon(windowClass.hInstance, IDI_APPLICATION);
 			RegisterClassEx(&windowClass);
 		}
-		Gui::Base::Handle createHandle(const TextChar* name, const TextChar* text, const WindowStyle& style, const Rect& rect, const Gui::Base::Handle& parent)
+		Gui::Base::Handle createHandle(const TextChar* name, const TextChar* text, WindowStyle style, const Rect& rect, Gui::Base::Handle parent, WindowExtendedStyle exStyle)
 		{
 			WNDCLASS windowClass = {};
 			//Because each window must register it's class
 			if(!GetClassInfo(Application::instance(), name, &windowClass))
 				registerClass(name);
-			auto handle = CreateWindow(
+			auto handle = CreateWindowExA(
+				exStyle,
 				name,
 				text,
 				style,
@@ -159,9 +160,9 @@ namespace WinCape
 	{
 		ManagerImpl::instance().registerClass(name);
 	}
-	Gui::Base::Handle Manager::createHandle(const TextChar* className, const TextChar* text, WindowStyle style, const Rect& rect, Gui::Base::Handle parent)
+	Gui::Base::Handle Manager::createHandle(const TextChar* className, const TextChar* text, WindowStyle style, const Rect& rect, Gui::Base::Handle parent, WindowExtendedStyle exStyle)
 	{
-		return ManagerImpl::instance().createHandle(className, text, style, rect, parent);
+		return ManagerImpl::instance().createHandle(className, text, style, rect, parent, exStyle);
 	}
 	void Manager::defaultFont(const TextChar* fontName)
 	{

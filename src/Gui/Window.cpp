@@ -85,6 +85,14 @@ namespace WinCape{
 			Manager::instance().listenEvent(handle(), timerMsg, callback);
 			SetTimer(handle(), reinterpret_cast<UINT_PTR>(handle()), time, AsNull<TIMERPROC>::value);
 		}
+		void Gui::Window::alpha(const Byte value){
+			/*
+			bool ok = SetLayeredWindowAttributes(handle(), 0, value, LayeredWindowAttributes::Alpha);
+			if(!ok)
+				throw GetLastError();
+				*/
+			SetLayeredWindowAttributes(handle(), 0, value, LayeredWindowAttributes::Alpha);
+		}
 		Gui::Window::~Window()
 		{
 			//if(handle() != NullPointer)
