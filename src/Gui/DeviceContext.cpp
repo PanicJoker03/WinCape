@@ -59,14 +59,14 @@ namespace WinCape{
 		Window Gui::DeviceContext::window() const{
 			return Window(WindowFromDC(handle()));
 		}
-		//#ifdef WINCAPE_USES_WGL
+		#ifdef WINCAPE_USES_WGL
 		//-------------------------------------------------------------------------
 		//DeviceContext
 		//-------------------------------------------------------------------------
 		RenderContext Gui::DeviceContext::createRenderContext() const {
 			return RenderContext(wglCreateContext(handle()));
 		}
-		//#endif
+		#endif
 		//Gui::RenderContext Gui::DeviceContext::createRenderContext() const {
 		//	return Gui::RenderContext(wglCreateContext(handle()));
 		//}

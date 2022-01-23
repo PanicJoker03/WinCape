@@ -21,9 +21,9 @@ namespace WinCape
 			Rect bounds() const;
 			Window window() const;
 			//drawBitmapClipped...
-			//#ifdef WINCAPE_USES_WGL
+			#ifdef WINCAPE_USES_WGL
 			RenderContext createRenderContext() const;
-			//#endif
+			#endif
 			~DeviceContext();
 			friend Window;
 		private:
