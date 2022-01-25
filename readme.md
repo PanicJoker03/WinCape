@@ -11,3 +11,7 @@ You can download Cevelop [here](https://www.cevelop.com/download/).
 And a usefull mingw32 installation guide [here](https://www.msys2.org/) on the MSYS2 website, just follow the steps to get mingw32 installed on your machine.
 
 **Cpp, Hell Yeah!**
+
+### Credits
+
+[lalmaguerdlg](https://github.com/lalmaguerdlg) - ListView implementation, not added yet on this repository
