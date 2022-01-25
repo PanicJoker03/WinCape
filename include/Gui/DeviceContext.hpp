@@ -22,7 +22,9 @@ namespace WinCape
 			Window window() const;
 			//drawBitmapClipped...
 			//#ifdef WINCAPE_USES_WGL
-			RenderContext createRenderContext() const;
+			RenderContext createRenderContext(const PixelFormat& format) const;
+			void swapBuffers();
+			void applyRenderContext(RenderContext context);
 			//#endif
 			~DeviceContext();
 			friend Window;
