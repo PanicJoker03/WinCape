@@ -161,10 +161,9 @@ namespace WinCape
 	{
 		PixelFormatFlag flags;
 		PixelFormatType type;
-		std::uint8_t ColorBits;
-		std::uint8_t DepthBits;
-		std::uint8_t StencilBits;
-		PixelFormatLayer LayerType;
+		std::uint8_t colorBits;
+		std::uint8_t depthBits;
+		std::uint8_t stencilBits;
 	};
 	//#endif
 	using DrawTextFormat = UINT;

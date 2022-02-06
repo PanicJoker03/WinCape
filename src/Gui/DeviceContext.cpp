@@ -59,14 +59,43 @@ namespace WinCape{
 		Window Gui::DeviceContext::window() const{
 			return Window(WindowFromDC(handle()));
 		}
-		#ifdef WINCAPE_USES_WGL
+
+		void Gui::DeviceContext::swapBuffers(){
+			//Do not use SWAP_OVERLAY ni SWAP_UNDERLAY, I do not know their usage
+			wglSwapLayerBuffers(handle(), WGL_SWAP_MAIN_PLANE);
+		}
+		//#ifdef WINCAPE_USES_WGL
 		//-------------------------------------------------------------------------
-		//DeviceContext
+		//RenderContext
 		//-------------------------------------------------------------------------
-		RenderContext Gui::DeviceContext::createRenderContext() const {
+		RenderContext Gui::DeviceContext::createRenderContext(const PixelFormat& format) const {
+			PIXELFORMATDESCRIPTOR descriptor = {
+					sizeof(PIXELFORMATDESCRIPTOR),
+					1,
+					format.flags,
+					format.type, 			//Tipo de buffer
+					format.colorBits,		//Profundidad de bits de framebuffer
+					0, 0, 0, 0, 0, 0,
+					0,
+					0,
+					0,
+					0, 0, 0, 0,
+					format.depthBits,		//número de bits de buffer de profundidad
+					format.stencilBits,		//número de bits de buffer de stencil
+					0,						//número de bits auxiliares en el framebuffer
+					PFD_MAIN_PLANE,
+					0,
+					0, 0, 0
+			};
+			const int formatId = ChoosePixelFormat(handle(), &descriptor);
+			SetPixelFormat(handle(), formatId, &descriptor);
 			return RenderContext(wglCreateContext(handle()));
 		}
-		#endif
+
+		void Gui::DeviceContext::applyRenderContext(RenderContext context){
+			wglMakeCurrent(handle(), context.handle());
+		}
+		//#endif
 		//Gui::RenderContext Gui::DeviceContext::createRenderContext() const {
 		//	return Gui::RenderContext(wglCreateContext(handle()));
 		//}
