@@ -10,23 +10,6 @@
 using namespace std;
 namespace WinCape
 {
-	//--------------------------------------------------------------------------
-	//HasHandle
-	//--------------------------------------------------------------------------
-
-	namespace Gui 
-	{
-
-
-		////--------------------------------------------------------------------
-		////RenderContext
-		////--------------------------------------------------------------------
-		//RenderContext::RenderContext() {}
-		//RenderContext::RenderContext(GlRenderContextHandle value)
-		//{
-		//	handle(value);
-		//}
-	}
 	namespace Base
 	{
 		const Gui::Window Console(){
