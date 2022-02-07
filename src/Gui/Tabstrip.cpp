@@ -1,6 +1,3 @@
 #include "Gui/Tabstrip.hpp"
-namespace WinCape{
-	namespace Gui{
-
-	}
+namespace WinCape::Gui{
 }

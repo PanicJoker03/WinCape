@@ -9,7 +9,8 @@ namespace WinCape
 		private:
 			Bitmap(const Bitmap&) = delete;
 			//Bitmap& operator=(const Bitmap&) = delete;
-			void getBitmapInfo(const DeviceContextHandle& deviceContext, BITMAPINFO& bmpInfo) const;
+			void getBitmapInfo(const DeviceContextHandle& deviceContext,
+					BITMAPINFO& bmpInfo) const;
 		public:
 			Bitmap(const Vector2I& dimensions = Vector2I{});
 			Bitmap& operator = (const Bitmap& bitmap);

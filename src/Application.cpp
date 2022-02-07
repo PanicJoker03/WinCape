@@ -7,17 +7,21 @@
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
 namespace WinCape{
-	//-------------------------------------------------------------------------
+	//--------------------------------------------------------------------------
 	//Application
-	//-------------------------------------------------------------------------
+	//--------------------------------------------------------------------------
 	void Application::init(const TextChar* name)
 	{
 		Manager::instance().registerClass(name);
 	}
-	Gui::Window Application::createWindow(const TextChar* windowName, const TextChar* title, const Rect& rect, WindowStyle style, WindowExtendedStyle exStyle)
+	Gui::Window Application::createWindow(const TextChar* windowName,
+		const TextChar* title, const Rect& rect, WindowStyle style,
+		WindowExtendedStyle exStyle)
 	{
 		Gui::Window window;
-		window = Gui::Window(Manager::instance().createHandle(windowName, title, style, rect, nullptr, exStyle));
+		window = Gui::Window(Manager::instance().createHandle(
+			windowName, title, style, rect, nullptr, exStyle)
+		);
 		return window;
 	}
 	int Application::run()
@@ -30,7 +34,9 @@ namespace WinCape{
 		window.onCreate();
 		window.onPaint([&](Event e) {
 			PAINTSTRUCT paintStruct;
-			Gui::DeviceContext deviceContext{ (BeginPaint(window.handle(), &paintStruct)) };
+			Gui::DeviceContext deviceContext{
+				(BeginPaint(window.handle(), &paintStruct))
+			};
 			window.onDraw(window.deviceContext());
 			EndPaint(window.handle(), &paintStruct);
 			});

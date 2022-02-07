@@ -19,8 +19,16 @@ namespace WinCape
 			void show();
 			void hide();
 			void minimize();
-			void addButton(Button& button, const TextChar* text, const Vector2I& position, const Vector2I& size = Defaults::ButtonSize);
-			void addRadioButton(std::initializer_list<std::pair<Reference<RadioButton>, const TextChar*>> radioButtonList, const Vector2I& position, const Vector2I& padding = Defaults::RadioButtonPadding);
+
+			void addButton(Button& button, const TextChar* text,
+				const Vector2I& position,
+				const Vector2I& size = Defaults::ButtonSize);
+
+			void addRadioButton(
+					std::initializer_list<std::pair<Reference<RadioButton>,
+					const TextChar*>> radioButtonList, const Vector2I& position,
+					const Vector2I& padding = Defaults::RadioButtonPadding);
+
 			void attachMenu(Menu& menu);
 			void onDestroy(const EventCallback& callback);
 			void onPaint(const EventCallback& callback);

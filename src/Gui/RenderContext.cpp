@@ -1,18 +1,16 @@
 //#ifdef WINCAPE_USES_WGL
 #include "defines.hpp"
 #include "Gui/RenderContext.hpp"
-namespace WinCape
+namespace WinCape::Gui
 {
-	namespace Gui
+	////------------------------------------------------------------------------
+	////RenderContext
+	////------------------------------------------------------------------------
+	RenderContext::RenderContext() {}
+	RenderContext::RenderContext(GlRenderContextHandle value)
 	{
-		////-------------------------------------------------------------------------
-		////RenderContext
-		////-------------------------------------------------------------------------
-		Gui::RenderContext::RenderContext() {}
-		Gui::RenderContext::RenderContext(GlRenderContextHandle value)
-		{
-			handle(value);
-		}
+		handle(value);
 	}
+
 }
 //#endif

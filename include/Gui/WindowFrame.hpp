@@ -18,7 +18,12 @@ namespace WinCape{
 			const Rect rect;
 			const WindowStyle style;
 		protected:
-			WindowFrame(const TextChar* windowName = Defaults::WindowName, const TextChar* title = Text("Default"), const Rect& rect = Defaults::WindowRect, WindowStyle style = Defaults::DefWindowStyle);
+			WindowFrame(const TextChar* windowName = Defaults::WindowName,
+				const TextChar* title = Text("Default"),
+				const Rect& rect = Defaults::WindowRect,
+				WindowStyle style = Defaults::DefWindowStyle
+			);
+
 			virtual void onCreate() = 0;
 			virtual void onDraw(DeviceContext deviceContext) = 0;
 			virtual void onDispose();

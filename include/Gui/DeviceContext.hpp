@@ -13,10 +13,11 @@ namespace WinCape
 		{
 		public:
 			DeviceContext();
-			DeviceContext(DeviceContextHandle value);
-			DeviceContext(WindowHandle handle);
+			explicit DeviceContext(DeviceContextHandle value);
+			explicit DeviceContext(WindowHandle handle);
 			//void drawBitmap(const Bitmap& bitmap);
-			void drawBitmap(const Bitmap& bitmap, const Vector2I& padding = Vector2I{});
+			void drawBitmap(const Bitmap& bitmap,
+					const Vector2I& padding = Vector2I{});
 			void drawText(const TextChar* text, DrawTextFormat format);
 			Rect bounds() const;
 			Window window() const;
@@ -29,7 +30,8 @@ namespace WinCape
 			~DeviceContext();
 			friend Window;
 		private:
-			void bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny, const Rect& rect);
+			void bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny,
+					const Rect& rect);
 		};
 	}
 }

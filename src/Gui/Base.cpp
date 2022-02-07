@@ -1,20 +1,17 @@
 #include "Gui/Base.hpp"
-namespace WinCape
+namespace WinCape::Gui
 {
-	namespace Gui
+	//-------------------------------------------------------------------------
+	//Base
+	//-------------------------------------------------------------------------
+	Base::Base() {}
+	void Base::setText(const TextChar* text)
 	{
-		//-------------------------------------------------------------------------
-		//Base
-		//-------------------------------------------------------------------------
-		Gui::Base::Base() {}
-		void Gui::Base::setText(const TextChar* text)
-		{
-			SetWindowText(handle(), text);
-		}
-		void Gui::Base::getText(TextChar* text, int lenght) const
-		{
-			GetWindowText(handle(), text, lenght);
-			//return text;
-		}
+		SetWindowText(handle(), text);
+	}
+	void Base::getText(TextChar* text, int lenght) const
+	{
+		GetWindowText(handle(), text, lenght);
+		//return text;
 	}
 }
