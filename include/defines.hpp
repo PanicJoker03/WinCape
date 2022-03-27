@@ -482,17 +482,17 @@ namespace WinCape
 #ifdef WINCAPE_USES_WGL
 	namespace PixelFormatFlags {
 		enum : PixelFormatFlag{
-			DrawToWindow,
-			DrawToBitmap,
-			SupportGdi,
-			SupportOpengl,
-			GenericAccelerated,
-			GenericFormat,
-			NeedPalette,
-			NeedSystemPalette,
-			DoubleBuffer,
-			Stereo,
-			SwapLayerBuffers
+			DrawToWindow  = PFD_DRAW_TO_WINDOW,
+			DrawToBitmap = PFD_DRAW_TO_BITMAP,
+			SupportGdi = PFD_SUPPORT_GDI,
+			SupportOpengl = PFD_SUPPORT_OPENGL,
+			GenericAccelerated = PFD_GENERIC_ACCELERATED,
+			GenericFormat = PFD_GENERIC_FORMAT,
+			NeedPalette = PFD_NEED_PALETTE,
+			NeedSystemPalette = PFD_NEED_SYSTEM_PALETTE,
+			DoubleBuffer = PFD_DOUBLEBUFFER,
+			Stereo = PFD_STEREO,
+			SwapLayerBuffers = PFD_SWAP_LAYER_BUFFERS
 		};
 	}
 	namespace PixelFormatTypes {
