@@ -69,6 +69,7 @@ namespace WinCape::Gui
 			radioButton.handle(radioButtonHandle);
 		}
 	}
+
 	void Window::attachMenu(Menu& menu)
 	{
 		SetMenu(handle(), menu.handle());
@@ -128,6 +129,12 @@ namespace WinCape::Gui
 			*/
 		SetLayeredWindowAttributes(
 			handle(), 0, value, LayeredWindowAttributes::Alpha);
+	}
+	void Window::parent(Window window){
+		SetParent(handle(), window.handle());
+	}
+	Window Window::parent(){
+		return Window(GetParent(handle()));
 	}
 	Window::~Window()
 	{

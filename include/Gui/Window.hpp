@@ -38,6 +38,8 @@ namespace WinCape
 			void timer(const EventCallback& callback, unsigned int time);
 			void alpha(const Byte value);
 			DeviceContext deviceContext();
+			void parent(Window window);
+			Window parent();
 			~Window();
 		};
 	}
