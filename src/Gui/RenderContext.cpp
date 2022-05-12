@@ -3,14 +3,17 @@
 #include "Gui/RenderContext.hpp"
 namespace WinCape::Gui
 {
-	////------------------------------------------------------------------------
+	////-------------------------------------------------------------------------
 	////RenderContext
-	////------------------------------------------------------------------------
-	RenderContext::RenderContext() {}
-	RenderContext::RenderContext(GlRenderContextHandle value)
+	////-------------------------------------------------------------------------
+	Gui::RenderContext::RenderContext() {}
+	Gui::RenderContext::RenderContext(GlRenderContextHandle value)
 	{
 		handle(value);
 	}
-
+	Gui::RenderContext::~RenderContext(){
+		//Solo hasta haber implementado el move constructor...
+		//wglDeleteContext(handle());
+	}
 }
 //#endif

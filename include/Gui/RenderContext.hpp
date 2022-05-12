@@ -8,6 +8,7 @@ namespace WinCape{
 		public:
 			RenderContext();
 			RenderContext(GlRenderContextHandle renderContext);
+			~RenderContext();
 			friend Window;
 		};
 	}
