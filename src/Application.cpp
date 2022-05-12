@@ -53,6 +53,6 @@ namespace WinCape{
 	}
 
 	void Application::quit() {
-		SendMessage(0, WM_QUIT, Null, Null);
+		PostQuitMessage(0);
 	}
 }
