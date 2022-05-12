@@ -38,28 +38,6 @@ namespace WinCape
 #endif
 	//type definitions
 
-	class Console : public Singleton<Console> {
-#ifndef UNICODE
-		std::ostream& outstream = std::cout;
-#else 
-		std::wostream& outstream = std::wcout;
-#endif
-	public:
-		template<typename ...Args>
-		void Print(Args ... params) {
-			const int call[] = {
-					(outstream << params, 0)...
-			};
-			static_cast<void>(call);
-		}
-
-		template<typename ...Args>
-		void PrintLine(Args ... params) {
-			Print(params...);
-			Print(Text('\n'));
-		}
-	};
-
 	using TextChar = TCHAR;
 	class BaseStringView {
 	public:
