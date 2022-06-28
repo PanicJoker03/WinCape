@@ -16,6 +16,13 @@ namespace WinCape
 			return Gui::Window(GetConsoleWindow());
 		}
 	}
+	TextChar *textCopy(TextChar* dest, const TextChar* src){
+#ifdef _UNICODE
+			return wcscpy(dest, src);
+#else
+			return strcpy(dest, src);
+#endif
+	}
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//--------------------------------------------------------------------------

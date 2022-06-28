@@ -1,9 +1,12 @@
 #include <defaults.hpp>
 #include <Manager.hpp>
-#include <tchar.h>
 #include <map>
 #include <Application.hpp>
+#include <WinCape.hpp>
 using namespace std;
+
+
+
 namespace WinCape
 {
 	//--------------------------------------------------------------------------
@@ -149,7 +152,7 @@ namespace WinCape
 			DeleteObject(applicationFont);
 			LOGFONT logFont = {};
 			logFont.lfHeight = 16;
-			_tcscpy(logFont.lfFaceName, fontName);
+			textCopy(logFont.lfFaceName, fontName);
 			applicationFont = CreateFontIndirect(&logFont);
 		}
 		FontHandle defaultFont()

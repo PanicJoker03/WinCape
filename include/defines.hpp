@@ -36,6 +36,7 @@ namespace WinCape
 #ifndef Text
 #define Text(str) TEXT(str)
 #endif
+
 	//type definitions
 
 	using TextChar = TCHAR;

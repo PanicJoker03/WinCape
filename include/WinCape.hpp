@@ -39,5 +39,6 @@ namespace WinCape{
 	{
 		const Gui::Window Console();
 	}
+	TextChar *textCopy(TextChar* dest, const TextChar* src);
 }
 #endif
