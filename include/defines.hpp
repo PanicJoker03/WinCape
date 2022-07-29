@@ -21,9 +21,13 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 //#endif
+
+//For sake of simplicity, this framework will use wide char types
+//TODO: use w_char and wstring on all text operations...
+
 namespace WinCape
 {
-	template<typename T> 
+	template<typename T>
 	class Singleton {
 		static std::unique_ptr<T> ptr;
 	public:
