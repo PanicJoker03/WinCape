@@ -18,7 +18,7 @@ namespace WinCape
 		static constexpr ShowCommand DefShowCommand =
 				ShowCommands::ShowDefault;
 
-		static constexpr const TextChar* ButtonClassName = Text("BUTTON");
+		static constexpr const TextChar* ButtonClassName = ConstText("BUTTON");
 		static constexpr Vector2I ButtonSize = Vector2I{ 80, 24 };
 		static constexpr Vector2I RadioButtonPadding = Vector2I{ 0, 32 };
 
