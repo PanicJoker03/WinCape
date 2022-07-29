@@ -8,6 +8,7 @@
 #include "Gui/Font.hpp"
 #include "Gui/Icon.hpp"
 #include "Gui/ListBox.hpp"
+#include "Gui/ListView.hpp"
 #include "Gui/Menu.hpp"
 #include "Gui/Button.hpp"
 #include "Gui/RadioButton.hpp"

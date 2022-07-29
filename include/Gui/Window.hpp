@@ -6,6 +6,7 @@
 #include "Gui/DeviceContext.hpp"
 #include "Gui/Icon.hpp"
 #include "Gui/Button.hpp"
+#include "Gui/ListView.hpp"
 #include "Gui/RadioButton.hpp"
 #include "Gui/Menu.hpp"
 namespace WinCape
@@ -29,6 +30,7 @@ namespace WinCape
 					const TextChar*>> radioButtonList, const Vector2I& position,
 					const Vector2I& padding = Defaults::RadioButtonPadding);
 
+            void addListView(ListView & listView, const Rect & dimensions, const Vector2I & padding = {});
 			void attachMenu(Menu& menu);
 			void onDestroy(const EventCallback& callback);
 			void onPaint(const EventCallback& callback);

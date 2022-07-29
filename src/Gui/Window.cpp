@@ -38,8 +38,7 @@ namespace WinCape::Gui
 		);
 		button.handle(buttonHandle);
 	}
-	void
-	Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
+	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
 		const TextChar*>> radioButtonList, const Vector2I& position,
 		const Vector2I& padding)
 	{
@@ -68,6 +67,17 @@ namespace WinCape::Gui
 			);
 			radioButton.handle(radioButtonHandle);
 		}
+	}
+
+	void Window::addListView(ListView & listView, const Rect & dimensions, const Vector2I& padding)
+	{
+	    Handle listViewHandle;
+	    const ListViewStyle style = WindowStyles::Child | WindowStyles::Visible | ListViewStyles::Report;
+	    Rect dimensions_ = dimensions;
+	    dimensions_.position.x += padding.x;
+	    dimensions_.position.y += padding.y;
+	    listViewHandle = Manager::instance().createHandle(ClassNames::ListView, Text(""), style, dimensions_, handle());
+	    listView.handle(listViewHandle);
 	}
 
 	void Window::attachMenu(Menu& menu)

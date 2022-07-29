@@ -18,7 +18,7 @@ namespace WinCape
 		static constexpr ShowCommand DefShowCommand =
 				ShowCommands::ShowDefault;
 
-		static constexpr const TextChar* ButtonClassName = ConstText("BUTTON");
+		static constexpr const TextChar* ButtonClassName = Text("BUTTON");
 		static constexpr Vector2I ButtonSize = Vector2I{ 80, 24 };
 		static constexpr Vector2I RadioButtonPadding = Vector2I{ 0, 32 };
 
@@ -29,6 +29,9 @@ namespace WinCape
 		static constexpr ButtonStyle RadioButtonStyle =
 				WindowStyles::TabStop | WindowStyles::Visible |
 				WindowStyles::Child | ButtonStyles::AutoRadioButton;
+
+        static constexpr int ListViewMinColumnWidth = 50;
+        static constexpr int ListViewColumnWidth = 100;
 #ifdef WINCAPE_USES_WGL
 		static constexpr PixelFormat DefPixelFormat = {
 				PixelFormatFlags::DoubleBuffer |
