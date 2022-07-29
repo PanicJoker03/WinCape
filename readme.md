@@ -12,6 +12,8 @@ And a usefull cygwin installation guide [here](https://www.sefidian.com/2020/05/
 
 **Cpp, Hell Yeah!**
 
+TODO: Rollback TextChar changes, use wchar_t and char instead on all methods.
+
 ### Credits
 
 [lalmaguerdlg](https://github.com/lalmaguerdlg) - ListView implementation.
