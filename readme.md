@@ -2,6 +2,7 @@
 
 WinCape is a general Win32Api wrapper. The philosophy behind the code is to hide all the macros, functions and legacy stuff from the win 32 api.
 
+![Oops](https://res.cloudinary.com/dc5vwax2d/image/upload/v1659298089/CapturaWinCape_l5knoe.png "Little Showcase Window")
 
 ## Build
 
