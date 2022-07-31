@@ -51,7 +51,7 @@ namespace WinCape
 			while (GetMessage(&msg, NULL, 0, 0))
 			{
 				TranslateMessage(&msg);
-				DispatchMessage(&msg);
+				DispatchMessageW(&msg);
 			}
 			return static_cast<int>(msg.wParam);
 		}
@@ -110,7 +110,7 @@ namespace WinCape
 				ManagerImpl::instance().doCallback(
 					EventKey{ handle, message }, wParam, lParam
 				);
-				return DefWindowProc(hWnd, message, wParam, lParam);
+				return DefWindowProcW(hWnd, message, wParam, lParam);
 			break;
 			}
 			return 0;
@@ -120,7 +120,7 @@ namespace WinCape
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
 			WNDCLASSEXW windowClass = {};
-			windowClass.cbSize = sizeof(WNDCLASSEX);
+			windowClass.cbSize = sizeof(WNDCLASSEXW);
 			windowClass.style = Defaults::DefClassStyle;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = Application::instance();
@@ -143,6 +143,7 @@ namespace WinCape
 			//Because each window must register it's class
 			if(!GetClassInfoW(Application::instance(), name, &windowClass))
 				registerClass(name);
+				//MessageBoxW(0, name, L"NO manches", MB_OK);
 			auto handle = CreateWindowExW(
 				exStyle,
 				name,
@@ -156,7 +157,7 @@ namespace WinCape
 				NULL
 			);
 			int err = GetLastError();
-			SendMessage(
+			SendMessageW(
 				handle, WM_SETFONT, (WPARAM)Manager::instance().defaultFont(),
 				(LPARAM)MAKELONG(TRUE, 0)
 			);
@@ -169,7 +170,11 @@ namespace WinCape
 			DeleteObject(applicationFont);
 			LOGFONTW logFont = {};
 			logFont.lfHeight = 16;
-			textCopy(logFont.lfFaceName, fontName);
+			#ifdef _WIN32
+				wcscpy_s(logFont.lfFaceName, wcsnlen_s(fontName + 1, 256), fontName);
+			#else
+				wcscpy(logFont.lfFaceName, fontName);
+			#endif
 			applicationFont = CreateFontIndirectW(&logFont);
 		}
 		FontHandle defaultFont()
