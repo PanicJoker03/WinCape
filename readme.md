@@ -2,6 +2,7 @@
 
 WinCape is a general Win32Api wrapper. The philosophy behind the code is to hide all the macros, functions and legacy stuff from the win 32 api.
 
+![Oops](https://res.cloudinary.com/dc5vwax2d/image/upload/v1659298089/CapturaWinCape_l5knoe.png "Little Showcase Window")
 
 ## Build
 
@@ -15,8 +16,6 @@ And a usefull cygwin installation guide [here](https://www.sefidian.com/2020/05/
 If building throws an error about __imp_wglCreateContext not resolved then you must include library OpenGl32.
 
 **Cpp, Hell Yeah!**
-
-TODO: Rollback TextChar changes, use wchar_t and char instead on all methods.
 
 ### Credits
 
