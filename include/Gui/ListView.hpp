@@ -8,11 +8,11 @@ namespace WinCape{
         {
         public:
             int count();
-            void addColumn(int index, char * headerText, int width = 0);
+            void addColumn(int index, const char* headerText, int width = 0);
             LV_ITEM getItem(int index);
             void addRow(int row, std::vector<std::string> cols);
-            void addRow(int row, char* text);
-            void setRow(int row, int col, char* text);
+            void addRow(int row, const char* text);
+            void setRow(int row, int col, const char* text);
             void addCheckBoxes();
             void onItemChecked(const EventCallback& callback);
             void clear();
