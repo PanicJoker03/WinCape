@@ -17,6 +17,5 @@ namespace WinCape{
 	{
 		const Gui::Window Console();
 	}
-	wchar_t *textCopy(wchar_t* dest, const wchar_t* src);
 }
 #endif

@@ -16,9 +16,6 @@ namespace WinCape
 			return Gui::Window(GetConsoleWindow());
 		}
 	}
-	wchar_t *textCopy(wchar_t* dest, const wchar_t* src){
-        return wcscpy(dest, src);
-	}
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//--------------------------------------------------------------------------
