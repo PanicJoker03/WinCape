@@ -1,17 +1,12 @@
-
-/*
+//Tested on CodeBlocks on Cygwin
 int main() {
-
+    	const wchar_t* texto = L"Ya pasaron 20 Minutos";
 	WinCape::Application::init();
-	wnd = WinCape::Application::createWindow(L"Ele Pruebas", L"Reglas 20-20-20", Rect{400, 400, 300, 200}, WindowStyles::DialogFrame);
+	Gui::Window wnd = WinCape::Application::createWindow(L"Pruebas", L"Reglas 20-20-20", Rect{400, 400, 300, 200}, WindowStyles::DialogFrame);
 	wnd.hide();
 
 	Gui::DeviceContext dc = wnd.deviceContext();
-	std::cout << dc.handle() << std::endl;
-	std::cout << dc.bounds().position.x << std::endl;
-	std::cout << dc.bounds().position.y << std::endl;
-	std::cout << dc.bounds().size.x << std::endl;
-	std::cout << dc.bounds().size.y << std::endl;
+
 	wnd.onPaint([&](Event e){
 		DrawTextFormat textFormat = DrawTextFormats::SingleLine | DrawTextFormats::HorizontalCenter | DrawTextFormats::VerticalCenter;
 		dc.drawText(texto, textFormat);
@@ -23,9 +18,8 @@ int main() {
 	});
 	std::cout << "!!!Hello World!!!" << std::endl; // prints !!!Hello World!!!
 	wnd.timer([&](Event e){
-		ShowWindow();
+		wnd.show();
 	}, 1200000);
 	WinCape::Application::run();
 	return 0;
 }
-*/
