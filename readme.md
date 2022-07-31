@@ -17,8 +17,6 @@ If building throws an error about __imp_wglCreateContext not resolved then you m
 
 **Cpp, Hell Yeah!**
 
-TODO: Rollback TextChar changes, use wchar_t and char instead on all methods.
-
 ### Credits
 
 [lalmaguerdlg](https://github.com/lalmaguerdlg) - ListView implementation.
