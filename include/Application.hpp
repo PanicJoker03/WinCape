@@ -13,18 +13,18 @@ namespace WinCape{
 		/// <summary>
 		/// Starts the application loop
 		/// </summary>
-		static void init(const TextChar* name = Defaults::WindowName);
+		static void init(const wchar_t* name = Defaults::WindowName);
 		static Gui::Window console();
 		static int run();
 		static int run(WinCape::Gui::WindowFrame& window);
 		static InstanceHandle instance();
 		//Really poor function, must be called at the application beginning in
 		//order to work...
-		static void defaultFont(const TextChar* fontName);
+		static void defaultFont(const wchar_t* fontName);
 
 		static Gui::Window createWindow(
-			const TextChar* windowName = Defaults::WindowName,
-			const TextChar* title = Text("Default"),
+			const wchar_t* windowName = Defaults::WindowName,
+			const wchar_t* title = L"Default",
 			const Rect & rect = Defaults::WindowRect,
 			WindowStyle style = Defaults::DefWindowStyle,
 			WindowExtendedStyle exStyle = 0

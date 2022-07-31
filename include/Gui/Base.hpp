@@ -6,8 +6,8 @@ namespace WinCape{
 		class Base : public HasHandle<WindowHandle>
 		{
 		public:
-			void setText(const TextChar* text);
-			void getText(TextChar* text, int lenght) const;
+			void setText(const wchar_t* text);
+			void getText(wchar_t* text, int lenght) const;
 		protected:
 			Base();
 		};

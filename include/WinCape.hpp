@@ -11,34 +11,12 @@
 
 //TODO...
 //Use lower case on static methods
-namespace WinCape
-{
-	namespace Gui
-	{
-	/*
-		//forward declarations
-		class Window;
-		class Button;
-		class RadioButton;
-		class Menu;
-		class Icon;
-		class DeviceContext;
-		class Bitmap;
-		class WindowFrame;
-
-#ifdef WINCAPE_USES_WGL
-		class RenderContext;
-#endif
-*/
-
-	}
-}
 
 namespace WinCape{
 	namespace Base
 	{
 		const Gui::Window Console();
 	}
-	TextChar *textCopy(TextChar* dest, const TextChar* src);
+	wchar_t *textCopy(wchar_t* dest, const wchar_t* src);
 }
 #endif

@@ -6,7 +6,7 @@ namespace WinCape::Gui
 	//-------------------------------------------------------------------------
 	//WindowFrame
 	//-------------------------------------------------------------------------
-	WindowFrame::WindowFrame(const TextChar* windowName, const TextChar* title,
+	WindowFrame::WindowFrame(const wchar_t* windowName, const wchar_t* title,
 		const Rect& rect, WindowStyle style)
 		: windowName(windowName), rect(rect), style(style) {
 		handle(Application::createWindow(

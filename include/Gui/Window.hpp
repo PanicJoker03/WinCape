@@ -21,13 +21,13 @@ namespace WinCape
 			void hide();
 			void minimize();
 
-			void addButton(Button& button, const TextChar* text,
+			void addButton(Button& button, const wchar_t* text,
 				const Vector2I& position,
 				const Vector2I& size = Defaults::ButtonSize);
 
 			void addRadioButton(
 					std::initializer_list<std::pair<Reference<RadioButton>,
-					const TextChar*>> radioButtonList, const Vector2I& position,
+					const wchar_t*>> radioButtonList, const Vector2I& position,
 					const Vector2I& padding = Defaults::RadioButtonPadding);
 
             void addListView(ListView & listView, const Rect & dimensions, const Vector2I & padding = {});

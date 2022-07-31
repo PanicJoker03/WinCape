@@ -8,7 +8,7 @@ namespace WinCape
 		class ListBox final : public Control
 		{
 		public:
-			void addString(const TextChar* string);
+			void addString(const wchar_t* string);
 			int count();
 		};
 	}

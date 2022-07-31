@@ -8,7 +8,7 @@ namespace WinCape
 		class RadioButton final : public Button
 		{
 		public:
-			using Pair = std::pair<Reference<RadioButton>, const TextChar*>;
+			using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
 		};
 	}
 }

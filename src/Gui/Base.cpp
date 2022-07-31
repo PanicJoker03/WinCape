@@ -5,13 +5,13 @@ namespace WinCape::Gui
 	//Base
 	//-------------------------------------------------------------------------
 	Base::Base() {}
-	void Base::setText(const TextChar* text)
+	void Base::setText(const wchar_t* text)
 	{
-		SetWindowText(handle(), text);
+		SetWindowTextW(handle(), text);
 	}
-	void Base::getText(TextChar* text, int lenght) const
+	void Base::getText(wchar_t* text, int lenght) const
 	{
-		GetWindowText(handle(), text, lenght);
+		GetWindowTextW(handle(), text, lenght);
 		//return text;
 	}
 }

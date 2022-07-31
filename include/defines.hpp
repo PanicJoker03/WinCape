@@ -37,51 +37,7 @@ namespace WinCape
 			return *ptr;
 		}
 	};
-#ifndef Text
-#define Text(str) TEXT(str)
-#endif
 
-	//type definitions
-
-	using TextChar = TCHAR;
-	class BaseStringView {
-	public:
-		constexpr BaseStringView(const TextChar* str) : str(str) {
-
-		}
-	private:
-		const TextChar* str;
-	public:
-		const TextChar operator[](size_t i) {
-			return str[i];
-		}
-		constexpr const TextChar* ptr() const {
-			return str;
-		}
-	};
-
-	template<size_t Len>
-	class TextView : public BaseStringView {
-	public:
-		constexpr TextView(const TextChar* str) : BaseStringView(str) {
-
-		}
-		constexpr size_t count() const {
-			return Len;
-		}
-		constexpr size_t length() const {
-			return Len - 1;//Omits null terminated character
-		}
-		constexpr size_t size() const {
-			return sizeof(TextChar) * Len;
-		}
-	};
-#ifndef StringLen
-#define StringLen(str) sizeof(Text(str))/sizeof(TextChar)
-#endif
-#ifndef StringView
-#define StringView(str) TextView<StringLen(str)>{ Text(str) }
-#endif
 	template<typename T> class HasHandle
 	{
 	public:
@@ -95,15 +51,6 @@ namespace WinCape
 		void handle(T handle){
 			_handle = handle;
 		};
-/*
-		template<typename T> HasHandle<T>::HasHandle() {}
-		template<typename T> void HasHandle<T>::handle(T handle)
-
-		template<typename T> T HasHandle<T>::handle() const
-		{
-			return _handle;
-		}
-		*/
 	private:
 		T _handle;
 	};
@@ -392,9 +339,9 @@ namespace WinCape
 		};
 	}
 	struct ClassNames final {
-		constexpr static const TextChar* ListView = WC_LISTVIEW;
-		constexpr static const TextChar* Button = WC_BUTTON;
-		constexpr static const TextChar* ListBox = WC_LISTBOX;
+		constexpr static const wchar_t* ListView = L"SysListView32";//WC_LISTVIEW;
+		constexpr static const wchar_t* Button = L"Button";//WC_BUTTON;
+		constexpr static const wchar_t* ListBox = L"ListBox";//WC_LISTBOX;
 	};
 	namespace ListViewStyles
 	{

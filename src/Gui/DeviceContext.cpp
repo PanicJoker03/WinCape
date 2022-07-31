@@ -40,15 +40,11 @@ namespace WinCape::Gui
 			bitBlt(bitmap.handle(), deviceContextMemory, Rect{ padding, bitmapSize });
 			DeleteDC(deviceContextMemory);
 		}
-		void Gui::DeviceContext::drawText(const TextChar* text, DrawTextFormat flags){
+		void Gui::DeviceContext::drawText(const wchar_t* text, DrawTextFormat flags){
 			Rect rect = bounds();
 			SetTextColor(handle(), 0x00000000);
 			SetBkMode(handle(), TRANSPARENT);
-	#ifndef UNICODE
-			DrawTextA(handle(), text, -1, reinterpret_cast<RECT*>(&rect), flags);
-	#else
 			DrawTextW(handle(), text, -1, reinterpret_cast<RECT*>(&rect), flags);
-	#endif
 		}
 		Rect Gui::DeviceContext::bounds() const {
 			Rect rect;

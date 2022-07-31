@@ -24,7 +24,7 @@ namespace WinCape::Gui
 	{
 		ShowWindow(handle(), ShowCommands::Minimize);
 	}
-	void Window::addButton(Button& button, const TextChar* text,
+	void Window::addButton(Button& button, const wchar_t* text,
 		const Vector2I& position, const Vector2I& size)
 	{
 		Handle buttonHandle;
@@ -39,7 +39,7 @@ namespace WinCape::Gui
 		button.handle(buttonHandle);
 	}
 	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
-		const TextChar*>> radioButtonList, const Vector2I& position,
+		const wchar_t*>> radioButtonList, const Vector2I& position,
 		const Vector2I& padding)
 	{
 		const auto listSize = radioButtonList.size();
@@ -47,7 +47,7 @@ namespace WinCape::Gui
 		{
 			Handle radioButtonHandle;
 			RadioButton& radioButton = radioButtonList.begin()[i].first;
-			const TextChar* caption = radioButtonList.begin()[i].second;
+			const wchar_t* caption = radioButtonList.begin()[i].second;
 			Vector2I position_ = position;
 			position_.x += padding.x * i;
 			position_.y += padding.y * i;
@@ -76,7 +76,7 @@ namespace WinCape::Gui
 	    Rect dimensions_ = dimensions;
 	    dimensions_.position.x += padding.x;
 	    dimensions_.position.y += padding.y;
-	    listViewHandle = Manager::instance().createHandle(ClassNames::ListView, Text(""), style, dimensions_, handle());
+	    listViewHandle = Manager::instance().createHandle(ClassNames::ListView, L"", style, dimensions_, handle());
 	    listView.handle(listViewHandle);
 	}
 

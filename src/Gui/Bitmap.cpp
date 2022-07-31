@@ -30,10 +30,10 @@ namespace WinCape::Gui
 			DIB_RGB_COLORS);
 		bmpInfo.bmiHeader.biCompression = BI_RGB;
 	}
-	void Bitmap::load(const TextChar* sourcePath)
+	void Bitmap::load(const wchar_t* sourcePath)
 	{
 		DeleteObject(handle());
-		handle((BitmapHandle)LoadImage(NULL, sourcePath, IMAGE_BITMAP, 0, 0,
+		handle((BitmapHandle)LoadImageW(NULL, sourcePath, IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE));
 	}
 	Vector2I Bitmap::dimension() const

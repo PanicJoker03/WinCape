@@ -18,7 +18,7 @@ namespace WinCape
 			//void drawBitmap(const Bitmap& bitmap);
 			void drawBitmap(const Bitmap& bitmap,
 					const Vector2I& padding = Vector2I{});
-			void drawText(const TextChar* text, DrawTextFormat format);
+			void drawText(const wchar_t* text, DrawTextFormat format);
 			Rect bounds() const;
 			Window window() const;
 			//drawBitmapClipped...

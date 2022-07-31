@@ -9,9 +9,9 @@ namespace WinCape {
 		private:
 			void enableMenuCommand();
 		public:
-			void addSubMenu(Menu& menu, const TextChar* text);
-			void addItem(const TextChar* item);
-			void addItems(std::initializer_list<const TextChar*> itemList);
+			void addSubMenu(Menu& menu, const wchar_t* text);
+			void addItem(const wchar_t* item);
+			void addItems(std::initializer_list<const wchar_t*> itemList);
 			void onItemSelect(const EventCallback& callback);
 			static void create(Menu& menu);
 			friend Window;

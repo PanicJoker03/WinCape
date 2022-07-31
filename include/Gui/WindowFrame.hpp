@@ -14,12 +14,12 @@ namespace WinCape{
 		public:
 			friend WinCape::Application;
 		private:
-			const TextChar* windowName;
+			const wchar_t* windowName;
 			const Rect rect;
 			const WindowStyle style;
 		protected:
-			WindowFrame(const TextChar* windowName = Defaults::WindowName,
-				const TextChar* title = Text("Default"),
+			WindowFrame(const wchar_t* windowName = Defaults::WindowName,
+				const wchar_t* title = L"Default",
 				const Rect& rect = Defaults::WindowRect,
 				WindowStyle style = Defaults::DefWindowStyle
 			);

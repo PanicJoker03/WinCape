@@ -10,12 +10,12 @@ namespace WinCape{
 	//--------------------------------------------------------------------------
 	//Application
 	//--------------------------------------------------------------------------
-	void Application::init(const TextChar* name)
+	void Application::init(const wchar_t* name)
 	{
 		Manager::instance().registerClass(name);
 	}
-	Gui::Window Application::createWindow(const TextChar* windowName,
-		const TextChar* title, const Rect& rect, WindowStyle style,
+	Gui::Window Application::createWindow(const wchar_t* windowName,
+		const wchar_t* title, const Rect& rect, WindowStyle style,
 		WindowExtendedStyle exStyle)
 	{
 		Gui::Window window;
@@ -47,7 +47,7 @@ namespace WinCape{
 	{
 		return GetModuleHandle(NULL);
 	}
-	void Application::defaultFont(const TextChar* fontName)
+	void Application::defaultFont(const wchar_t* fontName)
 	{
 		WinCape::Manager::instance().defaultFont(fontName);
 	}

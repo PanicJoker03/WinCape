@@ -16,7 +16,7 @@ private:
 	Gui::Bitmap image;
 	std::vector<Pixel32> buffer;
 public:
-	MyWindow() : Gui::WindowFrame(Text("Wincape Test"), Text("Ventana"), Rect{120,120, 640, 480}) {}
+	MyWindow() : Gui::WindowFrame(L"Wincape Test", L"Ventana", Rect{120,120, 640, 480}) {}
 private:
 	void MyWindow::onCreate() override
 	{
@@ -24,21 +24,21 @@ private:
 		//Setup window
 		Gui::Menu::create(menu);
 		Gui::Menu::create(fileMenu);
-		fileMenu.addItems({ Text("Abrir imagen"), Text("Guardar imagen"), Text("Salir")});
-		menu.addSubMenu(fileMenu, Text("Archivo"));
+		fileMenu.addItems({ L"Abrir imagen", L"Guardar imagen", L"Salir"});
+		menu.addSubMenu(fileMenu, L"Archivo");
 		attachMenu(menu);
-		addButton(buttonA, Text("Bot�n"), Vector2I{ 100, 100 });
-		addButton(buttonB, Text("Test"), Vector2I{ 140, 140 }); 
+		addButton(buttonA, L"Bot�n", Vector2I{ 100, 100 });
+		addButton(buttonB, L"Test", Vector2I{ 140, 140 });
 		addRadioButton(
 			{
-				{ radioButtonA, Text("radio 1") },
-				{ radioButtonB, Text("radio 2") },
-				{ radioButtonC, Text("radio 3") }
+				{ radioButtonA, L"radio 1" },
+				{ radioButtonB, L"radio 2" },
+				{ radioButtonC, L"radio 3" }
 			},
 			Vector2I{ 200,200 }
 		);
 		//Loading the image...
-		image.load(Text("c:\\Users\\w7\\Pictures\\chrono.bmp"));
+		image.load(L"c:\\Users\\w7\\Pictures\\chrono.bmp");
 		buffer.resize(image.dimension().x * image.dimension().y);
 		//Event listening
 		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
@@ -49,7 +49,7 @@ private:
 	void MyWindow::onDraw(Gui::DeviceContext& deviceContext) override
 	{
 		image.clonePixels(&buffer[0]);
-		for (auto& pixel : buffer) 
+		for (auto& pixel : buffer)
 		{
 			pixel.b += 4;
 		}
@@ -66,7 +66,7 @@ private:
 	}
 	void onRadioButtonAClick(Event e)
 	{
-		radioButtonA.setText(Text("Me haz clickeado t�o!"));
+		radioButtonA.setText(L"Me haz clickeado t�o!");
 		redraw();
 	}
 	void onFileMenuSelect(Event e)
@@ -81,7 +81,7 @@ int main() {
 	Application::init();
 	//Setup font
 	//TODO... font class wrapper...
-	Application::defaultFont(Text("Segoe UI"));
+	Application::defaultFont(L"Segoe UI");
 	//Beginning to run the application...
 	//Also add a 'font' param to default controls font style?
 	MyWindow myWindow;

@@ -18,6 +18,7 @@ namespace WinCape
 		//Wrap in a class?
 		using EventMap = map<EventKey, EventCallback>;
 		EventMap eventMap;
+		//vector<void*> ptrPool;
 		//Wrap in font class?
 		FontHandle applicationFont = 0;
 	public:
@@ -29,6 +30,21 @@ namespace WinCape
 			static ManagerImpl instance_;
 			return instance_;
 		}
+
+		//void* poolPtr(void* ptr)
+		//{
+		//    ptrPool.push_back(ptr);
+		//    return ptr;
+		//}
+
+		//void freeMemory()
+		//{
+		//    for(auto& ptr : ptrPool)
+		//    {
+        //        delete ptr;
+		//    }
+		//}
+
 		int startListening()
 		{
 			MSG msg;
@@ -99,34 +115,35 @@ namespace WinCape
 			}
 			return 0;
 		}
-		void registerClass(const TextChar* name = Defaults::WindowName)
+		void registerClass(const wchar_t* name = Defaults::WindowName)
 		{
 			//TODO wrap IDI macros in default header...
-			WNDCLASSEX windowClass = {};
+			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
+			WNDCLASSEXW windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEX);
 			windowClass.style = Defaults::DefClassStyle;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = Application::instance();
-			windowClass.hIcon = LoadIcon(
-				windowClass.hInstance, IDI_APPLICATION
+			windowClass.hIcon = LoadIconW(
+				windowClass.hInstance, MAKEINTRESOURCEW(32512)//
 			);
 			windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 			windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 			windowClass.lpszClassName = name;
-			windowClass.hIconSm = LoadIcon(
-				windowClass.hInstance, IDI_APPLICATION
+			windowClass.hIconSm = LoadIconW(
+				windowClass.hInstance, MAKEINTRESOURCEW(32512)//IDI_APPLICATION
 			);
-			RegisterClassEx(&windowClass);
+			RegisterClassExW(&windowClass);
 		}
-		Gui::Base::Handle createHandle(const TextChar* name,
-			const TextChar* text, WindowStyle style, const Rect& rect,
+		Gui::Base::Handle createHandle(const wchar_t* name,
+			const wchar_t* text, WindowStyle style, const Rect& rect,
 			Gui::Base::Handle parent, WindowExtendedStyle exStyle)
 		{
-			WNDCLASS windowClass = {};
+			WNDCLASSW windowClass = {};
 			//Because each window must register it's class
-			if(!GetClassInfo(Application::instance(), name, &windowClass))
+			if(!GetClassInfoW(Application::instance(), name, &windowClass))
 				registerClass(name);
-			auto handle = CreateWindowExA(
+			auto handle = CreateWindowExW(
 				exStyle,
 				name,
 				text,
@@ -146,14 +163,14 @@ namespace WinCape
 			return handle;
 		}
 		//Use font wrapper class...
-		void defaultFont(const TextChar* fontName)
+		void defaultFont(const wchar_t* fontName)
 		{
 			//http://www.cplusplus.com/forum/windows/109795/
 			DeleteObject(applicationFont);
-			LOGFONT logFont = {};
+			LOGFONTW logFont = {};
 			logFont.lfHeight = 16;
 			textCopy(logFont.lfFaceName, fontName);
-			applicationFont = CreateFontIndirect(&logFont);
+			applicationFont = CreateFontIndirectW(&logFont);
 		}
 		FontHandle defaultFont()
 		{
@@ -182,18 +199,18 @@ namespace WinCape
 	{
 		ManagerImpl::instance().unlistenEvent(handle, message);
 	}
-	void Manager::registerClass(const TextChar* name)
+	void Manager::registerClass(const wchar_t* name)
 	{
 		ManagerImpl::instance().registerClass(name);
 	}
-	Gui::Base::Handle Manager::createHandle(const TextChar* className,
-		const TextChar* text, WindowStyle style, const Rect& rect,
+	Gui::Base::Handle Manager::createHandle(const wchar_t* className,
+		const wchar_t* text, WindowStyle style, const Rect& rect,
 		Gui::Base::Handle parent, WindowExtendedStyle exStyle)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style,
 			rect, parent, exStyle);
 	}
-	void Manager::defaultFont(const TextChar* fontName)
+	void Manager::defaultFont(const wchar_t* fontName)
 	{
 		ManagerImpl::instance().defaultFont(fontName);
 	}

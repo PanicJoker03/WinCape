@@ -14,7 +14,7 @@ namespace WinCape
 		public:
 			Bitmap(const Vector2I& dimensions = Vector2I{});
 			Bitmap& operator = (const Bitmap& bitmap);
-			void load(const TextChar* sourcePath);
+			void load(const wchar_t* sourcePath);
 			Vector2I dimension() const;
 			void clonePixels(void* buffer) const;
 			void setPixels(void* buffer);

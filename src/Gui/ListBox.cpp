@@ -4,7 +4,7 @@ namespace WinCape::Gui
 	//--------------------------------------------------------------------------
 	//ListBox
 	//--------------------------------------------------------------------------
-	void ListBox::addString(const TextChar* string) {
+	void ListBox::addString(const wchar_t* string) {
 		SendMessage(handle(), ListBoxMessages::AddString, 0, (LPARAM)string);
 	}
 	int ListBox::count() {

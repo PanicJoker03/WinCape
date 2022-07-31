@@ -16,20 +16,20 @@ namespace WinCape::Gui
 		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
 		SetMenuInfo(handle(), &menuInfo);
 	}
-	void Menu::addSubMenu(Gui::Menu& menu, const TextChar* text)
+	void Menu::addSubMenu(Gui::Menu& menu, const wchar_t* text)
 	{
-		AppendMenu(
+		AppendMenuW(
 			handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text
 		);
 	}
-	void Menu::addItem(const TextChar* item)
+	void Menu::addItem(const wchar_t* item)
 	{
 		//Create MenuFlags in defines
-		AppendMenu(handle(), MF_STRING, 0, item);
+		AppendMenuW(handle(), MF_STRING, 0, item);
 	}
-	void Menu::addItems(std::initializer_list<const TextChar*> itemList)
+	void Menu::addItems(std::initializer_list<const wchar_t*> itemList)
 	{
-		for (const TextChar* item : itemList)
+		for (const wchar_t* item : itemList)
 		{
 			addItem(item);
 		}
