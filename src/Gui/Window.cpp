@@ -1,6 +1,7 @@
 #include "defines.hpp"
 #include "Manager.hpp"
 #include "Gui.hpp"
+#include "Event.hpp"
 using namespace std;
 namespace WinCape::Gui
 {

@@ -1,5 +1,9 @@
 #ifndef GUI_HPP
 #define GUI_HPP
+namespace WinCape {
+}
+
+
 #include "Gui/Base.hpp"
 #include "Gui/Bitmap.hpp"
 #include "Gui/Control.hpp"
@@ -15,4 +19,6 @@
 #include "Gui/Tabstrip.hpp"
 #include "Gui/Window.hpp"
 #include "Gui/WindowFrame.hpp"
+#include "Gui/Manager.hpp"
+
 #endif

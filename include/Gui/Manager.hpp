@@ -3,6 +3,7 @@
 #include "defines.hpp"
 #include "Gui/Base.hpp"
 #include "Event.hpp"
+#include "Gui/Style.hpp"
 namespace WinCape
 {
 	class Manager

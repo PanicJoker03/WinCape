@@ -1,6 +1,8 @@
 #ifndef BASE_HPP
 #define BASE_HPP
+
 #include "defines.hpp"
+#include "HasHandle.hpp"
 namespace WinCape{
 	namespace Gui{
 		class Base : public HasHandle<WindowHandle>

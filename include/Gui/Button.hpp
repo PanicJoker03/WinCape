@@ -1,6 +1,6 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
-#include "defines.hpp"
+#include "Event.hpp"
 #include "Gui/Control.hpp"
 namespace WinCape
 {

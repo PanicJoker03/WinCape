@@ -1,6 +1,6 @@
 #ifndef CONTROL_HPP
 #define CONTROL_HPP
-#include "defines.hpp"
+//#include "defines.hpp"
 #include "Gui/Base.hpp"
 namespace WinCape
 {

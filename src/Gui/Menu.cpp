@@ -1,4 +1,5 @@
 #include "Gui/Menu.hpp"
+#include "Gui/GuiDefines.hpp"
 #include "Manager.hpp"
 namespace WinCape::Gui
 {

@@ -1,6 +1,7 @@
 #ifndef BITMAP_HPP
 #define BITMAP_HPP
 #include "defines.hpp"
+#include "HasHandle.hpp"
 namespace WinCape
 {
 	namespace Gui{

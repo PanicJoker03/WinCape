@@ -1,6 +1,6 @@
 #ifndef RENDERCONTEXT_HPP
 #define RENDERCONTEXT_HPP
-#include "defines.hpp"
+#include "HasHandle.hpp"
 namespace WinCape{
 	namespace Gui{
 		class Window;

@@ -3,9 +3,8 @@
 #include <map>
 #include <Application.hpp>
 #include <WinCape.hpp>
+#include "Gui/GuiDefines.hpp"
 using namespace std;
-
-
 
 namespace WinCape
 {
@@ -74,7 +73,7 @@ namespace WinCape
 		static void TimerProc(HWND hWnd, UINT param1, UINT param2,
 			UINT_PTR param3, DWORD param4){
 			ManagerImpl::instance().doCallback(
-				EventKey{0, WindowMessages::Timer}, 0, 0
+				EventKey{0, Gui::WindowMessages::Timer}, 0, 0
 			);
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
@@ -83,13 +82,13 @@ namespace WinCape
 			auto handle = (Gui::Base::Handle)hWnd;
 			switch (message)
 			{
-			case WindowMessages::Destroy:
+			case Gui::WindowMessages::Destroy:
 				ManagerImpl::instance().doCallback(
 					EventKey{ handle, message }, wParam, lParam
 				);
 				PostQuitMessage(0);
 				break;
-			case WindowMessages::Command:
+			case Gui::WindowMessages::Command:
 			{
 				Gui::Base::Handle commandHandle = (Gui::Base::Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
@@ -98,7 +97,7 @@ namespace WinCape
 				);
 			}
 			break;
-			case WindowMessages::MenuCommand:
+			case Gui::WindowMessages::MenuCommand:
 			{
 				Gui::Base::Handle commandHandle = (Gui::Base::Handle)lParam;
 				ManagerImpl::instance().doCallback(
@@ -121,7 +120,7 @@ namespace WinCape
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
 			WNDCLASSEXW windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEXW);
-			windowClass.style = Defaults::DefClassStyle;
+			windowClass.style = Gui::Defaults::DefClassStyle;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = Application::instance();
 			windowClass.hIcon = LoadIconW(

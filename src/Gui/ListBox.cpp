@@ -1,3 +1,4 @@
+#include "Gui/GuiDefines.hpp"
 #include "Gui/ListBox.hpp"
 namespace WinCape::Gui
 {

@@ -1,7 +1,8 @@
-#include "defaults.hpp"
+#include "Gui/GuiDefaults.hpp"
 #include "defines.hpp"
 #include "Gui/ListView.hpp"
 #include "Manager.hpp"
+#include "Gui/Style.hpp"
 namespace WinCape::Gui{
     int ListView::count(){
         return ListView_GetItemCount(handle());
@@ -27,8 +28,8 @@ namespace WinCape::Gui{
 
 #endif
         column.cchTextMax = 256;
-        column.cx = width > 0 ? width : Defaults::ListViewColumnWidth;
-        column.cxMin = Defaults::ListViewMinColumnWidth;
+        column.cx = width > 0 ? width : Gui::Defaults::ListViewColumnWidth;
+        column.cxMin = Gui::Defaults::ListViewMinColumnWidth;
         column.iSubItem = index;
         SendMessage(handle(), LVM_INSERTCOLUMN, index, (LPARAM)&column);
     }

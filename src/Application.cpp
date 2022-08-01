@@ -1,8 +1,8 @@
 #include "defines.hpp"
-#include "Manager.hpp"
-#include <vector>
-#include <iostream>
-#include <map>
+#include "Gui/Manager.hpp"
+//#include <vector>
+//#include <iostream>
+//#include <map>
 #include "Gui/Window.hpp"
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"

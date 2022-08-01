@@ -1,7 +1,10 @@
 #ifndef LISTVIEW_HPP
 #define LISTVIEW_HPP
-#include "defines.hpp"
+//#include "defines.hpp"
 #include "Gui/Control.hpp"
+#include "Event.hpp"
+#include <vector>
+#include <string>
 namespace WinCape{
     namespace Gui{
         class ListView final : public Control

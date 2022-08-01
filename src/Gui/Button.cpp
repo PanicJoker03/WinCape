@@ -1,5 +1,5 @@
 #include "Gui/Button.hpp"
-#include "Manager.hpp"
+#include "Gui/Manager.hpp"
 namespace WinCape::Gui
 {
 	//----------------------------------------------------------------------

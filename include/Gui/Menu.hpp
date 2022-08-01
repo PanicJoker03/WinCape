@@ -1,6 +1,9 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 #include "defines.hpp"
+#include "HasHandle.hpp"
+#include <initializer_list>
+#include "Event.hpp"
 namespace WinCape {
 	namespace Gui{
 		class Window;

@@ -1,6 +1,6 @@
 #ifndef RADIOBUTTON_HPP
 #define RADIOBUTTON_HPP
-#include "defines.hpp"
+//#include "defines.hpp"
 #include "Gui/Button.hpp"
 namespace WinCape
 {

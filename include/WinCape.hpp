@@ -1,6 +1,6 @@
 #ifndef WINCAPE_HPP
 #define WINCAPE_HPP
-#include "defines.hpp"
+//#include "defines.hpp"
 #include "defaults.hpp"
 
 #include "Gui.hpp"

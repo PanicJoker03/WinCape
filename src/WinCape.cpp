@@ -1,11 +1,6 @@
 #include "defines.hpp"
+#include "HasHandle.hpp"
 #include "Application.hpp"
-#include "Manager.hpp"
-#include <vector>
-#include <iostream>
-#include <map>
-#include "Gui/Window.hpp"
-#include "Gui/WindowFrame.hpp"
 
 using namespace std;
 namespace WinCape
