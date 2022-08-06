@@ -1,5 +1,5 @@
 #include "defines.hpp"
-#include "Manager.hpp"
+#include "Gui/Manager.hpp"
 #include "Gui.hpp"
 #include "Event.hpp"
 using namespace std;
@@ -29,46 +29,47 @@ namespace WinCape::Gui
 		const Vector2I& position, const Vector2I& size)
 	{
 		Handle buttonHandle;
-		buttonHandle = Manager::instance().createHandle(
+		buttonHandle = Gui::Manager::instance().createHandle(
 			Defaults::ButtonClassName, text, Defaults::DefButtonStyle,
-			Rect{
+			Rect(
 				position,
 				size
-			},
+			),
 			handle()
 		);
 		button.handle(buttonHandle);
 	}
-	void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
-		const wchar_t*>> radioButtonList, const Vector2I& position,
-		const Vector2I& padding)
-	{
-		const auto listSize = radioButtonList.size();
-		for (auto i = 0; i < listSize; i++)
-		{
-			Handle radioButtonHandle;
-			RadioButton& radioButton = radioButtonList.begin()[i].first;
-			const wchar_t* caption = radioButtonList.begin()[i].second;
-			Vector2I position_ = position;
-			position_.x += padding.x * i;
-			position_.y += padding.y * i;
-			const bool isLast = (i == (listSize - 1));
-			const ButtonStyle style =
-				isLast ?
-					Defaults::RadioButtonStyle | WindowStyles::Group
-					:
-					Defaults::RadioButtonStyle;
-			radioButtonHandle = Manager::instance().createHandle(
-				Defaults::ButtonClassName, caption, style,
-				Rect{
-					position_,
-					Defaults::ButtonSize
-				},
-				handle()
-			);
-			radioButton.handle(radioButtonHandle);
-		}
-	}
+	//Omited at the moment
+	//void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
+	//	const wchar_t*>> radioButtonList, const Vector2I& position,
+	//	const Vector2I& padding)
+	//{
+	//	const auto listSize = radioButtonList.size();
+	//	for (auto i = 0; i < listSize; i++)
+	//	{
+	//		Handle radioButtonHandle;
+	//		RadioButton& radioButton = radioButtonList.begin()[i].first;
+	//		const wchar_t* caption = radioButtonList.begin()[i].second;
+	//		Vector2I position_ = position;
+	//		position_.x += padding.x * i;
+	//		position_.y += padding.y * i;
+	//		const bool isLast = (i == (listSize - 1));
+	//		const ButtonStyle style =
+	//			isLast ?
+	//				Defaults::RadioButtonStyle | WindowStyles::Group
+	//				:
+	//				Defaults::RadioButtonStyle;
+	//		radioButtonHandle = Manager::instance().createHandle(
+	//			Defaults::ButtonClassName, caption, style,
+	//			Rect{
+	//				position_,
+	//				Defaults::ButtonSize
+	//			},
+	//			handle()
+	//		);
+	//		radioButton.handle(radioButtonHandle);
+	//	}
+	//}
 
 	void Window::addListView(ListView & listView, const Rect & dimensions, const Vector2I& padding)
 	{
@@ -77,7 +78,7 @@ namespace WinCape::Gui
 	    Rect dimensions_ = dimensions;
 	    dimensions_.position.x += padding.x;
 	    dimensions_.position.y += padding.y;
-	    listViewHandle = Manager::instance().createHandle(ClassNames::ListView, L"", style, dimensions_, handle());
+	    listViewHandle = Gui::Manager::instance().createHandle(ClassNames::ListView, L"", style, dimensions_, handle());
 	    listView.handle(listViewHandle);
 	}
 
@@ -89,14 +90,14 @@ namespace WinCape::Gui
 	void Window::onPaint(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
-		Manager::instance().listenEvent(
+		Gui::Manager::instance().listenEvent(
 			handle(), WindowMessages::Paint, callback
 		);
 	}
 	void Window::onDestroy(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
-		Manager::instance().listenEvent(
+		Gui::Manager::instance().listenEvent(
 			handle(), WindowMessages::Destroy, callback
 		);
 	}
@@ -122,12 +123,12 @@ namespace WinCape::Gui
 	}
 	void Window::timer(const EventCallback& callback, unsigned int time){
 		WindowMessage timerMsg = WindowMessages::Timer;
-		Manager::instance().listenEvent(handle(), timerMsg, callback);
+		Gui::Manager::instance().listenEvent(handle(), timerMsg, callback);
 		SetTimer(
 			handle(), reinterpret_cast<UINT_PTR>(
 				handle()
 			),
-			time, AsNull<TIMERPROC>::value
+			time, NULL
 		);
 	}
 	void Window::alpha(const Byte value){

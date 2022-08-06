@@ -8,6 +8,6 @@ namespace WinCape::Gui
 	void Gui::Button::onClick(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
-		Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
+		Gui::Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
 	}
 }

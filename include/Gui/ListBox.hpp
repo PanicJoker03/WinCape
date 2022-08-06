@@ -5,7 +5,7 @@
 namespace WinCape
 {
 	namespace Gui{
-		class ListBox final : public Control
+		class ListBox : public Control
 		{
 		public:
 			void addString(const wchar_t* string);

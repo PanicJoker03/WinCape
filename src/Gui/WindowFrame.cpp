@@ -1,6 +1,6 @@
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
-#include "Manager.hpp"
+#include "Gui/Manager.hpp"
 namespace WinCape::Gui
 {
 	//-------------------------------------------------------------------------
@@ -16,8 +16,8 @@ namespace WinCape::Gui
 	}
 	void WindowFrame::onDraw(DeviceContext deviceContext) {}
 	void WindowFrame::onDispose() {
-		Manager::instance().unlistenEvent(handle(), WindowMessages::Paint);
-		Manager::instance().unlistenEvent(handle(), WindowMessages::Destroy);
+		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::Paint);
+		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::Destroy);
 	}
 	Gui::WindowFrame::~WindowFrame() {}
 

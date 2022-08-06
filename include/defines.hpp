@@ -4,15 +4,9 @@
 #ifdef _ENABLE_THEME
 #pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
 #endif
-//#define NOMINMAX
-//#include <Windows.h>
 #include <windows.h>
 #include <WinUser.h>
-//#include <tchar.h>
-//#include <iostream>
-#include <cstdint>
 #include <CommCtrl.h>
-//#include <cstdint>
 //#ifdef WINCAPE_USES_WGL
 //#include <GL/gl.h>
 //#include <GL/glu.h>
@@ -23,55 +17,61 @@
 
 namespace WinCape
 {
-	constexpr static std::nullptr_t NullPointer = nullptr;
-	constexpr static UINT Null = NULL;
-	template<typename T>
-	struct AsNull{
-		static constexpr T value = NULL;
-	};
-	using WindowHandle = HWND;
-	using DeviceContextHandle = HDC;
-	using MenuHandle = HMENU;
-	using IconHandle = HICON;
-	using BitmapHandle = HBITMAP;
-	using FontHandle = HFONT;
-	using InstanceHandle = HINSTANCE;
-	using FileHandle = HANDLE;
-	using WindowStyle = DWORD;
-	using WindowExtendedStyle = DWORD;
-	using ButtonStyle = DWORD;
-	using ListBoxStyle = DWORD;
-	using ListViewStyle = DWORD;
-	using ClassStyle = UINT;
-	using ShowCommand = int;
-	using ResourceInt = int;
-	using WindowMessage = UINT;
-	using ListBoxMessage = UINT;
-	using ListViewMessage = UINT;
-	using ComboBoxMessage = UINT;
-	using Byte = BYTE;
+    //NULL;
+	//template<typename T>
+	//struct AsNull{
+	//	static constexpr T value = NULL;
+	//};
+	typedef unsigned char UnsignedI8;
+	typedef HWND WindowHandle;
+	typedef HDC DeviceContextHandle;
+	typedef HMENU MenuHandle;
+	typedef HICON IconHandle;
+	typedef HBITMAP BitmapHandle;
+	typedef HFONT FontHandle;
+	typedef HINSTANCE InstanceHandle;
+	typedef HFILE FileHandle;
+	typedef DWORD WindowStyle;
+	typedef DWORD WindowExtendedStyle;
+	typedef DWORD ButtonStyle;
+	typedef DWORD ListBoxStyle;
+	typedef DWORD ListViewStyle;
+	typedef DWORD DesiredAccess;
+	typedef UINT ClassStyle;
+	typedef int ShowCommand;
+	typedef int ResourceInt;
+	typedef UINT WindowMessage;
+	typedef UINT ListBoxMessage;
+	typedef UINT ListViewMessage;
+	typedef UINT ComboBoxMessage;
+	typedef BYTE Byte;
 	//#ifdef WINCAPE_USES_WGL
-	using GlRenderContextHandle = HGLRC;
-	using PixelFormatFlag = DWORD;
-	using PixelFormatType = BYTE;
-	using PixelFormatLayer = BYTE;
-	using LayeredWindowAttribute = DWORD;
+	typedef HGLRC GlRenderContextHandle;
+	typedef DWORD PixelFormatFlag;
+	typedef BYTE PixelFormatType;
+	typedef BYTE PixelFormatLayer;
+	typedef DWORD LayeredWindowAttribute;
 	struct PixelFormat
 	{
 		PixelFormatFlag flags;
 		PixelFormatType type;
-		std::uint8_t colorBits;
-		std::uint8_t depthBits;
-		std::uint8_t stencilBits;
+	    UnsignedI8 colorBits;
+	    UnsignedI8 depthBits;
+		UnsignedI8 stencilBits;
 	};
 	//#endif
-	using DrawTextFormat = UINT;
+	typedef UINT DrawTextFormat;
 	struct Vector2I
 	{
-		int x = 0, y = 0;
+	    Vector2I() : x(0), y(0) {}
+	    Vector2I(int x, int y) : x(x), y(y){}
+		int x, y;
 	};
 	struct Rect
 	{
+	    Rect(){}
+	    Rect(Vector2I position, Vector2I size) : position(position) , size(size){}
+	    Rect(int pos_x, int pos_y, int size_x, int size_y) : position(Vector2I(pos_x, pos_y)), size(Vector2I(size_x, size_y)){}
 		Vector2I position, size;
 	};
 }

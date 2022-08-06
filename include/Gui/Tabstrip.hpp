@@ -6,7 +6,7 @@ namespace WinCape
 {
 	namespace Gui
 	{
-		class Tabstrip final : public Control
+		class Tabstrip : public Control
 		{
 		public:
 		};

@@ -1,3 +1,5 @@
+//NOT YET TESTED ON C++98 BUILDS!!!!
+/*
 //Tested on CodeBlocks on Cygwin
 int main() {
     	const wchar_t* texto = L"Ya pasaron 20 Minutos";
@@ -23,3 +25,4 @@ int main() {
 	WinCape::Application::run();
 	return 0;
 }
+*/

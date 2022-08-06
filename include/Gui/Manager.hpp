@@ -4,7 +4,7 @@
 #include "Gui/Base.hpp"
 #include "Event.hpp"
 #include "Gui/Style.hpp"
-namespace WinCape
+namespace WinCape::Gui
 {
 	class Manager
 	{
@@ -23,7 +23,7 @@ namespace WinCape
 
 		Gui::Base::Handle createHandle(const wchar_t* className,
 				const wchar_t* text, WindowStyle style, const Rect& rect,
-				Gui::Base::Handle parent = nullptr, WindowStyle exStyle = 0);
+				Gui::Base::Handle parent = Gui::Base::Null, WindowStyle exStyle = 0);
 
 		static Manager& instance();
 	};

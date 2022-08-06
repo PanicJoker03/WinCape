@@ -11,6 +11,8 @@ namespace WinCape
 			return Gui::Window(GetConsoleWindow());
 		}
 	}
+	
+
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//--------------------------------------------------------------------------
@@ -23,4 +25,5 @@ namespace WinCape
 	template class HasHandle<GlRenderContextHandle>;
 //#endif
 	template class HasHandle<MenuHandle>;
+	template class HasHandle<InstanceHandle>;
 }

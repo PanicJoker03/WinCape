@@ -4,7 +4,7 @@
 namespace WinCape{
 	namespace Gui{
 		class Window;
-		class RenderContext final : public HasHandle<GlRenderContextHandle> {
+		class RenderContext : public HasHandle<GlRenderContextHandle> {
 		public:
 			RenderContext();
 			RenderContext(GlRenderContextHandle renderContext);

@@ -1,3 +1,5 @@
+//NOT TESTED YET ON C++98 BUILDS
+/*
 #define _ENABLE_THEME
 #include "WinCape.hpp"
 #include <iostream>
@@ -99,3 +101,5 @@ int main() {
 //	MyWindow myWindow;
 //	Application::run(myWindow);
 //}
+
+*/

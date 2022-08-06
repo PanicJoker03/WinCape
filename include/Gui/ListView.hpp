@@ -7,7 +7,7 @@
 #include <string>
 namespace WinCape{
     namespace Gui{
-        class ListView final : public Control
+        class ListView : public Control
         {
         public:
             int count();

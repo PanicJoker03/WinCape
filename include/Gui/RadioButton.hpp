@@ -5,10 +5,11 @@
 namespace WinCape
 {
 	namespace Gui{
-		class RadioButton final : public Button
+		class RadioButton : public Button
 		{
 		public:
-			using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
+            //Omited at the moment
+			//using Pair = std::pair<Reference<RadioButton>, const wchar_t*>;
 		};
 	}
 }

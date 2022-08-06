@@ -17,7 +17,7 @@ namespace WinCape{
 		private:
 			const wchar_t* windowName;
 			const Rect rect;
-			const WindowStyle style;
+		    WindowStyle style;
 		protected:
 			WindowFrame(const wchar_t* windowName = WinCape::Defaults::WindowName,
 				const wchar_t* title = L"Default",

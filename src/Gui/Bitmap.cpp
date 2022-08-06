@@ -4,6 +4,9 @@ namespace WinCape::Gui
 	//-------------------------------------------------------------------------
 	//Bitmap
 	//-------------------------------------------------------------------------
+	Bitmap::Bitmap(const Bitmap&){
+        throw "Can't do that";
+    };
 	Bitmap::Bitmap(const Vector2I& dimensions)
 	{
 		BitmapHandle bitmapHandle = CreateBitmap(
@@ -43,7 +46,7 @@ namespace WinCape::Gui
 		//check for handle nullity?
 		BITMAP bitmap = {};
 		GetObject(handle(), sizeof(bitmap), &bitmap);
-		return Vector2I{ bitmap.bmWidth, bitmap.bmHeight };
+		return Vector2I( bitmap.bmWidth, bitmap.bmHeight );
 	}
 	void Bitmap::clonePixels(void* buffer) const
 	{

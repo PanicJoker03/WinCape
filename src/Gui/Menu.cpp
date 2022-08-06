@@ -1,6 +1,6 @@
 #include "Gui/Menu.hpp"
 #include "Gui/GuiDefines.hpp"
-#include "Manager.hpp"
+#include "Gui/Manager.hpp"
 namespace WinCape::Gui
 {
 	//--------------------------------------------------------------------------
@@ -28,16 +28,17 @@ namespace WinCape::Gui
 		//Create MenuFlags in defines
 		AppendMenuW(handle(), MF_STRING, 0, item);
 	}
-	void Menu::addItems(std::initializer_list<const wchar_t*> itemList)
-	{
-		for (const wchar_t* item : itemList)
-		{
-			addItem(item);
-		}
-	}
+	//Omited at the moment
+	//void Menu::addItems(std::initializer_list<const wchar_t*> itemList)
+	//{
+	//	for (const wchar_t* item : itemList)
+	//	{
+	//		addItem(item);
+	//	}
+	//}
 	void Menu::onItemSelect(const EventCallback& callback)
 	{
-		Manager::instance().listenEvent(
+		Gui::Manager::instance().listenEvent(
 			(Gui::Base::Handle)handle(), WindowMessages::MenuCommand, callback
 		);
 	}

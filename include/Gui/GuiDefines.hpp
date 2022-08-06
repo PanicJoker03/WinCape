@@ -5,7 +5,7 @@ namespace WinCape{
     namespace Gui{
 
       namespace ShowCommands {
-            enum : ShowCommand
+            enum
             {
                 ForceMinimize = SW_FORCEMINIMIZE,
                 Hide = SW_HIDE,
@@ -23,7 +23,7 @@ namespace WinCape{
             };
         }
         namespace WindowMessages {
-            enum : WindowMessage
+            enum
             {
                 //Notifications
                 ActivateApp = WM_ACTIVATEAPP,
@@ -69,7 +69,7 @@ namespace WinCape{
             };
         }
         namespace ListBoxMessages {
-            enum : ListBoxMessage {
+            enum {
                 AddFile = LB_ADDFILE,
                 AddString = LB_ADDSTRING,
                 DeleteString = LB_DELETESTRING,
@@ -113,19 +113,19 @@ namespace WinCape{
                 SetTopIndex = LB_SETTOPINDEX
             };
         }
-        struct ClassNames final {
-            constexpr static const wchar_t* ListView = L"SysListView32";//WC_LISTVIEW;
-            constexpr static const wchar_t* Button = L"Button";//WC_BUTTON;
-            constexpr static const wchar_t* ListBox = L"ListBox";//WC_LISTBOX;
+        struct ClassNames {
+            static const wchar_t* ListView;// = L"SysListView32";//WC_LISTVIEW;
+            static const wchar_t* Button;// = L"Button";//WC_BUTTON;
+            static const wchar_t* ListBox;// = L"ListBox";//WC_LISTBOX;
         };
         namespace ListViewMessages {
-            enum : ListViewMessage {
+            enum {
                 ItemChanged = LVN_ITEMCHANGED
             };
         }
     #ifdef WINCAPE_USES_WGL
         namespace PixelFormatFlags {
-            enum : PixelFormatFlag{
+            enum {
                 DrawToWindow  = PFD_DRAW_TO_WINDOW,
                 DrawToBitmap = PFD_DRAW_TO_BITMAP,
                 SupportGdi = PFD_SUPPORT_GDI,
@@ -140,19 +140,19 @@ namespace WinCape{
             };
         }
         namespace PixelFormatTypes {
-            enum : PixelFormatType {
+            enum {
                 RGBA,
                 ColorIndex
             };
         }
         namespace PixelFormatLayers {
-            enum : PixelFormatLayer {
+            enum {
                 MainPlane
             };
         }
     #endif
         namespace DrawTextFormats{
-            enum : DrawTextFormat {
+            enum {
                 Bottom,
                 CalculateRectangle,
                 HorizontalCenter,
@@ -180,7 +180,7 @@ namespace WinCape{
             };
         }
         namespace LayeredWindowAttributes{
-            enum : LayeredWindowAttribute {
+            enum {
                 Alpha = LWA_ALPHA,
                 ColorKey = LWA_COLORKEY
             };

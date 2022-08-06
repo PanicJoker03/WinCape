@@ -9,37 +9,26 @@ namespace WinCape
     namespace Gui {
         struct Defaults
         {
-            static constexpr Rect WindowRect = Rect{ 100, 100, 800, 600 };
+            static const Rect WindowRect;
 
-            static constexpr WindowStyle DefWindowStyle =
-                    WindowStyles::OverlappedWindow ^ WindowStyles::ThickFrame;
+            static const WindowStyle DefWindowStyle;
 
-            static constexpr ClassStyle DefClassStyle  =
-                    ClassStyles::HorizontalRedraw | ClassStyles::VerticalRedraw;
+            static const ClassStyle DefClassStyle;
 
-            static constexpr ShowCommand DefShowCommand =
-                    ShowCommands::ShowDefault;
+            static const ShowCommand DefShowCommand;
 
-            static constexpr const wchar_t* ButtonClassName = L"BUTTON";
-            static constexpr Vector2I ButtonSize = Vector2I{ 80, 24 };
-            static constexpr Vector2I RadioButtonPadding = Vector2I{ 0, 32 };
+            static const wchar_t* ButtonClassName;
+            static const Vector2I ButtonSize;
+            static const Vector2I RadioButtonPadding;
 
-            static constexpr ButtonStyle DefButtonStyle =
-                    WindowStyles::TabStop | WindowStyles::Visible |
-                    WindowStyles::Child | ButtonStyles::PushButton;
+            static const ButtonStyle DefButtonStyle;
 
-            static constexpr ButtonStyle RadioButtonStyle =
-                    WindowStyles::TabStop | WindowStyles::Visible |
-                    WindowStyles::Child | ButtonStyles::AutoRadioButton;
+            static const ButtonStyle RadioButtonStyle;
 
-            static constexpr int ListViewMinColumnWidth = 50;
-            static constexpr int ListViewColumnWidth = 100;
+            static const int ListViewMinColumnWidth;
+            static const int ListViewColumnWidth;
     #ifdef WINCAPE_USES_WGL
-            static constexpr PixelFormat DefPixelFormat = {
-                    PixelFormatFlags::DoubleBuffer |
-                    PixelFormatFlags::SupportOpengl |
-                    PixelFormatFlags::SwapLayerBuffers
-            };
+            static const PixelFormat DefPixelFormat;
     #endif
         };
     }

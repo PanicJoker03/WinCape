@@ -2,7 +2,7 @@
 #define STYLE_HPP
 namespace WinCape{
     namespace  WindowStyles {
-		enum : WindowStyle
+		enum 
 		{
 			Border = WS_BORDER,
 			Caption = WS_CAPTION,
@@ -33,7 +33,7 @@ namespace WinCape{
 			VerticalScroll = WS_VSCROLL
 		};
 		namespace Extended {
-			enum : WindowExtendedStyle {
+			enum {
 				AcceptFiles = WS_EX_ACCEPTFILES,
 				AppWindow = WS_EX_APPWINDOW,
 				ClientEdge = WS_EX_CLIENTEDGE,
@@ -65,7 +65,7 @@ namespace WinCape{
 		}
 	}
 	namespace ButtonStyles {
-		enum : ButtonStyle
+		enum
 		{
 			State = BS_3STATE,
 			AutoState = BS_AUTO3STATE,
@@ -101,7 +101,7 @@ namespace WinCape{
 		};
 	}
 	namespace ClassStyles {
-		enum : ClassStyle
+		enum
 		{
 			ByteAlignClient = CS_BYTEALIGNCLIENT,
 			ByteAlignWindow = CS_BYTEALIGNWINDOW,
@@ -120,7 +120,7 @@ namespace WinCape{
 
     namespace ListViewStyles
     {
-        enum : ListViewStyle {
+        enum {
             AlignLeft = LVS_ALIGNLEFT,
             AlignMask = LVS_ALIGNMASK,
             AlignTop = LVS_ALIGNTOP,
@@ -145,7 +145,7 @@ namespace WinCape{
             TypeStyleMask = LVS_TYPESTYLEMASK
         };
         namespace Extended {
-            enum : ListViewStyle {
+            enum {
                 AutoArrange = LVS_EX_AUTOAUTOARRANGE,
                 AutoCheckSelect = LVS_EX_AUTOCHECKSELECT,
                 AutoSizeColumns = LVS_EX_AUTOSIZECOLUMNS,

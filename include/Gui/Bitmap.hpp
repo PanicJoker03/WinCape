@@ -5,15 +5,15 @@
 namespace WinCape
 {
 	namespace Gui{
-		class Bitmap final : public HasHandle<BitmapHandle>
+		class Bitmap : public HasHandle<BitmapHandle>
 		{
 		private:
-			Bitmap(const Bitmap&) = delete;
+			Bitmap(const Bitmap&);
 			//Bitmap& operator=(const Bitmap&) = delete;
 			void getBitmapInfo(const DeviceContextHandle& deviceContext,
 					BITMAPINFO& bmpInfo) const;
 		public:
-			Bitmap(const Vector2I& dimensions = Vector2I{});
+			Bitmap(const Vector2I& dimensions = Vector2I());
 			Bitmap& operator = (const Bitmap& bitmap);
 			void load(const wchar_t* sourcePath);
 			Vector2I dimension() const;

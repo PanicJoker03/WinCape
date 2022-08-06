@@ -6,42 +6,47 @@
 #include "Gui/Window.hpp"
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
-namespace WinCape{
+namespace WinCape{   
+     //Some crazy stuff to make WinCape c++98 compiles
+     Gui::WindowFrame * Application::functorWnd = NULL;
+     void Application::wndOnPaint(Event e){
+        PAINTSTRUCT paintStruct;
+        Gui::DeviceContext deviceContext = Gui::DeviceContext(
+            (BeginPaint(functorWnd->handle(), &paintStruct))
+        );
+        functorWnd->onDraw(functorWnd->deviceContext());
+        EndPaint(functorWnd->handle(), &paintStruct);
+     }
+    
 	//--------------------------------------------------------------------------
 	//Application
 	//--------------------------------------------------------------------------
 	void Application::init(const wchar_t* name)
 	{
-		Manager::instance().registerClass(name);
+		Gui::Manager::instance().registerClass(name);
 	}
 	Gui::Window Application::createWindow(const wchar_t* windowName,
 		const wchar_t* title, const Rect& rect, WindowStyle style,
 		WindowExtendedStyle exStyle)
 	{
 		Gui::Window window;
-		window = Gui::Window(Manager::instance().createHandle(
-			windowName, title, style, rect, nullptr, exStyle)
+		window = Gui::Window(Gui::Manager::instance().createHandle(
+			windowName, title, style, rect, Gui::Base::Null, exStyle)
 		);
 		return window;
 	}
 	int Application::run()
 	{
-		return WinCape::Manager::instance().startListening();
+		return Gui::Manager::instance().startListening();
 	}
-	int Application::run(WinCape::Gui::WindowFrame& window)
+	int Application::run(Gui::WindowFrame& window)
 	{
 		using namespace WinCape;
+		Application::functorWnd = &window;
 		window.onCreate();
-		window.onPaint([&](Event e) {
-			PAINTSTRUCT paintStruct;
-			Gui::DeviceContext deviceContext{
-				(BeginPaint(window.handle(), &paintStruct))
-			};
-			window.onDraw(window.deviceContext());
-			EndPaint(window.handle(), &paintStruct);
-			});
+		window.onPaint(wndOnPaint);
 		//window.onCreate();
-		return WinCape::Manager::instance().startListening();
+		return Gui::Manager::instance().startListening();
 	}
 	InstanceHandle Application::instance()
 	{
@@ -49,7 +54,7 @@ namespace WinCape{
 	}
 	void Application::defaultFont(const wchar_t* fontName)
 	{
-		WinCape::Manager::instance().defaultFont(fontName);
+		Gui::Manager::instance().defaultFont(fontName);
 	}
 
 	void Application::quit() {

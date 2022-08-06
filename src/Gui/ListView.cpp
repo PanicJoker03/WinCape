@@ -1,7 +1,7 @@
 #include "Gui/GuiDefaults.hpp"
 #include "defines.hpp"
 #include "Gui/ListView.hpp"
-#include "Manager.hpp"
+#include "Gui/Manager.hpp"
 #include "Gui/Style.hpp"
 namespace WinCape::Gui{
     int ListView::count(){
@@ -94,7 +94,7 @@ namespace WinCape::Gui{
     }
 
     void ListView::onItemChecked(const EventCallback & callback){
-        Manager::instance().listenEvent((Base::Handle)handle(), ListViewMessages::ItemChanged, callback);
+        Gui::Manager::instance().listenEvent((Base::Handle)handle(), ListViewMessages::ItemChanged, callback);
     }
 
     void ListView::clear(){

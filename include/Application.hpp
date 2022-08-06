@@ -31,6 +31,9 @@ namespace WinCape{
 			WindowStyle style = Gui::Defaults::DefWindowStyle,
 			WindowExtendedStyle exStyle = 0
 		);
+		//Do not touch it
+		static Gui::WindowFrame * functorWnd;
+		static void wndOnPaint(Event e);
 
 		static void quit();
 	};

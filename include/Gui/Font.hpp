@@ -4,7 +4,7 @@
 #include "HasHandle.hpp"
 namespace WinCape{
 	namespace Gui{
-		class Font final : public HasHandle<FontHandle>
+		class Font : public HasHandle<FontHandle>
 			{
 				//Do something...
 			};

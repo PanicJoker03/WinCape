@@ -7,7 +7,7 @@ namespace WinCape
 {
 	namespace Gui{
 		class Window;
-		class Icon final : public HasHandle<IconHandle>
+		class Icon : public HasHandle<IconHandle>
 		{
 		public:
 			Icon();

@@ -1,21 +1,36 @@
 #ifndef HASHANDLE_HPP
 #define HASHANDLE_HPP
 namespace WinCape{
-	template<typename T> class HasHandle
+	template<typename T> 
+    class HasHandle
 	{
 	public:
-		using Handle = T;
-		T handle() const{
-			return _handle;
-		}
-		template<typename> friend class CanCreateFromResource;
+		typedef T Handle;
+	
+		static const T Null;
+    	T handle() const{
+                   
+        return _handle;
+        }
+        
+		template<typename> 
+        friend class CanCreateFromResource;
+        
 	protected:
-		HasHandle(){};
+		HasHandle(){}
 		void handle(T handle){
-			_handle = handle;
-		};
+        _handle = handle;
+    
+             };
+             
 	private:
 		T _handle;
-	};
+    };
+		
+    
+    
+
+    template<typename T> 
+    const T HasHandle<T>::Null = 0;
 }
 #endif // HASHANDLE_HPP

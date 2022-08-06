@@ -9,7 +9,7 @@ namespace WinCape
 {
 	namespace Gui{
 		class Window;
-		class DeviceContext final : public HasHandle<DeviceContextHandle>
+		class DeviceContext : public HasHandle<DeviceContextHandle>
 		{
 		public:
 			DeviceContext();
@@ -17,7 +17,7 @@ namespace WinCape
 			explicit DeviceContext(WindowHandle handle);
 			//void drawBitmap(const Bitmap& bitmap);
 			void drawBitmap(const Bitmap& bitmap,
-					const Vector2I& padding = Vector2I{});
+					const Vector2I& padding = Vector2I());
 			void drawText(const wchar_t* text, DrawTextFormat format);
 			Rect bounds() const;
 			Window window() const;

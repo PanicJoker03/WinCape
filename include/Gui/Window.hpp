@@ -25,12 +25,13 @@ namespace WinCape
 				const Vector2I& position,
 				const Vector2I& size = Defaults::ButtonSize);
 
-			void addRadioButton(
-					std::initializer_list<std::pair<Reference<RadioButton>,
-					const wchar_t*>> radioButtonList, const Vector2I& position,
-					const Vector2I& padding = Defaults::RadioButtonPadding);
+			//Omited at the moment
+            //void addRadioButton(
+			//		std::initializer_list<std::pair<Reference<RadioButton>,
+			//		const wchar_t*>> radioButtonList, const Vector2I& position,
+			//		const Vector2I& padding = Defaults::RadioButtonPadding);
 
-            void addListView(ListView & listView, const Rect & dimensions, const Vector2I & padding = {});
+            void addListView(ListView & listView, const Rect & dimensions, const Vector2I & padding = Vector2I());
 			void attachMenu(Menu& menu);
 			void onDestroy(const EventCallback& callback);
 			void onPaint(const EventCallback& callback);
