@@ -1,5 +1,5 @@
 #include "Gui/RadioButton.hpp"
-namespace WinCape::Gui
+namespace WinCape{
+namespace Gui
 {
-
-}
+}}

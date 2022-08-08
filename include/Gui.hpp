@@ -1,7 +1,5 @@
 #ifndef GUI_HPP
 #define GUI_HPP
-namespace WinCape {
-}
 
 
 #include "Gui/Base.hpp"

@@ -6,9 +6,8 @@
 #include "Gui/GuiDefines.hpp"
 using namespace std;
 
-namespace WinCape
-{
-          namespace Gui{
+namespace WinCape{
+namespace Gui{
 	//--------------------------------------------------------------------------
 	//Implementation
 	//--------------------------------------------------------------------------
@@ -60,7 +59,8 @@ namespace WinCape
 		{
 			eventMap[EventKey( handle, message  )] = callback;
 		}
-		void unlistenEvent(Gui::Base::Handle handle, WindowMessage message) {
+		void unlistenEvent(Gui::Base::Handle handle, WindowMessage message) 
+		{
 			eventMap.erase(EventKey(handle, message));
 		}
 		void doCallback(const EventKey& key, WPARAM wParam, LPARAM lParam)
@@ -74,7 +74,7 @@ namespace WinCape
 		static void TimerProc(HWND hWnd, UINT param1, UINT param2,
 			UINT_PTR param3, DWORD param4){
 			ManagerImpl::instance().doCallback(
-				EventKey(0, Gui::WindowMessages::Timer), 0, 0
+				EventKey(0, Gui::WindowMessages::TIMER), 0, 0
 			);
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
@@ -83,13 +83,13 @@ namespace WinCape
 			WindowHandle handle = (Gui::Base::Handle)hWnd;
 			switch (message)
 			{
-			case Gui::WindowMessages::Destroy:
+			case Gui::WindowMessages::DESTROY:
 				ManagerImpl::instance().doCallback(
 					EventKey( handle, message ), wParam, lParam
 				);
 				PostQuitMessage(0);
 				break;
-			case Gui::WindowMessages::Command:
+			case Gui::WindowMessages::COMMAND:
 			{
 				Gui::Base::Handle commandHandle = (Gui::Base::Handle)lParam;
 				WindowMessage controlMessage = HIWORD(wParam);
@@ -98,7 +98,7 @@ namespace WinCape
 				);
 			}
 			break;
-			case Gui::WindowMessages::MenuCommand:
+			case Gui::WindowMessages::MENU_COMMAND:
 			{
 				Gui::Base::Handle commandHandle = (Gui::Base::Handle)lParam;
 				ManagerImpl::instance().doCallback(
@@ -115,13 +115,13 @@ namespace WinCape
 			}
 			return 0;
 		}
-		void registerClass(const wchar_t* name = WinCape::Defaults::WindowName)
+		void registerClass(const wchar_t* name = WinCape::Defaults::WINDOW_NAME)
 		{
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
 			WNDCLASSEXW windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEXW);
-			windowClass.style = Gui::Defaults::DefClassStyle;
+			windowClass.style = Gui::Defaults::DEFCLASS_STYLE;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = Application::instance();
 			windowClass.hIcon = LoadIconW(
@@ -168,14 +168,14 @@ namespace WinCape
 		{
 			//http://www.cplusplus.com/forum/windows/109795/
 			DeleteObject(applicationFont);
-			LOGFONTW logFont = {};
-			logFont.lfHeight = 16;
+			LOGFONTW lFont = {};
+			lFont.lfHeight = 16;
 			#ifdef _WIN32
-				wcscpy_s(logFont.lfFaceName, wcsnlen_s(fontName + 1, 256), fontName);
+			wcscpy_s(lFont.lfFaceName, wcsnlen_s(fontName + 1, 256), fontName);
 			#else
-				wcscpy(logFont.lfFaceName, fontName);
+			wcscpy(lFont.lfFaceName, fontName);
 			#endif
-			applicationFont = CreateFontIndirectW(&logFont);
+			applicationFont = CreateFontIndirectW(&lFont);
 		}
 		FontHandle defaultFont()
 		{
@@ -195,12 +195,14 @@ namespace WinCape
 	{
 		return ManagerImpl::instance().startListening();
 	}
-	void Gui::Manager::listenEvent(Gui::Base::Handle handle, WindowMessage message,
-		const EventCallback& callback)
+	void Gui::Manager::listenEvent(
+		Gui::Base::Handle handle, 
+		WindowMessage message, const EventCallback& callback)
 	{
 		ManagerImpl::instance().listenEvent(handle, message, callback);
 	}
-	void Gui::Manager::unlistenEvent(Gui::Base::Handle handle, WindowMessage message)
+	void Gui::Manager::unlistenEvent(
+		Gui::Base::Handle handle, WindowMessage message)
 	{
 		ManagerImpl::instance().unlistenEvent(handle, message);
 	}

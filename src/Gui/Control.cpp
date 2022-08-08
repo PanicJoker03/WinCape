@@ -1,6 +1,6 @@
 #include "Gui/Control.hpp"
-namespace WinCape::Gui
-{
+namespace WinCape{
+namespace Gui{
 	//--------------------------------------------------------------------------
 	//Control
 	//--------------------------------------------------------------------------
@@ -9,4 +9,4 @@ namespace WinCape::Gui
 		int resource) {
 		handle(GetDlgItem(parent, resource));
 	}
-}
+}}

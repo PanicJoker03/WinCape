@@ -1,7 +1,8 @@
 #include "Gui/Menu.hpp"
 #include "Gui/GuiDefines.hpp"
 #include "Gui/Manager.hpp"
-namespace WinCape::Gui
+namespace WinCape{
+namespace Gui
 {
 	//--------------------------------------------------------------------------
 	//Menu
@@ -39,7 +40,7 @@ namespace WinCape::Gui
 	void Menu::onItemSelect(const EventCallback& callback)
 	{
 		Gui::Manager::instance().listenEvent(
-			(Gui::Base::Handle)handle(), WindowMessages::MenuCommand, callback
+			(Gui::Base::Handle)handle(), WindowMessages::MENU_COMMAND, callback
 		);
 	}
 	void Menu::create(Gui::Menu& menu)
@@ -48,4 +49,4 @@ namespace WinCape::Gui
 		menu.handle(menuHandle);
 		menu.enableMenuCommand();
 	}
-}
+}	}

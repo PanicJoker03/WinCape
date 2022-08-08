@@ -4,5 +4,5 @@
 using namespace std;
 namespace WinCape
 {
-          const wchar_t* Defaults::WindowName = L"WinCape Window";
+          const wchar_t* Defaults::WINDOW_NAME = L"WinCape Window";
 }

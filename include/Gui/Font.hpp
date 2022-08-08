@@ -3,11 +3,10 @@
 #include "defines.hpp"
 #include "HasHandle.hpp"
 namespace WinCape{
-	namespace Gui{
-		class Font : public HasHandle<FontHandle>
-			{
-				//Do something...
-			};
-	}
-}
+namespace Gui{
+	class Font : public HasHandle<FontHandle>
+		{
+			//Do something...
+		};
+}}
 #endif

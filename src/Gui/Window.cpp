@@ -3,7 +3,8 @@
 #include "Gui.hpp"
 #include "Event.hpp"
 using namespace std;
-namespace WinCape::Gui
+namespace WinCape{
+namespace Gui
 {
 	//--------------------------------------------------------------------------
 	//Window
@@ -15,22 +16,22 @@ namespace WinCape::Gui
 	}
 	void Window::show()
 	{
-		ShowWindow(handle(), ShowCommands::Show);
+		ShowWindow(handle(), ShowCommands::SHOW);
 	}
 	void Window::hide()
 	{
-		ShowWindow(handle(), ShowCommands::Hide);
+		ShowWindow(handle(), ShowCommands::HIDE);
 	}
 	void Window::minimize()
 	{
-		ShowWindow(handle(), ShowCommands::Minimize);
+		ShowWindow(handle(), ShowCommands::MINIMIZE);
 	}
 	void Window::addButton(Button& button, const wchar_t* text,
 		const Vector2I& position, const Vector2I& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = Gui::Manager::instance().createHandle(
-			Defaults::ButtonClassName, text, Defaults::DefButtonStyle,
+			Defaults::BUTTON_CLASS_NAME, text, Defaults::DEFBUTTON_STYLE,
 			Rect(
 				position,
 				size
@@ -71,14 +72,18 @@ namespace WinCape::Gui
 	//	}
 	//}
 
-	void Window::addListView(ListView & listView, const Rect & dimensions, const Vector2I& padding)
+	void Window::addListView(
+		ListView & listView, const Rect & dimensions, const Vector2I& padding)
 	{
 	    Handle listViewHandle;
-	    const ListViewStyle style = WindowStyles::Child | WindowStyles::Visible | ListViewStyles::Report;
+	    const ListViewStyle style =
+			WindowStyles::CHILD |
+			WindowStyles::VISIBLE |
+			ListViewStyles::REPORT;
 	    Rect dimensions_ = dimensions;
 	    dimensions_.position.x += padding.x;
 	    dimensions_.position.y += padding.y;
-	    listViewHandle = Gui::Manager::instance().createHandle(ClassNames::ListView, L"", style, dimensions_, handle());
+	    listViewHandle = Gui::Manager::instance().createHandle(ClassNames::LISTVIEW, L"", style, dimensions_, handle());
 	    listView.handle(listViewHandle);
 	}
 
@@ -91,14 +96,14 @@ namespace WinCape::Gui
 	{
 		//TODO: declare button notifications in defines
 		Gui::Manager::instance().listenEvent(
-			handle(), WindowMessages::Paint, callback
+			handle(), WindowMessages::PAINT, callback
 		);
 	}
 	void Window::onDestroy(const EventCallback& callback)
 	{
 		//TODO: declare button notifications in defines
 		Gui::Manager::instance().listenEvent(
-			handle(), WindowMessages::Destroy, callback
+			handle(), WindowMessages::DESTROY, callback
 		);
 	}
 	void Window::redraw()
@@ -113,16 +118,16 @@ namespace WinCape::Gui
 	}
 	void Window::close()
 	{
-		SendMessage(handle(), WindowMessages::Close, 0, 0);
+		SendMessage(handle(), WindowMessages::CLOSE, 0, 0);
 	}
 	void Window::setIcon(const Icon& icon)
 	{
 		SendMessage(
-			handle(), WindowMessages::SetIcon, ICON_BIG, (LPARAM)icon.handle()
+			handle(), WindowMessages::SET_ICON, ICON_BIG, (LPARAM)icon.handle()
 		);
 	}
 	void Window::timer(const EventCallback& callback, unsigned int time){
-		WindowMessage timerMsg = WindowMessages::Timer;
+		WindowMessage timerMsg = WindowMessages::TIMER;
 		Gui::Manager::instance().listenEvent(handle(), timerMsg, callback);
 		SetTimer(
 			handle(), reinterpret_cast<UINT_PTR>(
@@ -140,7 +145,7 @@ namespace WinCape::Gui
 			throw GetLastError();
 			*/
 		SetLayeredWindowAttributes(
-			handle(), 0, value, LayeredWindowAttributes::Alpha);
+			handle(), 0, value, LayeredWindowAttributes::ALPHA);
 	}
 	void Window::parent(Window window){
 		SetParent(handle(), window.handle());
@@ -153,4 +158,4 @@ namespace WinCape::Gui
 		//if(handle() != NullPointer)
 		//	DestroyWindow(handle());
 	}
-}
+}}

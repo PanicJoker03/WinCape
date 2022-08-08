@@ -1,7 +1,8 @@
 //#ifdef WINCAPE_USES_WGL
 #include "defines.hpp"
 #include "Gui/RenderContext.hpp"
-namespace WinCape::Gui
+namespace WinCape{
+namespace Gui
 {
 	////-------------------------------------------------------------------------
 	////RenderContext
@@ -14,6 +15,6 @@ namespace WinCape::Gui
 	Gui::RenderContext::~RenderContext(){
 		//Solo hasta haber implementado el move constructor...
 		//wglDeleteContext(handle());
-	}
-}
+	}	
+}}
 //#endif

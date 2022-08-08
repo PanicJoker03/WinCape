@@ -7,9 +7,9 @@ namespace WinCape
 {
 	namespace Base
 	{
-		const Gui::Window Console(){
-			return Gui::Window(GetConsoleWindow());
-		}
+		//const Gui::Window Console(){
+		//	return Gui::Window(GetConsoleWindow());
+		//}
 	}
 	
 

@@ -5,7 +5,7 @@
 namespace WinCape
 {
     struct Defaults{
-            static const wchar_t* WindowName;
+        static const wchar_t* WINDOW_NAME;
     };
 }
 #endif // !DEFAULTS_HPP

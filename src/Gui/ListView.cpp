@@ -3,16 +3,18 @@
 #include "Gui/ListView.hpp"
 #include "Gui/Manager.hpp"
 #include "Gui/Style.hpp"
-namespace WinCape::Gui{
+namespace WinCape{
+namespace Gui{
     int ListView::count(){
         return ListView_GetItemCount(handle());
     }
 
     void ListView::addColumn(int index, const char* headerText, int width)
     {
-        LVCOLUMN column = {};
-        column.mask = LVCF_FMT | LVCF_TEXT | LVCF_WIDTH | LVCF_MINWIDTH | LVCF_SUBITEM;
-        column.fmt = LVCFMT_CENTER;
+        LVCOLUMN col = {};
+        col.mask = LVCF_FMT | 
+			LVCF_TEXT | LVCF_WIDTH | LVCF_MINWIDTH | LVCF_SUBITEM;
+        col.fmt = LVCFMT_CENTER;
 
 		//#ifdef _WIN32
 		//wcscpy_s(column.pszText, wcsnlen_s(headerText  + 1, 256), headerText);
@@ -21,17 +23,21 @@ namespace WinCape::Gui{
 		//#endif
 #ifdef _UNICODE
 		wchar_t wc[256]{};
-		MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, headerText, strnlen_s(headerText, 256), wc, strnlen_s(headerText, 256));
-		column.pszText = wc;
+		MultiByteToWideChar(
+			CP_ACP, 
+			MB_PRECOMPOSED, 
+			headerText, 
+			strnlen_s(headerText, 256), wc, strnlen_s(headerText, 256));
+		col.pszText = wc;
 #else
-		column.pszText = const_cast<char*>(headerText);
+		col.pszText = const_cast<char*>(headerText);
 
 #endif
-        column.cchTextMax = 256;
-        column.cx = width > 0 ? width : Gui::Defaults::ListViewColumnWidth;
-        column.cxMin = Gui::Defaults::ListViewMinColumnWidth;
-        column.iSubItem = index;
-        SendMessage(handle(), LVM_INSERTCOLUMN, index, (LPARAM)&column);
+        col.cchTextMax = 256;
+        col.cx = width > 0 ? width : Gui::Defaults::LIST_VIEW_COLUMN_WIDTH;
+        col.cxMin = Gui::Defaults::LIST_VIEW_MIN_COLUMN_WIDTH;
+        col.iSubItem = index;
+        SendMessage(handle(), LVM_INSERTCOLUMN, index, (LPARAM)&col);
     }
 
     LV_ITEM ListView::getItem(int index){
@@ -49,7 +55,9 @@ namespace WinCape::Gui{
 #ifdef _UNICODE
 		wchar_t wc[256]{};
 		const char * txt = cols[0].c_str();
-		MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, txt, strnlen_s(txt, 256), wc, strnlen_s(txt, 256));
+		MultiByteToWideChar(
+			CP_ACP, 
+			MB_PRECOMPOSED, txt, strnlen_s(txt, 256), wc, strnlen_s(txt, 256));
 		item.pszText = wc;
 #else
 		item.pszText = const_cast<char*>(cols[0].c_str());
@@ -61,7 +69,11 @@ namespace WinCape::Gui{
 #ifdef _UNICODE
 				wchar_t wcItem[256]{};
 				const char * txtItem = cols[i].c_str();
-				MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, txtItem, strnlen_s(txtItem, 256), wcItem, strnlen_s(txtItem, 256));
+				MultiByteToWideChar(
+					CP_ACP, 
+					MB_PRECOMPOSED, 
+					txtItem, 
+					strnlen_s(txtItem, 256), wcItem, strnlen_s(txtItem, 256));
 				item.pszText = wcItem;
 #else
 				item.pszText = const_cast<char*>(cols[i].c_str());
@@ -74,13 +86,16 @@ namespace WinCape::Gui{
     }
 
     void ListView::addRow(int row, const char * text){
-		LV_ITEM item{};
+		LV_ITEM item;
         item.mask = LVIF_TEXT;
         item.iItem = row;
         item.iSubItem = 0;
 #ifdef _UNICODE
 		wchar_t wc[256]{};
-		MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, text, strnlen_s(text, 256), wc, strnlen_s(text, 256));
+		MultiByteToWideChar(
+			CP_ACP, 
+			MB_PRECOMPOSED, 
+			text, strnlen_s(text, 256), wc, strnlen_s(text, 256));
 		item.pszText = wc;
 #else
 		item.pszText = const_cast<char*>(text);
@@ -90,11 +105,15 @@ namespace WinCape::Gui{
     }
 
     void ListView::addCheckBoxes(){
-        ListView_SetExtendedListViewStyle(handle(), ListViewStyles::Extended::Checkboxes | ListViewStyles::Extended::FullRowSelect);
+        ListView_SetExtendedListViewStyle(
+			handle(), 
+			ListViewStyles::Extended::CHECKBOXES | 
+			ListViewStyles::Extended::FULL_ROW_SELECT);
     }
 
     void ListView::onItemChecked(const EventCallback & callback){
-        Gui::Manager::instance().listenEvent((Base::Handle)handle(), ListViewMessages::ItemChanged, callback);
+        Gui::Manager::instance().listenEvent(
+			(Base::Handle)handle(), ListViewMessages::ITEM_CHANGED, callback);
     }
 
     void ListView::clear(){
@@ -108,4 +127,4 @@ namespace WinCape::Gui{
     void ListView::setItemChecked(int index, bool checked){
         ListView_SetCheckState(handle(), index, checked);
     }
-}
+}}

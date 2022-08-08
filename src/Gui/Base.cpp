@@ -1,6 +1,6 @@
 #include "Gui/Base.hpp"
-namespace WinCape::Gui
-{
+namespace WinCape{
+namespace Gui{
 	//-------------------------------------------------------------------------
 	//Base
 	//-------------------------------------------------------------------------
@@ -14,4 +14,4 @@ namespace WinCape::Gui
 		GetWindowTextW(handle(), text, lenght);
 		//return text;
 	}
-}
+}}

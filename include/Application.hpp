@@ -15,7 +15,7 @@ namespace WinCape{
 		/// <summary>
 		/// Starts the application loop
 		/// </summary>
-		static void init(const wchar_t* name = Defaults::WindowName);
+		static void init(const wchar_t* name = Defaults::WINDOW_NAME);
 		static Gui::Window console();
 		static int run();
 		static int run(WinCape::Gui::WindowFrame& window);
@@ -25,10 +25,10 @@ namespace WinCape{
 		static void defaultFont(const wchar_t* fontName);
 
 		static Gui::Window createWindow(
-			const wchar_t* windowName = Defaults::WindowName,
+			const wchar_t* windowName = Defaults::WINDOW_NAME,
 			const wchar_t* title = L"Default",
-			const Rect & rect = Gui::Defaults::WindowRect,
-			WindowStyle style = Gui::Defaults::DefWindowStyle,
+			const Rect & rect = Gui::Defaults::WINDOW_RECT,
+			WindowStyle style = Gui::Defaults::DEFWINDOW_STYLE,
 			WindowExtendedStyle exStyle = 0
 		);
 		//Do not touch it

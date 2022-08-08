@@ -1,7 +1,7 @@
 #include "Gui/Button.hpp"
 #include "Gui/Manager.hpp"
-namespace WinCape::Gui
-{
+namespace WinCape{
+namespace Gui{
 	//----------------------------------------------------------------------
 	//Button
 	//----------------------------------------------------------------------
@@ -10,4 +10,4 @@ namespace WinCape::Gui
 		//TODO: declare button notifications in defines
 		Gui::Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
 	}
-}
+}}

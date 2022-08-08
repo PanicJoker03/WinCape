@@ -1,7 +1,8 @@
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
 #include "Gui/Manager.hpp"
-namespace WinCape::Gui
+namespace WinCape{
+namespace Gui
 {
 	//-------------------------------------------------------------------------
 	//WindowFrame
@@ -12,13 +13,12 @@ namespace WinCape::Gui
 		handle(Application::createWindow(
 			windowName, title, rect, style).handle()
 		);
-		SendMessage(handle(), WindowMessages::Create, 0, 0);
+		SendMessage(handle(), WindowMessages::CREATE, 0, 0);
 	}
 	void WindowFrame::onDraw(DeviceContext deviceContext) {}
 	void WindowFrame::onDispose() {
-		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::Paint);
-		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::Destroy);
+		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::PAINT);
+		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::DESTROY);
 	}
 	Gui::WindowFrame::~WindowFrame() {}
-
-}
+}}

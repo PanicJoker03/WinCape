@@ -6,7 +6,7 @@
 #endif
 #include <windows.h>
 #include <WinUser.h>
-#include <CommCtrl.h>
+#include <commctrl.h>
 //#ifdef WINCAPE_USES_WGL
 //#include <GL/gl.h>
 //#include <GL/glu.h>
@@ -22,6 +22,7 @@ namespace WinCape
 	//struct AsNull{
 	//	static constexpr T value = NULL;
 	//};
+	typedef long* LongPointer;
 	typedef unsigned char UnsignedI8;
 	typedef HWND WindowHandle;
 	typedef HDC DeviceContextHandle;

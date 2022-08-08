@@ -13,9 +13,8 @@
 //Use lower case on static methods
 
 namespace WinCape{
-	namespace Base
-	{
-		const Gui::Window Console();
-	}
-}
+namespace Base
+{
+	const Gui::Window Console();
+}}
 #endif

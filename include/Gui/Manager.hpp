@@ -4,7 +4,8 @@
 #include "Gui/Base.hpp"
 #include "Event.hpp"
 #include "Gui/Style.hpp"
-namespace WinCape::Gui
+namespace WinCape{
+namespace Gui
 {
 	class Manager
 	{
@@ -26,6 +27,6 @@ namespace WinCape::Gui
 				Gui::Base::Handle parent = Gui::Base::Null, WindowStyle exStyle = 0);
 
 		static Manager& instance();
-	};
-}
+	};	
+}}
 #endif

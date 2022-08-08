@@ -1,7 +1,7 @@
 #include "Gui/Icon.hpp"
 #include "Application.hpp"
-namespace WinCape::Gui
-{
+namespace WinCape{
+namespace Gui{
 	//-------------------------------------------------------------------------
 	//Icon
 	//-------------------------------------------------------------------------
@@ -13,4 +13,4 @@ namespace WinCape::Gui
 			IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR | LR_DEFAULTSIZE);
 		handle(iconHandle);
 	}
-}
+}}

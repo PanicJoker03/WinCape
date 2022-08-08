@@ -1,6 +1,6 @@
 #include "Gui/Bitmap.hpp"
-namespace WinCape::Gui
-{
+namespace WinCape{
+namespace Gui{
 	//-------------------------------------------------------------------------
 	//Bitmap
 	//-------------------------------------------------------------------------
@@ -21,7 +21,7 @@ namespace WinCape::Gui
 	{
 		DeleteObject(handle());
 		BitmapHandle bitmapHandle = (BitmapHandle)CopyImage(bitmap.handle(),
-				IMAGE_BITMAP, 0, 0, NULL);
+				IMAGE_BITMAP, 0, 0, 0);
 		handle(bitmapHandle);
 		return *this;
 	}
@@ -84,4 +84,4 @@ namespace WinCape::Gui
 	{
 		DeleteObject(handle());
 	}
-}
+}}
