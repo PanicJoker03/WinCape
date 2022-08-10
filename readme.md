@@ -19,6 +19,9 @@ Windows XP isn't considered, but Windows Vista and later.
 
 If building throws an error about __imp_wglCreateContext not resolved then you must include library OpenGl32.
 
+## TODO
+Tabstrip component
+
 **Cpp, Hell Yeah!**
 
 ### Credits
