@@ -5,9 +5,9 @@ namespace WinCape{
 namespace DataStorage{
     namespace DesiredAccesses {
         enum {
-            GENERIC_READ = GENERIC_READ,
-            GENERIC_WRITE = GENERIC_WRITE,
-            GENERIC_READ_WRITE = GENERIC_READ | GENERIC_WRITE
+            READ = 0x80000000L,
+            WRITE = 0x40000000L,
+            READ_WRITE = 0x80000000L | 0x40000000L
         };
     }
 }}
