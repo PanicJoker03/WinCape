@@ -17,11 +17,6 @@
 
 namespace WinCape
 {
-    //NULL;
-	//template<typename T>
-	//struct AsNull{
-	//	static constexpr T value = NULL;
-	//};
 	typedef long* LongPointer;
 	typedef unsigned char UnsignedI8;
 	typedef HWND WindowHandle;
