@@ -6,7 +6,7 @@ WinCape is a general Win32Api wrapper. The philosophy behind the code is to hide
 
 ## Build
 
-It was originaly compiled on visual studio, now I use Dev C++ to make the build. Soon I will share the g++ command to build the .exe. Either way, you should have installed mingw64 to procced. 
+It was originaly compiled on visual studio, now I use Dev C++, Cevelop and CodeBlocks to make the build. Soon I will share the g++ command to build the .exe. Either way, you should have installed mingw64 to procced. 
 
 You can download Dev C++ [here](https://sourceforge.net/projects/dev-cpp/files/Binaries/Dev-C%2B%2B%204.9.9.2/devcpp-4.9.9.2_setup.exe/download).
 And a usefull msys2 installation guide [here](https://www.msys2.org/) on the Msys2 website, just follow the steps to get mingw64 installed on your machine.
