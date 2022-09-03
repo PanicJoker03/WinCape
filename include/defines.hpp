@@ -18,7 +18,7 @@
 namespace cape
 {
 	typedef long* LNG_PTR;
-	typedef unsigned char USIGN_8;
+	typedef unsigned char USIGN_I8;
 	typedef const char * CON_STR;
 	typedef const wchar_t * CON_WSTR;
 	typedef char * STR_PTR;
@@ -54,9 +54,9 @@ namespace cape
 	{
 		PXF_FLG flags;
 		PXF_TPE type;
-	    USIGN_8 colorBits;
-	    USIGN_8 depthBits;
-		USIGN_8 stencilBits;
+	    USIGN_I8 colorBits;
+	    USIGN_I8 depthBits;
+		USIGN_I8 stencilBits;
 	}PIXEL_FORMAT;
 	//#endif
 	typedef UINT DRW_TXT_FMAT;
