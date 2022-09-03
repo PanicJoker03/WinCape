@@ -9,36 +9,36 @@
 #include "Gui/ListView.hpp"
 #include "Gui/RadioButton.hpp"
 #include "Gui/Menu.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	class Window : public Base
 	{
 	public:
 		Window();
-		Window(WindowHandle value);
+		Window(WND_HND value);
 		void show();
 		void hide();
 		void minimize();
 
-		void addButton(Button& button, const wchar_t* text,
-			const Vector2I& position,
-			const Vector2I& size = Defaults::BUTTON_SIZE);
+		void addButton(Button& button, CON_WSTR text,
+			const VEC_2I& position,
+			const VEC_2I& size = Defaults::BUTTON_SIZE);
 
 		//Omited at the moment
         //void addRadioButton(
 		//		std::initializer_list<std::pair<Reference<RadioButton>,
-		//		const wchar_t*>> radioButtonList, const Vector2I& position,
-		//		const Vector2I& padding = Defaults::RadioButtonPadding);
+		//		CON_WSTR>> radioButtonList, const VEC_2I& position,
+		//		const VEC_2I& padding = Defaults::RadioButtonPadding);
 
-        void addListView(ListView & listView, const Rect & dimensions, const Vector2I & padding = Vector2I());
+        void addListView(ListView & listView, const CAPE_RECT & dimensions, const VEC_2I & padding = VEC_2I());
 		void attachMenu(Menu& menu);
-		void onDestroy(const EventCallback& callback);
-		void onPaint(const EventCallback& callback);
+		void onDestroy(const EVE_CALL& callback);
+		void onPaint(const EVE_CALL& callback);
 		void redraw();
 		void close();
 		void setIcon(const Icon& icon);
-		void timer(const EventCallback& callback, unsigned int time);
-		void alpha(const Byte value);
+		void timer(const EVE_CALL& callback, unsigned int time);
+		void alpha(const BYTE value);
 		DeviceContext deviceContext();
 		void parent(Window window);
 		Window parent();

@@ -3,52 +3,52 @@
 #define _ENABLE_THEME
 #include "WinCape.hpp"
 #include <iostream>
-using namespace WinCape;
+using namespace cape;
 struct Pixel32 { std::uint8_t b, g, r, offset = 0; };
-class MyWindow : public Gui::WindowFrame
+class MyWindow : public usr::WindowFrame
 {
 private:
-	Gui::Menu menu;
-	Gui::Menu fileMenu;
-	Gui::Button buttonA;
-	Gui::Button buttonB;
-	Gui::RadioButton radioButtonA;
-	Gui::RadioButton radioButtonB;
-	Gui::RadioButton radioButtonC;
-	Gui::Bitmap image;
+	usr::Menu menu;
+	usr::Menu fileMenu;
+	usr::Button buttonA;
+	usr::Button buttonB;
+	usr::RadioButton radioButtonA;
+	usr::RadioButton radioButtonB;
+	usr::RadioButton radioButtonC;
+	usr::Bitmap image;
 	std::vector<Pixel32> buffer;
 public:
-	MyWindow() : Gui::WindowFrame(L"Wincape Test", L"Ventana", Rect{120,120, 640, 480}) {}
+	MyWindow() : usr::WindowFrame(L"Wincape Test", L"Ventana", CAPE_RECT{120,120, 640, 480}) {}
 private:
 	void MyWindow::onCreate() override
 	{
 		show();
 		//Setup window
-		Gui::Menu::create(menu);
-		Gui::Menu::create(fileMenu);
+		usr::Menu::create(menu);
+		usr::Menu::create(fileMenu);
 		fileMenu.addItems({ L"Abrir imagen", L"Guardar imagen", L"Salir"});
 		menu.addSubMenu(fileMenu, L"Archivo");
 		attachMenu(menu);
-		addButton(buttonA, L"Bot�n", Vector2I{ 100, 100 });
-		addButton(buttonB, L"Test", Vector2I{ 140, 140 });
+		addButton(buttonA, L"Bot�n", VEC_2I{ 100, 100 });
+		addButton(buttonB, L"Test", VEC_2I{ 140, 140 });
 		addRadioButton(
 			{
 				{ radioButtonA, L"radio 1" },
 				{ radioButtonB, L"radio 2" },
 				{ radioButtonC, L"radio 3" }
 			},
-			Vector2I{ 200,200 }
+			VEC_2I{ 200,200 }
 		);
 		//Loading the image...
 		image.load(L"c:\\Users\\w7\\Pictures\\chrono.bmp");
 		buffer.resize(image.dimension().x * image.dimension().y);
 		//Event listening
-		buttonA.onClick([&](Event e) {this->onButtonAClick(e);});
-		buttonB.onClick([&](Event e) {this->onButtonBClick(e);});
-		radioButtonA.onClick([&](Event e) {this->onRadioButtonAClick(e);});
-		fileMenu.onItemSelect([&](Event e) {this->onFileMenuSelect(e); });
+		buttonA.onClick([&](EVENT e) {this->onButtonAClick(e);});
+		buttonB.onClick([&](EVENT e) {this->onButtonBClick(e);});
+		radioButtonA.onClick([&](EVENT e) {this->onRadioButtonAClick(e);});
+		fileMenu.onItemSelect([&](EVENT e) {this->onFileMenuSelect(e); });
 	}
-	void MyWindow::onDraw(Gui::DeviceContext& deviceContext) override
+	void MyWindow::onDraw(usr::DeviceContext& deviceContext) override
 	{
 		image.clonePixels(&buffer[0]);
 		for (auto& pixel : buffer)
@@ -58,20 +58,20 @@ private:
 		image.setPixels(&buffer[0]);
 		deviceContext.drawBitmap(image);
 	}
-	void onButtonAClick(Event e)
+	void onButtonAClick(EVENT e)
 	{
 		minimize();
 	}
-	void onButtonBClick(Event e)
+	void onButtonBClick(EVENT e)
 	{
 		radioButtonB.setText(L"Poof!");
 	}
-	void onRadioButtonAClick(Event e)
+	void onRadioButtonAClick(EVENT e)
 	{
 		radioButtonA.setText(L"Me haz clickeado t�o!");
 		redraw();
 	}
-	void onFileMenuSelect(Event e)
+	void onFileMenuSelect(EVENT e)
 	{
 		int index = e.wparam;
 		if (index == 2)

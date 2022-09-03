@@ -12,9 +12,9 @@
 //TODO...
 //Use lower case on static methods
 
-namespace WinCape{
+namespace cape{
 namespace Base
 {
-	const Gui::Window Console();
+	const usr::Window Console();
 }}
 #endif

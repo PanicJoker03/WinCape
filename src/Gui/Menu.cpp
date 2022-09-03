@@ -1,8 +1,8 @@
 #include "Gui/Menu.hpp"
 #include "Gui/GuiDefines.hpp"
 #include "Gui/Manager.hpp"
-namespace WinCape{
-namespace Gui
+namespace cape{
+namespace usr
 {
 	//--------------------------------------------------------------------------
 	//Menu
@@ -18,34 +18,34 @@ namespace Gui
 		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
 		SetMenuInfo(handle(), &menuInfo);
 	}
-	void Menu::addSubMenu(Gui::Menu& menu, const wchar_t* text)
+	void Menu::addSubMenu(usr::Menu& menu, CON_WSTR text)
 	{
 		AppendMenuW(
 			handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text
 		);
 	}
-	void Menu::addItem(const wchar_t* item)
+	void Menu::addItem(CON_WSTR item)
 	{
 		//Create MenuFlags in defines
 		AppendMenuW(handle(), MF_STRING, 0, item);
 	}
 	//Omited at the moment
-	//void Menu::addItems(std::initializer_list<const wchar_t*> itemList)
+	//void Menu::addItems(std::initializer_list<CON_WSTR> itemList)
 	//{
-	//	for (const wchar_t* item : itemList)
+	//	for (CON_WSTR item : itemList)
 	//	{
 	//		addItem(item);
 	//	}
 	//}
-	void Menu::onItemSelect(const EventCallback& callback)
+	void Menu::onItemSelect(const EVE_CALL& callback)
 	{
-		Gui::Manager::instance().listenEvent(
-			(Gui::Base::Handle)handle(), WindowMessages::MENU_COMMAND, callback
+		usr::Manager::instance().listenEvent(
+			(usr::Base::Handle)handle(), WindowMessages::MENU_COMMAND, callback
 		);
 	}
-	void Menu::create(Gui::Menu& menu)
+	void Menu::create(usr::Menu& menu)
 	{
-		MenuHandle menuHandle = CreateMenu();
+		MNU_HND menuHandle = CreateMenu();
 		menu.handle(menuHandle);
 		menu.enableMenuCommand();
 	}

@@ -2,14 +2,14 @@
 #define CONTROL_HPP
 //#include "defines.hpp"
 #include "Gui/Base.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	class Window;//for friend
 	class Control : public Base
 	{
 	public:
 		friend Window;
-		void createFromResource(WindowHandle parent, int resource);
+		void createFromResource(WND_HND parent, int resource);
 	};
 }}
 #endif

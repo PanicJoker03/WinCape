@@ -8,32 +8,32 @@
 //#include "Gui/WindowFrame.hpp"
 
 
-namespace WinCape{
+namespace cape{
 	//To singleton...
 	struct Application
 	{
 		/// <summary>
 		/// Starts the application loop
 		/// </summary>
-		static void init(const wchar_t* name = Defaults::WINDOW_NAME);
-		static Gui::Window console();
+		static void init(CON_WSTR name = Defaults::WINDOW_NAME);
+		static usr::Window console();
 		static int run();
-		static int run(WinCape::Gui::WindowFrame& window);
-		static InstanceHandle instance();
+		static int run(cape::usr::WindowFrame& window);
+		static ISC_HND instance();
 		//Really poor function, must be called at the application beginning in
 		//order to work...
-		static void defaultFont(const wchar_t* fontName);
+		static void defaultFont(CON_WSTR fontName);
 
-		static Gui::Window createWindow(
-			const wchar_t* windowName = Defaults::WINDOW_NAME,
-			const wchar_t* title = L"Default",
-			const Rect & rect = Gui::Defaults::WINDOW_RECT,
-			WindowStyle style = Gui::Defaults::DEFWINDOW_STYLE,
-			WindowExtendedStyle exStyle = 0
+		static usr::Window createWindow(
+			CON_WSTR windowName = Defaults::WINDOW_NAME,
+			CON_WSTR title = L"Default",
+			const CAPE_RECT & rect = usr::Defaults::WINDOW_RECT,
+			WND_STY style = usr::Defaults::DEFWINDOW_STYLE,
+			WNDX_STY exStyle = 0
 		);
 		//Do not touch it
-		static Gui::WindowFrame * functorWnd;
-		static void wndOnPaint(Event e);
+		static usr::WindowFrame * functorWnd;
+		static void wndOnPaint(EVENT e);
 
 		static void quit();
 	};

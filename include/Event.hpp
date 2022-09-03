@@ -2,17 +2,17 @@
 #define EVENT_HPP
 #include "defines.hpp"
 #include <functional>
-namespace WinCape{
-	struct Event
+namespace cape{
+	typedef struct capeEvent
 	{
-		WindowHandle handle;
+		WND_HND handle;
 		WPARAM wparam;
 		LPARAM lparam;
-		Event();
-		Event(WindowHandle handle, WPARAM wparam, LPARAM lparam);
-	};
-	//using EventCallback = std::function<void(Event)>;
-	typedef void (*EventCallback)(Event);
+		capeEvent();
+		capeEvent(WND_HND handle, WPARAM wparam, LPARAM lparam);
+	}EVENT;
+	//using EVE_CALL = std::function<void(EVENT)>;
+	typedef void (*EVE_CALL)(EVENT);
     //Omited at the moment
     //template<typename T> using Reference = std::reference_wrapper<T>;
 }

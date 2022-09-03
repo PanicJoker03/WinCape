@@ -1,13 +1,13 @@
 #include "Gui/Button.hpp"
 #include "Gui/Manager.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//----------------------------------------------------------------------
 	//Button
 	//----------------------------------------------------------------------
-	void Gui::Button::onClick(const EventCallback& callback)
+	void usr::Button::onClick(const EVE_CALL& callback)
 	{
 		//TODO: declare button notifications in defines
-		Gui::Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
+		usr::Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
 	}
 }}

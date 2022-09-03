@@ -2,12 +2,12 @@
 #define LISTBOX_HPP
 //#include "defines.hpp"
 #include "Gui/Control.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	class ListBox : public Control
 	{
 	public:
-		void addString(const wchar_t* string);
+		void addString(CON_WSTR string);
 		int count();
 	};
 }}

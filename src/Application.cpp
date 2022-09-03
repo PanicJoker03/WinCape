@@ -6,12 +6,12 @@
 #include "Gui/Window.hpp"
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
-namespace WinCape{   
+namespace cape{   
      //Some crazy stuff to make WinCape c++98 compiles
-     Gui::WindowFrame * Application::functorWnd = NULL;
-     void Application::wndOnPaint(Event e){
+     usr::WindowFrame * Application::functorWnd = NULL;
+     void Application::wndOnPaint(EVENT e){
         PAINTSTRUCT paintStruct;
-        Gui::DeviceContext deviceContext = Gui::DeviceContext(
+        usr::DeviceContext deviceContext = usr::DeviceContext(
             (BeginPaint(functorWnd->handle(), &paintStruct))
         );
         functorWnd->onDraw(functorWnd->deviceContext());
@@ -21,40 +21,40 @@ namespace WinCape{
 	//--------------------------------------------------------------------------
 	//Application
 	//--------------------------------------------------------------------------
-	void Application::init(const wchar_t* name)
+	void Application::init(CON_WSTR name)
 	{
-		Gui::Manager::instance().registerClass(name);
+		usr::Manager::instance().registerClass(name);
 	}
-	Gui::Window Application::createWindow(const wchar_t* windowName,
-		const wchar_t* title, const Rect& rect, WindowStyle style,
-		WindowExtendedStyle exStyle)
+	usr::Window Application::createWindow(CON_WSTR windowName,
+		CON_WSTR title, const CAPE_RECT& rect, WND_STY style,
+		WNDX_STY exStyle)
 	{
-		Gui::Window window;
-		window = Gui::Window(Gui::Manager::instance().createHandle(
-			windowName, title, style, rect, Gui::Base::Null, exStyle)
+		usr::Window window;
+		window = usr::Window(usr::Manager::instance().createHandle(
+			windowName, title, style, rect, usr::Base::Null, exStyle)
 		);
 		return window;
 	}
 	int Application::run()
 	{
-		return Gui::Manager::instance().startListening();
+		return usr::Manager::instance().startListening();
 	}
-	int Application::run(Gui::WindowFrame& window)
+	int Application::run(usr::WindowFrame& window)
 	{
-		using namespace WinCape;
+		using namespace cape;
 		Application::functorWnd = &window;
 		window.onCreate();
 		window.onPaint(wndOnPaint);
 		//window.onCreate();
-		return Gui::Manager::instance().startListening();
+		return usr::Manager::instance().startListening();
 	}
-	InstanceHandle Application::instance()
+	ISC_HND Application::instance()
 	{
 		return GetModuleHandle(NULL);
 	}
-	void Application::defaultFont(const wchar_t* fontName)
+	void Application::defaultFont(CON_WSTR fontName)
 	{
-		Gui::Manager::instance().defaultFont(fontName);
+		usr::Manager::instance().defaultFont(fontName);
 	}
 
 	void Application::quit() {

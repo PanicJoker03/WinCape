@@ -1,16 +1,16 @@
 #include "Gui/Icon.hpp"
 #include "Application.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//-------------------------------------------------------------------------
 	//Icon
 	//-------------------------------------------------------------------------
-	Gui::Icon::Icon() {}
-	void Gui::Icon::load(ResourceInt idi)
+	usr::Icon::Icon() {}
+	void usr::Icon::load(RESRC_I idi)
 	{
-		IconHandle iconHandle = (IconHandle)LoadImage(
+		ICO_HND iconHnd = (ICO_HND)LoadImage(
 			Application::instance(), MAKEINTRESOURCE(idi),
 			IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR | LR_DEFAULTSIZE);
-		handle(iconHandle);
+		handle(iconHnd);
 	}
 }}

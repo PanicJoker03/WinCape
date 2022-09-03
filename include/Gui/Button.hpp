@@ -2,12 +2,12 @@
 #define BUTTON_HPP
 #include "Event.hpp"
 #include "Gui/Control.hpp"
-namespace WinCape{
-namespace Gui {
+namespace cape{
+namespace usr {
 	class Button : public Control
 	{
 	public:
-		void onClick(const EventCallback& callback);
+		void onClick(const EVE_CALL& callback);
 
 	};
 }}

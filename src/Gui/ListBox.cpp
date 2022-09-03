@@ -1,11 +1,11 @@
 #include "Gui/GuiDefines.hpp"
 #include "Gui/ListBox.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//--------------------------------------------------------------------------
 	//ListBox
 	//--------------------------------------------------------------------------
-	void ListBox::addString(const wchar_t* string) {
+	void ListBox::addString(CON_WSTR string) {
 		SendMessage(handle(), ListBoxMessages::ADD_STRING, 0, (LPARAM)string);
 	}
 	int ListBox::count() {

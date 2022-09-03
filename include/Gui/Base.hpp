@@ -3,13 +3,13 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace WinCape{
-namespace Gui{
-	class Base : public HasHandle<WindowHandle>
+namespace cape{
+namespace usr{
+	class Base : public HasHandle<WND_HND>
 	{
 	public:
-		void setText(const wchar_t* text);
-		void getText(wchar_t* text, int lenght) const;
+		void setText(CON_WSTR text);
+		void getText(WSTR_PTR text, int lenght) const;
 	protected:
 		Base();
 	};

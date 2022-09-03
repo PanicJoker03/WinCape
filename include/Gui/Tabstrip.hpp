@@ -2,8 +2,8 @@
 #define TABSTRIP_HPP
 //#include "defines.hpp"
 #include "Gui/Control.hpp"
-namespace WinCape{
-namespace Gui
+namespace cape{
+namespace usr
 {
 	class Tabstrip : public Control
 	{

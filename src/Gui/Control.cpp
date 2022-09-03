@@ -1,11 +1,11 @@
 #include "Gui/Control.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//--------------------------------------------------------------------------
 	//Control
 	//--------------------------------------------------------------------------
-	void Gui::Control::createFromResource(
-		WindowHandle parent,
+	void usr::Control::createFromResource(
+		WND_HND parent,
 		int resource) {
 		handle(GetDlgItem(parent, resource));
 	}

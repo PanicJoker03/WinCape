@@ -3,14 +3,14 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	class Window;
-	class Icon : public HasHandle<IconHandle>
+	class Icon : public HasHandle<ICO_HND>
 	{
 	public:
 		Icon();
-		void load(ResourceInt idi);
+		void load(RESRC_I idi);
 		friend Window;
 	};
 }}

@@ -6,24 +6,24 @@
 #include "Gui/GuiDefines.hpp"
 using namespace std;
 
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//--------------------------------------------------------------------------
 	//Implementation
 	//--------------------------------------------------------------------------
 	class ManagerImpl
 	{
-		typedef pair<Gui::Base::Handle, WindowMessage> EventKey;
+		typedef pair<usr::Base::Handle, WND_MSG> EVE_KEY;
 		//Wrap in a class?
-		typedef map<EventKey, EventCallback> EventMap;
-		EventMap eventMap;
+		typedef map<EVE_KEY, EVE_CALL> EVE_MP;
+		EVE_MP eventMap;
 		//vector<void*> ptrPool;
 		//Wrap in font class?
-		FontHandle applicationFont;
+		FON_HND applicationFont;
 	public:
-		//using EventKey = pair<Gui::Base::Handle, WindowMessage>;
+		//using EVE_KEY = pair<usr::Base::Handle, WND_MSG>;
 		//Wrap in a class?
-		//using EventMap = map<EventKey, EventCallback>;
+		//using EVE_MP = map<EVE_KEY, EVE_CALL>;
 		static ManagerImpl& instance()
 		{
 			static ManagerImpl instance_;
@@ -54,74 +54,74 @@ namespace Gui{
 			}
 			return static_cast<int>(msg.wParam);
 		}
-		void listenEvent(Gui::Base::Handle handle, WindowMessage message,
-			const EventCallback& callback)
+		void listenEvent(usr::Base::Handle handle, WND_MSG message,
+			const EVE_CALL& callback)
 		{
-			eventMap[EventKey( handle, message  )] = callback;
+			eventMap[EVE_KEY( handle, message  )] = callback;
 		}
-		void unlistenEvent(Gui::Base::Handle handle, WindowMessage message) 
+		void unlistenEvent(usr::Base::Handle handle, WND_MSG message) 
 		{
-			eventMap.erase(EventKey(handle, message));
+			eventMap.erase(EVE_KEY(handle, message));
 		}
-		void doCallback(const EventKey& key, WPARAM wParam, LPARAM lParam)
+		void doCallback(const EVE_KEY& key, WPARAM wParam, LPARAM lParam)
 		{
-			EventMap::iterator keyIterator = eventMap.find(key);
+			EVE_MP::iterator keyIterator = eventMap.find(key);
 			if (keyIterator != eventMap.end())
 			{
-				keyIterator->second(Event( key.first , wParam, lParam ));
+				keyIterator->second(EVENT( key.first , wParam, lParam ));
 			}
 		}
 		static void TimerProc(HWND hWnd, UINT param1, UINT param2,
 			UINT_PTR param3, DWORD param4){
 			ManagerImpl::instance().doCallback(
-				EventKey(0, Gui::WindowMessages::TIMER), 0, 0
+				EVE_KEY(0, usr::WindowMessages::TIMER), 0, 0
 			);
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
 			LPARAM lParam)
 		{
-			WindowHandle handle = (Gui::Base::Handle)hWnd;
+			WND_HND handle = (usr::Base::Handle)hWnd;
 			switch (message)
 			{
-			case Gui::WindowMessages::DESTROY:
+			case usr::WindowMessages::DESTROY:
 				ManagerImpl::instance().doCallback(
-					EventKey( handle, message ), wParam, lParam
+					EVE_KEY( handle, message ), wParam, lParam
 				);
 				PostQuitMessage(0);
 				break;
-			case Gui::WindowMessages::COMMAND:
+			case usr::WindowMessages::COMMAND:
 			{
-				Gui::Base::Handle commandHandle = (Gui::Base::Handle)lParam;
-				WindowMessage controlMessage = HIWORD(wParam);
+				usr::Base::Handle commandHandle = (usr::Base::Handle)lParam;
+				WND_MSG controlMessage = HIWORD(wParam);
 				ManagerImpl::instance().doCallback(
-					EventKey( commandHandle, controlMessage ), wParam, lParam
+					EVE_KEY( commandHandle, controlMessage ), wParam, lParam
 				);
 			}
 			break;
-			case Gui::WindowMessages::MENU_COMMAND:
+			case usr::WindowMessages::MENU_COMMAND:
 			{
-				Gui::Base::Handle commandHandle = (Gui::Base::Handle)lParam;
+				usr::Base::Handle commandHandle = (usr::Base::Handle)lParam;
 				ManagerImpl::instance().doCallback(
-					EventKey( commandHandle, message ), wParam, lParam
+					EVE_KEY( commandHandle, message ), wParam, lParam
 				);
 			}
 			break;
 			default:
 				ManagerImpl::instance().doCallback(
-					EventKey( handle, message ), wParam, lParam
+					EVE_KEY( handle, message ), wParam, lParam
 				);
 				return DefWindowProcW(hWnd, message, wParam, lParam);
 			break;
 			}
 			return 0;
 		}
-		void registerClass(const wchar_t* name = WinCape::Defaults::WINDOW_NAME)
+		void registerClass(CON_WSTR name = cape::Defaults::WINDOW_NAME)
 		{
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
 			WNDCLASSEXW windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEXW);
-			windowClass.style = Gui::Defaults::DEFCLASS_STYLE;
+			windowClass.style = usr::Defaults::DEFCLASS_STYLE;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = Application::instance();
 			windowClass.hIcon = LoadIconW(
@@ -135,16 +135,16 @@ namespace Gui{
 			);
 			RegisterClassExW(&windowClass);
 		}
-		Gui::Base::Handle createHandle(const wchar_t* name,
-			const wchar_t* text, WindowStyle style, const Rect& rect,
-			Gui::Base::Handle parent, WindowExtendedStyle exStyle)
+		usr::Base::Handle createHandle(CON_WSTR name,
+			CON_WSTR text, WND_STY style, const CAPE_RECT& rect,
+			usr::Base::Handle parent, WNDX_STY exStyle)
 		{
 			WNDCLASSW windowClass = {};
 			//Because each window must register it's class
 			if(!GetClassInfoW(Application::instance(), name, &windowClass))
 				registerClass(name);
 				//MessageBoxW(0, name, L"NO manches", MB_OK);
-			WindowHandle handle = CreateWindowExW(
+			WND_HND handle = CreateWindowExW(
 				exStyle,
 				name,
 				text,
@@ -164,7 +164,7 @@ namespace Gui{
 			return handle;
 		}
 		//Use font wrapper class...
-		void defaultFont(const wchar_t* fontName)
+		void defaultFont(CON_WSTR fontName)
 		{
 			//http://www.cplusplus.com/forum/windows/109795/
 			DeleteObject(applicationFont);
@@ -177,7 +177,7 @@ namespace Gui{
 			#endif
 			applicationFont = CreateFontIndirectW(&lFont);
 		}
-		FontHandle defaultFont()
+		FON_HND defaultFont()
 		{
 			return applicationFont;
 		}
@@ -185,43 +185,43 @@ namespace Gui{
 	//--------------------------------------------------------------------------
 	//Forwarding
 	//--------------------------------------------------------------------------
-	Gui::Manager::Manager() {}
-	Gui::Manager& Manager::instance()
+	usr::Manager::Manager() {}
+	usr::Manager& Manager::instance()
 	{
 		static Manager instance_;
 		return instance_;
 	}
-	int Gui::Manager::startListening()
+	int usr::Manager::startListening()
 	{
 		return ManagerImpl::instance().startListening();
 	}
-	void Gui::Manager::listenEvent(
-		Gui::Base::Handle handle, 
-		WindowMessage message, const EventCallback& callback)
+	void usr::Manager::listenEvent(
+		usr::Base::Handle handle, 
+		WND_MSG message, const EVE_CALL& callback)
 	{
 		ManagerImpl::instance().listenEvent(handle, message, callback);
 	}
-	void Gui::Manager::unlistenEvent(
-		Gui::Base::Handle handle, WindowMessage message)
+	void usr::Manager::unlistenEvent(
+		usr::Base::Handle handle, WND_MSG message)
 	{
 		ManagerImpl::instance().unlistenEvent(handle, message);
 	}
-	void Gui::Manager::registerClass(const wchar_t* name)
+	void usr::Manager::registerClass(CON_WSTR name)
 	{
 		ManagerImpl::instance().registerClass(name);
 	}
-	Gui::Base::Handle Gui::Manager::createHandle(const wchar_t* className,
-		const wchar_t* text, WindowStyle style, const Rect& rect,
-		Gui::Base::Handle parent, WindowExtendedStyle exStyle)
+	usr::Base::Handle usr::Manager::createHandle(CON_WSTR className,
+		CON_WSTR text, WND_STY style, const CAPE_RECT& rect,
+		usr::Base::Handle parent, WNDX_STY exStyle)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style,
 			rect, parent, exStyle);
 	}
-	void Gui::Manager::defaultFont(const wchar_t* fontName)
+	void usr::Manager::defaultFont(CON_WSTR fontName)
 	{
 		ManagerImpl::instance().defaultFont(fontName);
 	}
-	FontHandle Gui::Manager::defaultFont()
+	FON_HND usr::Manager::defaultFont()
 	{
 		return ManagerImpl::instance().defaultFont();
 	}

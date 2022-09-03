@@ -1,8 +1,8 @@
 #ifndef GUI_DEFINES_HPP
 #define GUI_DEFINES_HPP
 #include "defines.hpp"
-namespace WinCape{
-    namespace Gui{
+namespace cape{
+    namespace usr{
 
       namespace ShowCommands {
             enum
@@ -114,9 +114,9 @@ namespace WinCape{
             };
         }
         struct ClassNames {
-            static const wchar_t* LISTVIEW;// = L"SysListView32";//WC_LISTVIEW;
-            static const wchar_t* BUTTON;// = L"Button";//WC_BUTTON;
-            static const wchar_t* LISTBOX;// = L"ListBox";//WC_LISTBOX;
+            static CON_WSTR LISTVIEW;// = L"SysListView32";//WC_LISTVIEW;
+            static CON_WSTR BUTTON;// = L"Button";//WC_BUTTON;
+            static CON_WSTR LISTBOX;// = L"ListBox";//WC_LISTBOX;
         };
         namespace ListViewMessages {
             enum {

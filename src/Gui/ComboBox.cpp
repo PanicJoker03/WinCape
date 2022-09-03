@@ -1,10 +1,10 @@
 #include "Gui/Combobox.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//----------------------------------------------------------------------
 	//ComboBox
 	//----------------------------------------------------------------------
-	void Gui::ComboBox::addString(const wchar_t* string) {
+	void usr::ComboBox::addString(CON_WSTR string) {
 		SendMessage(handle(), CB_ADDSTRING, 0, (LPARAM)string);
 	}
 }}

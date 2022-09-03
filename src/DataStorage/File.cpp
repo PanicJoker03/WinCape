@@ -1,21 +1,21 @@
 #include "DataStorage/DataStorageDefines.hpp"
 #include "DataStorage/File.hpp"
-namespace WinCape {
+namespace cape {
           /*
     namespace DataStorage{
-        void File::open(const wchar_t* filePath, DesiredAccess mode)
+        void File::open(CON_WSTR filePath, DRD_ACCES mode)
         {
             //TODO: Abrir con bandera OPEN_EXISTING
         }
 
-        void File::create(const wchar_t * filePath, DesiredAccess mode)
+        void File::create(const wchar_t * filePath, DRD_ACCES mode)
         {
             //TODO: Abrir con bandera CREATE_NEW
         }
 
         void File::truncate(const wchar_t * filePath)
         {
-            //TODO: Abrir con bandera TRUNCATE_EXISTING y DesiredAccess GenericWrite...
+            //TODO: Abrir con bandera TRUNCATE_EXISTING y DRD_ACCES GenericWrite...
         }
 
         void File::close()
@@ -23,7 +23,7 @@ namespace WinCape {
 
         }
 
-        void File::delete(const wchar_t* filePath)
+        void File::delete(CON_WSTR filePath)
         {
 
         }

@@ -4,8 +4,8 @@
 #include "Gui/Base.hpp"
 #include "Event.hpp"
 #include "Gui/Style.hpp"
-namespace WinCape{
-namespace Gui
+namespace cape{
+namespace usr
 {
 	class Manager
 	{
@@ -14,17 +14,17 @@ namespace Gui
 	public:
 		int startListening();
 
-		void listenEvent(Gui::Base::Handle handle, WindowMessage message,
-				const EventCallback& callback);
+		void listenEvent(usr::Base::Handle handle, WND_MSG message,
+				const EVE_CALL& callback);
 
-		void unlistenEvent(Gui::Base::Handle handle, WindowMessage message);
-		void defaultFont(const wchar_t* fontName);
-		FontHandle defaultFont();
-		void registerClass(const wchar_t* name);
+		void unlistenEvent(usr::Base::Handle handle, WND_MSG message);
+		void defaultFont(CON_WSTR fontName);
+		FON_HND defaultFont();
+		void registerClass(CON_WSTR name);
 
-		Gui::Base::Handle createHandle(const wchar_t* className,
-				const wchar_t* text, WindowStyle style, const Rect& rect,
-				Gui::Base::Handle parent = Gui::Base::Null, WindowStyle exStyle = 0);
+		usr::Base::Handle createHandle(CON_WSTR className,
+				CON_WSTR text, WND_STY style, const CAPE_RECT& rect,
+				usr::Base::Handle parent = usr::Base::Null, WND_STY exStyle = 0);
 
 		static Manager& instance();
 	};	

@@ -3,13 +3,13 @@
 #include "Gui/ListView.hpp"
 #include "Gui/Manager.hpp"
 #include "Gui/Style.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
     int ListView::count(){
         return ListView_GetItemCount(handle());
     }
 
-    void ListView::addColumn(int index, const char* headerText, int width)
+    void ListView::addColumn(int index, CON_STR headerText, int width)
     {
         LVCOLUMN col = {};
         col.mask = LVCF_FMT | 
@@ -34,8 +34,8 @@ namespace Gui{
 
 #endif
         col.cchTextMax = 256;
-        col.cx = width > 0 ? width : Gui::Defaults::LIST_VIEW_COLUMN_WIDTH;
-        col.cxMin = Gui::Defaults::LIST_VIEW_MIN_COLUMN_WIDTH;
+        col.cx = width > 0 ? width : usr::Defaults::LIST_VIEW_COLUMN_WIDTH;
+        col.cxMin = usr::Defaults::LIST_VIEW_MIN_COLUMN_WIDTH;
         col.iSubItem = index;
         SendMessage(handle(), LVM_INSERTCOLUMN, index, (LPARAM)&col);
     }
@@ -85,7 +85,7 @@ namespace Gui{
         }
     }
 
-    void ListView::addRow(int row, const char * text){
+    void ListView::addRow(int row, CON_STR text){
 		LV_ITEM item;
         item.mask = LVIF_TEXT;
         item.iItem = row;
@@ -111,8 +111,8 @@ namespace Gui{
 			ListViewStyles::Extended::FULL_ROW_SELECT);
     }
 
-    void ListView::onItemChecked(const EventCallback & callback){
-        Gui::Manager::instance().listenEvent(
+    void ListView::onItemChecked(const EVE_CALL & callback){
+        usr::Manager::instance().listenEvent(
 			(Base::Handle)handle(), ListViewMessages::ITEM_CHANGED, callback);
     }
 

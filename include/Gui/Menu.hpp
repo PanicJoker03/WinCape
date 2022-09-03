@@ -5,19 +5,19 @@
 //Omited at the moment
 //#include <initializer_list>
 #include "Event.hpp"
-namespace WinCape {
-namespace Gui{
+namespace cape {
+namespace usr{
 	class Window;
-	class Menu : public HasHandle<MenuHandle>
+	class Menu : public HasHandle<MNU_HND>
 	{
 	private:
 		void enableMenuCommand();
 	public:
-		void addSubMenu(Menu& menu, const wchar_t* text);
-		void addItem(const wchar_t* item);
+		void addSubMenu(Menu& menu, CON_WSTR text);
+		void addItem(CON_WSTR item);
 		//Omited at the moment
-        //void addItems(std::initializer_list<const wchar_t*> itemList);
-		void onItemSelect(const EventCallback& callback);
+        //void addItems(std::initializer_list<CON_WSTR> itemList);
+		void onItemSelect(const EVE_CALL& callback);
 		static void create(Menu& menu);
 		friend Window;
 	};

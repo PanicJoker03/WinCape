@@ -1,4 +1,4 @@
 #include "Gui/Font.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 }}

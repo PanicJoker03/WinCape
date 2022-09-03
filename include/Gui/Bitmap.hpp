@@ -2,20 +2,20 @@
 #define BITMAP_HPP
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace WinCape{
-namespace Gui{
-	class Bitmap : public HasHandle<BitmapHandle>
+namespace cape{
+namespace usr{
+	class Bitmap : public HasHandle<BMP_HND>
 	{
 	private:
 		Bitmap(const Bitmap&);
 		//Bitmap& operator=(const Bitmap&) = delete;
-		void getBitmapInfo(const DeviceContextHandle& deviceContext,
+		void getBitmapInfo(const DCX_HND& deviceContext,
 				BITMAPINFO& bmpInfo) const;
 	public:
-		Bitmap(const Vector2I& dimensions = Vector2I());
+		Bitmap(const VEC_2I& dimensions = VEC_2I());
 		Bitmap& operator = (const Bitmap& bitmap);
-		void load(const wchar_t* sourcePath);
-		Vector2I dimension() const;
+		void load(CON_WSTR sourcePath);
+		VEC_2I dimension() const;
 		void clonePixels(void* buffer) const;
 		void setPixels(void* buffer);
 		~Bitmap();

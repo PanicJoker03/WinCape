@@ -1,11 +1,11 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace WinCape{
+namespace cape{
 
           
     //template<> 
-    //const HasHandle<WindowHandle>::Null = 0;
+    //const HasHandle<WND_HND>::Null = 0;
 
 
 	

@@ -3,29 +3,29 @@
 #include "DataStorage/DataStorageDefines.hpp"
 #include "HasHandle.hpp"
 /*
-namespace WinCape
+namespace cape
 {
 	namespace DataStorage
 	{
-		class File : public HasHandle<FileHandle>
+		class File : public HasHandle<FLL_HND>
 		{
 		public:
 		    //Se omiten banderas de lpSecurityAttributes
 		    //Se omiten banderas de dwFlagsAndAttributes
-		    void open(const wchar_t* filePath, DesiredAccess mode);//no usar OPEN_ALWAYS
-		    void create(const wchar_t* filePath, DesiredAccess mode);//no usar CREATE_ALWAYS
-		    void truncate(const wchar_t* filePath);// usar GENERIC_WRITE por default
+		    void open(CON_WSTR filePath, DRD_ACCES mode);//no usar OPEN_ALWAYS
+		    void create(CON_WSTR filePath, DRD_ACCES mode);//no usar CREATE_ALWAYS
+		    void truncate(CON_WSTR filePath);// usar GENERIC_WRITE por default
 		    void close();
 		    std::size_t size();
 		    //creation() must return date
 		    //lastAccess() must return date
 		    //lastWrite() must return date
-		    File copy(const wchar_t* newFile);
-		    void move(const wchar_t* newPath);
-		    //void replace(const wchar_t* replacePath); not sure of how to implement this
+		    File copy(CON_WSTR newFile);
+		    void move(CON_WSTR newPath);
+		    //void replace(CON_WSTR replacePath); not sure of how to implement this
 		    static void delete(const wchar_t * filePath);
-		    static File copy(const wchar_t* from, const wchar_t* dest);
-		    static File move(const wchar_t* from, const wchar_t* dest);
+		    static File copy(CON_WSTR from, CON_WSTR dest);
+		    static File move(CON_WSTR from, CON_WSTR dest);
 		    //static replace...
 		    //path
 		    //fullName

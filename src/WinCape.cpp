@@ -3,12 +3,12 @@
 #include "Application.hpp"
 
 using namespace std;
-namespace WinCape
+namespace cape
 {
 	namespace Base
 	{
-		//const Gui::Window Console(){
-		//	return Gui::Window(GetConsoleWindow());
+		//const usr::Window Console(){
+		//	return usr::Window(GetConsoleWindow());
 		//}
 	}
 	
@@ -16,14 +16,14 @@ namespace WinCape
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//--------------------------------------------------------------------------
-	template class HasHandle<WindowHandle>;
-	template class HasHandle<IconHandle>;
-	template class HasHandle<BitmapHandle>;
-	template class HasHandle<FontHandle>;
-	template class HasHandle<DeviceContextHandle>;
+	template class HasHandle<WND_HND>;
+	template class HasHandle<ICO_HND>;
+	template class HasHandle<BMP_HND>;
+	template class HasHandle<FON_HND>;
+	template class HasHandle<DCX_HND>;
 //#ifdef WINCAPE_USES_WGL
-	template class HasHandle<GlRenderContextHandle>;
+	template class HasHandle<GL_RCX_HND>;
 //#endif
-	template class HasHandle<MenuHandle>;
-	template class HasHandle<InstanceHandle>;
+	template class HasHandle<MNU_HND>;
+	template class HasHandle<ISC_HND>;
 }

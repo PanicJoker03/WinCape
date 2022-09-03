@@ -2,9 +2,9 @@
 #define FONT_HPP
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace WinCape{
-namespace Gui{
-	class Font : public HasHandle<FontHandle>
+namespace cape{
+namespace usr{
+	class Font : public HasHandle<FON_HND>
 		{
 			//Do something...
 		};

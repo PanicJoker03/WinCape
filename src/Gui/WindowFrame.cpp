@@ -1,14 +1,14 @@
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
 #include "Gui/Manager.hpp"
-namespace WinCape{
-namespace Gui
+namespace cape{
+namespace usr
 {
 	//-------------------------------------------------------------------------
 	//WindowFrame
 	//-------------------------------------------------------------------------
-	WindowFrame::WindowFrame(const wchar_t* windowName, const wchar_t* title,
-		const Rect& rect, WindowStyle style)
+	WindowFrame::WindowFrame(CON_WSTR windowName, CON_WSTR title,
+		const CAPE_RECT& rect, WND_STY style)
 		: windowName(windowName), rect(rect), style(style) {
 		handle(Application::createWindow(
 			windowName, title, rect, style).handle()
@@ -17,8 +17,8 @@ namespace Gui
 	}
 	void WindowFrame::onDraw(DeviceContext deviceContext) {}
 	void WindowFrame::onDispose() {
-		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::PAINT);
-		Gui::Manager::instance().unlistenEvent(handle(), WindowMessages::DESTROY);
+		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::PAINT);
+		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::DESTROY);
 	}
-	Gui::WindowFrame::~WindowFrame() {}
+	usr::WindowFrame::~WindowFrame() {}
 }}

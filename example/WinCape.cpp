@@ -11,13 +11,13 @@
 
 #define MAX_LOADSTRING 100
 
-using WinCape::Application;
-using WinCape::Gui::Window;
-using WinCape::Rect;
-using WinCape::Gui::ListView;
-using WinCape::Gui::Button;
-using WinCape::Gui::DeviceContext;
-using WinCape::Gui::Bitmap;
+using cape::Application;
+using cape::usr::Window;
+using cape::CAPE_RECT;
+using cape::usr::ListView;
+using cape::usr::Button;
+using cape::usr::DeviceContext;
+using cape::usr::Bitmap;
 
 // Variables globales:
 HINSTANCE hInst;                                // instancia actual
@@ -41,7 +41,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Colocar código aquí.
-	Window childWnd = Application::createWindow(L"Ventana", L"Ventana WinCape", Rect{ 10, 10, 250, 54 }, WinCape::WindowStyles::ThickFrame);
+	Window childWnd = Application::createWindow(L"Ventana", L"Ventana WinCape", CAPE_RECT{ 10, 10, 250, 54 }, cape::WindowStyles::ThickFrame);
 	WNDPROC wndProc = (WNDPROC)GetWindowLongPtrW(childWnd.handle(), GWLP_WNDPROC);
     // Inicializar cadenas globales
     //LoadStringW(hInstance, L"Pogo", szTitle, MAX_LOADSTRING);
@@ -84,7 +84,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	childWnd.parent(msterWnd);
 
 	ListView lvLayers;
-	msterWnd.addListView(lvLayers, Rect{ 30, 100, 150, 100 }, WinCape::Vector2I{ 30, 148 });
+	msterWnd.addListView(lvLayers, CAPE_RECT{ 30, 100, 150, 100 }, cape::VEC_2I{ 30, 148 });
 	lvLayers.addColumn(0, "Fruta", 50);
 	lvLayers.addColumn(1, "Verdura", 50);
 	lvLayers.addColumn(2, "Grano", 50);
@@ -94,20 +94,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	lvLayers.addRow(2, std::vector<std::string>({"Pera", "Coliflor", "Garbanzo"}));
 
 	Button btHide;
-	msterWnd.addButton(btHide, L"Escondidas", WinCape::Vector2I{ 50, 170 });
+	msterWnd.addButton(btHide, L"Escondidas", cape::VEC_2I{ 50, 170 });
 	//Potente implementacion para manejar funciones 
-	std::function<void(WinCape::Event)> onBtHideClick = [&](WinCape::Event e) {
+	std::function<void(cape::Event)> onBtHideClick = [&](cape::Event e) {
 		msterWnd.hide();
 	};
 	btHide.onClick(onBtHideClick);
 
 	//Dibujar bitmap
 	DeviceContext dcBitmp = msterWnd.deviceContext();
-	Bitmap bitmp{ WinCape::Vector2I{ 190 , 120 } };
+	Bitmap bitmp{ cape::VEC_2I{ 190 , 120 } };
 	bitmp.load(L"C:\\Users\\Luis\\Pictures\\xp_memories.bmp");
 	//Solo se puede dibujar dentro del evento paint...
-	std::function<void(WinCape::Event)> onPaint = [&](WinCape::Event e) {
-		dcBitmp.drawBitmap(bitmp, WinCape::Vector2I{ 38, 88 });
+	std::function<void(cape::Event)> onPaint = [&](cape::Event e) {
+		dcBitmp.drawBitmap(bitmp, cape::VEC_2I{ 38, 88 });
 	};
 	msterWnd.onPaint(onPaint);
 	Application::run();

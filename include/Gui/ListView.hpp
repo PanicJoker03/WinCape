@@ -5,19 +5,19 @@
 #include "Event.hpp"
 #include <vector>
 #include <string>
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
     class ListView : public Control
     {
     public:
         int count();
-        void addColumn(int index, const char* headerText, int width = 0);
+        void addColumn(int index, CON_STR headerText, int width = 0);
         LV_ITEM getItem(int index);
         void addRow(int row, std::vector<std::string> cols);
-        void addRow(int row, const char* text);
-        void setRow(int row, int col, const char* text);
+        void addRow(int row, CON_STR text);
+        void setRow(int row, int col, CON_STR text);
         void addCheckBoxes();
-        void onItemChecked(const EventCallback& callback);
+        void onItemChecked(const EVE_CALL& callback);
         void clear();
         int selectedRow();
         void setItemChecked(int index, bool checked);

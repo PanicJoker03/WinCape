@@ -1,31 +1,31 @@
 #include "Gui/Bitmap.hpp"
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	//-------------------------------------------------------------------------
 	//Bitmap
 	//-------------------------------------------------------------------------
 	Bitmap::Bitmap(const Bitmap&){
         throw "Can't do that";
     };
-	Bitmap::Bitmap(const Vector2I& dimensions)
+	Bitmap::Bitmap(const VEC_2I& dimensions)
 	{
-		BitmapHandle bitmapHandle = CreateBitmap(
+		BMP_HND hnd = CreateBitmap(
 			dimensions.x, dimensions.y,
 			1, 32,
 			NULL
 		);
-		handle(bitmapHandle);
+		handle(hnd);
 	}
 
 	Bitmap& Bitmap::operator = (const Bitmap& bitmap)
 	{
 		DeleteObject(handle());
-		BitmapHandle bitmapHandle = (BitmapHandle)CopyImage(bitmap.handle(),
+		BMP_HND hnd = (BMP_HND)CopyImage(bitmap.handle(),
 				IMAGE_BITMAP, 0, 0, 0);
-		handle(bitmapHandle);
+		handle(hnd);
 		return *this;
 	}
-	void Bitmap::getBitmapInfo(const DeviceContextHandle& deviceContext,
+	void Bitmap::getBitmapInfo(const DCX_HND& deviceContext,
 		BITMAPINFO& bmpInfo) const
 	{
 		bmpInfo.bmiHeader.biSize = sizeof(bmpInfo.bmiHeader);
@@ -33,26 +33,26 @@ namespace Gui{
 			DIB_RGB_COLORS);
 		bmpInfo.bmiHeader.biCompression = BI_RGB;
 	}
-	void Bitmap::load(const wchar_t* sourcePath)
+	void Bitmap::load(CON_WSTR sourcePath)
 	{
 		DeleteObject(handle());
-		handle((BitmapHandle)LoadImageW(NULL, sourcePath, IMAGE_BITMAP, 0, 0,
+		handle((BMP_HND)LoadImageW(NULL, sourcePath, IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE));
 	}
-	Vector2I Bitmap::dimension() const
+	VEC_2I Bitmap::dimension() const
 	{
 		//Wonderfull code source from:
 		//http://forums.codeguru.com/showthread.php?348350-Bitmap-Dimensions-after-using-LoadImage-How
 		//check for handle nullity?
 		BITMAP bitmap = {};
 		GetObject(handle(), sizeof(bitmap), &bitmap);
-		return Vector2I( bitmap.bmWidth, bitmap.bmHeight );
+		return VEC_2I( bitmap.bmWidth, bitmap.bmHeight );
 	}
 	void Bitmap::clonePixels(void* buffer) const
 	{
 		//Must call GetDIBits twice...
 		//https://stackoverflow.com/questions/26233848/c-read-pixels-with-getdibits
-		const DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
+		const DCX_HND deviceContext = GetDC(NULL); //Safe?
 		BITMAPINFO bitmapInfo = {};
 		getBitmapInfo(deviceContext, bitmapInfo);
 		GetDIBits(
@@ -67,7 +67,7 @@ namespace Gui{
 	}
 	void Bitmap::setPixels(void* buffer)
 	{
-		const DeviceContextHandle deviceContext = GetDC(NULL); //Safe?
+		const DCX_HND deviceContext = GetDC(NULL); //Safe?
 		BITMAPINFO bitmapInfo = {};
 		getBitmapInfo(deviceContext, bitmapInfo);
 		SetDIBits(

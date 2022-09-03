@@ -5,31 +5,31 @@
 //#ifdef WINCAPE_USES_WGL
 #include "Gui/RenderContext.hpp"
 //#endif
-namespace WinCape{
-namespace Gui{
+namespace cape{
+namespace usr{
 	class Window;
-	class DeviceContext : public HasHandle<DeviceContextHandle>
+	class DeviceContext : public HasHandle<DCX_HND>
 	{
 	public:
 		DeviceContext();
-		explicit DeviceContext(DeviceContextHandle value);
+		explicit DeviceContext(DCX_HND value);
 		//void drawBitmap(const Bitmap& bitmap);
 		void drawBitmap(const Bitmap& bitmap,
-				const Vector2I& padding = Vector2I());
-		void drawText(const wchar_t* text, DrawTextFormat format);
-		Rect bounds() const;
+				const VEC_2I& padding = VEC_2I());
+		void drawText(CON_WSTR text, DRW_TXT_FMAT format);
+		CAPE_RECT bounds() const;
 		Window window() const;
 		//drawBitmapClipped...
 		//#ifdef WINCAPE_USES_WGL
-		RenderContext createRenderContext(const PixelFormat& format) const;
+		RenderContext createRenderContext(const PIXEL_FORMAT& format) const;
 		void swapBuffers();
 		void applyRenderContext(RenderContext context);
 		//#endif
 		~DeviceContext();
 		friend Window;
 	private:
-		void bitBlt(BitmapHandle bitmapHandle, DeviceContextHandle destiny,
-				const Rect& rect);
+		void bitBlt(BMP_HND bitmapHandle, DCX_HND destiny,
+				const CAPE_RECT& rect);
 	};
 }}
 #endif
