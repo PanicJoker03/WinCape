@@ -2,7 +2,7 @@
 #define DATASTORAGE_DEFINES_HPP
 #include "defines.hpp"
 namespace cape{
-namespace DataStorage{
+namespace dat{
     namespace DesiredAccesses {
         enum {
             READ = 0x80000000L,

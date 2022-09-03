@@ -25,5 +25,6 @@ namespace cape
 	template class HasHandle<GL_RCX_HND>;
 //#endif
 	template class HasHandle<MNU_HND>;
-	template class HasHandle<ISC_HND>;
+	template class HasHandle<ISC_HND>;	
+	template class HasHandle<FLL_HND>;
 }

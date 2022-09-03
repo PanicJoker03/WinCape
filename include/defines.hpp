@@ -22,7 +22,7 @@ namespace cape
 	typedef const char * CON_STR;
 	typedef const wchar_t * CON_WSTR;
 	typedef char * STR_PTR;
-	typedef WSTR_PTR WSTR_PTR;
+	typedef wchar_t * WSTR_PTR;
 	typedef HWND WND_HND;
 	typedef HDC DCX_HND;
 	typedef HMENU MNU_HND;
