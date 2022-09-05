@@ -51,9 +51,9 @@ namespace exm {
 
 	void wnApp_OnPaint(EVENT e){
 		DRW_TXT_FMAT txFormat = 
-			usr::DrawTextFormats::SINGLE_LINE | 
-			usr::DrawTextFormats::HORIZONTAL_CENTER | 
-			usr::DrawTextFormats::VERTICAL_CENTER;
+			usr::DrawTextFormats::SNG_LIN | 
+			usr::DrawTextFormats::HOR_CEN | 
+			usr::DrawTextFormats::VER_CEN;
 		dcWnd.drawText(TEXTO_20_MINS, txFormat);
 	}
 

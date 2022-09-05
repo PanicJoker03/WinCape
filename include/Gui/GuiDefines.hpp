@@ -7,183 +7,183 @@ namespace cap{
       namespace ShowCommands {
             enum
             {
-                FORCE_MINIMIZE = 11,
+                FOR_MIN = 11,
                 HIDE = SW_HIDE,
-                MAXIMIZE = SW_MAXIMIZE,
-                MINIMIZE = SW_MINIMIZE,
-                RESTORE = SW_RESTORE,
+                MAXI = SW_MAXIMIZE,
+                MINI = SW_MINIMIZE,
+                RSTE = SW_RESTORE,
                 SHOW = SW_SHOW,
-                SHOW_DEFAULT = SW_SHOWDEFAULT,
-                SHOW_MAXIMIZED = SW_SHOWMAXIMIZED,
-                SHOW_MINIMIZED = SW_SHOWMINIMIZED,
-                SHOW_MIN_NO_ACTIVE = SW_SHOWMINNOACTIVE,
-                SHOW_NA = SW_SHOWNA,
-                SHOW_NO_ACTIVATE = SW_SHOWNOACTIVATE,
-                SHOW_NORMAL = SW_SHOWNORMAL
+                SHW_DEF = SW_SHOWDEFAULT,
+                SHW_MAX = SW_SHOWMAXIMIZED,
+                SHW_MIN = SW_SHOWMINIMIZED,
+                SHW_MIN_NO_ACT = SW_SHOWMINNOACTIVE,
+                SHW_NA = SW_SHOWNA,
+                SHW_NO_ACT = SW_SHOWNOACTIVATE,
+                SHW_NRM = SW_SHOWNORMAL
             };
         }
         namespace WindowMessages {
             enum
             {
                 //Notifications
-                ACTIVATE_APP = WM_ACTIVATEAPP,
-                CANCEL_MODE = WM_CANCELMODE,
-                CHILD_ACTIVE = WM_CHILDACTIVATE,
-                CLOSE = WM_CLOSE,
-                COMMAND = WM_COMMAND,
-                COMPACTING = WM_COMPACTING,
-                CREATE = WM_CREATE,
-                DESTROY = WM_DESTROY,
-                DOT_PER_INCH_CHANGED = 0x02E0,
-                ENABLE = WM_ENABLE,
-                ENTER_SIZE_MOVE = WM_ENTERSIZEMOVE,
-                EXIT_SIZE_MOVE = WM_EXITSIZEMOVE,
-                GET_ICON = WM_GETICON,
-                GET_MIN_MAX_INFO = WM_GETMINMAXINFO,
-                INPUT_LAG_CHANGE = WM_INPUTLANGCHANGE,
-                INPUT_LANG_CHANGE_REQUEST = WM_INPUTLANGCHANGEREQUEST,
-                MENU_COMMAND = 0x0126,
-                MENU_SELECT = WM_MENUSELECT,
+                ACT_APP = WM_ACTIVATEAPP,
+                CNL_MOD = WM_CANCELMODE,
+                CHL_ACT = WM_CHILDACTIVATE,
+                CLSE = WM_CLOSE,
+                CMMD = WM_COMMAND,
+                COMP = WM_COMPACTING,
+                CRAT = WM_CREATE,
+                DSTR = WM_DESTROY,
+                DOT_PER_NCH_CHD = 0x02E0,
+                ENBL = WM_ENABLE,
+                ETR_SZE_MOV = WM_ENTERSIZEMOVE,
+                EXI_SZE_MOV = WM_EXITSIZEMOVE,
+                GET_ICO = WM_GETICON,
+                GET_MIN_MAX_INF = WM_GETMINMAXINFO,
+                INP_LAG_CHG = WM_INPUTLANGCHANGE,
+                INP_LAN_CHG_REQ = WM_INPUTLANGCHANGEREQUEST,
+                MNU_CMD = 0x0126,
+                MNU_SEL = WM_MENUSELECT,
                 MOVE = WM_MOVE,
-                MOVING = WM_MOVING,
-                NC_ACTIVATE = WM_NCACTIVATE,
-                NC_CAL_SIZE = WM_NCCALCSIZE,
-                NC_CREATE = WM_NCCREATE,
-                NC_DESTROY = WM_NCDESTROY,
+                MOVG = WM_MOVING,
+                NC_ACT = WM_NCACTIVATE,
+                NC_CAL_SZE = WM_NCCALCSIZE,
+                NC_CRT = WM_NCCREATE,
+                NC_DST = WM_NCDESTROY,
                 NONE = WM_NULL,
-                PAINT = WM_PAINT,
-                QUERY_DRAG_ICON = WM_QUERYDRAGICON,
-                QUERY_OPEN = WM_QUERYOPEN,
-                QUIT = WM_QUIT,
-                SET_ICON = WM_SETICON,
-                SHOW_WINDOW = WM_SHOWWINDOW,
+                PAIN = WM_PAINT,
+                QRY_DRG_ICO = WM_QUERYDRAGICON,
+                QRY_OPN = WM_QUERYOPEN,
+                QTT = WM_QUIT,
+                SET_ICO = WM_SETICON,
+                SHW_WND = WM_SHOWWINDOW,
                 SIZE = WM_SIZE,
-                SIZING = WM_SIZING,
-                STYLE_CHANGED = WM_STYLECHANGED,
-                STYLE_CHANGING = WM_STYLECHANGING,
-                THEME_CHANGED = 0x031A,
-                TIMER = WM_TIMER,
-                USER_CHANGED = WM_USERCHANGED,
-                WINDOW_POSITION_CHANGED = WM_WINDOWPOSCHANGED,
-                WINDOW_POSITION_CHANGING = WM_WINDOWPOSCHANGING
+                SIZG = WM_SIZING,
+                STY_CHA = WM_STYLECHANGED,
+                STY_CHG = WM_STYLECHANGING,
+                THM_CHD = 0x031A,
+                TIME = WM_TIMER,
+                USR_CHD = WM_USERCHANGED,
+                WND_POS_CHA = WM_WINDOWPOSCHANGED,
+                WND_POS_CHG = WM_WINDOWPOSCHANGING
             };
         }
         namespace ListBoxMessages {
             enum {
-                ADD_FILE = LB_ADDFILE,
-                ADD_STRING = LB_ADDSTRING,
-                DELETE_STRING = LB_DELETESTRING,
-                DIRECTORY = LB_DIR,
-                FIND_STRING = LB_FINDSTRING,
-                FIND_STRING_EXACT = LB_FINDSTRINGEXACT,
-                GET_ANCHOR_INDEX = LB_GETANCHORINDEX,
-                GET_CARET_INDEX = LB_GETCARETINDEX,
-                GET_COUNT = LB_GETCOUNT,
-                GET_CURRENT_INDEX = LB_GETCURSEL,
-                GET_HORIZONTAL_EXTENT = LB_GETHORIZONTALEXTENT,
-                GET_ITEM_DATA = LB_GETITEMDATA,
-                GET_ITEM_HEIGHT = LB_GETITEMHEIGHT,
-                GET_ITEM_RECT = LB_GETITEMRECT,
-                GET_LISTBOX_INFO = 0x01B2,
-                GET_LOCALE = LB_GETLOCALE,
-                GET_SELECTION = LB_GETSEL,
-                GET_SELECTION_COUNT = LB_GETSELCOUNT,
-                GET_SELECTION_ITEMS = LB_GETSELITEMS,
-                GET_TEXT = LB_GETTEXT,
-                GET_TEXT_LENGTH = LB_GETTEXTLEN,
-                GET_TOP_INDEX = LB_GETTOPINDEX,
-                INIT_STORAGE = LB_INITSTORAGE,
-                INSERT_STRING = LB_INSERTSTRING,
-                ITEM_FROM_POINT = LB_ITEMFROMPOINT,
-                RESET_CONTENT = LB_RESETCONTENT,
-                SELECT_STRING = LB_SELECTSTRING,
-                SELECT_ITEM_RANGE = LB_SELITEMRANGE,
-                SELECT_ITEM_RANGE_X = LB_SELITEMRANGEEX,
-                SET_ANCHOR_INDEX = LB_SETANCHORINDEX,
-                SET_CARET_INDEX = LB_SETCARETINDEX,
-                SET_COLUMN_WIDTH = LB_SETCOLUMNWIDTH,
-                SET_COUNT = LB_SETCOUNT,
-                SET_CURRENT_SELECTION = LB_SETCURSEL,
-                SET_HORIZONTAL_INDEX = LB_SETHORIZONTALEXTENT,
-                SET_ITEM_DATA = LB_SETITEMDATA,
-                SET_ITEM_HEIGHT = LB_SETITEMHEIGHT,
-                SET_LOCALE = LB_SETLOCALE,
-                SET_SELECTION_INDEX = LB_SETSEL,
-                SET_TAB_STOPS = LB_SETTABSTOPS,
-                SET_TOP_INDEX = LB_SETTOPINDEX
+                ADD_FLL = LB_ADDFILE,
+                ADD_STR = LB_ADDSTRING,
+                DEL_STR = LB_DELETESTRING,
+                DIR = LB_DIR,
+                FND_STR = LB_FINDSTRING,
+                FND_STR_XCT = LB_FINDSTRINGEXACT,
+                GET_ANC_IDX = LB_GETANCHORINDEX,
+                GET_CAR_IDX = LB_GETCARETINDEX,
+                GET_CNT = LB_GETCOUNT,
+                GET_CUR_IDX = LB_GETCURSEL,
+                GET_HOR_EXT = LB_GETHORIZONTALEXTENT,
+                GET_ITM_DTT = LB_GETITEMDATA,
+                GET_ITM_HGT = LB_GETITEMHEIGHT,
+                GET_ITM_RCT = LB_GETITEMRECT,
+                GET_LBX_INF = 0x01B2,
+                GET_LLE = LB_GETLOCALE,
+                GET_SEL = LB_GETSEL,
+                GET_SEL_CNT = LB_GETSELCOUNT,
+                GET_SEL_ITM = LB_GETSELITEMS,
+                GET_TXT = LB_GETTEXT,
+                GET_TXT_LEN = LB_GETTEXTLEN,
+                GET_TOP_IDX = LB_GETTOPINDEX,
+                INI_STG = LB_INITSTORAGE,
+                INS_STR = LB_INSERTSTRING,
+                ITM_FRM_PNT = LB_ITEMFROMPOINT,
+                RST_CNT = LB_RESETCONTENT,
+                SEL_STRING = LB_SELECTSTRING,
+                SEL_ITM_RAN = LB_SELITEMRANGE,
+                SEL_ITM_RAN_X = LB_SELITEMRANGEEX,
+                SET_ANC_IDX = LB_SETANCHORINDEX,
+                SET_CAR_IDX = LB_SETCARETINDEX,
+                SET_COL_WID = LB_SETCOLUMNWIDTH,
+                SET_CNT = LB_SETCOUNT,
+                SET_CUR_SEL = LB_SETCURSEL,
+                SET_HOR_IDX = LB_SETHORIZONTALEXTENT,
+                SET_ITM_DTT = LB_SETITEMDATA,
+                SET_ITM_HEG = LB_SETITEMHEIGHT,
+                SET_LLE = LB_SETLOCALE,
+                SET_SEL_IDX = LB_SETSEL,
+                SET_TAB_STO = LB_SETTABSTOPS,
+                SET_TOP_IDX = LB_SETTOPINDEX
             };
         }
         struct ClassNames {
-            static WSTR_CON LISTVIEW;// = L"SysListView32";//WC_LISTVIEW;
-            static WSTR_CON BUTTON;// = L"Button";//WC_BUTTON;
-            static WSTR_CON LISTBOX;// = L"ListBox";//WC_LISTBOX;
+            static WSTR_CON LST_VIW;// = L"SysListView32";//WC_LISTVIEW;
+            static WSTR_CON BTN;// = L"Button";//WC_BUTTON;
+            static WSTR_CON LST_BOX;// = L"ListBox";//WC_LISTBOX;
         };
         namespace ListViewMessages {
             enum {
                 //solo posible en 64 bits
-                ITEM_CHANGED = 4294967195//LVN_ITEMCHANGED
+                ITM_CHA = 4294967195//LVN_ITEMCHANGED
             };
         }
     #ifdef WINCAPE_USES_WGL
         namespace PixelFormatFlags {
             enum {
-                DRAW_TO_WINDOW  = PFD_DRAW_TO_WINDOW,
-                DRAW_TO_BITMAP = PFD_DRAW_TO_BITMAP,
-                SUPPORT_GDI = PFD_SUPPORT_GDI,
-                SUPPORT_OPENGL = PFD_SUPPORT_OPENGL,
-                GENERIC_ACCELERATED = PFD_GENERIC_ACCELERATED,
-                GENERIC_FORMAT = PFD_GENERIC_FORMAT,
-                NEED_PALETTE = PFD_NEED_PALETTE,
-                NEED_SYSTEM_PALETTE = PFD_NEED_SYSTEM_PALETTE,
-                DOUBLE_BUFFER = PFD_DOUBLEBUFFER,
-                STEREO = PFD_STEREO,
-                SWAP_LAYER_BUFFERS = PFD_SWAP_LAYER_BUFFERS
+                DRW_TO_WND  = PFD_DRAW_TO_WINDOW,
+                DRW_TO_BMP = PFD_DRAW_TO_BITMAP,
+                SUP_GDI = PFD_SUPPORT_GDI,
+                SUP_OGL = PFD_SUPPORT_OPENGL,
+                GEN_ACC = PFD_GENERIC_ACCELERATED,
+                GEN_FMT = PFD_GENERIC_FORMAT,
+                NED_PAL = PFD_NEED_PALETTE,
+                NED_SYS_PAL = PFD_NEED_SYSTEM_PALETTE,
+                DOB_BUF = PFD_DOUBLEBUFFER,
+                STER = PFD_STEREO,
+                SWP_LYR_BUF = PFD_SWAP_LAYER_BUFFERS
             };
         }
         namespace PixelFormatTypes {
             enum {
                 RGBA,
-                COLOX_INDEX
+                CLR_IDX
             };
         }
         namespace PixelFormatLayers {
             enum {
-                MAIN_PLANE
+                MNN_PLN
             };
         }
     #endif
         namespace DrawTextFormats{
             enum {
-                BOTTOM = DT_BOTTOM,
-                CALCULATE_RECTANGLE = DT_CALCRECT,
-                HORIZONTAL_CENTER = DT_CENTER,
-                EDIT_CONTROL = DT_EDITCONTROL,
-                END_ELLIPSIS = DT_END_ELLIPSIS,
-                EXPAND_TABS = DT_EXPANDTABS,
-                EXTERNAL_LEADING = DT_EXTERNALLEADING,
-                HIDE_PREFIX = DT_HIDEPREFIX,
-                INTERNAL = DT_INTERNAL,
+                BOTM = DT_BOTTOM,
+                CAL_RCT = DT_CALCRECT,
+                HOR_CEN = DT_CENTER,
+                EDT_CTL = DT_EDITCONTROL,
+                END_ELS = DT_END_ELLIPSIS,
+                EXP_TAB = DT_EXPANDTABS,
+                EXT_LED = DT_EXTERNALLEADING,
+                HDE_PFX = DT_HIDEPREFIX,
+                INTR = DT_INTERNAL,
                 LEFT = DT_LEFT,
-                MODIFY_STRING = DT_MODIFYSTRING,
-                NO_CLIP = DT_NOCLIP,
-                NO_FULL_WIDTH_CHAR_BREAK = DT_NOFULLWIDTHCHARBREAK,
-                NO_PREFIX = DT_NOPREFIX,
-                PATH_ELLIPSIS = DT_PATH_ELLIPSIS,
-                PREFIX_ONLY = DT_PREFIXONLY,
-                RIGHT = DT_RIGHT,
-                RIGHT_TO_LEFT_READING = DT_RTLREADING,
-                SINGLE_LINE = DT_SINGLELINE ,
-                TAB_STOP = DT_TABSTOP,
+                MOD_STR = DT_MODIFYSTRING,
+                NO_CLP = DT_NOCLIP,
+                NO_FUL_WID_CHR_BRK = DT_NOFULLWIDTHCHARBREAK,
+                NO_PFX = DT_NOPREFIX,
+                PTH_ELS = DT_PATH_ELLIPSIS,
+                PFX_NLY = DT_PREFIXONLY,
+                RGH = DT_RIGHT,
+                RGH_TO_LEF_RDG = DT_RTLREADING,
+                SNG_LIN = DT_SINGLELINE ,
+                TAB_STP = DT_TABSTOP,
                 TOP = DT_TOP,
-                VERTICAL_CENTER = DT_VCENTER,
-                WORD_BREAK = DT_WORDBREAK,
-                WORD_ELLIPSIS = DT_WORD_ELLIPSIS
+                VER_CEN = DT_VCENTER,
+                WRD_BRK = DT_WORDBREAK,
+                WRD_ELS = DT_WORD_ELLIPSIS
             };
         }
         namespace LayeredWindowAttributes{
             enum {
-                ALPHA = 0x00000002,
-                COLOR_KEY = 0x00000001
+                ALPH = 0x00000002,
+                CLR_KEY = 0x00000001
             };
         }
     }
