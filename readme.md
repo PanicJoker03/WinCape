@@ -39,6 +39,7 @@ Functors, so it will be possible to handle callback functions... Prepare wincape
 * Add workman mod layout topmost window display as an example.
 * Input handling (Gamepad, keyboard, mouse, webcam, microphone).
 * Device controlling (wifi).
+* Use const specifier when possible.
 
 ## Troubleshoot
 
