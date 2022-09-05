@@ -37,6 +37,8 @@ Functors, so it will be possible to handle callback functions... Prepare wincape
 * Pass my tunned sfml cygwin integration to this repository (dll and headers only).
 * Documentation?
 * Add workman mod layout topmost window display as an example.
+* Input handling (Gamepad, keyboard, mouse, webcam, microphone).
+* Device controlling (wifi).
 
 ## Troubleshoot
 
