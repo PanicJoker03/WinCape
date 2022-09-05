@@ -10,7 +10,7 @@ namespace usr
 	WindowFrame::WindowFrame(WSTR_CON windowName, WSTR_CON title,
 		const CAPE_RECT& rect, WND_STY style)
 		: windowName(windowName), rect(rect), style(style) {
-		handle(Application::createWindow(
+		handle(application.createWindow(
 			windowName, title, rect, style).handle()
 		);
 		SendMessage(handle(), WindowMessages::CREATE, 0, 0);

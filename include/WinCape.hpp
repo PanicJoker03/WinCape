@@ -13,6 +13,8 @@
 //Use lower case on static methods
 
 namespace cap{
+	extern Application application;
+
 namespace bse
 {
 	const usr::Window Console();

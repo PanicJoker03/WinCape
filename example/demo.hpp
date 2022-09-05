@@ -36,12 +36,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
 	std::cout << sizeof(wchar_t) << std::endl;
-	Application::init();
+	application.init();
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Colocar código aquí.
-	Window childWnd = Application::createWindow(L"Ventana", L"Ventana WinCape", CAPE_RECT{ 10, 10, 250, 54 }, cape::WindowStyles::ThickFrame);
+	Window childWnd = application.createWindow(L"Ventana", L"Ventana WinCape", CAPE_RECT{ 10, 10, 250, 54 }, cape::WindowStyles::ThickFrame);
 	WNDPROC wndProc = (WNDPROC)GetWindowLongPtrW(childWnd.handle(), GWLP_WNDPROC);
     // Inicializar cadenas globales
     //LoadStringW(hInstance, L"Pogo", szTitle, MAX_LOADSTRING);
@@ -110,7 +110,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		dcBitmp.drawBitmap(bitmp, cape::VEC_2I{ 38, 88 });
 	};
 	msterWnd.onPaint(onPaint);
-	Application::run();
+	application.run();
 
     return 0;
 }

@@ -123,7 +123,7 @@ namespace usr{
 			windowClass.cbSize = sizeof(WNDCLASSEXW);
 			windowClass.style = usr::Defaults::DEFCLASS_STYLE;
 			windowClass.lpfnWndProc = WndProc;
-			windowClass.hInstance = Application::instance();
+			windowClass.hInstance = application.instance();
 			windowClass.hIcon = LoadIconW(
 				windowClass.hInstance, MAKEINTRESOURCEW(32512)//
 			);
@@ -141,7 +141,7 @@ namespace usr{
 		{
 			WNDCLASSW windowClass = {};
 			//Because each window must register it's class
-			if(!GetClassInfoW(Application::instance(), name, &windowClass))
+			if(!GetClassInfoW(application.instance(), name, &windowClass))
 				registerClass(name);
 				//MessageBoxW(0, name, L"NO manches", MB_OK);
 			WND_HND handle = CreateWindowExW(
@@ -153,7 +153,7 @@ namespace usr{
 				rect.size.x, rect.size.y,
 				parent,
 				NULL,
-				Application::instance(),
+				application.instance(),
 				NULL
 			);
 			int err = GetLastError();

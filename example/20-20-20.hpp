@@ -19,10 +19,10 @@ namespace exm {
 		LPSTR lpCmdLine, int nCmdShow)
 	{
 		//Call this to initiate some WinCape internal stuff
-		cap::Application::init();
+		cap::application.init();
 		
 		//Creating the app main window
-		wnApp = cap::Application::createWindow(
+		wnApp = cap::application.createWindow(
 			L"Pruebas", 
 			L"Reglas 20-20-20", 
 			CAPE_RECT(400, 400, 300, 200), 
@@ -43,7 +43,7 @@ namespace exm {
 		wnApp.timer(wnApp_OnTimer, 1200000);
 		
 		//Finally run the main loop
-		cap::Application::run();
+		cap::application.run();
 		
 		//exit ok
 		return 0;
