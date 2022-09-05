@@ -9,7 +9,7 @@
 #include "Gui/ListView.hpp"
 #include "Gui/RadioButton.hpp"
 #include "Gui/Menu.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	class Window : public Base
 	{
@@ -20,14 +20,14 @@ namespace usr{
 		void hide();
 		void minimize();
 
-		void addButton(Button& button, CON_WSTR text,
+		void addButton(Button& button, WSTR_CON text,
 			const VEC_2I& position,
 			const VEC_2I& size = Defaults::BUTTON_SIZE);
 
 		//Omited at the moment
         //void addRadioButton(
 		//		std::initializer_list<std::pair<Reference<RadioButton>,
-		//		CON_WSTR>> radioButtonList, const VEC_2I& position,
+		//		WSTR_CON>> radioButtonList, const VEC_2I& position,
 		//		const VEC_2I& padding = Defaults::RadioButtonPadding);
 
         void addListView(ListView & listView, const CAPE_RECT & dimensions, const VEC_2I & padding = VEC_2I());

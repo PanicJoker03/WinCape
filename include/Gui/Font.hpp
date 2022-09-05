@@ -2,7 +2,7 @@
 #define FONT_HPP
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	class Font : public HasHandle<FON_HND>
 		{

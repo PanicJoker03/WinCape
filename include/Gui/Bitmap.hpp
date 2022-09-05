@@ -2,7 +2,7 @@
 #define BITMAP_HPP
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	class Bitmap : public HasHandle<BMP_HND>
 	{
@@ -14,7 +14,7 @@ namespace usr{
 	public:
 		Bitmap(const VEC_2I& dimensions = VEC_2I());
 		Bitmap& operator = (const Bitmap& bitmap);
-		void load(CON_WSTR sourcePath);
+		void load(WSTR_CON sourcePath);
 		VEC_2I dimension() const;
 		void clonePixels(void* buffer) const;
 		void setPixels(void* buffer);

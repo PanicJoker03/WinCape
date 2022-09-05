@@ -4,7 +4,7 @@
 #include "defaults.hpp"
 #include "GuiDefaults.hpp"
 #include "Window.hpp"
-namespace cape{
+namespace cap{
 struct Application;
 namespace usr{
 	//////////////////////////
@@ -13,14 +13,14 @@ namespace usr{
 	class WindowFrame : public Window
 	{
 	public:
-		friend cape::Application;
+		friend cap::Application;
 	private:
-		CON_WSTR windowName;
+		WSTR_CON windowName;
 		const CAPE_RECT rect;
 	    WND_STY style;
 	protected:
-		WindowFrame(CON_WSTR windowName = cape::Defaults::WINDOW_NAME,
-			CON_WSTR title = L"Default",
+		WindowFrame(WSTR_CON windowName = cap::Defaults::WINDOW_NAME,
+			WSTR_CON title = L"Default",
 			const CAPE_RECT& rect = usr::Defaults::WINDOW_RECT,
 			WND_STY style = usr::Defaults::DEFWINDOW_STYLE
 		);

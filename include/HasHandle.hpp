@@ -1,6 +1,6 @@
 #ifndef HASHANDLE_HPP
 #define HASHANDLE_HPP
-namespace cape{
+namespace cap{
 	template<typename T> 
     class HasHandle
 	{
@@ -8,9 +8,8 @@ namespace cape{
 		typedef T Handle;
 	
 		static const T Null;
-    	T handle() const{
-                   
-        return _handle;
+    	T handle() const{           
+        	return _handle;
         }
         
 		template<typename> 
@@ -19,17 +18,13 @@ namespace cape{
 	protected:
 		HasHandle(){}
 		void handle(T handle){
-        _handle = handle;
-    
-             };
+        	_handle = handle;
+		};
              
 	private:
 		T _handle;
     };
 		
-    
-    
-
     template<typename T> 
     const T HasHandle<T>::Null = 0;
 }

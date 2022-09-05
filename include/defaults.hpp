@@ -2,10 +2,10 @@
 #define DEFAULTS_HPP
 
 #include "defines.hpp"
-namespace cape
+namespace cap
 {
     struct Defaults{
-        static CON_WSTR WINDOW_NAME;
+        static WSTR_CON WINDOW_NAME;
     };
 }
 #endif // !DEFAULTS_HPP

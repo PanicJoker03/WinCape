@@ -1,7 +1,7 @@
 #include "Gui/Menu.hpp"
 #include "Gui/GuiDefines.hpp"
 #include "Gui/Manager.hpp"
-namespace cape{
+namespace cap{
 namespace usr
 {
 	//--------------------------------------------------------------------------
@@ -18,21 +18,21 @@ namespace usr
 		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
 		SetMenuInfo(handle(), &menuInfo);
 	}
-	void Menu::addSubMenu(usr::Menu& menu, CON_WSTR text)
+	void Menu::addSubMenu(usr::Menu& menu, WSTR_CON text)
 	{
 		AppendMenuW(
 			handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text
 		);
 	}
-	void Menu::addItem(CON_WSTR item)
+	void Menu::addItem(WSTR_CON item)
 	{
 		//Create MenuFlags in defines
 		AppendMenuW(handle(), MF_STRING, 0, item);
 	}
 	//Omited at the moment
-	//void Menu::addItems(std::initializer_list<CON_WSTR> itemList)
+	//void Menu::addItems(std::initializer_list<WSTR_CON> itemList)
 	//{
-	//	for (CON_WSTR item : itemList)
+	//	for (WSTR_CON item : itemList)
 	//	{
 	//		addItem(item);
 	//	}
@@ -49,4 +49,4 @@ namespace usr
 		menu.handle(menuHandle);
 		menu.enableMenuCommand();
 	}
-}	}
+}}

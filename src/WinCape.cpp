@@ -3,16 +3,8 @@
 #include "Application.hpp"
 
 using namespace std;
-namespace cape
+namespace cap
 {
-	namespace Base
-	{
-		//const usr::Window Console(){
-		//	return usr::Window(GetConsoleWindow());
-		//}
-	}
-	
-
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//--------------------------------------------------------------------------

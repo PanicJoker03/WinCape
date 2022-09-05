@@ -1,12 +1,6 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace cape{
+namespace cap{
 
-          
-    //template<> 
-    //const HasHandle<WND_HND>::Null = 0;
-
-
-	
 }

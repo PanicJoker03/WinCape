@@ -4,7 +4,7 @@
 #include "Gui/RenderContext.hpp"
 //#endif
 #include "Gui/Window.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	//-------------------------------------------------------------------------
 	//DeviceContext
@@ -36,7 +36,7 @@ namespace usr{
 		bitBlt(bitmap.handle(), devContextMemory, CAPE_RECT( padding, bmpSize ));
 		DeleteDC(devContextMemory);
 	}
-	void usr::DeviceContext::drawText(CON_WSTR text, DRW_TXT_FMAT flags){
+	void usr::DeviceContext::drawText(WSTR_CON text, DRW_TXT_FMAT flags){
 		CAPE_RECT rec = bounds();
 		SetTextColor(handle(), 0x00000000);
 		SetBkMode(handle(), TRANSPARENT);

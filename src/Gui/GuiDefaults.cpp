@@ -2,7 +2,7 @@
 #include "Gui/GuiDefines.hpp"
 #include "Gui/GuiDefaults.hpp"
 #include "Gui/Style.hpp"
-namespace cape{
+namespace cap{
 namespace usr {
     const CAPE_RECT Defaults::WINDOW_RECT = CAPE_RECT( 100, 100, 800, 600 );
 
@@ -15,7 +15,7 @@ namespace usr {
     const SHW_CMD Defaults::DEFSHOW_COMMAND =
             ShowCommands::SHOW_DEFAULT;
 
-    CON_WSTR Defaults::BUTTON_CLASS_NAME = L"BUTTON";
+    WSTR_CON Defaults::BUTTON_CLASS_NAME = L"BUTTON";
     const VEC_2I Defaults::BUTTON_SIZE = VEC_2I( 80, 24 );
     const VEC_2I Defaults::RADIO_BUTTON_PADDING = VEC_2I( 0, 32 );
 

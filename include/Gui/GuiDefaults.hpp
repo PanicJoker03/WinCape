@@ -4,7 +4,7 @@
 #include "defines.hpp"
 #include "GuiDefines.hpp"
 #include "Style.hpp"
-namespace cape{
+namespace cap{
 namespace usr {
     struct Defaults
     {
@@ -16,7 +16,7 @@ namespace usr {
 
         static const SHW_CMD DEFSHOW_COMMAND;
 
-        static CON_WSTR BUTTON_CLASS_NAME;
+        static WSTR_CON BUTTON_CLASS_NAME;
         static const VEC_2I BUTTON_SIZE;
         static const VEC_2I RADIO_BUTTON_PADDING;
 

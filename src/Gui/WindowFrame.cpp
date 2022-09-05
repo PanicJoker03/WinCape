@@ -1,13 +1,13 @@
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
 #include "Gui/Manager.hpp"
-namespace cape{
+namespace cap{
 namespace usr
 {
 	//-------------------------------------------------------------------------
 	//WindowFrame
 	//-------------------------------------------------------------------------
-	WindowFrame::WindowFrame(CON_WSTR windowName, CON_WSTR title,
+	WindowFrame::WindowFrame(WSTR_CON windowName, WSTR_CON title,
 		const CAPE_RECT& rect, WND_STY style)
 		: windowName(windowName), rect(rect), style(style) {
 		handle(Application::createWindow(

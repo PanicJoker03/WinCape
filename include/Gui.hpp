@@ -1,7 +1,6 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-
 #include "Gui/Base.hpp"
 #include "Gui/Bitmap.hpp"
 #include "Gui/Control.hpp"

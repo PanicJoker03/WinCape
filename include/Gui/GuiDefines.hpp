@@ -1,7 +1,7 @@
 #ifndef GUI_DEFINES_HPP
 #define GUI_DEFINES_HPP
 #include "defines.hpp"
-namespace cape{
+namespace cap{
     namespace usr{
 
       namespace ShowCommands {
@@ -114,9 +114,9 @@ namespace cape{
             };
         }
         struct ClassNames {
-            static CON_WSTR LISTVIEW;// = L"SysListView32";//WC_LISTVIEW;
-            static CON_WSTR BUTTON;// = L"Button";//WC_BUTTON;
-            static CON_WSTR LISTBOX;// = L"ListBox";//WC_LISTBOX;
+            static WSTR_CON LISTVIEW;// = L"SysListView32";//WC_LISTVIEW;
+            static WSTR_CON BUTTON;// = L"Button";//WC_BUTTON;
+            static WSTR_CON LISTBOX;// = L"ListBox";//WC_LISTBOX;
         };
         namespace ListViewMessages {
             enum {

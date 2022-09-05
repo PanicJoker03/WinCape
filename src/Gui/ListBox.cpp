@@ -1,11 +1,11 @@
 #include "Gui/GuiDefines.hpp"
 #include "Gui/ListBox.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	//--------------------------------------------------------------------------
 	//ListBox
 	//--------------------------------------------------------------------------
-	void ListBox::addString(CON_WSTR string) {
+	void ListBox::addString(WSTR_CON string) {
 		SendMessage(handle(), ListBoxMessages::ADD_STRING, 0, (LPARAM)string);
 	}
 	int ListBox::count() {

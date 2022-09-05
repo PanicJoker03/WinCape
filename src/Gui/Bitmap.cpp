@@ -1,5 +1,5 @@
 #include "Gui/Bitmap.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	//-------------------------------------------------------------------------
 	//Bitmap
@@ -33,7 +33,7 @@ namespace usr{
 			DIB_RGB_COLORS);
 		bmpInfo.bmiHeader.biCompression = BI_RGB;
 	}
-	void Bitmap::load(CON_WSTR sourcePath)
+	void Bitmap::load(WSTR_CON sourcePath)
 	{
 		DeleteObject(handle());
 		handle((BMP_HND)LoadImageW(NULL, sourcePath, IMAGE_BITMAP, 0, 0,

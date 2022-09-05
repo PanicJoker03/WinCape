@@ -1,29 +1,29 @@
 #include "DataStorage/File.hpp"
 #include <stdio.h>
-namespace cape {
-namespace dat{
-	void dat::File::open(CON_WSTR filePath, DRD_ACCES mode)
+namespace cap {
+namespace dst{
+	void dst::File::open(WSTR_CON filePath, DRD_ACCES mode)
 	{
 		//TODO: Abrir con bandera OPEN_EXISTING
 		printf("abriendo archivo");
 	}
 
-	void dat::File::create(CON_WSTR filePath, DRD_ACCES mode)
+	void dst::File::create(WSTR_CON filePath, DRD_ACCES mode)
 	{
 		//TODO: Abrir con bandera CREATE_NEW
 	}
 
-	void dat::File::truncate(CON_WSTR filePath)
+	void dst::File::truncate(WSTR_CON filePath)
 	{
 		//TODO: Abrir con bandera TRUNCATE_EXISTING y DRD_ACCES GenericWrite...
 	}
 
-	void dat::File::close()
+	void dst::File::close()
 	{
 
 	}
 
-	void dat::File::remove(CON_WSTR filePath)
+	void dst::File::remove(WSTR_CON filePath)
 	{
 
 	}

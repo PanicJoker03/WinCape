@@ -3,13 +3,13 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	class Base : public HasHandle<WND_HND>
 	{
 	public:
-		void setText(CON_WSTR text);
-		void getText(WSTR_PTR text, int lenght) const;
+		void setText(WSTR_CON text);
+		void getText(PTR_WSTR text, int lenght) const;
 	protected:
 		Base();
 	};

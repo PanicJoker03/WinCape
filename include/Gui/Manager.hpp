@@ -4,7 +4,7 @@
 #include "Gui/Base.hpp"
 #include "Event.hpp"
 #include "Gui/Style.hpp"
-namespace cape{
+namespace cap{
 namespace usr
 {
 	class Manager
@@ -18,12 +18,12 @@ namespace usr
 				const EVE_CALL& callback);
 
 		void unlistenEvent(usr::Base::Handle handle, WND_MSG message);
-		void defaultFont(CON_WSTR fontName);
+		void defaultFont(WSTR_CON fontName);
 		FON_HND defaultFont();
-		void registerClass(CON_WSTR name);
+		void registerClass(WSTR_CON name);
 
-		usr::Base::Handle createHandle(CON_WSTR className,
-				CON_WSTR text, WND_STY style, const CAPE_RECT& rect,
+		usr::Base::Handle createHandle(WSTR_CON className,
+				WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
 				usr::Base::Handle parent = usr::Base::Null, WND_STY exStyle = 0);
 
 		static Manager& instance();

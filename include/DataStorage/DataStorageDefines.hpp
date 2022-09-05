@@ -1,8 +1,8 @@
 #ifndef DATASTORAGE_DEFINES_HPP
 #define DATASTORAGE_DEFINES_HPP
 #include "defines.hpp"
-namespace cape{
-namespace dat{
+namespace cap{
+namespace dst{
     namespace DesiredAccesses {
         enum {
             READ = 0x80000000L,

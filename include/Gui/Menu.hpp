@@ -5,7 +5,7 @@
 //Omited at the moment
 //#include <initializer_list>
 #include "Event.hpp"
-namespace cape {
+namespace cap {
 namespace usr{
 	class Window;
 	class Menu : public HasHandle<MNU_HND>
@@ -13,10 +13,10 @@ namespace usr{
 	private:
 		void enableMenuCommand();
 	public:
-		void addSubMenu(Menu& menu, CON_WSTR text);
-		void addItem(CON_WSTR item);
+		void addSubMenu(Menu& menu, WSTR_CON text);
+		void addItem(WSTR_CON item);
 		//Omited at the moment
-        //void addItems(std::initializer_list<CON_WSTR> itemList);
+        //void addItems(std::initializer_list<WSTR_CON> itemList);
 		void onItemSelect(const EVE_CALL& callback);
 		static void create(Menu& menu);
 		friend Window;

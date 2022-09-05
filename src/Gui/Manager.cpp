@@ -6,7 +6,7 @@
 #include "Gui/GuiDefines.hpp"
 using namespace std;
 
-namespace cape{
+namespace cap{
 namespace usr{
 	//--------------------------------------------------------------------------
 	//Implementation
@@ -115,7 +115,7 @@ namespace usr{
 			}
 			return 0;
 		}
-		void registerClass(CON_WSTR name = cape::Defaults::WINDOW_NAME)
+		void registerClass(WSTR_CON name = cap::Defaults::WINDOW_NAME)
 		{
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
@@ -135,8 +135,8 @@ namespace usr{
 			);
 			RegisterClassExW(&windowClass);
 		}
-		usr::Base::Handle createHandle(CON_WSTR name,
-			CON_WSTR text, WND_STY style, const CAPE_RECT& rect,
+		usr::Base::Handle createHandle(WSTR_CON name,
+			WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
 			usr::Base::Handle parent, WNDX_STY exStyle)
 		{
 			WNDCLASSW windowClass = {};
@@ -164,7 +164,7 @@ namespace usr{
 			return handle;
 		}
 		//Use font wrapper class...
-		void defaultFont(CON_WSTR fontName)
+		void defaultFont(WSTR_CON fontName)
 		{
 			//http://www.cplusplus.com/forum/windows/109795/
 			DeleteObject(applicationFont);
@@ -206,18 +206,18 @@ namespace usr{
 	{
 		ManagerImpl::instance().unlistenEvent(handle, message);
 	}
-	void usr::Manager::registerClass(CON_WSTR name)
+	void usr::Manager::registerClass(WSTR_CON name)
 	{
 		ManagerImpl::instance().registerClass(name);
 	}
-	usr::Base::Handle usr::Manager::createHandle(CON_WSTR className,
-		CON_WSTR text, WND_STY style, const CAPE_RECT& rect,
+	usr::Base::Handle usr::Manager::createHandle(WSTR_CON className,
+		WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
 		usr::Base::Handle parent, WNDX_STY exStyle)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style,
 			rect, parent, exStyle);
 	}
-	void usr::Manager::defaultFont(CON_WSTR fontName)
+	void usr::Manager::defaultFont(WSTR_CON fontName)
 	{
 		ManagerImpl::instance().defaultFont(fontName);
 	}

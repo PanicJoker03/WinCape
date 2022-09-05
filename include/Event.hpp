@@ -2,7 +2,7 @@
 #define EVENT_HPP
 #include "defines.hpp"
 #include <functional>
-namespace cape{
+namespace cap{
 	typedef struct capeEvent
 	{
 		WND_HND handle;

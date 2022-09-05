@@ -2,7 +2,7 @@
 #include "defaults.hpp"
 
 using namespace std;
-namespace cape
+namespace cap
 {
-          CON_WSTR Defaults::WINDOW_NAME = L"WinCape Window";
+    WSTR_CON Defaults::WINDOW_NAME = L"WinCape Window";
 }

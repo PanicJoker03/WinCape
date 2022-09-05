@@ -1,5 +1,5 @@
 #include "Gui/Control.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
 	//--------------------------------------------------------------------------
 	//Control

@@ -1,28 +1,20 @@
 #ifndef DEFINES_HPP
 #define DEFINES_HPP
-//Completely experimental, it may be proper to fail in other machines
 #ifdef _ENABLE_THEME
 #pragma comment(linker,"\"/manifestdependency:type='win32' name = 'Microsoft.Windows.Common-Controls' version = '6.0.0.0' processorArchitecture = '*' publicKeyToken = '6595b64144ccf1df' language = '*'\"")
 #endif
 #include <windows.h>
 #include <WinUser.h>
 #include <commctrl.h>
-//#ifdef WINCAPE_USES_WGL
-//#include <GL/gl.h>
-//#include <GL/glu.h>
-//#endif
 
-//For sake of simplicity, this framework will use char types
-//TODO: use char and string on all text operations...
-
-namespace cape
+namespace cap
 {
-	typedef long* LNG_PTR;
-	typedef unsigned char USIGN_I8;
-	typedef const char * CON_STR;
-	typedef const wchar_t * CON_WSTR;
-	typedef char * STR_PTR;
-	typedef wchar_t * WSTR_PTR;
+	typedef long* PTR_LNG;
+	typedef unsigned char USIGN_8;
+	typedef const char * STR_CON;
+	typedef const wchar_t * WSTR_CON;
+	typedef char * PTR_STR;
+	typedef wchar_t * PTR_WSTR;
 	typedef HWND WND_HND;
 	typedef HDC DCX_HND;
 	typedef HMENU MNU_HND;
@@ -44,7 +36,6 @@ namespace cape
 	typedef UINT LSB_MSG;
 	typedef UINT LVW_MSG;
 	typedef UINT CBX_MSG;
-	//#ifdef WINCAPE_USES_WGL
 	typedef HGLRC GL_RCX_HND;
 	typedef DWORD PXF_FLG;
 	typedef BYTE PXF_TPE;
@@ -54,11 +45,10 @@ namespace cape
 	{
 		PXF_FLG flags;
 		PXF_TPE type;
-	    USIGN_I8 colorBits;
-	    USIGN_I8 depthBits;
-		USIGN_I8 stencilBits;
+	    USIGN_8 colorBits;
+	    USIGN_8 depthBits;
+		USIGN_8 stencilBits;
 	}PIXEL_FORMAT;
-	//#endif
 	typedef UINT DRW_TXT_FMAT;
 	typedef struct capeVector2I
 	{

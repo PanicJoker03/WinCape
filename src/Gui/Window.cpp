@@ -3,7 +3,7 @@
 #include "Gui.hpp"
 #include "Event.hpp"
 using namespace std;
-namespace cape{
+namespace cap{
 namespace usr
 {
 	//--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ namespace usr
 	{
 		ShowWindow(handle(), ShowCommands::MINIMIZE);
 	}
-	void Window::addButton(Button& button, CON_WSTR text,
+	void Window::addButton(Button& button, WSTR_CON text,
 		const VEC_2I& position, const VEC_2I& size)
 	{
 		Handle buttonHandle;
@@ -42,7 +42,7 @@ namespace usr
 	}
 	//Omited at the moment
 	//void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
-	//	CON_WSTR>> radioButtonList, const VEC_2I& position,
+	//	WSTR_CON>> radioButtonList, const VEC_2I& position,
 	//	const VEC_2I& padding)
 	//{
 	//	const auto listSize = radioButtonList.size();
@@ -50,7 +50,7 @@ namespace usr
 	//	{
 	//		Handle radioButtonHandle;
 	//		RadioButton& radioButton = radioButtonList.begin()[i].first;
-	//		CON_WSTR caption = radioButtonList.begin()[i].second;
+	//		WSTR_CON caption = radioButtonList.begin()[i].second;
 	//		VEC_2I position_ = position;
 	//		position_.x += padding.x * i;
 	//		position_.y += padding.y * i;

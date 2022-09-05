@@ -3,13 +3,13 @@
 #include "Gui/ListView.hpp"
 #include "Gui/Manager.hpp"
 #include "Gui/Style.hpp"
-namespace cape{
+namespace cap{
 namespace usr{
     int ListView::count(){
         return ListView_GetItemCount(handle());
     }
 
-    void ListView::addColumn(int index, CON_STR headerText, int width)
+    void ListView::addColumn(int index, STR_CON headerText, int width)
     {
         LVCOLUMN col = {};
         col.mask = LVCF_FMT | 
@@ -85,7 +85,7 @@ namespace usr{
         }
     }
 
-    void ListView::addRow(int row, CON_STR text){
+    void ListView::addRow(int row, STR_CON text){
 		LV_ITEM item;
         item.mask = LVIF_TEXT;
         item.iItem = row;

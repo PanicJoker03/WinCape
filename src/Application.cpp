@@ -1,12 +1,9 @@
 #include "defines.hpp"
 #include "Gui/Manager.hpp"
-//#include <vector>
-//#include <iostream>
-//#include <map>
 #include "Gui/Window.hpp"
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
-namespace cape{   
+namespace cap{   
      //Some crazy stuff to make WinCape c++98 compiles
      usr::WindowFrame * Application::functorWnd = NULL;
      void Application::wndOnPaint(EVENT e){
@@ -21,12 +18,12 @@ namespace cape{
 	//--------------------------------------------------------------------------
 	//Application
 	//--------------------------------------------------------------------------
-	void Application::init(CON_WSTR name)
+	void Application::init(WSTR_CON name)
 	{
 		usr::Manager::instance().registerClass(name);
 	}
-	usr::Window Application::createWindow(CON_WSTR windowName,
-		CON_WSTR title, const CAPE_RECT& rect, WND_STY style,
+	usr::Window Application::createWindow(WSTR_CON windowName,
+		WSTR_CON title, const CAPE_RECT& rect, WND_STY style,
 		WNDX_STY exStyle)
 	{
 		usr::Window window;
@@ -41,7 +38,7 @@ namespace cape{
 	}
 	int Application::run(usr::WindowFrame& window)
 	{
-		using namespace cape;
+		using namespace cap;
 		Application::functorWnd = &window;
 		window.onCreate();
 		window.onPaint(wndOnPaint);
@@ -52,7 +49,7 @@ namespace cape{
 	{
 		return GetModuleHandle(NULL);
 	}
-	void Application::defaultFont(CON_WSTR fontName)
+	void Application::defaultFont(WSTR_CON fontName)
 	{
 		usr::Manager::instance().defaultFont(fontName);
 	}

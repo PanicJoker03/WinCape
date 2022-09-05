@@ -5,17 +5,17 @@
 #include "Event.hpp"
 #include <vector>
 #include <string>
-namespace cape{
+namespace cap{
 namespace usr{
     class ListView : public Control
     {
     public:
         int count();
-        void addColumn(int index, CON_STR headerText, int width = 0);
+        void addColumn(int index, STR_CON headerText, int width = 0);
         LV_ITEM getItem(int index);
         void addRow(int row, std::vector<std::string> cols);
-        void addRow(int row, CON_STR text);
-        void setRow(int row, int col, CON_STR text);
+        void addRow(int row, STR_CON text);
+        void setRow(int row, int col, STR_CON text);
         void addCheckBoxes();
         void onItemChecked(const EVE_CALL& callback);
         void clear();
