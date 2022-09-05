@@ -40,6 +40,7 @@ Functors, so it will be possible to handle callback functions... Prepare wincape
 * Input handling (Gamepad, keyboard, mouse, webcam, microphone).
 * Device controlling (wifi).
 * Use const specifier when possible.
+* Strong type enums... again.
 
 ## Troubleshoot
 
