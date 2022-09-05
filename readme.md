@@ -41,6 +41,7 @@ Functors, so it will be possible to handle callback functions... Prepare wincape
 * Device controlling (wifi).
 * Use const specifier when possible.
 * Strong type enums... again.
+* Lib build.
 
 ## Troubleshoot
 
