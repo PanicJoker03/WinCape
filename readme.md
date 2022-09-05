@@ -36,6 +36,7 @@ Functors, so it will be possible to handle callback functions... Prepare wincape
 * Font entity support.
 * Pass my tunned sfml cygwin integration to this repository (dll and headers only).
 * Documentation?
+* Add workman mod layout topmost window display as an example.
 
 ## Troubleshoot
 
