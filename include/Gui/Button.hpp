@@ -2,7 +2,7 @@
 #define BUTTON_HPP
 #include "Event.hpp"
 #include "Gui/Control.hpp"
-namespace cap{
+namespace wcape{
 namespace usr {
 	class Button : public Control
 	{

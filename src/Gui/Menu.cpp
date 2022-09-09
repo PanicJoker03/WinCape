@@ -1,7 +1,7 @@
 #include "Gui/Menu.hpp"
 #include "Gui/GuiDefines.hpp"
 #include "Gui/Manager.hpp"
-namespace cap{
+namespace wcape{
 namespace usr
 {
 	//--------------------------------------------------------------------------

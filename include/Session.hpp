@@ -1,6 +1,6 @@
 #ifndef SESSION_HPP
 #define SESSION_HPP
-namespace cap {
+namespace wcape {
 namespace ssn {
 
 }}

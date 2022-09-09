@@ -1,6 +1,6 @@
 #include "Gui/GuiDefines.hpp"
 #include "Gui/ListBox.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	//--------------------------------------------------------------------------
 	//ListBox

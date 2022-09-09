@@ -2,7 +2,7 @@
 #define BITMAP_HPP
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	class Bitmap : public HasHandle<BMP_HND>
 	{

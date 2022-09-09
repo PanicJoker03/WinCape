@@ -1,5 +1,5 @@
 #include "Gui/Tabstrip.hpp"
-namespace cap{
+namespace wcape{
 namespace usr
 {
 	

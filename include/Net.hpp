@@ -1,6 +1,6 @@
 #ifndef NET_HPP
 #define NET_HPP
-namespace cap {
+namespace wcape {
 namespace ntt {
 }}
 #endif

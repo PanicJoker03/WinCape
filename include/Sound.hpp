@@ -1,6 +1,6 @@
 #ifndef SOUND_HPP
 #define SOUND_HPP
-namespace cap {
+namespace wcape {
 namespace snd {
     
 }}

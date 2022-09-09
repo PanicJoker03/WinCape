@@ -2,7 +2,7 @@
 #define CONTROL_HPP
 //#include "defines.hpp"
 #include "Gui/Base.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	class Window;//for friend
 	class Control : public Base

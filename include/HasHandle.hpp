@@ -1,6 +1,6 @@
 #ifndef HASHANDLE_HPP
 #define HASHANDLE_HPP
-namespace cap{
+namespace wcape{
 	template<typename T> 
     class HasHandle
 	{

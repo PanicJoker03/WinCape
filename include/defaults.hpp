@@ -2,7 +2,7 @@
 #define DEFAULTS_HPP
 
 #include "defines.hpp"
-namespace cap
+namespace wcape
 {
     struct Defaults{
         static WSTR_CON WINDOW_NAME;

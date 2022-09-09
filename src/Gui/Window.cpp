@@ -3,7 +3,7 @@
 #include "Gui.hpp"
 #include "Event.hpp"
 using namespace std;
-namespace cap{
+namespace wcape{
 namespace usr
 {
 	//--------------------------------------------------------------------------

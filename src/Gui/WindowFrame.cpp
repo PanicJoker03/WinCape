@@ -1,7 +1,7 @@
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
 #include "Gui/Manager.hpp"
-namespace cap{
+namespace wcape{
 namespace usr
 {
 	//-------------------------------------------------------------------------

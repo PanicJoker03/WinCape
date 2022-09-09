@@ -1,6 +1,6 @@
 #ifndef EDITOR_HPP
 #define EDITOR_HPP
-namespace cap {
+namespace wcape {
 namespace edt { 
 }}
 #endif

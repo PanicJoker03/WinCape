@@ -3,7 +3,7 @@
 #include "Application.hpp"
 
 using namespace std;
-namespace cap
+namespace wcape
 {
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors

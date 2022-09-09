@@ -1,6 +1,6 @@
 #ifndef CAPE_MATH_HPP
 #define CAPE_MATH_HPP
-namespace cap {
+namespace wcape {
 namespace mth {
 
 }}

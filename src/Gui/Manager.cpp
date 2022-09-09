@@ -6,7 +6,7 @@
 #include "Gui/GuiDefines.hpp"
 using namespace std;
 
-namespace cap{
+namespace wcape{
 namespace usr{
 	//--------------------------------------------------------------------------
 	//Implementation
@@ -115,7 +115,7 @@ namespace usr{
 			}
 			return 0;
 		}
-		void registerClass(WSTR_CON name = cap::Defaults::WINDOW_NAME)
+		void registerClass(WSTR_CON name = wcape::Defaults::WINDOW_NAME)
 		{
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));

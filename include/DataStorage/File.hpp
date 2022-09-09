@@ -3,7 +3,7 @@
 #include "DataStorage/DataStorageDefines.hpp"
 #include "HasHandle.hpp"
 
-namespace cap{
+namespace wcape{
 namespace dst{
 	class File : public HasHandle<FLL_HND>
 	{

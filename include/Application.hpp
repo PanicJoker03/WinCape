@@ -5,7 +5,7 @@
 #include "Gui/GuiDefaults.hpp"
 #include "WinCape.hpp"
 
-namespace cap{
+namespace wcape{
 	//To singleton...
 	class Application
 	{
@@ -16,7 +16,7 @@ namespace cap{
 		void init(WSTR_CON name = Defaults::WINDOW_NAME);
 		usr::Window console();
 		int run();
-		int run(cap::usr::WindowFrame& window);
+		int run(wcape::usr::WindowFrame& window);
 		ISC_HND instance();
 		//Really poor function, must be called at the application beginning in
 		//order to work...

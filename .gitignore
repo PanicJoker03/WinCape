@@ -17,6 +17,7 @@ $RECYCLE.BIN/
 # Some useless folders and files
 .vs
 .project
+build
 
 # Windows shortcuts
 *.lnk

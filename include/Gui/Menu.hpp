@@ -5,7 +5,7 @@
 //Omited at the moment
 //#include <initializer_list>
 #include "Event.hpp"
-namespace cap {
+namespace wcape {
 namespace usr{
 	class Window;
 	class Menu : public HasHandle<MNU_HND>

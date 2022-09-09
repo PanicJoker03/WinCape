@@ -5,7 +5,7 @@
 //#ifdef WINCAPE_USES_WGL
 #include "Gui/RenderContext.hpp"
 //#endif
-namespace cap{
+namespace wcape{
 namespace usr{
 	class Window;
 	class DeviceContext : public HasHandle<DCX_HND>

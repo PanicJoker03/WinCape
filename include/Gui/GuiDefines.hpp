@@ -1,7 +1,7 @@
 #ifndef GUI_DEFINES_HPP
 #define GUI_DEFINES_HPP
 #include "defines.hpp"
-namespace cap{
+namespace wcape{
     namespace usr{
 
       namespace ShowCommands {

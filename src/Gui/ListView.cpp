@@ -3,7 +3,7 @@
 #include "Gui/ListView.hpp"
 #include "Gui/Manager.hpp"
 #include "Gui/Style.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
     int ListView::count(){
         return ListView_GetItemCount(handle());

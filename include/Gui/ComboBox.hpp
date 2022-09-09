@@ -2,7 +2,7 @@
 #define COMBOBOX_HPP
 //#include "defines.hpp"
 #include "Gui/Control.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	class ComboBox : public Control
 	{

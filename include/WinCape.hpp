@@ -12,7 +12,7 @@
 //TODO...
 //Use lower case on static methods
 
-namespace cap{
+namespace wcape{
 	extern Application application;
 
 namespace bse

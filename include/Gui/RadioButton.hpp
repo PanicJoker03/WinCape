@@ -2,7 +2,7 @@
 #define RADIOBUTTON_HPP
 //#include "defines.hpp"
 #include "Gui/Button.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	class RadioButton : public Button
 	{

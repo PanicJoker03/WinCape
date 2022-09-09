@@ -7,7 +7,7 @@
 #include <WinUser.h>
 #include <commctrl.h>
 
-namespace cap
+namespace wcape
 {
 	typedef long* PTR_LNG;
 	typedef unsigned char USIGN_8;

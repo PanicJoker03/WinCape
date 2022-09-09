@@ -1,5 +1,5 @@
 #include "Gui/Combobox.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	//----------------------------------------------------------------------
 	//ComboBox

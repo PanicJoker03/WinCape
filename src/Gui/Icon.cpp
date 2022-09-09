@@ -1,6 +1,6 @@
 #include "Gui/Icon.hpp"
 #include "Application.hpp"
-namespace cap{
+namespace wcape{
 namespace usr{
 	//-------------------------------------------------------------------------
 	//Icon
