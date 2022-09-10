@@ -18,6 +18,7 @@ $RECYCLE.BIN/
 .vs
 .project
 build
+.vscode
 
 # Windows shortcuts
 *.lnk
