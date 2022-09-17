@@ -74,7 +74,7 @@ namespace usr{
 		static void TimerProc(HWND hWnd, UINT param1, UINT param2,
 			UINT_PTR param3, DWORD param4){
 			ManagerImpl::instance().doCallback(
-				EVE_KEY(0, usr::WindowMessages::TIMER), 0, 0
+				EVE_KEY(0, usr::WindowMessages::TIME), 0, 0
 			);
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
@@ -83,13 +83,13 @@ namespace usr{
 			WND_HND handle = (usr::Base::Handle)hWnd;
 			switch (message)
 			{
-			case usr::WindowMessages::DESTROY:
+			case usr::WindowMessages::D_TROY:
 				ManagerImpl::instance().doCallback(
 					EVE_KEY( handle, message ), wParam, lParam
 				);
 				PostQuitMessage(0);
 				break;
-			case usr::WindowMessages::COMMAND:
+			case usr::WindowMessages::CMD:
 			{
 				usr::Base::Handle commandHandle = (usr::Base::Handle)lParam;
 				WND_MSG controlMessage = HIWORD(wParam);
@@ -98,7 +98,7 @@ namespace usr{
 				);
 			}
 			break;
-			case usr::WindowMessages::MENU_COMMAND:
+			case usr::WindowMessages::MNU_CMD:
 			{
 				usr::Base::Handle commandHandle = (usr::Base::Handle)lParam;
 				ManagerImpl::instance().doCallback(
@@ -115,7 +115,7 @@ namespace usr{
 			}
 			return 0;
 		}
-		void registerClass(WSTR_CON name = wcape::Defaults::WINDOW_NAME)
+		void registerClass(WSTR_CON name = wcape::Defaults::WND_NAM)
 		{
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));

@@ -7,13 +7,13 @@ namespace usr {
     const CAPE_RECT Defaults::WINDOW_RECT = CAPE_RECT( 100, 100, 800, 600 );
 
     const WND_STY Defaults::DEFWINDOW_STYLE =
-            WindowStyles::OVERLAPPED_WINDOW ^ WindowStyles::THICK_FRAME;
+            WindowStyles::OVERLAPPED_WND ^ WindowStyles::THICK_FRAME;
 
     const CLLS_STY Defaults::DEFCLASS_STYLE  =
-            ClassStyles::HORIZONTAL_REDRAW | ClassStyles::VERTICAL_REDRAW;
+            ClassStyles::HOR_REDRAW | ClassStyles::VER_REDRAW;
 
     const SHW_CMD Defaults::DEFSHOW_COMMAND =
-            ShowCommands::SHOW_DEFAULT;
+            ShowCommands::SHW_DEF;
 
     WSTR_CON Defaults::BUTTON_CLASS_NAME = L"BUTTON";
     const VEC_2I Defaults::BUTTON_SIZE = VEC_2I( 80, 24 );
@@ -21,11 +21,11 @@ namespace usr {
 
     const BTN_STY Defaults::DEFBUTTON_STYLE =
             WindowStyles::TAB_STOP | WindowStyles::VISIBLE |
-            WindowStyles::CHILD | ButtonStyles::PUSH_BUTTON;
+            WindowStyles::CHILD | ButtonStyles::PUSH_BTN;
 
     const BTN_STY Defaults::RADIO_BUTTON_STYLE =
             WindowStyles::TAB_STOP | WindowStyles::VISIBLE |
-            WindowStyles::CHILD | ButtonStyles::AUTO_RADIO_BUTTON;
+            WindowStyles::CHILD | ButtonStyles::AUT_RADIO_BTN;
 
     const int Defaults::LIST_VIEW_MIN_COLUMN_WIDTH = 50;
     const int Defaults::LIST_VIEW_COLUMN_WIDTH = 100;

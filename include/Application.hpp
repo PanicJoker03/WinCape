@@ -13,17 +13,17 @@ namespace wcape{
 		/// <summary>
 		/// Starts the application loop
 		/// </summary>
-		void init(WSTR_CON name = Defaults::WINDOW_NAME);
+		void init(WSTR_CON name = Defaults::WND_NAM);
 		usr::Window console();
 		int run();
 		int run(wcape::usr::WindowFrame& window);
-		ISC_HND instance();
+		INS_HND instance();
 		//Really poor function, must be called at the application beginning in
 		//order to work...
 		void defaultFont(WSTR_CON fontName);
 
 		usr::Window createWindow(
-			WSTR_CON windowName = Defaults::WINDOW_NAME,
+			WSTR_CON windowName = Defaults::WND_NAM,
 			WSTR_CON title = L"Default",
 			const CAPE_RECT & rect = usr::Defaults::WINDOW_RECT,
 			WND_STY style = usr::Defaults::DEFWINDOW_STYLE,

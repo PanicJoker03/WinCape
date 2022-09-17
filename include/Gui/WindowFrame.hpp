@@ -19,7 +19,7 @@ namespace usr{
 		const CAPE_RECT rect;
 	    WND_STY style;
 	protected:
-		WindowFrame(WSTR_CON windowName = wcape::Defaults::WINDOW_NAME,
+		WindowFrame(WSTR_CON windowName = wcape::Defaults::WND_NAM,
 			WSTR_CON title = L"Default",
 			const CAPE_RECT& rect = usr::Defaults::WINDOW_RECT,
 			WND_STY style = usr::Defaults::DEFWINDOW_STYLE

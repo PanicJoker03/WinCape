@@ -6,10 +6,10 @@ namespace usr{
 	//ListBox
 	//--------------------------------------------------------------------------
 	void ListBox::addString(WSTR_CON string) {
-		SendMessage(handle(), ListBoxMessages::ADD_STRING, 0, (LPARAM)string);
+		SendMessage(handle(), ListBoxMessages::ADD_STR, 0, (LPARAM)string);
 	}
 	int ListBox::count() {
-		return SendMessage(handle(), ListBoxMessages::GET_COUNT, 0, 0);
+		return SendMessage(handle(), ListBoxMessages::GET_CON, 0, 0);
 	}
 
 }}

@@ -40,7 +40,7 @@ namespace usr
 	void Menu::onItemSelect(const EVE_CALL& callback)
 	{
 		usr::Manager::instance().listenEvent(
-			(usr::Base::Handle)handle(), WindowMessages::MENU_COMMAND, callback
+			(usr::Base::Handle)handle(), WindowMessages::MNU_CMD, callback
 		);
 	}
 	void Menu::create(usr::Menu& menu)

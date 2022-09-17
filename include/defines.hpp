@@ -21,7 +21,7 @@ namespace wcape
 	typedef HICON ICO_HND;
 	typedef HBITMAP BMP_HND;
 	typedef HFONT FON_HND;
-	typedef HINSTANCE ISC_HND;
+	typedef HINSTANCE INS_HND;
 	typedef HFILE FLL_HND;
 	typedef DWORD WND_STY;
 	typedef DWORD WNDX_STY;

@@ -108,12 +108,12 @@ namespace usr{
         ListView_SetExtendedListViewStyle(
 			handle(), 
 			ListViewStyles::Extended::CHECKBOXES | 
-			ListViewStyles::Extended::FULL_ROW_SELECT);
+			ListViewStyles::Extended::FUL_ROW_SEL);
     }
 
     void ListView::onItemChecked(const EVE_CALL & callback){
         usr::Manager::instance().listenEvent(
-			(Base::Handle)handle(), ListViewMessages::ITEM_CHANGED, callback);
+			(Base::Handle)handle(), ListViewMessages::ITM_CHA, callback);
     }
 
     void ListView::clear(){

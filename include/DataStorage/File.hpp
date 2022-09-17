@@ -2,6 +2,7 @@
 #define FILE_HPP
 #include "DataStorage/DataStorageDefines.hpp"
 #include "HasHandle.hpp"
+#include <cstddef>
 
 namespace wcape{
 namespace dst{

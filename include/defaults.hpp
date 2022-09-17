@@ -5,7 +5,7 @@
 namespace wcape
 {
     struct Defaults{
-        static WSTR_CON WINDOW_NAME;
+        static WSTR_CON WND_NAM;
     };
 }
 #endif // !DEFAULTS_HPP

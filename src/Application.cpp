@@ -45,7 +45,7 @@ namespace wcape{
 		//window.onCreate();
 		return usr::Manager::instance().startListening();
 	}
-	ISC_HND Application::instance()
+	INS_HND Application::instance()
 	{
 		return GetModuleHandle(NULL);
 	}

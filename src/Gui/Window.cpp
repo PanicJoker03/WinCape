@@ -24,7 +24,7 @@ namespace usr
 	}
 	void Window::minimize()
 	{
-		ShowWindow(handle(), ShowCommands::MINIMIZE);
+		ShowWindow(handle(), ShowCommands::MINI);
 	}
 	void Window::addButton(Button& button, WSTR_CON text,
 		const VEC_2I& position, const VEC_2I& size)
@@ -83,7 +83,7 @@ namespace usr
 	    CAPE_RECT dimensions_ = dimensions;
 	    dimensions_.position.x += padding.x;
 	    dimensions_.position.y += padding.y;
-	    listViewHandle = usr::Manager::instance().createHandle(ClassNames::LISTVIEW, L"", style, dimensions_, handle());
+	    listViewHandle = usr::Manager::instance().createHandle(ClassNames::LST_VIW, L"", style, dimensions_, handle());
 	    listView.handle(listViewHandle);
 	}
 
@@ -96,14 +96,14 @@ namespace usr
 	{
 		//TODO: declare button notifications in defines
 		usr::Manager::instance().listenEvent(
-			handle(), WindowMessages::PAINT, callback
+			handle(), WindowMessages::PINT, callback
 		);
 	}
 	void Window::onDestroy(const EVE_CALL& callback)
 	{
 		//TODO: declare button notifications in defines
 		usr::Manager::instance().listenEvent(
-			handle(), WindowMessages::DESTROY, callback
+			handle(), WindowMessages::D_TROY, callback
 		);
 	}
 	void Window::redraw()
@@ -118,16 +118,16 @@ namespace usr
 	}
 	void Window::close()
 	{
-		SendMessage(handle(), WindowMessages::CLOSE, 0, 0);
+		SendMessage(handle(), WindowMessages::CLOS, 0, 0);
 	}
 	void Window::setIcon(const Icon& icon)
 	{
 		SendMessage(
-			handle(), WindowMessages::SET_ICON, ICON_BIG, (LPARAM)icon.handle()
+			handle(), WindowMessages::SET_ICO, ICON_BIG, (LPARAM)icon.handle()
 		);
 	}
 	void Window::timer(const EVE_CALL& callback, unsigned int time){
-		WND_MSG timerMsg = WindowMessages::TIMER;
+		WND_MSG timerMsg = WindowMessages::TIME;
 		usr::Manager::instance().listenEvent(handle(), timerMsg, callback);
 		SetTimer(
 			handle(), reinterpret_cast<UINT_PTR>(
@@ -145,7 +145,7 @@ namespace usr
 			throw GetLastError();
 			*/
 		SetLayeredWindowAttributes(
-			handle(), 0, value, LayeredWindowAttributes::ALPHA);
+			handle(), 0, value, LayeredWindowAttributes::ALPH);
 	}
 	void Window::parent(Window window){
 		SetParent(handle(), window.handle());

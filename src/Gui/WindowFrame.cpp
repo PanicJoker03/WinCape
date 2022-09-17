@@ -13,12 +13,12 @@ namespace usr
 		handle(application.createWindow(
 			windowName, title, rect, style).handle()
 		);
-		SendMessage(handle(), WindowMessages::CREATE, 0, 0);
+		SendMessage(handle(), WindowMessages::CRAT, 0, 0);
 	}
 	void WindowFrame::onDraw(DeviceContext deviceContext) {}
 	void WindowFrame::onDispose() {
-		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::PAINT);
-		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::DESTROY);
+		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::PINT);
+		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::D_TROY);
 	}
 	usr::WindowFrame::~WindowFrame() {}
 }}
