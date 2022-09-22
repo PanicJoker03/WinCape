@@ -1,5 +1,5 @@
 #include "defines.hpp"
-#include "Ui/GuiDefines.hpp"
+#include "Ui/UiDefines.hpp"
 #include "Ui/Style.hpp"
 namespace w_cape{
 namespace ui {

@@ -1,5 +1,5 @@
-#ifndef GUI_DEFINES_HPP
-#define GUI_DEFINES_HPP
+#ifndef UI_DEFINES_HPP
+#define UI_DEFINES_HPP
 #include "defines.hpp"
 namespace w_cape{
     namespace ui{

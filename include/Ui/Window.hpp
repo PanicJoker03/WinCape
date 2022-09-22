@@ -1,7 +1,7 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 #include "defines.hpp"
-#include "GuiDefaults.hpp"
+#include "UiDefaults.hpp"
 #include "Ui/Base.hpp"
 #include "Ui/DeviceContext.hpp"
 #include "Ui/Icon.hpp"

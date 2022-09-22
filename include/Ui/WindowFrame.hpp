@@ -2,7 +2,7 @@
 #define WINDOWFRAME_HPP
 #include "defines.hpp"
 #include "defaults.hpp"
-#include "GuiDefaults.hpp"
+#include "UiDefaults.hpp"
 #include "Window.hpp"
 namespace w_cape{
 struct Application;

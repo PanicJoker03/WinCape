@@ -2,7 +2,7 @@
 #define WINCAPE_HPP
 #include "defaults.hpp"
 #include "DataStorage.hpp"
-#include "Gui.hpp"
+#include "Ui.hpp"
 #ifdef WINCAPE_USES_WGL
 //#include "rendering.hpp"
 #endif

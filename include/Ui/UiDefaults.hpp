@@ -1,8 +1,8 @@
-#ifndef GUI_DEFAULTS_HPP
-#define GUI_DEFAULTS_HPP
+#ifndef UI_DEFAULTS_HPP
+#define UI_DEFAULTS_HPP
 
 #include "defines.hpp"
-#include "GuiDefines.hpp"
+#include "UiDefines.hpp"
 #include "Style.hpp"
 namespace w_cape{
 namespace ui {

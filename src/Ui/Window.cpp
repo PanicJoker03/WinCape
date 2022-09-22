@@ -1,6 +1,6 @@
 #include "defines.hpp"
 #include "Ui/Manager.hpp"
-#include "Gui.hpp"
+#include "Ui.hpp"
 #include "Event.hpp"
 using namespace std;
 namespace w_cape{
