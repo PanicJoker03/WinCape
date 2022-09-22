@@ -6,7 +6,7 @@
 #include "Window.hpp"
 namespace w_cape{
 struct Application;
-namespace usr{
+namespace ui{
 	//////////////////////////
 	//High level abstraction//
 	//////////////////////////
@@ -21,8 +21,8 @@ namespace usr{
 	protected:
 		WindowFrame(WSTR_CON windowName = w_cape::Defaults::WND_NAM,
 			WSTR_CON title = L"Default",
-			const CAPE_RECT& rect = usr::Defaults::WINDOW_RECT,
-			WND_STY style = usr::Defaults::DEFWINDOW_STYLE
+			const CAPE_RECT& rect = ui::Defaults::WINDOW_RECT,
+			WND_STY style = ui::Defaults::DEFWINDOW_STYLE
 		);
 
 		virtual void onCreate() = 0;

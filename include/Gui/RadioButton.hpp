@@ -3,7 +3,7 @@
 //#include "defines.hpp"
 #include "Gui/Button.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class RadioButton : public Button
 	{
 	public:

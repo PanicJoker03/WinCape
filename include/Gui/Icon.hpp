@@ -4,7 +4,7 @@
 #include "defines.hpp"
 #include "HasHandle.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class Window;
 	class Icon : public HasHandle<ICO_HND>
 	{

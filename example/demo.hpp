@@ -12,12 +12,12 @@
 #define MAX_LOADSTRING 100
 
 using cape::Application;
-using cape::usr::Window;
+using cape::ui::Window;
 using cape::CAPE_RECT;
-using cape::usr::ListView;
-using cape::usr::Button;
-using cape::usr::DeviceContext;
-using cape::usr::Bitmap;
+using cape::ui::ListView;
+using cape::ui::Button;
+using cape::ui::DeviceContext;
+using cape::ui::Bitmap;
 
 // Variables globales:
 HINSTANCE hInst;                                // instancia actual

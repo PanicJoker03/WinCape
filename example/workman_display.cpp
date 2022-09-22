@@ -3,9 +3,9 @@
 
 using namespace w_cape;
 
-usr::DeviceContext dcWnd;
-usr::Window wn;
-usr::Bitmap btMap;
+ui::DeviceContext dcWnd;
+ui::Window wn;
+ui::Bitmap btMap;
 void onDcWndDraw(EVENT e);
 
 struct Pixel24 {

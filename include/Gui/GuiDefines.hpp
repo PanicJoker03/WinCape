@@ -2,7 +2,7 @@
 #define GUI_DEFINES_HPP
 #include "defines.hpp"
 namespace w_cape{
-    namespace usr{
+    namespace ui{
 
       namespace ShowCommands {
             enum

@@ -2,17 +2,17 @@
 #include "defines.hpp"
 #include "Gui/RenderContext.hpp"
 namespace w_cape{
-namespace usr
+namespace ui
 {
 	////-------------------------------------------------------------------------
 	////RenderContext
 	////-------------------------------------------------------------------------
-	usr::RenderContext::RenderContext() {}
-	usr::RenderContext::RenderContext(GL_RCX_HND value)
+	ui::RenderContext::RenderContext() {}
+	ui::RenderContext::RenderContext(GL_RCX_HND value)
 	{
 		handle(value);
 	}
-	usr::RenderContext::~RenderContext(){
+	ui::RenderContext::~RenderContext(){
 		//Solo hasta haber implementado el move constructor...
 		//wglDeleteContext(handle());
 	}	

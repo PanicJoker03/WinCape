@@ -5,7 +5,7 @@
 #include "GuiDefines.hpp"
 #include "Style.hpp"
 namespace w_cape{
-namespace usr {
+namespace ui {
     struct Defaults
     {
         static const CAPE_RECT WINDOW_RECT;

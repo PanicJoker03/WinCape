@@ -2,7 +2,7 @@
 #include "Gui/GuiDefines.hpp"
 #include "Gui/Manager.hpp"
 namespace w_cape{
-namespace usr
+namespace ui
 {
 	//--------------------------------------------------------------------------
 	//Menu
@@ -18,7 +18,7 @@ namespace usr
 		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
 		SetMenuInfo(handle(), &menuInfo);
 	}
-	void Menu::addSubMenu(usr::Menu& menu, WSTR_CON text)
+	void Menu::addSubMenu(ui::Menu& menu, WSTR_CON text)
 	{
 		AppendMenuW(
 			handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text
@@ -39,11 +39,11 @@ namespace usr
 	//}
 	void Menu::onItemSelect(const EVE_CALL& callback)
 	{
-		usr::Manager::instance().listenEvent(
-			(usr::Base::Handle)handle(), WindowMessages::MNU_CMD, callback
+		ui::Manager::instance().listenEvent(
+			(ui::Base::Handle)handle(), WindowMessages::MNU_CMD, callback
 		);
 	}
-	void Menu::create(usr::Menu& menu)
+	void Menu::create(ui::Menu& menu)
 	{
 		MNU_HND menuHandle = CreateMenu();
 		menu.handle(menuHandle);

@@ -3,7 +3,7 @@
 #include "Event.hpp"
 #include "Gui/Control.hpp"
 namespace w_cape{
-namespace usr {
+namespace ui {
 	class Button : public Control
 	{
 	public:

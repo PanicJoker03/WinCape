@@ -1,10 +1,10 @@
 #include "Gui/Control.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	//--------------------------------------------------------------------------
 	//Control
 	//--------------------------------------------------------------------------
-	void usr::Control::createFromResource(
+	void ui::Control::createFromResource(
 		WND_HND parent,
 		int resource) {
 		handle(GetDlgItem(parent, resource));

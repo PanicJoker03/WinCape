@@ -16,6 +16,6 @@ namespace w_cape{
 
 namespace bse
 {
-	const usr::Window Console();
+	const ui::Window Console();
 }}
 #endif

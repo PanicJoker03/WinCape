@@ -1,7 +1,7 @@
 #include "Gui/GuiDefines.hpp"
 #include "Gui/ListBox.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	//--------------------------------------------------------------------------
 	//ListBox
 	//--------------------------------------------------------------------------

@@ -7,13 +7,13 @@
 using namespace std;
 
 namespace w_cape{
-namespace usr{
+namespace ui{
 	//--------------------------------------------------------------------------
 	//Implementation
 	//--------------------------------------------------------------------------
 	class ManagerImpl
 	{
-		typedef pair<usr::Base::Handle, WND_MSG> EVE_KEY;
+		typedef pair<ui::Base::Handle, WND_MSG> EVE_KEY;
 		//Wrap in a class?
 		typedef map<EVE_KEY, EVE_CALL> EVE_MP;
 		EVE_MP eventMap;
@@ -21,7 +21,7 @@ namespace usr{
 		//Wrap in font class?
 		FON_HND applicationFont;
 	public:
-		//using EVE_KEY = pair<usr::Base::Handle, WND_MSG>;
+		//using EVE_KEY = pair<ui::Base::Handle, WND_MSG>;
 		//Wrap in a class?
 		//using EVE_MP = map<EVE_KEY, EVE_CALL>;
 		static ManagerImpl& instance()
@@ -54,12 +54,12 @@ namespace usr{
 			}
 			return static_cast<int>(msg.wParam);
 		}
-		void listenEvent(usr::Base::Handle handle, WND_MSG message,
+		void listenEvent(ui::Base::Handle handle, WND_MSG message,
 			const EVE_CALL& callback)
 		{
 			eventMap[EVE_KEY( handle, message  )] = callback;
 		}
-		void unlistenEvent(usr::Base::Handle handle, WND_MSG message) 
+		void unlistenEvent(ui::Base::Handle handle, WND_MSG message) 
 		{
 			eventMap.erase(EVE_KEY(handle, message));
 		}
@@ -74,33 +74,33 @@ namespace usr{
 		static void TimerProc(HWND hWnd, UINT param1, UINT param2,
 			UINT_PTR param3, DWORD param4){
 			ManagerImpl::instance().doCallback(
-				EVE_KEY(0, usr::WindowMessages::TIME), 0, 0
+				EVE_KEY(0, ui::WindowMessages::TIME), 0, 0
 			);
 		}
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
 			LPARAM lParam)
 		{
-			WND_HND handle = (usr::Base::Handle)hWnd;
+			WND_HND handle = (ui::Base::Handle)hWnd;
 			switch (message)
 			{
-			case usr::WindowMessages::D_TROY:
+			case ui::WindowMessages::D_TROY:
 				ManagerImpl::instance().doCallback(
 					EVE_KEY( handle, message ), wParam, lParam
 				);
 				PostQuitMessage(0);
 				break;
-			case usr::WindowMessages::CMD:
+			case ui::WindowMessages::CMD:
 			{
-				usr::Base::Handle commandHandle = (usr::Base::Handle)lParam;
+				ui::Base::Handle commandHandle = (ui::Base::Handle)lParam;
 				WND_MSG controlMessage = HIWORD(wParam);
 				ManagerImpl::instance().doCallback(
 					EVE_KEY( commandHandle, controlMessage ), wParam, lParam
 				);
 			}
 			break;
-			case usr::WindowMessages::MNU_CMD:
+			case ui::WindowMessages::MNU_CMD:
 			{
-				usr::Base::Handle commandHandle = (usr::Base::Handle)lParam;
+				ui::Base::Handle commandHandle = (ui::Base::Handle)lParam;
 				ManagerImpl::instance().doCallback(
 					EVE_KEY( commandHandle, message ), wParam, lParam
 				);
@@ -121,7 +121,7 @@ namespace usr{
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
 			WNDCLASSEXW windowClass = {};
 			windowClass.cbSize = sizeof(WNDCLASSEXW);
-			windowClass.style = usr::Defaults::DEFCLASS_STYLE;
+			windowClass.style = ui::Defaults::DEFCLASS_STYLE;
 			windowClass.lpfnWndProc = WndProc;
 			windowClass.hInstance = application.instance();
 			windowClass.hIcon = LoadIconW(
@@ -135,9 +135,9 @@ namespace usr{
 			);
 			RegisterClassExW(&windowClass);
 		}
-		usr::Base::Handle createHandle(WSTR_CON name,
+		ui::Base::Handle createHandle(WSTR_CON name,
 			WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
-			usr::Base::Handle parent, WNDX_STY exStyle)
+			ui::Base::Handle parent, WNDX_STY exStyle)
 		{
 			WNDCLASSW windowClass = {};
 			//Because each window must register it's class
@@ -185,43 +185,43 @@ namespace usr{
 	//--------------------------------------------------------------------------
 	//Forwarding
 	//--------------------------------------------------------------------------
-	usr::Manager::Manager() {}
-	usr::Manager& Manager::instance()
+	ui::Manager::Manager() {}
+	ui::Manager& Manager::instance()
 	{
 		static Manager instance_;
 		return instance_;
 	}
-	int usr::Manager::startListening()
+	int ui::Manager::startListening()
 	{
 		return ManagerImpl::instance().startListening();
 	}
-	void usr::Manager::listenEvent(
-		usr::Base::Handle handle, 
+	void ui::Manager::listenEvent(
+		ui::Base::Handle handle, 
 		WND_MSG message, const EVE_CALL& callback)
 	{
 		ManagerImpl::instance().listenEvent(handle, message, callback);
 	}
-	void usr::Manager::unlistenEvent(
-		usr::Base::Handle handle, WND_MSG message)
+	void ui::Manager::unlistenEvent(
+		ui::Base::Handle handle, WND_MSG message)
 	{
 		ManagerImpl::instance().unlistenEvent(handle, message);
 	}
-	void usr::Manager::registerClass(WSTR_CON name)
+	void ui::Manager::registerClass(WSTR_CON name)
 	{
 		ManagerImpl::instance().registerClass(name);
 	}
-	usr::Base::Handle usr::Manager::createHandle(WSTR_CON className,
+	ui::Base::Handle ui::Manager::createHandle(WSTR_CON className,
 		WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
-		usr::Base::Handle parent, WNDX_STY exStyle)
+		ui::Base::Handle parent, WNDX_STY exStyle)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style,
 			rect, parent, exStyle);
 	}
-	void usr::Manager::defaultFont(WSTR_CON fontName)
+	void ui::Manager::defaultFont(WSTR_CON fontName)
 	{
 		ManagerImpl::instance().defaultFont(fontName);
 	}
-	FON_HND usr::Manager::defaultFont()
+	FON_HND ui::Manager::defaultFont()
 	{
 		return ManagerImpl::instance().defaultFont();
 	}

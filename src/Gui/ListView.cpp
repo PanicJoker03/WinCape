@@ -4,7 +4,7 @@
 #include "Gui/Manager.hpp"
 #include "Gui/Style.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
     int ListView::count(){
         return ListView_GetItemCount(handle());
     }
@@ -34,8 +34,8 @@ namespace usr{
 
 #endif
         col.cchTextMax = 256;
-        col.cx = width > 0 ? width : usr::Defaults::LIST_VIEW_COLUMN_WIDTH;
-        col.cxMin = usr::Defaults::LIST_VIEW_MIN_COLUMN_WIDTH;
+        col.cx = width > 0 ? width : ui::Defaults::LIST_VIEW_COLUMN_WIDTH;
+        col.cxMin = ui::Defaults::LIST_VIEW_MIN_COLUMN_WIDTH;
         col.iSubItem = index;
         SendMessage(handle(), LVM_INSERTCOLUMN, index, (LPARAM)&col);
     }
@@ -112,7 +112,7 @@ namespace usr{
     }
 
     void ListView::onItemChecked(const EVE_CALL & callback){
-        usr::Manager::instance().listenEvent(
+        ui::Manager::instance().listenEvent(
 			(Base::Handle)handle(), ListViewMessages::ITM_CHA, callback);
     }
 

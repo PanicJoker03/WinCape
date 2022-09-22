@@ -3,7 +3,7 @@
 //#include "defines.hpp"
 #include "Gui/Control.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class ComboBox : public Control
 	{
 	public:

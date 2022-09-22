@@ -10,7 +10,7 @@
 #include "Gui/RadioButton.hpp"
 #include "Gui/Menu.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class Window : public Base
 	{
 	public:

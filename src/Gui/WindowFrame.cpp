@@ -2,7 +2,7 @@
 #include "Application.hpp"
 #include "Gui/Manager.hpp"
 namespace w_cape{
-namespace usr
+namespace ui
 {
 	//-------------------------------------------------------------------------
 	//WindowFrame
@@ -17,8 +17,8 @@ namespace usr
 	}
 	void WindowFrame::onDraw(DeviceContext deviceContext) {}
 	void WindowFrame::onDispose() {
-		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::PINT);
-		usr::Manager::instance().unlistenEvent(handle(), WindowMessages::D_TROY);
+		ui::Manager::instance().unlistenEvent(handle(), WindowMessages::PINT);
+		ui::Manager::instance().unlistenEvent(handle(), WindowMessages::D_TROY);
 	}
-	usr::WindowFrame::~WindowFrame() {}
+	ui::WindowFrame::~WindowFrame() {}
 }}

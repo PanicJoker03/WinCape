@@ -3,7 +3,7 @@
 //#include "defines.hpp"
 #include "Gui/Base.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class Window;//for friend
 	class Control : public Base
 	{

@@ -3,7 +3,7 @@
 #include "defines.hpp"
 #include "HasHandle.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class Bitmap : public HasHandle<BMP_HND>
 	{
 	private:

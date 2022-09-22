@@ -5,22 +5,22 @@
 //#endif
 #include "Gui/Window.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	//-------------------------------------------------------------------------
 	//DeviceContext
 	//-------------------------------------------------------------------------
-	usr::DeviceContext::DeviceContext() {}
-	usr::DeviceContext::DeviceContext(DCX_HND value)
+	ui::DeviceContext::DeviceContext() {}
+	ui::DeviceContext::DeviceContext(DCX_HND value)
 	{
 		handle(value);
 	}
-	void usr::DeviceContext::bitBlt(BMP_HND bitmapHandle, DCX_HND destiny, const CAPE_RECT& rect)
+	void ui::DeviceContext::bitBlt(BMP_HND bitmapHandle, DCX_HND destiny, const CAPE_RECT& rect)
 	{
 		BMP_HND hbmOld = (BMP_HND)SelectObject(destiny, bitmapHandle);
 		BitBlt(handle(), rect.position.x, rect.position.y, rect.size.x, rect.size.y, destiny, 0, 0, SRCCOPY);
 		SelectObject(destiny, hbmOld);
 	}
-	usr::DeviceContext::~DeviceContext(){
+	ui::DeviceContext::~DeviceContext(){
 		//if(handle() != NullPointer)
 		//	ReleaseDC(WindowFromDC(handle()), handle());
 	}
@@ -29,20 +29,20 @@ namespace usr{
 	//	Int2 bitmapSize = bitmap.dimension();
 	//	drawBitmap(bitmap, CAPE_RECT{ 0, 0, bitmapSize });
 	//}
-	void usr::DeviceContext::drawBitmap(const usr::Bitmap& bitmap, const VEC_2I& padding)
+	void ui::DeviceContext::drawBitmap(const ui::Bitmap& bitmap, const VEC_2I& padding)
 	{
 		DCX_HND devContextMemory = CreateCompatibleDC(handle());
 		VEC_2I bmpSize = bitmap.dimension();
 		bitBlt(bitmap.handle(), devContextMemory, CAPE_RECT( padding, bmpSize ));
 		DeleteDC(devContextMemory);
 	}
-	void usr::DeviceContext::drawText(WSTR_CON text, DRW_TXT_FMAT flags){
+	void ui::DeviceContext::drawText(WSTR_CON text, DRW_TXT_FMAT flags){
 		CAPE_RECT rec = bounds();
 		SetTextColor(handle(), 0x00000000);
 		SetBkMode(handle(), TRANSPARENT);
 		DrawTextW(handle(), text, -1, reinterpret_cast<RECT*>(&rec), flags);
 	}
-	CAPE_RECT usr::DeviceContext::bounds() const {
+	CAPE_RECT ui::DeviceContext::bounds() const {
 		CAPE_RECT rec;
 		GetClientRect(window().handle(), reinterpret_cast<RECT*>(&rec));
 		return rec;
@@ -89,8 +89,8 @@ namespace usr{
 		wglMakeCurrent(handle(), context.handle());
 	}
 	//#endif
-	//usr::RenderContext usr::DeviceContext::createRenderContext() const {
-	//	return usr::RenderContext(wglCreateContext(handle()));
+	//ui::RenderContext ui::DeviceContext::createRenderContext() const {
+	//	return ui::RenderContext(wglCreateContext(handle()));
 	//}
 }}
 

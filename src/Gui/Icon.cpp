@@ -1,12 +1,12 @@
 #include "Gui/Icon.hpp"
 #include "Application.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	//-------------------------------------------------------------------------
 	//Icon
 	//-------------------------------------------------------------------------
-	usr::Icon::Icon() {}
-	void usr::Icon::load(RESRC_I idi)
+	ui::Icon::Icon() {}
+	void ui::Icon::load(RESRC_I idi)
 	{
 		ICO_HND iconHnd = (ICO_HND)LoadImage(
 			application.instance(), MAKEINTRESOURCE(idi),

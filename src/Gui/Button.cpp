@@ -1,13 +1,13 @@
 #include "Gui/Button.hpp"
 #include "Gui/Manager.hpp"
 namespace w_cape{
-namespace usr{
+namespace ui{
 	//----------------------------------------------------------------------
 	//Button
 	//----------------------------------------------------------------------
-	void usr::Button::onClick(const EVE_CALL& callback)
+	void ui::Button::onClick(const EVE_CALL& callback)
 	{
 		//TODO: declare button notifications in defines
-		usr::Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
+		ui::Manager::instance().listenEvent(handle(), BN_CLICKED, callback);
 	}
 }}

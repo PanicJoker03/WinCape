@@ -6,7 +6,7 @@
 #include "Gui/RenderContext.hpp"
 //#endif
 namespace w_cape{
-namespace usr{
+namespace ui{
 	class Window;
 	class DeviceContext : public HasHandle<DCX_HND>
 	{

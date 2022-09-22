@@ -4,7 +4,7 @@
 #include "Event.hpp"
 using namespace std;
 namespace w_cape{
-namespace usr
+namespace ui
 {
 	//--------------------------------------------------------------------------
 	//Window
@@ -30,7 +30,7 @@ namespace usr
 		const VEC_2I& position, const VEC_2I& size)
 	{
 		Handle buttonHandle;
-		buttonHandle = usr::Manager::instance().createHandle(
+		buttonHandle = ui::Manager::instance().createHandle(
 			Defaults::BUTTON_CLASS_NAME, text, Defaults::DEFBUTTON_STYLE,
 			CAPE_RECT(
 				position,
@@ -83,7 +83,7 @@ namespace usr
 	    CAPE_RECT dimensions_ = dimensions;
 	    dimensions_.position.x += padding.x;
 	    dimensions_.position.y += padding.y;
-	    listViewHandle = usr::Manager::instance().createHandle(ClassNames::LST_VIW, L"", style, dimensions_, handle());
+	    listViewHandle = ui::Manager::instance().createHandle(ClassNames::LST_VIW, L"", style, dimensions_, handle());
 	    listView.handle(listViewHandle);
 	}
 
@@ -95,14 +95,14 @@ namespace usr
 	void Window::onPaint(const EVE_CALL& callback)
 	{
 		//TODO: declare button notifications in defines
-		usr::Manager::instance().listenEvent(
+		ui::Manager::instance().listenEvent(
 			handle(), WindowMessages::PINT, callback
 		);
 	}
 	void Window::onDestroy(const EVE_CALL& callback)
 	{
 		//TODO: declare button notifications in defines
-		usr::Manager::instance().listenEvent(
+		ui::Manager::instance().listenEvent(
 			handle(), WindowMessages::D_TROY, callback
 		);
 	}
@@ -110,9 +110,9 @@ namespace usr
 	{
 		RedrawWindow(handle(), 0, 0, RDW_INVALIDATE | RDW_UPDATENOW);
 	}
-	usr::DeviceContext usr::Window::deviceContext()
+	ui::DeviceContext ui::Window::deviceContext()
 	{
-		usr::DeviceContext deviceContext;
+		ui::DeviceContext deviceContext;
 		deviceContext.handle(GetDC(handle()));
 		return deviceContext;
 	}
@@ -128,7 +128,7 @@ namespace usr
 	}
 	void Window::timer(const EVE_CALL& callback, unsigned int time){
 		WND_MSG timerMsg = WindowMessages::TIME;
-		usr::Manager::instance().listenEvent(handle(), timerMsg, callback);
+		ui::Manager::instance().listenEvent(handle(), timerMsg, callback);
 		SetTimer(
 			handle(), reinterpret_cast<UINT_PTR>(
 				handle()
