@@ -1,6 +1,6 @@
 #ifndef STYLE_HPP
 #define STYLE_HPP
-namespace wcape{
+namespace w_cape{
     namespace  WindowStyles {
 		enum
 		{

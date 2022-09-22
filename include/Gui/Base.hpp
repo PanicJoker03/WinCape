@@ -3,7 +3,7 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	class Base : public HasHandle<WND_HND>
 	{

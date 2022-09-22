@@ -4,7 +4,7 @@
 #include "defines.hpp"
 #include "GuiDefines.hpp"
 #include "Style.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr {
     struct Defaults
     {

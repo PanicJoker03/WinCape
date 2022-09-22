@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <WinCape.hpp>
 
-namespace wcape {
+namespace w_cape {
 namespace exm {
 	WSTR_CON TEXTO_20_MINS = L"Ya pasaron 20 Minutos";
 	usr::Window wnApp;
@@ -19,10 +19,10 @@ namespace exm {
 		LPSTR lpCmdLine, int nCmdShow)
 	{
 		//Call this to initiate some WinCape internal stuff
-		wcape::application.init();
+		w_cape::application.init();
 		
 		//Creating the app main window
-		wnApp = wcape::application.createWindow(
+		wnApp = w_cape::application.createWindow(
 			L"Pruebas", 
 			L"Reglas 20-20-20", 
 			CAPE_RECT(400, 400, 300, 200), 
@@ -43,7 +43,7 @@ namespace exm {
 		wnApp.timer(wnApp_OnTimer, 1200000);
 		
 		//Finally run the main loop
-		wcape::application.run();
+		w_cape::application.run();
 		
 		//exit ok
 		return 0;

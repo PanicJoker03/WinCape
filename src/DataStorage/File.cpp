@@ -1,6 +1,6 @@
 #include "DataStorage/File.hpp"
 #include <stdio.h>
-namespace wcape {
+namespace w_cape {
 namespace dst{
 	void dst::File::open(WSTR_CON filePath, DRD_ACCES mode)
 	{

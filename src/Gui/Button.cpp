@@ -1,6 +1,6 @@
 #include "Gui/Button.hpp"
 #include "Gui/Manager.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	//----------------------------------------------------------------------
 	//Button

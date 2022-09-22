@@ -3,7 +3,7 @@
 #include "Gui/Window.hpp"
 #include "Gui/WindowFrame.hpp"
 #include "Application.hpp"
-namespace wcape{   
+namespace w_cape{   
      //Some crazy stuff to make WinCape c++98 compiles
      usr::WindowFrame * Application::functorWnd = NULL;
      void Application::wndOnPaint(EVENT e){
@@ -38,7 +38,7 @@ namespace wcape{
 	}
 	int Application::run(usr::WindowFrame& window)
 	{
-		using namespace wcape;
+		using namespace w_cape;
 		Application::functorWnd = &window;
 		window.onCreate();
 		window.onPaint(wndOnPaint);

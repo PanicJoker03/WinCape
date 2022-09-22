@@ -1,5 +1,5 @@
 #include "Gui/Bitmap.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	//-------------------------------------------------------------------------
 	//Bitmap

@@ -1,6 +1,6 @@
 #ifndef GAME_HPP
 #define GAME_HPP
-namespace wcape {
+namespace w_cape {
 namespace gm {
     namespace top{
         

@@ -5,7 +5,7 @@
 #include "Event.hpp"
 #include <vector>
 #include <string>
-namespace wcape{
+namespace w_cape{
 namespace usr{
     class ListView : public Control
     {

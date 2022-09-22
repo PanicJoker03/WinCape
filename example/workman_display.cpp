@@ -1,7 +1,7 @@
 #include <iostream>
 #include <WinCape.hpp>
 
-using namespace wcape;
+using namespace w_cape;
 
 usr::DeviceContext dcWnd;
 usr::Window wn;

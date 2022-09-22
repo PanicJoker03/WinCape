@@ -2,7 +2,7 @@
 #define LISTBOX_HPP
 //#include "defines.hpp"
 #include "Gui/Control.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	class ListBox : public Control
 	{

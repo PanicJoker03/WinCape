@@ -3,7 +3,7 @@
 #include "Application.hpp"
 
 using namespace std;
-namespace wcape
+namespace w_cape
 {
 	Application application;
 	//--------------------------------------------------------------------------

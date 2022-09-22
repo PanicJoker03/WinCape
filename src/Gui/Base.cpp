@@ -1,5 +1,5 @@
 #include "Gui/Base.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	//-------------------------------------------------------------------------
 	//Base

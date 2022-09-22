@@ -9,7 +9,7 @@
 #include "Gui/ListView.hpp"
 #include "Gui/RadioButton.hpp"
 #include "Gui/Menu.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	class Window : public Base
 	{

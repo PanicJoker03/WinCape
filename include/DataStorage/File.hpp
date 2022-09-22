@@ -4,7 +4,7 @@
 #include "HasHandle.hpp"
 #include <cstddef>
 
-namespace wcape{
+namespace w_cape{
 namespace dst{
 	class File : public HasHandle<FLL_HND>
 	{

@@ -4,7 +4,7 @@
 #include "Gui/RenderContext.hpp"
 //#endif
 #include "Gui/Window.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	//-------------------------------------------------------------------------
 	//DeviceContext

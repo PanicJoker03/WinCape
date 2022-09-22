@@ -3,7 +3,7 @@
 
 #include "defines.hpp"
 #include "HasHandle.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	class Window;
 	class Icon : public HasHandle<ICO_HND>

@@ -4,7 +4,7 @@
 #include "Gui/Base.hpp"
 #include "Event.hpp"
 #include "Gui/Style.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr
 {
 	class Manager

@@ -1,4 +1,4 @@
 #include "Gui/Font.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 }}

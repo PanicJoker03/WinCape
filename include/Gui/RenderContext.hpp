@@ -1,7 +1,7 @@
 #ifndef RENDERCONTEXT_HPP
 #define RENDERCONTEXT_HPP
 #include "HasHandle.hpp"
-namespace wcape{
+namespace w_cape{
 namespace usr{
 	class Window;
 	class RenderContext : public HasHandle<GL_RCX_HND> {

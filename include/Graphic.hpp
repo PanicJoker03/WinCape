@@ -1,6 +1,6 @@
 #ifndef GRAPHIC_HPP
 #define GRPAHIC_HPP
-namespace wcape {
+namespace w_cape {
 namespace ghc {
     namespace gdi {
 
