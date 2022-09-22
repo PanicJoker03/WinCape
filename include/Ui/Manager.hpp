@@ -1,9 +1,9 @@
 #ifndef MANAGER_HPP
 #define MANAGER_HPP
 #include "defines.hpp"
-#include "Gui/Base.hpp"
+#include "Ui/Base.hpp"
 #include "Event.hpp"
-#include "Gui/Style.hpp"
+#include "Ui/Style.hpp"
 namespace w_cape{
 namespace ui
 {

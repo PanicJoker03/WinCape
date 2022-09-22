@@ -1,7 +1,7 @@
 #ifndef TABSTRIP_HPP
 #define TABSTRIP_HPP
 //#include "defines.hpp"
-#include "Gui/Control.hpp"
+#include "Ui/Control.hpp"
 namespace w_cape{
 namespace ui
 {

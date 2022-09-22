@@ -1,14 +1,13 @@
-#ifndef LISTBOX_HPP
-#define LISTBOX_HPP
+#ifndef COMBOBOX_HPP
+#define COMBOBOX_HPP
 //#include "defines.hpp"
-#include "Gui/Control.hpp"
+#include "Ui/Control.hpp"
 namespace w_cape{
 namespace ui{
-	class ListBox : public Control
+	class ComboBox : public Control
 	{
 	public:
 		void addString(WSTR_CON string);
-		int count();
 	};
 }}
 #endif

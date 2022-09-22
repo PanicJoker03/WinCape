@@ -1,9 +1,9 @@
 #ifndef DEVICECONTEXT_HPP
 #define DEVICECONTEXT_HPP
 //#include "defines.hpp"
-#include "Gui/Bitmap.hpp"
+#include "Ui/Bitmap.hpp"
 //#ifdef WINCAPE_USES_WGL
-#include "Gui/RenderContext.hpp"
+#include "Ui/RenderContext.hpp"
 //#endif
 namespace w_cape{
 namespace ui{

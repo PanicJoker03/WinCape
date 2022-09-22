@@ -1,4 +1,4 @@
-#include "Gui/Icon.hpp"
+#include "Ui/Icon.hpp"
 #include "Application.hpp"
 namespace w_cape{
 namespace ui{

@@ -1,5 +1,5 @@
 #include "defines.hpp"
-#include "Gui/Manager.hpp"
+#include "Ui/Manager.hpp"
 #include "Gui.hpp"
 #include "Event.hpp"
 using namespace std;

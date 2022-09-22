@@ -1,5 +1,5 @@
-#include "Gui/GuiDefines.hpp"
-#include "Gui/ListBox.hpp"
+#include "Ui/GuiDefines.hpp"
+#include "Ui/ListBox.hpp"
 namespace w_cape{
 namespace ui{
 	//--------------------------------------------------------------------------

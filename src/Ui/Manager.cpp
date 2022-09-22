@@ -3,7 +3,7 @@
 #include <map>
 #include <Application.hpp>
 #include <WinCape.hpp>
-#include "Gui/GuiDefines.hpp"
+#include "Ui/GuiDefines.hpp"
 using namespace std;
 
 namespace w_cape{

@@ -1,7 +1,7 @@
 #include "defines.hpp"
-#include "Gui/Manager.hpp"
-#include "Gui/Window.hpp"
-#include "Gui/WindowFrame.hpp"
+#include "Ui/Manager.hpp"
+#include "Ui/Window.hpp"
+#include "Ui/WindowFrame.hpp"
 #include "Application.hpp"
 namespace w_cape{   
      //Some crazy stuff to make WinCape c++98 compiles

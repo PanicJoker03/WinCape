@@ -1,6 +1,6 @@
-#include "Gui/Menu.hpp"
-#include "Gui/GuiDefines.hpp"
-#include "Gui/Manager.hpp"
+#include "Ui/Menu.hpp"
+#include "Ui/GuiDefines.hpp"
+#include "Ui/Manager.hpp"
 namespace w_cape{
 namespace ui
 {

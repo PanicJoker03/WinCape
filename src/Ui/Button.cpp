@@ -1,5 +1,5 @@
-#include "Gui/Button.hpp"
-#include "Gui/Manager.hpp"
+#include "Ui/Button.hpp"
+#include "Ui/Manager.hpp"
 namespace w_cape{
 namespace ui{
 	//----------------------------------------------------------------------

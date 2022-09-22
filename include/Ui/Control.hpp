@@ -1,7 +1,7 @@
 #ifndef CONTROL_HPP
 #define CONTROL_HPP
 //#include "defines.hpp"
-#include "Gui/Base.hpp"
+#include "Ui/Base.hpp"
 namespace w_cape{
 namespace ui{
 	class Window;//for friend

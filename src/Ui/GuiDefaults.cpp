@@ -1,7 +1,7 @@
 #include "defines.hpp"
-#include "Gui/GuiDefines.hpp"
-#include "Gui/GuiDefaults.hpp"
-#include "Gui/Style.hpp"
+#include "Ui/GuiDefines.hpp"
+#include "Ui/GuiDefaults.hpp"
+#include "Ui/Style.hpp"
 namespace w_cape{
 namespace ui {
     const CAPE_RECT Defaults::WINDOW_RECT = CAPE_RECT( 100, 100, 800, 600 );

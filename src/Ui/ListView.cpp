@@ -1,8 +1,8 @@
-#include "Gui/GuiDefaults.hpp"
+#include "Ui/GuiDefaults.hpp"
 #include "defines.hpp"
-#include "Gui/ListView.hpp"
-#include "Gui/Manager.hpp"
-#include "Gui/Style.hpp"
+#include "Ui/ListView.hpp"
+#include "Ui/Manager.hpp"
+#include "Ui/Style.hpp"
 namespace w_cape{
 namespace ui{
     int ListView::count(){

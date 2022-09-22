@@ -2,13 +2,13 @@
 #define WINDOW_HPP
 #include "defines.hpp"
 #include "GuiDefaults.hpp"
-#include "Gui/Base.hpp"
-#include "Gui/DeviceContext.hpp"
-#include "Gui/Icon.hpp"
-#include "Gui/Button.hpp"
-#include "Gui/ListView.hpp"
-#include "Gui/RadioButton.hpp"
-#include "Gui/Menu.hpp"
+#include "Ui/Base.hpp"
+#include "Ui/DeviceContext.hpp"
+#include "Ui/Icon.hpp"
+#include "Ui/Button.hpp"
+#include "Ui/ListView.hpp"
+#include "Ui/RadioButton.hpp"
+#include "Ui/Menu.hpp"
 namespace w_cape{
 namespace ui{
 	class Window : public Base

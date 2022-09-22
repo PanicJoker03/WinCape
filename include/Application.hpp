@@ -2,7 +2,7 @@
 #define APPLICATION_HPP
 #include "defines.hpp"
 #include "defaults.hpp"
-#include "Gui/GuiDefaults.hpp"
+#include "Ui/GuiDefaults.hpp"
 #include "WinCape.hpp"
 
 namespace w_cape{
