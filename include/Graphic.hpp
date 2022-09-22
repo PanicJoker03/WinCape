@@ -1,17 +1,17 @@
 #ifndef GRAPHIC_HPP
 #define GRPAHIC_HPP
 namespace w_cape {
-namespace ghc {
+namespace g_phic {
     namespace gdi {
-
-    }
-    namespace d2d {
-
-    }
-    namespace ogl {
         
     }
-    namespace drx {
+    namespace d_2d {
+
+    }
+    namespace op_gl {
+        
+    }
+    namespace d_rx {
         
     }
 }}

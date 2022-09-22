@@ -1,7 +1,7 @@
 #include "defines.hpp"
 #include "Ui/DeviceContext.hpp"
 //#ifdef WINCAPE_USES_WGL
-#include "Ui/RenderContext.hpp"
+#include "Ui/GlRenderContext.hpp"
 //#endif
 #include "Ui/Window.hpp"
 namespace w_cape{
@@ -58,9 +58,9 @@ namespace ui{
 	}
 	//#ifdef WINCAPE_USES_WGL
 	//-------------------------------------------------------------------------
-	//RenderContext
+	//GlRenderContext
 	//-------------------------------------------------------------------------
-	RenderContext
+	GlRenderContext
 	DeviceContext::createRenderContext(const PIXEL_FORMAT& format) const {
 		PIXELFORMATDESCRIPTOR dscriptor = {
 			sizeof(dscriptor),
@@ -82,15 +82,15 @@ namespace ui{
 		};
 		const int fmatId = ChoosePixelFormat(handle(), &dscriptor);
 		SetPixelFormat(handle(), fmatId, &dscriptor);
-		return RenderContext(wglCreateContext(handle()));
+		return GlRenderContext(wglCreateContext(handle()));
 	}
 
-	void DeviceContext::applyRenderContext(RenderContext context){
+	void DeviceContext::applyRenderContext(GlRenderContext context){
 		wglMakeCurrent(handle(), context.handle());
 	}
 	//#endif
-	//ui::RenderContext ui::DeviceContext::createRenderContext() const {
-	//	return ui::RenderContext(wglCreateContext(handle()));
+	//ui::GlRenderContext ui::DeviceContext::createRenderContext() const {
+	//	return ui::GlRenderContext(wglCreateContext(handle()));
 	//}
 }}
 

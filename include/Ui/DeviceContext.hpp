@@ -3,7 +3,7 @@
 //#include "defines.hpp"
 #include "Ui/Bitmap.hpp"
 //#ifdef WINCAPE_USES_WGL
-#include "Ui/RenderContext.hpp"
+#include "Ui/GlRenderContext.hpp"
 //#endif
 namespace w_cape{
 namespace ui{
@@ -21,9 +21,9 @@ namespace ui{
 		Window window() const;
 		//drawBitmapClipped...
 		//#ifdef WINCAPE_USES_WGL
-		RenderContext createRenderContext(const PIXEL_FORMAT& format) const;
+		GlRenderContext createRenderContext(const PIXEL_FORMAT& format) const;
 		void swapBuffers();
-		void applyRenderContext(RenderContext context);
+		void applyRenderContext(GlRenderContext context);
 		//#endif
 		~DeviceContext();
 		friend Window;
