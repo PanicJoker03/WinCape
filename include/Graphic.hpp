@@ -5,13 +5,8 @@ namespace g_phic {
     namespace gdi {
         
     }
-    namespace d_2d {
 
-    }
     namespace op_gl {
-        
-    }
-    namespace d_rx {
         
     }
 }}
