@@ -29,14 +29,11 @@ This library was tested on the following environments:
 Functors, so it will be possible to handle callback functions... Prepare wincape for lambda parameters support. NOT USE std::function!
 * CMake multiple proyect support: Visual Studio, CodeBlocks, Cevelop, CodeLite, Visual Studio Code, Dev C++.
 * Tab-strip control.
-* File entity.
-* Pass editor prototype from my computer to this repository (edt namespace).
-* phy namespace for collision stuff.
+* File Handling.
 * Radiobutton control.
 * Font entity support.
-* Pass my tunned sfml cygwin integration to this repository (dll and headers only).
 * Documentation?
-* Add workman mod layout topmost window display as an example.
+* (Done) Add workman mod layout topmost window display as an example.
 * Input handling (Gamepad, keyboard, mouse, webcam, microphone).
 * Device controlling (wifi).
 * Use const specifier when possible.
