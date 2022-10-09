@@ -1,6 +1,6 @@
 # WinCape 
 
-WinCape Multipurpose Framework is a general Win32Api wrapper. 
+WinCape Window Manager is a general Win32Api wrapper. 
 
 The philosophy behind the code is to hide all the macros, functions and legacy stuff from the win 32 api, integrating various purpose functionalities. Also preserving source code simplicity is a goal, so this library will use C++17 standard (23 is the most recent, but for compatibility issues with cygwin it must been set to 17).
 
@@ -16,7 +16,7 @@ Windows XP isn't considered, but Windows Vista and later.
 
 ## Tested compilers
 
-This library was tested on the following environments:
+This library was tested on the following environments (Only support for Mingw is planned):
 * Mingw 64 bit
 * Cygwin 64 bit
 * MCVS 64 bit
@@ -31,8 +31,6 @@ Functors, so it will be possible to handle callback functions... Prepare wincape
 * Font entity support.
 * Documentation?
 * (Done) Add workman mod layout topmost window display as an example.
-* Input handling (Gamepad, keyboard, mouse, webcam, microphone).
-* Device controlling (wifi).
 * Use const specifier when possible.
 * Strong type enums... again.
 * Lib build.
