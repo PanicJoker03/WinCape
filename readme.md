@@ -21,20 +21,6 @@ This library was tested on the following environments (Only support for Mingw is
 * Cygwin 64 bit
 * MCVS 64 bit
 
-## TODO
-
-Functors, so it will be possible to handle callback functions... Prepare wincape for lambda parameters support. NOT USE std::function!
-* CMake multiple proyect support: Visual Studio, CodeBlocks, Cevelop, CodeLite, Visual Studio Code, Dev C++.
-* Tab-strip control.
-* File Handling.
-* Radiobutton control.
-* Font entity support.
-* Documentation?
-* (Done) Add workman mod layout topmost window display as an example.
-* Use const specifier when possible.
-* Strong type enums... again.
-* Lib build.
-
 ## Troubleshoot
 
 If building throws an error about __imp_wglCreateContext not resolved then you must include library OpenGl32.
