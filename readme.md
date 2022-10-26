@@ -13,6 +13,7 @@ It was originaly compiled on visual studio, now I use Dev C++, Cevelop, CodeBloc
 ## Planned OS support
 
 Windows XP isn't considered, but Windows Vista and later.
+Linux OS is also discarted for this lib.
 
 ## Tested compilers
 
