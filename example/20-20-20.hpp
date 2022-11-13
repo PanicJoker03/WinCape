@@ -1,8 +1,8 @@
-#ifndef _20_20_20_HPP
-#define _20_20_20_HPP
+#ifndef _20_20_20_H
+#define _20_20_20_H
 //20-20-20 rule app
 #include <windows.h>
-#include <WinCape.hpp>
+#include <WinCape.h>
 
 namespace w_cape {
 namespace exm {
