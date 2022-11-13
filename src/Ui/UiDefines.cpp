@@ -1,6 +1,6 @@
-#include "defines.hpp"
-#include "Ui/UiDefines.hpp"
-#include "Ui/Style.hpp"
+#include "defines.h"
+#include "Ui/UiDefines.h"
+#include "Ui/Style.h"
 namespace w_cape{
 namespace ui {
 	WSTR_CON ClassNames::LST_VIW = L"SysListView32";//WC_LISTVIEW;

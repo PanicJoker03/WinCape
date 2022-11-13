@@ -7,7 +7,7 @@
 
 #include "framework.h"
 #include <iostream>
-#include <WinCape.hpp>
+#include <WinCape.h>
 
 #define MAX_LOADSTRING 100
 

@@ -1,6 +1,6 @@
 //#ifdef WINCAPE_USES_WGL
-#include "defines.hpp"
-#include "Ui/GlRenderContext.hpp"
+#include "defines.h"
+#include "Ui/GlRenderContext.h"
 namespace w_cape{
 namespace ui
 {

@@ -1,8 +1,8 @@
-#include "defines.hpp"
-#include "Ui/Manager.hpp"
-#include "Ui/Window.hpp"
-#include "Ui/WindowFrame.hpp"
-#include "Application.hpp"
+#include "defines.h"
+#include "Ui/Manager.h"
+#include "Ui/Window.h"
+#include "Ui/WindowFrame.h"
+#include "Application.h"
 namespace w_cape{   
      //Some crazy stuff to make WinCape c++98 compiles
      ui::WindowFrame * Application::functorWnd = NULL;

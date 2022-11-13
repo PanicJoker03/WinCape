@@ -1,9 +1,9 @@
-#include "defines.hpp"
-#include "Ui/DeviceContext.hpp"
+#include "defines.h"
+#include "Ui/DeviceContext.h"
 //#ifdef WINCAPE_USES_WGL
-#include "Ui/GlRenderContext.hpp"
+#include "Ui/GlRenderContext.h"
 //#endif
-#include "Ui/Window.hpp"
+#include "Ui/Window.h"
 namespace w_cape{
 namespace ui{
 	//-------------------------------------------------------------------------

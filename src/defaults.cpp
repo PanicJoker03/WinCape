@@ -1,5 +1,5 @@
-#include "defines.hpp"
-#include "defaults.hpp"
+#include "defines.h"
+#include "defaults.h"
 
 using namespace std;
 namespace w_cape

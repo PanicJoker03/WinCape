@@ -1,9 +1,9 @@
-#include <defaults.hpp>
-#include <Ui/Manager.hpp>
+#include <defaults.h>
+#include <Ui/Manager.h>
 #include <map>
-#include <Application.hpp>
-#include <WinCape.hpp>
-#include "Ui/UiDefines.hpp"
+#include <Application.h>
+#include <WinCape.h>
+#include "Ui/UiDefines.h"
 using namespace std;
 
 namespace w_cape{

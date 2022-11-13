@@ -1,5 +1,5 @@
-#include "Ui/Icon.hpp"
-#include "Application.hpp"
+#include "Ui/Icon.h"
+#include "Application.h"
 namespace w_cape{
 namespace ui{
 	//-------------------------------------------------------------------------

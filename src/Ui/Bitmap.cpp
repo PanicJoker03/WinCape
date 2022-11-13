@@ -1,4 +1,4 @@
-#include "Ui/Bitmap.hpp"
+#include "Ui/Bitmap.h"
 namespace w_cape{
 namespace ui{
 	//-------------------------------------------------------------------------

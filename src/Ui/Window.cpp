@@ -1,7 +1,7 @@
-#include "defines.hpp"
-#include "Ui/Manager.hpp"
-#include "Ui.hpp"
-#include "Event.hpp"
+#include "defines.h"
+#include "Ui/Manager.h"
+#include "Ui.h"
+#include "Event.h"
 using namespace std;
 namespace w_cape{
 namespace ui

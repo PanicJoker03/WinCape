@@ -1,6 +1,6 @@
-#include "Ui/WindowFrame.hpp"
-#include "Application.hpp"
-#include "Ui/Manager.hpp"
+#include "Ui/WindowFrame.h"
+#include "Application.h"
+#include "Ui/Manager.h"
 namespace w_cape{
 namespace ui
 {

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <WinCape.hpp>
+#include <WinCape.h>
 
 using namespace w_cape;
 

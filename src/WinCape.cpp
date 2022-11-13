@@ -1,6 +1,6 @@
-#include "defines.hpp"
-#include "HasHandle.hpp"
-#include "Application.hpp"
+#include "defines.h"
+#include "HasHandle.h"
+#include "Application.h"
 
 using namespace std;
 namespace w_cape
