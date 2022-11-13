@@ -3,8 +3,9 @@
 #include "Application.hpp"
 
 using namespace std;
-namespace wcape
+namespace w_cape
 {
+	Application application;
 	//--------------------------------------------------------------------------
 	//Avoiding template linkage errors
 	//--------------------------------------------------------------------------
@@ -17,6 +18,6 @@ namespace wcape
 	template class HasHandle<GL_RCX_HND>;
 //#endif
 	template class HasHandle<MNU_HND>;
-	template class HasHandle<ISC_HND>;	
+	template class HasHandle<INS_HND>;	
 	template class HasHandle<FLL_HND>;
 }

@@ -1,7 +1,7 @@
 #ifndef DATASTORAGE_DEFINES_HPP
 #define DATASTORAGE_DEFINES_HPP
 #include "defines.hpp"
-namespace wcape{
+namespace w_cape{
 namespace dst{
     namespace DesiredAccesses {
         enum {

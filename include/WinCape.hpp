@@ -1,9 +1,8 @@
 #ifndef WINCAPE_HPP
 #define WINCAPE_HPP
 #include "defaults.hpp"
-
 #include "DataStorage.hpp"
-#include "Gui.hpp"
+#include "Ui.hpp"
 #ifdef WINCAPE_USES_WGL
 //#include "rendering.hpp"
 #endif
@@ -12,11 +11,11 @@
 //TODO...
 //Use lower case on static methods
 
-namespace wcape{
+namespace w_cape{
 	extern Application application;
 
 namespace bse
 {
-	const usr::Window Console();
+	const ui::Window Console();
 }}
 #endif

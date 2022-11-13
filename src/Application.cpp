@@ -1,14 +1,14 @@
 #include "defines.hpp"
-#include "Gui/Manager.hpp"
-#include "Gui/Window.hpp"
-#include "Gui/WindowFrame.hpp"
+#include "Ui/Manager.hpp"
+#include "Ui/Window.hpp"
+#include "Ui/WindowFrame.hpp"
 #include "Application.hpp"
-namespace wcape{   
+namespace w_cape{   
      //Some crazy stuff to make WinCape c++98 compiles
-     usr::WindowFrame * Application::functorWnd = NULL;
+     ui::WindowFrame * Application::functorWnd = NULL;
      void Application::wndOnPaint(EVENT e){
         PAINTSTRUCT paintStruct;
-        usr::DeviceContext deviceContext = usr::DeviceContext(
+        ui::DeviceContext deviceContext = ui::DeviceContext(
             (BeginPaint(functorWnd->handle(), &paintStruct))
         );
         functorWnd->onDraw(functorWnd->deviceContext());
@@ -20,38 +20,38 @@ namespace wcape{
 	//--------------------------------------------------------------------------
 	void Application::init(WSTR_CON name)
 	{
-		usr::Manager::instance().registerClass(name);
+		ui::Manager::instance().registerClass(name);
 	}
-	usr::Window Application::createWindow(WSTR_CON windowName,
+	ui::Window Application::createWindow(WSTR_CON windowName,
 		WSTR_CON title, const CAPE_RECT& rect, WND_STY style,
 		WNDX_STY exStyle)
 	{
-		usr::Window window;
-		window = usr::Window(usr::Manager::instance().createHandle(
-			windowName, title, style, rect, usr::Base::Null, exStyle)
+		ui::Window window;
+		window = ui::Window(ui::Manager::instance().createHandle(
+			windowName, title, style, rect, ui::Base::Null, exStyle)
 		);
 		return window;
 	}
 	int Application::run()
 	{
-		return usr::Manager::instance().startListening();
+		return ui::Manager::instance().startListening();
 	}
-	int Application::run(usr::WindowFrame& window)
+	int Application::run(ui::WindowFrame& window)
 	{
-		using namespace wcape;
+		using namespace w_cape;
 		Application::functorWnd = &window;
 		window.onCreate();
 		window.onPaint(wndOnPaint);
 		//window.onCreate();
-		return usr::Manager::instance().startListening();
+		return ui::Manager::instance().startListening();
 	}
-	ISC_HND Application::instance()
+	INS_HND Application::instance()
 	{
 		return GetModuleHandle(NULL);
 	}
 	void Application::defaultFont(WSTR_CON fontName)
 	{
-		usr::Manager::instance().defaultFont(fontName);
+		ui::Manager::instance().defaultFont(fontName);
 	}
 
 	void Application::quit() {

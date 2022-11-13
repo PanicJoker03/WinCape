@@ -1,6 +1,6 @@
-# WinCape Multitask Framework
+# Wincape 
 
-WinCape Multitask Framework is a general Win32Api wrapper. 
+Wincape Window Manager is a general Win32Api wrapper. 
 
 The philosophy behind the code is to hide all the macros, functions and legacy stuff from the win 32 api, integrating various purpose functionalities. Also preserving source code simplicity is a goal, so this library will use C++17 standard (23 is the most recent, but for compatibility issues with cygwin it must been set to 17).
 
@@ -10,35 +10,17 @@ The philosophy behind the code is to hide all the macros, functions and legacy s
 
 It was originaly compiled on visual studio, now I use Dev C++, Cevelop, CodeBlocks, CodeLite to make the build. Either way, you should have installed mingw64 to procced. 
 
-You can download Dev C++ [here](https://sourceforge.net/projects/dev-cpp/files/Binaries/Dev-C%2B%2B%204.9.9.2/devcpp-4.9.9.2_setup.exe/download).
-And a usefull msys2 installation guide [here](https://www.msys2.org/) on the Msys2 website, just follow the steps to get mingw64 installed on your machine.
-
 ## Planned OS support
 
 Windows XP isn't considered, but Windows Vista and later.
+Linux OS is also discarted for this lib.
 
 ## Tested compilers
 
-This library was tested on the following environments:
+This library was tested on the following environments (Only support for Mingw is planned):
 * Mingw 64 bit
 * Cygwin 64 bit
 * MCVS 64 bit
-
-## TODO
-
-Functors, so it will be possible to handle callback functions... Prepare wincape for lambda parameters support. NOT USE std::function!
-* CMake multiple proyect support: Visual Studio, CodeBlocks, Cevelop, CodeLite, Visual Studio Code, Dev C++.
-* Tab-strip control.
-* File Handling.
-* Radiobutton control.
-* Font entity support.
-* Documentation?
-* (Done) Add workman mod layout topmost window display as an example.
-* Input handling (Gamepad, keyboard, mouse, webcam, microphone).
-* Device controlling (wifi).
-* Use const specifier when possible.
-* Strong type enums... again.
-* Lib build.
 
 ## Troubleshoot
 

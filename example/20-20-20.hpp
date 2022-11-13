@@ -4,11 +4,11 @@
 #include <windows.h>
 #include <WinCape.hpp>
 
-namespace wcape {
+namespace w_cape {
 namespace exm {
 	WSTR_CON TEXTO_20_MINS = L"Ya pasaron 20 Minutos";
-	usr::Window wnApp;
-	usr::DeviceContext dcWnd;
+	ui::Window wnApp;
+	ui::DeviceContext dcWnd;
 
 	//Callback functions
 	void wnApp_OnPaint(EVENT e);
@@ -19,10 +19,10 @@ namespace exm {
 		LPSTR lpCmdLine, int nCmdShow)
 	{
 		//Call this to initiate some WinCape internal stuff
-		wcape::application.init();
+		w_cape::application.init();
 		
 		//Creating the app main window
-		wnApp = wcape::application.createWindow(
+		wnApp = w_cape::application.createWindow(
 			L"Pruebas", 
 			L"Reglas 20-20-20", 
 			CAPE_RECT(400, 400, 300, 200), 
@@ -37,13 +37,13 @@ namespace exm {
 
 		//setting up controls and callbacks
 		wnApp.onPaint(wnApp_OnPaint);
-		usr::Button btOk;
+		ui::Button btOk;
 		wnApp.addButton(btOk, L"Ok", VEC_2I(100, 100));
 		btOk.onClick(btOk_OnClick);
 		wnApp.timer(wnApp_OnTimer, 1200000);
 		
 		//Finally run the main loop
-		wcape::application.run();
+		w_cape::application.run();
 		
 		//exit ok
 		return 0;
@@ -51,9 +51,9 @@ namespace exm {
 
 	void wnApp_OnPaint(EVENT e){
 		DRW_TXT_FMAT txFormat = 
-			usr::DrawTextFormats::SNG_LIN | 
-			usr::DrawTextFormats::HOR_CEN | 
-			usr::DrawTextFormats::VER_CEN;
+			ui::DrawTextFormats::SNG_LIN | 
+			ui::DrawTextFormats::HOR_CEN | 
+			ui::DrawTextFormats::VER_CEN;
 		dcWnd.drawText(TEXTO_20_MINS, txFormat);
 	}
 
