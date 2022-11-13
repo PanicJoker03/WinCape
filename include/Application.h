@@ -33,7 +33,7 @@ namespace w_cape{
 		static ui::WindowFrame * functorWnd;
 		static void wndOnPaint(EVENT e);
 
-		void quit();
+		void quit() const;
 	};
 }
 #endif

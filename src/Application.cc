@@ -54,7 +54,7 @@ namespace w_cape{
 		ui::Manager::instance().defaultFont(fontName);
 	}
 
-	void Application::quit() {
+	void Application::quit() const {
 		PostQuitMessage(0);
 	}
 }
