@@ -8,8 +8,8 @@ namespace ui{
 	void ListBox::addString(WSTR_CON string) {
 		SendMessage(handle(), ListBoxMessages::ADD_STR, 0, (LPARAM)string);
 	}
-	int ListBox::count() {
-		return SendMessage(handle(), ListBoxMessages::GET_CON, 0, 0);
+	int ListBox::count() const {
+		return SendMessage(handle(), ListBoxMessages::GET_CONT, 0, 0);
 	}
 
 }}

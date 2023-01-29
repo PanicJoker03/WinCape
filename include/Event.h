@@ -12,7 +12,7 @@ namespace w_cape{
 		capeEvent(WND_HND handle, WPARAM wparam, LPARAM lparam);
 	}EVENT;
 	//using EVE_CALL = std::function<void(EVENT)>;
-	typedef void (*EVE_CALL)(EVENT);
+	typedef void (*EVE_CALL)(const EVENT);
     //Omited at the moment
     //template<typename T> using Reference = std::reference_wrapper<T>;
 }
