@@ -78,7 +78,7 @@ namespace w_cape{
                 FND_STR_XCT = LB_FINDSTRINGEXACT,
                 GET_ANC_IDX = LB_GETANCHORINDEX,
                 GET_CAR_IDX = LB_GETCARETINDEX,
-                GET_CON = LB_GETCOUNT,
+                GET_CONT = LB_GETCOUNT,
                 GET_CUR_IDX = LB_GETCURSEL,
                 GET_HOR_EXT = LB_GETHORIZONTALEXTENT,
                 GET_ITM_DTT = LB_GETITEMDATA,

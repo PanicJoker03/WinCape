@@ -8,7 +8,7 @@ namespace ui{
 	{
 	public:
 		void addString(WSTR_CON string);
-		int count();
+		int count() const;
 	};
 }}
 #endif
