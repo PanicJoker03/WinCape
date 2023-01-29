@@ -22,13 +22,13 @@ namespace w_cape
 	typedef HBITMAP BMP_HND;
 	typedef HFONT FON_HND;
 	typedef HINSTANCE INS_HND;
-	typedef HFILE FLL_HND;
+	typedef HANDLE FLL_HND;
 	typedef DWORD WND_STY;
 	typedef DWORD WNDX_STY;
 	typedef DWORD BTN_STY;
 	typedef DWORD LSB_STY;
 	typedef DWORD LVW_STY;
-	typedef DWORD DRD_ACCES;
+	typedef DWORD DSRED_ACCES;
 	typedef UINT CLLS_STY;
 	typedef int SHW_CMD;
 	typedef int RESRC_I;
