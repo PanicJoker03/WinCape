@@ -32,7 +32,7 @@ namespace dat_store{
 		//extension
 
 		//write
-		bool write(WSTR_CON content, int* bytes_written);
+		bool write(WSTR_CON content, std::size_t* bytes_written);
 		bool write(WSTR_CON content);
 		//NEVER USE void*, force a stream object instead...
 		//bool write(void* content, int* bytes_written);
