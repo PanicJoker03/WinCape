@@ -5,13 +5,13 @@ namespace w_cape{
     namespace ui{
 
       namespace ShowCommands {
-            enum
+            enum : SHW_CMD
             {
                 FOR_MIN = 11,
                 HIDE = SW_HIDE,
                 MAXI = SW_MAXIMIZE,
                 MINI = SW_MINIMIZE,
-                RSTE = SW_RESTORE,
+                STOR = SW_RESTORE,
                 SHOW = SW_SHOW,
                 SHW_DEF = SW_SHOWDEFAULT,
                 SHW_MAX = SW_SHOWMAXIMIZED,
@@ -23,7 +23,7 @@ namespace w_cape{
             };
         }
         namespace WindowMessages {
-            enum
+            enum : WND_MSG
             {
                 //Notifications
                 ACT_APP = WM_ACTIVATEAPP,
@@ -69,7 +69,7 @@ namespace w_cape{
             };
         }
         namespace ListBoxMessages {
-            enum {
+            enum : LSB_MSG {
                 ADD_FLL = LB_ADDFILE,
                 ADD_STR = LB_ADDSTRING,
                 DEL_STR = LB_DELETESTRING,
@@ -81,11 +81,11 @@ namespace w_cape{
                 GET_CONT = LB_GETCOUNT,
                 GET_CUR_IDX = LB_GETCURSEL,
                 GET_HOR_EXT = LB_GETHORIZONTALEXTENT,
-                GET_ITM_DTT = LB_GETITEMDATA,
+                GET_ITM_DAT = LB_GETITEMDATA,
                 GET_ITM_HGT = LB_GETITEMHEIGHT,
-                GET_ITM_RCT = LB_GETITEMRECT,
+                GET_ITM_REC = LB_GETITEMRECT,
                 GET_LBX_INF = 0x01B2,
-                GET_LLE = LB_GETLOCALE,
+                GET_LOC = LB_GETLOCALE,
                 GET_SEL = LB_GETSEL,
                 GET_SEL_CNT = LB_GETSELCOUNT,
                 GET_SEL_ITM = LB_GETSELITEMS,
@@ -119,14 +119,14 @@ namespace w_cape{
             static WSTR_CON LST_BOX;// = L"ListBox";//WC_LISTBOX;
         };
         namespace ListViewMessages {
-            enum {
+            enum : LVW_MSG {
                 //solo posible en 64 bits
                 ITM_CHA = 4294967195//LVN_ITEMCHANGED
             };
         }
     #ifdef WINCAPE_USES_WGL
         namespace PixelFormatFlags {
-            enum {
+            enum : PXF_FLG {
                 DRW_TO_WND  = PFD_DRAW_TO_WINDOW,
                 DRW_TO_BMP = PFD_DRAW_TO_BITMAP,
                 SUP_GDI = PFD_SUPPORT_GDI,
@@ -141,19 +141,19 @@ namespace w_cape{
             };
         }
         namespace PixelFormatTypes {
-            enum {
+            enum : PXF_TPE {
                 RGBA,
                 CLR_IDX
             };
         }
         namespace PixelFormatLayers {
-            enum {
+            enum : PXF_LYR {
                 MNN_PLN
             };
         }
     #endif
         namespace DrawTextFormats{
-            enum {
+            enum : DRW_TXT_4MAT {
                 BOTM = DT_BOTTOM,
                 CAL_RCT = DT_CALCRECT,
                 HOR_CEN = DT_CENTER,
@@ -181,7 +181,7 @@ namespace w_cape{
             };
         }
         namespace LayeredWindowAttributes{
-            enum {
+            enum : LYR_WND_ATR {
                 ALPH = 0x00000002,
                 CLR_KEY = 0x00000001
             };

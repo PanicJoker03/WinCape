@@ -16,7 +16,7 @@ namespace ui{
 		//void drawBitmap(const Bitmap& bitmap);
 		void drawBitmap(const Bitmap& bitmap,
 				const VEC_2I& padding = VEC_2I());
-		void drawText(WSTR_CON text, DRW_TXT_FMAT format);
+		void drawText(WSTR_CON text, DRW_TXT_4MAT format);
 		CAPE_RECT bounds() const;
 		Window window() const;
 		//drawBitmapClipped...

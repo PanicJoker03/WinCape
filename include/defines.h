@@ -23,24 +23,24 @@ namespace w_cape
 	typedef HFONT FON_HND;
 	typedef HINSTANCE INS_HND;
 	typedef HANDLE FLL_HND;
-	typedef DWORD WND_STY;
-	typedef DWORD WNDX_STY;
-	typedef DWORD BTN_STY;
-	typedef DWORD LSB_STY;
-	typedef DWORD LVW_STY;
-	typedef DWORD DSRED_ACCES;
-	typedef UINT CLLS_STY;
+	typedef unsigned int WND_STY;
+	typedef unsigned int WNDX_STY;
+	typedef unsigned int BTN_STY;
+	typedef unsigned int LSB_STY;
+	typedef unsigned int LVW_STY;
+	typedef unsigned int DSRED_ACCES;
+	typedef unsigned int CLLS_STY;
 	typedef int SHW_CMD;
 	typedef int RESRC_I;
-	typedef UINT WND_MSG;
-	typedef UINT LSB_MSG;
-	typedef UINT LVW_MSG;
-	typedef UINT CBX_MSG;
+	typedef unsigned int WND_MSG;
+	typedef unsigned int LSB_MSG;
+	typedef unsigned int LVW_MSG;
+	typedef unsigned int CBX_MSG;
 	typedef HGLRC GL_RCX_HND;
-	typedef DWORD PXF_FLG;
-	typedef BYTE PXF_TPE;
-	typedef BYTE PXF_LYR;
-	typedef DWORD LYR_WND_ATR;
+	typedef unsigned int PXF_FLG;
+	typedef USIGN_8 PXF_TPE;
+	typedef USIGN_8 PXF_LYR;
+	typedef unsigned int LYR_WND_ATR;
 	typedef struct capePixelFormat
 	{
 		PXF_FLG flags;
@@ -49,7 +49,7 @@ namespace w_cape
 	    USIGN_8 depthBits;
 		USIGN_8 stencilBits;
 	}PIXEL_FORMAT;
-	typedef UINT DRW_TXT_FMAT;
+	typedef unsigned int DRW_TXT_4MAT;
 	typedef struct capeVector2I
 	{
 	    capeVector2I() : x(0), y(0) {}

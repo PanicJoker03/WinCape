@@ -6,7 +6,19 @@ namespace dat_store{
 	void dat_store::File::open(WSTR_CON filePath, DSRED_ACCES mode)
 	{
 		//TODO: Abrir con bandera OPEN_EXISTING
-
+		printf("abriendo archivo");
+		FLL_HND hFile = CreateFileW(
+			filePath,
+			mode,
+			FILE_SHARE_READ,
+			NULL,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			NULL
+		);
+		if(hFile == INVALID_HANDLE_VALUE)
+			throw "Error opening file";
+		handle(hFile);
 	}
 
 	void dat_store::File::create(WSTR_CON filePath, DSRED_ACCES mode)
@@ -41,4 +53,6 @@ namespace dat_store{
 	{
 
 	}
+
+	//void dat_store
 }}
