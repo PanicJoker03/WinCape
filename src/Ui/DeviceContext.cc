@@ -36,7 +36,7 @@ namespace ui{
 		bitBlt(bitmap.handle(), devContextMemory, CAPE_RECT( padding, bmpSize ));
 		DeleteDC(devContextMemory);
 	}
-	void ui::DeviceContext::drawText(WSTR_CON text, DRW_TXT_FMAT flags){
+	void ui::DeviceContext::drawText(WSTR_CON text, DRW_TXT_4MAT flags){
 		CAPE_RECT rec = bounds();
 		SetTextColor(handle(), 0x00000000);
 		SetBkMode(handle(), TRANSPARENT);

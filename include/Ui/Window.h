@@ -16,9 +16,11 @@ namespace ui{
 	public:
 		Window();
 		Window(WND_HND value);
-		void show();
-		void hide();
-		void minimize();
+		void show() const;
+		void hide() const;
+		void minimize() const;
+		void maximize() const;
+		void restore() const;
 
 		void addButton(Button& button, WSTR_CON text,
 			const VEC_2I& position,

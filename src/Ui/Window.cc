@@ -14,18 +14,33 @@ namespace ui
 	{
 		handle(value);
 	}
-	void Window::show()
+
+	void Window::show() const
 	{
 		ShowWindow(handle(), ShowCommands::SHOW);
 	}
-	void Window::hide()
+
+	void Window::hide() const
 	{
 		ShowWindow(handle(), ShowCommands::HIDE);
 	}
-	void Window::minimize()
+
+	void Window::minimize() const
 	{
 		ShowWindow(handle(), ShowCommands::MINI);
 	}
+
+
+	void Window::maximize() const
+	{
+		ShowWindow(handle(), ShowCommands::MAXI);
+	}
+
+	void Window::restore() const
+	{
+		ShowWindow(handle(), ShowCommands::STOR);
+	}
+
 	void Window::addButton(Button& button, WSTR_CON text,
 		const VEC_2I& position, const VEC_2I& size)
 	{
