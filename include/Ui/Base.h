@@ -8,8 +8,8 @@ namespace ui{
 	class Base : public HasHandle<WND_HND>
 	{
 	public:
-		void setText(WSTR_CON text);
-		void getText(PTR_WSTR text, int lenght) const;
+		void setText(WCH_STR_CON text);
+		void getText(WCH_STR text, int lenght) const;
 		void setProp(WCH_STR_CON prop, long val);
 		void setProp(WCH_STR_CON prop, int val);
 		void setProp(WCH_STR_CON prop, float val);
