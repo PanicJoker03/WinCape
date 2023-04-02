@@ -22,17 +22,17 @@ namespace ui{
 		void maximize() const;
 		void restore() const;
 
-		void addButton(Button& button, WSTR_CON text,
-			const VEC_2I& position,
-			const VEC_2I& size = Defaults::BUTTON_SIZE);
+		void addButton(Button& button, WCH_STR_CON text,
+			const I_VEC_2& position,
+			const I_VEC_2& size = Defaults::BUTTON_SIZE);
 
 		//Omited at the moment
         //void addRadioButton(
 		//		std::initializer_list<std::pair<Reference<RadioButton>,
-		//		WSTR_CON>> radioButtonList, const VEC_2I& position,
-		//		const VEC_2I& padding = Defaults::RadioButtonPadding);
+		//		WCH_STR_CON>> radioButtonList, const I_VEC_2& position,
+		//		const I_VEC_2& padding = Defaults::RadioButtonPadding);
 
-        void addListView(ListView & listView, const CAPE_RECT & dimensions, const VEC_2I & padding = VEC_2I());
+        void addListView(ListView & listView, const CAPE_RECT & dimensions, const I_VEC_2 & padding = I_VEC_2());
 		void attachMenu(Menu& menu);
 		void onDestroy(const EVE_CALL& callback);
 		void onPaint(const EVE_CALL& callback);

@@ -6,7 +6,7 @@
 
 namespace w_cape {
 namespace exm {
-	WSTR_CON TEXTO_20_MINS = L"Ya pasaron 20 Minutos";
+	WCH_STR_CON TEXTO_20_MINS = L"Ya pasaron 20 Minutos";
 	ui::Window wnApp;
 	ui::DeviceContext dcWnd;
 
@@ -35,7 +35,7 @@ namespace exm {
 		//setting up controls and callbacks
 		wnApp.onPaint(wnApp_OnPaint);
 		ui::Button btOk;
-		wnApp.addButton(btOk, L"Ok", VEC_2I(100, 100));
+		wnApp.addButton(btOk, L"Ok", I_VEC_2(100, 100));
 		btOk.onClick([](const EVENT e){
 			wnApp.hide();
 		});

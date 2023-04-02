@@ -4,5 +4,5 @@
 using namespace std;
 namespace w_cape
 {
-    WSTR_CON Defaults::WND_NAM = L"WinCape Window";
+    WCH_STR_CON Defaults::WND_NAM = L"WinCape Window";
 }

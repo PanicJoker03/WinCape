@@ -13,10 +13,10 @@ namespace ui{
 	private:
 		void enableMenuCommand();
 	public:
-		void addSubMenu(Menu& menu, WSTR_CON text);
-		void addItem(WSTR_CON item);
+		void addSubMenu(Menu& menu, WCH_STR_CON text);
+		void addItem(WCH_STR_CON item);
 		//Omited at the moment
-        //void addItems(std::initializer_list<WSTR_CON> itemList);
+        //void addItems(std::initializer_list<WCH_STR_CON> itemList);
 		void onItemSelect(const EVE_CALL& callback);
 		static void create(Menu& menu);
 		friend Window;

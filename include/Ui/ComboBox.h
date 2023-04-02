@@ -7,7 +7,7 @@ namespace ui{
 	class ComboBox : public Control
 	{
 	public:
-		void addString(WSTR_CON string);
+		void addString(WCH_STR_CON string);
 	};
 }}
 #endif

@@ -9,10 +9,10 @@ ui::Bitmap btMap;
 void onDcWndDraw(EVENT e);
 
 struct Pixel24 {
-    USIGN_8 b;
-    USIGN_8 g;
-    USIGN_8 r;
-    USIGN_8 noUse;
+    U_SIGN_8 b;
+    U_SIGN_8 g;
+    U_SIGN_8 r;
+    U_SIGN_8 noUse;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int showCmd)

@@ -41,8 +41,8 @@ namespace ui
 		ShowWindow(handle(), ShowCommands::STOR);
 	}
 
-	void Window::addButton(Button& button, WSTR_CON text,
-		const VEC_2I& position, const VEC_2I& size)
+	void Window::addButton(Button& button, WCH_STR_CON text,
+		const I_VEC_2& position, const I_VEC_2& size)
 	{
 		Handle buttonHandle;
 		buttonHandle = ui::Manager::instance().createHandle(
@@ -57,16 +57,16 @@ namespace ui
 	}
 	//Omited at the moment
 	//void Window::addRadioButton(initializer_list<pair<Reference<RadioButton>,
-	//	WSTR_CON>> radioButtonList, const VEC_2I& position,
-	//	const VEC_2I& padding)
+	//	WCH_STR_CON>> radioButtonList, const I_VEC_2& position,
+	//	const I_VEC_2& padding)
 	//{
 	//	const auto listSize = radioButtonList.size();
 	//	for (auto i = 0; i < listSize; i++)
 	//	{
 	//		Handle radioButtonHandle;
 	//		RadioButton& radioButton = radioButtonList.begin()[i].first;
-	//		WSTR_CON caption = radioButtonList.begin()[i].second;
-	//		VEC_2I position_ = position;
+	//		WCH_STR_CON caption = radioButtonList.begin()[i].second;
+	//		I_VEC_2 position_ = position;
 	//		position_.x += padding.x * i;
 	//		position_.y += padding.y * i;
 	//		const bool isLast = (i == (listSize - 1));
@@ -88,7 +88,7 @@ namespace ui
 	//}
 
 	void Window::addListView(
-		ListView & listView, const CAPE_RECT & dimensions, const VEC_2I& padding)
+		ListView & listView, const CAPE_RECT & dimensions, const I_VEC_2& padding)
 	{
 	    Handle listViewHandle;
 	    const LVW_STY style =

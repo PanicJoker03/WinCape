@@ -7,7 +7,7 @@ namespace ui
 	//-------------------------------------------------------------------------
 	//WindowFrame
 	//-------------------------------------------------------------------------
-	WindowFrame::WindowFrame(WSTR_CON windowName, WSTR_CON title,
+	WindowFrame::WindowFrame(WCH_STR_CON windowName, WCH_STR_CON title,
 		const CAPE_RECT& rect, WND_STY style)
 		: windowName(windowName), rect(rect), style(style) {
 		handle(application.createWindow(

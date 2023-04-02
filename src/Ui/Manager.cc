@@ -115,7 +115,7 @@ namespace ui{
 			}
 			return 0;
 		}
-		void registerClass(WSTR_CON name = w_cape::Defaults::WND_NAM)
+		void registerClass(WCH_STR_CON name = w_cape::Defaults::WND_NAM)
 		{
 			//TODO wrap IDI macros in default header...
 			//auto wWindowName = poolPtr(Utility::toWchar_t(name));
@@ -135,8 +135,8 @@ namespace ui{
 			);
 			RegisterClassExW(&windowClass);
 		}
-		ui::Base::Handle createHandle(WSTR_CON name,
-			WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
+		ui::Base::Handle createHandle(WCH_STR_CON name,
+			WCH_STR_CON text, WND_STY style, const CAPE_RECT& rect,
 			ui::Base::Handle parent, WNDX_STY exStyle)
 		{
 			WNDCLASSW windowClass = {};
@@ -164,7 +164,7 @@ namespace ui{
 			return handle;
 		}
 		//Use font wrapper class...
-		void defaultFont(WSTR_CON fontName)
+		void defaultFont(WCH_STR_CON fontName)
 		{
 			//http://www.cplusplus.com/forum/windows/109795/
 			DeleteObject(applicationFont);
@@ -206,18 +206,18 @@ namespace ui{
 	{
 		ManagerImpl::instance().unlistenEvent(handle, message);
 	}
-	void ui::Manager::registerClass(WSTR_CON name)
+	void ui::Manager::registerClass(WCH_STR_CON name)
 	{
 		ManagerImpl::instance().registerClass(name);
 	}
-	ui::Base::Handle ui::Manager::createHandle(WSTR_CON className,
-		WSTR_CON text, WND_STY style, const CAPE_RECT& rect,
+	ui::Base::Handle ui::Manager::createHandle(WCH_STR_CON className,
+		WCH_STR_CON text, WND_STY style, const CAPE_RECT& rect,
 		ui::Base::Handle parent, WNDX_STY exStyle)
 	{
 		return ManagerImpl::instance().createHandle(className, text, style,
 			rect, parent, exStyle);
 	}
-	void ui::Manager::defaultFont(WSTR_CON fontName)
+	void ui::Manager::defaultFont(WCH_STR_CON fontName)
 	{
 		ManagerImpl::instance().defaultFont(fontName);
 	}

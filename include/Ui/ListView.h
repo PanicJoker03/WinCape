@@ -11,11 +11,11 @@ namespace ui{
     {
     public:
         int count();
-        void addColumn(int index, STR_CON headerText, int width = 0);
+        void addColumn(int index, CHR_STR_CON headerText, int width = 0);
         LV_ITEM getItem(int index);
         void addRow(int row, std::vector<std::string> cols);
-        void addRow(int row, STR_CON text);
-        void setRow(int row, int col, STR_CON text);
+        void addRow(int row, CHR_STR_CON text);
+        void setRow(int row, int col, CHR_STR_CON text);
         void addCheckBoxes();
         void onItemChecked(const EVE_CALL& callback);
         void clear();

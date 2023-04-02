@@ -114,9 +114,9 @@ namespace w_cape{
             };
         }
         struct ClassNames {
-            static WSTR_CON LST_VIW;// = L"SysListView32";//WC_LISTVIEW;
-            static WSTR_CON BTN;// = L"Button";//WC_BUTTON;
-            static WSTR_CON LST_BOX;// = L"ListBox";//WC_LISTBOX;
+            static WCH_STR_CON LST_VIW;// = L"SysListView32";//WC_LISTVIEW;
+            static WCH_STR_CON BTN;// = L"Button";//WC_BUTTON;
+            static WCH_STR_CON LST_BOX;// = L"ListBox";//WC_LISTBOX;
         };
         namespace ListViewMessages {
             enum : LVW_MSG {

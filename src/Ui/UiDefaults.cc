@@ -15,9 +15,9 @@ namespace ui {
     const SHW_CMD Defaults::DEFSHOW_COMMAND =
             ShowCommands::SHW_DEF;
 
-    WSTR_CON Defaults::BUTTON_CLASS_NAME = L"BUTTON";
-    const VEC_2I Defaults::BUTTON_SIZE = VEC_2I( 80, 24 );
-    const VEC_2I Defaults::RADIO_BUTTON_PADDING = VEC_2I( 0, 32 );
+    WCH_STR_CON Defaults::BUTTON_CLASS_NAME = L"BUTTON";
+    const I_VEC_2 Defaults::BUTTON_SIZE = I_VEC_2( 80, 24 );
+    const I_VEC_2 Defaults::RADIO_BUTTON_PADDING = I_VEC_2( 0, 32 );
 
     const BTN_STY Defaults::DEFBUTTON_STYLE =
             WindowStyles::TAB_STOP | WindowStyles::VISIBLE |

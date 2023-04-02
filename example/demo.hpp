@@ -84,7 +84,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	childWnd.parent(msterWnd);
 
 	ListView lvLayers;
-	msterWnd.addListView(lvLayers, CAPE_RECT{ 30, 100, 150, 100 }, cape::VEC_2I{ 30, 148 });
+	msterWnd.addListView(lvLayers, CAPE_RECT{ 30, 100, 150, 100 }, cape::I_VEC_2{ 30, 148 });
 	lvLayers.addColumn(0, "Fruta", 50);
 	lvLayers.addColumn(1, "Verdura", 50);
 	lvLayers.addColumn(2, "Grano", 50);
@@ -94,7 +94,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	lvLayers.addRow(2, std::vector<std::string>({"Pera", "Coliflor", "Garbanzo"}));
 
 	Button btHide;
-	msterWnd.addButton(btHide, L"Escondidas", cape::VEC_2I{ 50, 170 });
+	msterWnd.addButton(btHide, L"Escondidas", cape::I_VEC_2{ 50, 170 });
 	//Potente implementacion para manejar funciones 
 	std::function<void(cape::Event)> onBtHideClick = [&](cape::Event e) {
 		msterWnd.hide();
@@ -103,11 +103,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	//Dibujar bitmap
 	DeviceContext dcBitmp = msterWnd.deviceContext();
-	Bitmap bitmp{ cape::VEC_2I{ 190 , 120 } };
+	Bitmap bitmp{ cape::I_VEC_2{ 190 , 120 } };
 	bitmp.load(L"C:\\Users\\Luis\\Pictures\\xp_memories.bmp");
 	//Solo se puede dibujar dentro del evento paint...
 	std::function<void(cape::Event)> onPaint = [&](cape::Event e) {
-		dcBitmp.drawBitmap(bitmp, cape::VEC_2I{ 38, 88 });
+		dcBitmp.drawBitmap(bitmp, cape::I_VEC_2{ 38, 88 });
 	};
 	msterWnd.onPaint(onPaint);
 	application.run();

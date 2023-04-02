@@ -9,7 +9,7 @@ namespace ui{
         return ListView_GetItemCount(handle());
     }
 
-    void ListView::addColumn(int index, STR_CON headerText, int width)
+    void ListView::addColumn(int index, CHR_STR_CON headerText, int width)
     {
         LVCOLUMN col = {};
         col.mask = LVCF_FMT | 
@@ -85,7 +85,7 @@ namespace ui{
         }
     }
 
-    void ListView::addRow(int row, STR_CON text){
+    void ListView::addRow(int row, CHR_STR_CON text){
 		LV_ITEM item;
         item.mask = LVIF_TEXT;
         item.iItem = row;
