@@ -12,7 +12,7 @@
 
 namespace w_cape
 {
-	typedef int PROGRAM_RESULT
+	typedef int PROGRAM_RESULT;
 	typedef long* PTR_LNG;
 	typedef unsigned char U_SIGN_8;
 	typedef const char * CHR_STR_CON;
