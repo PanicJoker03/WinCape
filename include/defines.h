@@ -7,14 +7,18 @@
 #include <WinUser.h>
 #include <commctrl.h>
 
+#define PROGRAM_CODE_OK 0 
+#define PROGRAM_CODE_BAD 1
+
 namespace w_cape
 {
+	typedef int PROGRAM_RESULT
 	typedef long* PTR_LNG;
-	typedef unsigned char USIGN_8;
-	typedef const char * STR_CON;
-	typedef const wchar_t * WSTR_CON;
-	typedef char * PTR_STR;
-	typedef wchar_t * PTR_WSTR;
+	typedef unsigned char U_SIGN_8;
+	typedef const char * CHR_STR_CON;
+	typedef const wchar_t * WCH_STR_CON;
+	typedef char * CHR_STR;
+	typedef wchar_t * WCH_STR;
 	typedef HWND WND_HND;
 	typedef HDC DCX_HND;
 	typedef HMENU MNU_HND;
@@ -38,30 +42,33 @@ namespace w_cape
 	typedef unsigned int CBX_MSG;
 	typedef HGLRC GL_RCX_HND;
 	typedef unsigned int PXF_FLG;
-	typedef USIGN_8 PXF_TPE;
-	typedef USIGN_8 PXF_LYR;
+	typedef U_SIGN_8 PXF_TPE;
+	typedef U_SIGN_8 PXF_LYR;
 	typedef unsigned int LYR_WND_ATR;
 	typedef struct capePixelFormat
 	{
 		PXF_FLG flags;
 		PXF_TPE type;
-	    USIGN_8 colorBits;
-	    USIGN_8 depthBits;
-		USIGN_8 stencilBits;
+	    U_SIGN_8 colorBits;
+	    U_SIGN_8 depthBits;
+		U_SIGN_8 stencilBits;
 	}PIXEL_FORMAT;
 	typedef unsigned int DRW_TXT_4MAT;
-	typedef struct capeVector2I
+	typedef struct capeIVector2
 	{
-	    capeVector2I() : x(0), y(0) {}
-	    capeVector2I(int x, int y) : x(x), y(y){}
+	    capeIVector2() : x(0), y(0) {}
+	    capeIVector2(int x, int y) : x(x), y(y){}
 		int x, y;
-	}VEC_2I;
+	}I_VEC_2;
 	typedef struct capeRect
 	{
 	    capeRect(){}
-	    capeRect(VEC_2I position, VEC_2I size) : position(position) , size(size){}
-	    capeRect(int pos_x, int pos_y, int size_x, int size_y) : position(VEC_2I(pos_x, pos_y)), size(VEC_2I(size_x, size_y)){}
-		VEC_2I position, size;
+	    capeRect(I_VEC_2 position, I_VEC_2 size) : position(position) , size(size){}
+	    capeRect(int pos_x, int pos_y, int size_x, int size_y) : 
+			position(I_VEC_2(pos_x, pos_y)), size(I_VEC_2(size_x, size_y)){
+
+			}
+		I_VEC_2 position, size;
 	}CAPE_RECT;
 }
 #endif // !DEFINES_H
