@@ -5,7 +5,7 @@
 namespace w_cape
 {
     struct Defaults{
-        static WSTR_CON WND_NAM;
+        static WCH_STR_CONST WND_NAM;
     };
 }
 #endif // !DEFAULTS_H

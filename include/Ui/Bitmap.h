@@ -12,10 +12,10 @@ namespace ui{
 		void getBitmapInfo(const DCX_HND& deviceContext,
 				BITMAPINFO& bmpInfo) const;
 	public:
-		Bitmap(const VEC_2I& dimensions = VEC_2I());
+		Bitmap(const I_VEC_2& dimensions = I_VEC_2());
 		Bitmap& operator = (const Bitmap& bitmap);
-		void load(WSTR_CON sourcePath);
-		VEC_2I dimension() const;
+		void load(WCH_STR_CONST sourcePath);
+		I_VEC_2 dimension() const;
 		void clonePixels(void* buffer) const;
 		void setPixels(void* buffer);
 		~Bitmap();

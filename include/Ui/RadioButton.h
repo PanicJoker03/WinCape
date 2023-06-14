@@ -8,7 +8,7 @@ namespace ui{
 	{
 	public:
         //Omited at the moment
-		//using Pair = std::pair<Reference<RadioButton>, WSTR_CON>;
+		//using Pair = std::pair<Reference<RadioButton>, WCH_STR_CONST>;
 	};
 }}
 #endif

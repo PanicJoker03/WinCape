@@ -11,20 +11,20 @@ namespace dat_store{
 	public:
 		//Se omiten banderas de lpSecurityAttributes
 		//Se omiten banderas de dwFlagsAndAttributes
-		void open(WSTR_CON filePath, DSRED_ACCES mode);//no usar OPEN_ALWAYS
-		void create(WSTR_CON filePath, DSRED_ACCES mode);//no usar CREATE_ALWAYS
-		void truncate(WSTR_CON filePath);// usar GENERIC_WRITE por default
+		void open(WCH_STR_CONST filePath, DSRED_ACCES mode);//no usar OPEN_ALWAYS
+		void create(WCH_STR_CONST filePath, DSRED_ACCES mode);//no usar CREATE_ALWAYS
+		void truncate(WCH_STR_CONST filePath);// usar GENERIC_WRITE por default
 		void close();
 		std::size_t size();
 		//creation() must return date
 		//lastAccess() must return date
 		//lastWrite() must return date
-		File copy(WSTR_CON newFile);
-		void move(WSTR_CON newPath);
-		//void replace(WSTR_CON replacePath); not sure of how to implement this
-		static void remove(WSTR_CON filePath);
-		static File copy(WSTR_CON from, WSTR_CON dest);
-		static File move(WSTR_CON from, WSTR_CON dest);
+		File copy(WCH_STR_CONST newFile);
+		void move(WCH_STR_CONST newPath);
+		//void replace(WCH_STR_CONST replacePath); not sure of how to implement this
+		static void remove(WCH_STR_CONST filePath);
+		static File copy(WCH_STR_CONST from, WCH_STR_CONST dest);
+		static File move(WCH_STR_CONST from, WCH_STR_CONST dest);
 		//static replace...
 		//path
 		//fullName
@@ -32,8 +32,8 @@ namespace dat_store{
 		//extension
 
 		//write
-		bool write(WSTR_CON content, std::size_t* bytes_written);
-		bool write(WSTR_CON content);
+		bool write(WCH_STR_CONST content, std::size_t* bytes_written);
+		bool write(WCH_STR_CONST content);
 		//NEVER USE void*, force a stream object instead...
 		//bool write(void* content, int* bytes_written);
 		//bool write(void* content);

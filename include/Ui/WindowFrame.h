@@ -15,12 +15,12 @@ namespace ui{
 	public:
 		friend w_cape::Application;
 	private:
-		WSTR_CON windowName;
+		WCH_STR_CONST windowName;
 		const CAPE_RECT rect;
 	    WND_STY style;
 	protected:
-		WindowFrame(WSTR_CON windowName = w_cape::Defaults::WND_NAM,
-			WSTR_CON title = L"Default",
+		WindowFrame(WCH_STR_CONST windowName = w_cape::Defaults::WND_NAM,
+			WCH_STR_CONST title = L"Default",
 			const CAPE_RECT& rect = ui::Defaults::WINDOW_RECT,
 			WND_STY style = ui::Defaults::DEFWINDOW_STYLE
 		);

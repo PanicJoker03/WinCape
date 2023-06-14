@@ -15,8 +15,8 @@ namespace ui{
 		explicit DeviceContext(DCX_HND value);
 		//void drawBitmap(const Bitmap& bitmap);
 		void drawBitmap(const Bitmap& bitmap,
-				const VEC_2I& padding = VEC_2I());
-		void drawText(WSTR_CON text, DRW_TXT_4MAT format);
+				const I_VEC_2& padding = I_VEC_2());
+		void drawText(WCH_STR_CONST text, DRW_TXT_4MAT format);
 		CAPE_RECT bounds() const;
 		Window window() const;
 		//drawBitmapClipped...

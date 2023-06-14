@@ -18,21 +18,21 @@ namespace ui
 		menuInfo.dwStyle |= MNS_NOTIFYBYPOS;
 		SetMenuInfo(handle(), &menuInfo);
 	}
-	void Menu::addSubMenu(ui::Menu& menu, WSTR_CON text)
+	void Menu::addSubMenu(ui::Menu& menu, WCH_STR_CONST text)
 	{
 		AppendMenuW(
 			handle(), MF_STRING | MF_POPUP, (UINT_PTR)menu.handle(), text
 		);
 	}
-	void Menu::addItem(WSTR_CON item)
+	void Menu::addItem(WCH_STR_CONST item)
 	{
 		//Create MenuFlags in defines
 		AppendMenuW(handle(), MF_STRING, 0, item);
 	}
 	//Omited at the moment
-	//void Menu::addItems(std::initializer_list<WSTR_CON> itemList)
+	//void Menu::addItems(std::initializer_list<WCH_STR_CONST> itemList)
 	//{
-	//	for (WSTR_CON item : itemList)
+	//	for (WCH_STR_CONST item : itemList)
 	//	{
 	//		addItem(item);
 	//	}

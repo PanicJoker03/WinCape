@@ -29,14 +29,14 @@ namespace ui{
 	//	Int2 bitmapSize = bitmap.dimension();
 	//	drawBitmap(bitmap, CAPE_RECT{ 0, 0, bitmapSize });
 	//}
-	void ui::DeviceContext::drawBitmap(const ui::Bitmap& bitmap, const VEC_2I& padding)
+	void ui::DeviceContext::drawBitmap(const ui::Bitmap& bitmap, const I_VEC_2& padding)
 	{
 		DCX_HND devContextMemory = CreateCompatibleDC(handle());
-		VEC_2I bmpSize = bitmap.dimension();
+		I_VEC_2 bmpSize = bitmap.dimension();
 		bitBlt(bitmap.handle(), devContextMemory, CAPE_RECT( padding, bmpSize ));
 		DeleteDC(devContextMemory);
 	}
-	void ui::DeviceContext::drawText(WSTR_CON text, DRW_TXT_4MAT flags){
+	void ui::DeviceContext::drawText(WCH_STR_CONST text, DRW_TXT_4MAT flags){
 		CAPE_RECT rec = bounds();
 		SetTextColor(handle(), 0x00000000);
 		SetBkMode(handle(), TRANSPARENT);

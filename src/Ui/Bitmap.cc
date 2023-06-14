@@ -7,7 +7,7 @@ namespace ui{
 	Bitmap::Bitmap(const Bitmap&){
         throw "Can't do that";
     };
-	Bitmap::Bitmap(const VEC_2I& dimensions)
+	Bitmap::Bitmap(const I_VEC_2& dimensions)
 	{
 		BMP_HND hnd = CreateBitmap(
 			dimensions.x, dimensions.y,
@@ -33,20 +33,20 @@ namespace ui{
 			DIB_RGB_COLORS);
 		bmpInfo.bmiHeader.biCompression = BI_RGB;
 	}
-	void Bitmap::load(WSTR_CON sourcePath)
+	void Bitmap::load(WCH_STR_CONST sourcePath)
 	{
 		DeleteObject(handle());
 		handle((BMP_HND)LoadImageW(NULL, sourcePath, IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE));
 	}
-	VEC_2I Bitmap::dimension() const
+	I_VEC_2 Bitmap::dimension() const
 	{
 		//Wonderfull code source from:
 		//http://forums.codeguru.com/showthread.php?348350-Bitmap-Dimensions-after-using-LoadImage-How
 		//check for handle nullity?
 		BITMAP bitmap = {};
 		GetObject(handle(), sizeof(bitmap), &bitmap);
-		return VEC_2I( bitmap.bmWidth, bitmap.bmHeight );
+		return I_VEC_2( bitmap.bmWidth, bitmap.bmHeight );
 	}
 	void Bitmap::clonePixels(void* buffer) const
 	{

@@ -18,12 +18,12 @@ namespace w_cape{
 	//--------------------------------------------------------------------------
 	//Application
 	//--------------------------------------------------------------------------
-	void Application::init(WSTR_CON name)
+	void Application::init(WCH_STR_CONST name)
 	{
 		ui::Manager::instance().registerClass(name);
 	}
-	ui::Window Application::createWindow(WSTR_CON windowName,
-		WSTR_CON title, const CAPE_RECT& rect, WND_STY style,
+	ui::Window Application::createWindow(WCH_STR_CONST windowName,
+		WCH_STR_CONST title, const CAPE_RECT& rect, WND_STY style,
 		WNDX_STY exStyle)
 	{
 		ui::Window window;
@@ -49,7 +49,7 @@ namespace w_cape{
 	{
 		return GetModuleHandle(NULL);
 	}
-	void Application::defaultFont(WSTR_CON fontName)
+	void Application::defaultFont(WCH_STR_CONST fontName)
 	{
 		ui::Manager::instance().defaultFont(fontName);
 	}

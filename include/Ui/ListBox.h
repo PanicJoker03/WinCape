@@ -7,7 +7,7 @@ namespace ui{
 	class ListBox : public Control
 	{
 	public:
-		void addString(WSTR_CON string);
+		void addString(WCH_STR_CONST string);
 		int count() const;
 	};
 }}

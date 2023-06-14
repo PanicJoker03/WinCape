@@ -5,7 +5,7 @@ namespace ui{
 	//--------------------------------------------------------------------------
 	//ListBox
 	//--------------------------------------------------------------------------
-	void ListBox::addString(WSTR_CON string) {
+	void ListBox::addString(WCH_STR_CONST string) {
 		SendMessage(handle(), ListBoxMessages::ADD_STR, 0, (LPARAM)string);
 	}
 	int ListBox::count() const {

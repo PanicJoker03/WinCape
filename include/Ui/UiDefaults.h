@@ -16,9 +16,9 @@ namespace ui {
 
         static const SHW_CMD DEFSHOW_COMMAND;
 
-        static WSTR_CON BUTTON_CLASS_NAME;
-        static const VEC_2I BUTTON_SIZE;
-        static const VEC_2I RADIO_BUTTON_PADDING;
+        static WCH_STR_CONST BUTTON_CLASS_NAME;
+        static const I_VEC_2 BUTTON_SIZE;
+        static const I_VEC_2 RADIO_BUTTON_PADDING;
 
         static const BTN_STY DEFBUTTON_STYLE;
 

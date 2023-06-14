@@ -3,7 +3,7 @@
 namespace w_cape {
 namespace dat_store{
 	//https://ss64.com/nt/syntax-share-modes.html
-	void dat_store::File::open(WSTR_CON filePath, DSRED_ACCES mode)
+	void dat_store::File::open(WCH_STR_CONST filePath, DSRED_ACCES mode)
 	{
 		//TODO: Abrir con bandera OPEN_EXISTING
 		printf("abriendo archivo");
@@ -21,7 +21,7 @@ namespace dat_store{
 		handle(hFile);
 	}
 
-	void dat_store::File::create(WSTR_CON filePath, DSRED_ACCES mode)
+	void dat_store::File::create(WCH_STR_CONST filePath, DSRED_ACCES mode)
 	{
 		//TODO: Abrir con bandera CREATE_NEW
 		printf("creando archivo");
@@ -39,7 +39,7 @@ namespace dat_store{
 		handle(hFile);
 	}
 
-	void dat_store::File::truncate(WSTR_CON filePath)
+	void dat_store::File::truncate(WCH_STR_CONST filePath)
 	{
 		//TODO: Abrir con bandera TRUNCATE_EXISTING y DRD_ACCES GenericWrite...
 	}
@@ -49,7 +49,7 @@ namespace dat_store{
 
 	}
 
-	void dat_store::File::remove(WSTR_CON filePath)
+	void dat_store::File::remove(WCH_STR_CONST filePath)
 	{
 
 	}
