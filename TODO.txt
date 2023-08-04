@@ -11,3 +11,5 @@ Use const specifier when possible.
 Strong type enums... again.
 Lib build.
 Use cevelop project as source container.
+
+Migrate this library to C#
