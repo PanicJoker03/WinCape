@@ -13,3 +13,4 @@ Lib build.
 Use cevelop project as source container.
 
 Migrate this library to C#, because is C++ is more often used to develop console applications.
+I think this library is like 'reinventing the wheel' there are other wrappers outside.
