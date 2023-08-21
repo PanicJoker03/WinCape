@@ -1,4 +1,6 @@
 #include "Ui/Base.h"
+//https://learn.microsoft.com/en-us/windows/win32/winprog64/the-tools
+#include "Basetsd.h"
 namespace w_cape{
 namespace ui{
 	//-------------------------------------------------------------------------
@@ -45,13 +47,13 @@ namespace ui{
 	template<>
 	long Base::getProp(WCH_STR_CON prop)
 	{
-		return (long)GetPropW(handle(), prop);
+		return HandleToLong(GetPropW(handle(), prop));
 	}
 	
 	template<>
 	int Base::getProp(WCH_STR_CON prop)
 	{
-		return (int)(long)GetPropW(handle(), prop);
+		return (int)HandleToLong(GetPropW(handle(), prop));
 	}
 	
 	template<>
@@ -61,7 +63,7 @@ namespace ui{
 			float valF;
 			long valL;
 		}storeMy;
-		storeMy.valL = (long)GetPropW(handle(), prop);
+		storeMy.valL = HandleToLong(GetPropW(handle(), prop));
 		return storeMy.valF;
 	}
 }}
