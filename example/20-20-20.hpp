@@ -36,9 +36,11 @@ namespace exm {
 		wnApp.onPaint(wnApp_OnPaint);
 		ui::Button btOk;
 		wnApp.addButton(btOk, L"Ok", I_VEC_2(100, 100));
+		//Makes handle a MOUSE_EVENT or CLICK_EVENT
 		btOk.onClick([](const EVENT e){
 			wnApp.hide();
 		});
+		////Makes handle a TIMER_EVENT
 		wnApp.timer([](const EVENT e){
 			wnApp.show();
 		}, 1200000);
@@ -49,7 +51,7 @@ namespace exm {
 		//exit ok
 		return 0;
 	}
-
+	//Makes Handle a PAINT_EVENT
 	void wnApp_OnPaint(const EVENT e){
 		DRW_TXT_FMAT txFormat =
 			ui::DrawTextFormats::SNG_LIN |
