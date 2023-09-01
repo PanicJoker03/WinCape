@@ -7,11 +7,13 @@
 #include <WinUser.h>
 #include <commctrl.h>
 
+//Make enum
 #define PROGRAM_CODE_OK 0 
 #define PROGRAM_CODE_BAD 1
 
 namespace w_cape
 {
+	//raname EXIT_CODE
 	typedef int PROGRAM_RESULT;
 	typedef long* PTR_LNG;
 	typedef unsigned char U_SIGN_8;
